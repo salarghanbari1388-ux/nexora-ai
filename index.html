@@ -3,229 +3,2906 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#050817">
-<meta name="description" content="NEXORA AI — ابزارهای محلی مدیریت کسب‌وکار">
-<title>NEXORA AI — Business Intelligence</title>
+<meta name="theme-color" content="#05080f">
+<title>NEXORA AI — Intelligence Beyond Limits</title>
 <style>
-:root{--bg:#050817;--bg2:#0a1126;--card:rgba(17,27,54,.82);--line:rgba(144,175,235,.17);--line2:rgba(124,231,255,.35);--text:#eaf0ff;--muted:#93a2c1;--dim:#61708e;--ice:#7ce7ff;--blue:#48baff;--gold:#d9b76d;--violet:#9b7cff;--red:#ff8585;--green:#71e0ad;--radius:18px;--font:Tahoma,"Segoe UI",system-ui,sans-serif}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:var(--font);background:var(--bg);color:var(--text)}body{font-size:14px;line-height:1.8;-webkit-font-smoothing:antialiased}body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(900px 600px at 90% -10%,rgba(110,70,255,.2),transparent 65%),radial-gradient(800px 600px at 0% 20%,rgba(0,185,255,.14),transparent 65%),linear-gradient(180deg,#050817,#080d1e 55%,#050817)}body:after{content:"";position:fixed;inset:0;z-index:-1;opacity:.25;pointer-events:none;background-image:linear-gradient(rgba(130,170,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(130,170,255,.04) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse at 50% 20%,#000,transparent 80%)}[hidden]{display:none!important}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px max(14px,calc((100% - 1120px)/2));background:rgba(5,8,23,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:9px;font-weight:900;letter-spacing:.05em;white-space:nowrap}.brand svg{width:34px;height:34px;cursor:pointer}.brand span{background:linear-gradient(120deg,#fff,#aebedb 65%,var(--ice));background-clip:text;color:transparent}.brand b{background:linear-gradient(120deg,var(--ice),var(--gold));background-clip:text;color:transparent}.nav{display:flex;align-items:center;gap:5px;flex-wrap:wrap;justify-content:flex-end}.nav button{border:1px solid transparent;border-radius:10px;padding:7px 11px;background:transparent;color:var(--muted);font-size:12px;font-weight:700}.nav button:hover,.nav button.active{color:var(--text);background:rgba(124,231,255,.08);border-color:var(--line)}.nav .primary{background:linear-gradient(120deg,var(--blue),var(--violet));color:#07101c;border:0}.wrap{width:min(1120px,100% - 28px);margin:auto}.view{display:none;padding:24px 0 48px}.view.active{display:block;animation:in .25s ease}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.hero{text-align:center;padding:52px 10px 36px}.hero-mark{width:100px;height:100px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(124,231,255,.22);background:radial-gradient(circle,rgba(124,231,255,.2),rgba(155,124,255,.08) 55%,transparent 70%);box-shadow:0 0 55px rgba(71,178,255,.15)}.hero-mark svg{width:62px;height:62px;filter:drop-shadow(0 0 15px rgba(124,231,255,.35))}.hero h1{font-size:clamp(32px,8vw,50px);line-height:1.2;margin:0;font-weight:950;letter-spacing:.02em;background:linear-gradient(180deg,#fff,#b5c5e4 65%,#7ce7ff);background-clip:text;color:transparent}.slogan{margin:8px 0 22px;color:var(--gold);letter-spacing:.2em;font-size:11px;font-weight:700;direction:ltr}.hero-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.section-title{display:flex;align-items:center;gap:10px;margin:25px 0 14px;color:var(--muted);font-size:12px;font-weight:900;letter-spacing:.05em}.section-title:before{content:"";width:3px;height:15px;border-radius:5px;background:linear-gradient(var(--ice),var(--gold))}.section-title:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--line),transparent)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.feature,.card,.plan{border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(155deg,rgba(255,255,255,.055),rgba(255,255,255,.018));backdrop-filter:blur(12px);box-shadow:0 18px 50px -32px #000;padding:17px}.feature .ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:var(--ice);background:rgba(124,231,255,.1);border:1px solid rgba(124,231,255,.2);font-size:19px;margin-bottom:10px}.feature h3,.card h3{font-size:14px;color:var(--text);margin:0 0 7px}.feature p{font-size:12px;color:var(--muted);margin:0;line-height:1.9}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid transparent;border-radius:12px;padding:10px 16px;font-size:12px;font-weight:800;transition:.2s;white-space:nowrap}.btn:hover{transform:translateY(-1px)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}.primary-btn{background:linear-gradient(120deg,var(--blue),var(--violet));color:#061020;box-shadow:0 8px 25px -12px #4b9eff}.gold-btn{background:linear-gradient(120deg,#f1dc9d,var(--gold));color:#201807}.ghost-btn{border-color:var(--line2);background:rgba(255,255,255,.035);color:var(--text)}.danger-btn{border-color:rgba(255,133,133,.35);background:rgba(255,90,90,.09);color:#ffb1b1}.small{padding:7px 11px;font-size:11px}.header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:17px 18px;border-radius:var(--radius);border:1px solid var(--line2);background:linear-gradient(120deg,rgba(124,231,255,.08),rgba(217,183,109,.05));margin-bottom:14px}.header h2{font-size:19px;margin:0 0 3px}.header p{font-size:11px;color:var(--muted);margin:0}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:9px;margin:12px 0 16px}.stat{border:1px solid var(--line);border-radius:14px;padding:13px;text-align:center;background:rgba(124,231,255,.045)}.stat strong{display:block;font-size:20px;line-height:1.4;color:#f1f6ff;overflow-wrap:anywhere}.stat span{font-size:10px;color:var(--muted)}.card{margin-bottom:13px}.card h3{display:flex;align-items:center;gap:8px;margin-bottom:13px}.card h3:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}.tabs{display:flex;gap:5px;overflow-x:auto;padding:4px;border:1px solid var(--line);border-radius:13px;background:rgba(0,0,0,.12);margin-bottom:13px;scrollbar-width:none}.tabs button{flex:1;min-width:max-content;border:0;border-radius:9px;padding:9px 12px;background:transparent;color:var(--muted);font-size:11px;font-weight:800}.tabs button.active{color:#08111e;background:linear-gradient(120deg,var(--ice),var(--gold))}.panel{display:none}.panel.active{display:block;animation:in .2s}.field{margin:0 0 12px}.label{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:6px}.input,textarea,select{width:100%;border:1px solid var(--line2);border-radius:11px;padding:10px 12px;background:rgba(255,255,255,.045);outline:none;font-size:12px;color:var(--text)}textarea{resize:vertical;min-height:90px;line-height:1.9}select option{background:#101a35}.input:focus,textarea:focus,select:focus{border-color:var(--ice);box-shadow:0 0 0 3px rgba(124,231,255,.08)}.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.row>*{flex:1;min-width:0}.row .fit{flex:0 0 auto}.hint{font-size:10.5px;color:var(--dim);line-height:1.8}.notice{border:1px solid rgba(217,183,109,.3);background:rgba(217,183,109,.07);color:#f0dcae;border-radius:12px;padding:11px 13px;font-size:11px;line-height:1.9;margin:10px 0}.success{color:var(--green)}.error{color:var(--red)}.result{border:1px solid var(--line);border-radius:12px;padding:13px;background:rgba(0,0,0,.15);margin-top:12px;font-size:12px;line-height:2;white-space:pre-wrap;overflow-wrap:anywhere}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}.table{border-collapse:collapse;width:100%;min-width:520px;font-size:11px}.table th,.table td{text-align:right;padding:10px;border-bottom:1px solid var(--line);white-space:nowrap}.table th{color:var(--muted);background:rgba(124,231,255,.05)}.table td{color:#cbd6ec}.table tr:last-child td{border-bottom:0}.badge{display:inline-block;border-radius:30px;padding:3px 9px;font-size:10px;font-weight:900;background:rgba(124,231,255,.1);border:1px solid var(--line2);color:var(--ice)}.badge.gold{color:var(--gold);border-color:rgba(217,183,109,.35)}.badge.red{color:var(--red);border-color:rgba(255,133,133,.35)}.badge.green{color:var(--green);border-color:rgba(113,224,173,.35)}.list{display:grid;gap:8px}.list-item{border:1px solid var(--line);border-radius:11px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.02);font-size:11px}.list-item .sub{display:block;color:var(--dim);font-size:10px}.empty{padding:20px;text-align:center;color:var(--dim);font-size:11px}.modal-bg{position:fixed;inset:0;z-index:100;background:rgba(1,3,12,.82);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:16px}.modal{position:relative;width:min(430px,100%);max-height:90vh;overflow:auto;border:1px solid var(--line2);border-radius:20px;padding:22px;background:linear-gradient(150deg,#172342,#0a1127);box-shadow:0 30px 80px #000}.modal h3{margin:0 0 13px;font-size:16px}.close{position:absolute;left:12px;top:10px;border:0;background:transparent;color:var(--muted);font-size:23px}.toast{position:fixed;z-index:150;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#152646;border:1px solid var(--line2);border-radius:30px;padding:10px 17px;font-size:11px;box-shadow:0 15px 45px #000;transition:.25s;max-width:90vw;text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.checkline{display:flex;gap:9px;align-items:center;font-size:11px;color:var(--muted);padding:5px 0}.checkline input{width:auto;accent-color:var(--ice)}.money-in{color:var(--green)}.money-out{color:var(--red)}.footer{padding:20px 0;text-align:center;color:var(--dim);font-size:10px;border-top:1px solid var(--line)}
-@media(max-width:640px){.topbar{align-items:flex-start}.nav{gap:3px}.nav button{padding:7px 8px;font-size:10px}.nav button[data-hide-mobile]{display:none}.hero{padding:36px 6px 28px}.grid{grid-template-columns:1fr 1fr}.feature{padding:14px}.wrap{width:calc(100% - 22px)}.header{padding:14px}.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:380px){.grid{grid-template-columns:1fr}.brand span{font-size:13px}}
+:root{
+  --bg-0:#05080f; --bg-1:#0a1120; --bg-2:#0d1730;
+  --surface:rgba(18,26,44,.72); --surface-2:rgba(12,18,32,.6);
+  --border:rgba(78,231,255,.10); --border-2:rgba(78,231,255,.24);
+  --cyan:#4ee7ff; --cyan-2:#6bb6ff; --gold:#e8c87a; --gold-2:#f5dc9c;
+  --text:#eaf2ff; --text-2:#b0bfd8; --text-3:#6b7a94;
+  --ok:#5df2b0; --warn:#ffb84d; --err:#ff8080;
+  --r:14px; --r-lg:20px;
+  --shadow:0 20px 40px -20px rgba(0,0,0,.9);
+  --glow:0 0 30px rgba(78,231,255,.18);
+  --font:"Vazirmatn","IRANSansX",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%}
+body{font-family:var(--font);background:var(--bg-0);color:var(--text);font-size:14.5px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+[hidden]{display:none!important}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit;font-size:inherit}
+input,textarea,select{font-family:inherit;font-size:inherit;color:inherit}
+::selection{background:rgba(78,231,255,.3);color:#fff}
+h1,h2,h3,h4,p{margin:0}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(78,231,255,.16);border-radius:8px}
+
+/* Background */
+.bg-stars{position:fixed;inset:0;z-index:-2;overflow:hidden;
+  background:
+    radial-gradient(1200px 800px at 80% -10%,rgba(78,231,255,.10),transparent 60%),
+    radial-gradient(900px 700px at 10% 110%,rgba(232,200,122,.07),transparent 60%),
+    linear-gradient(180deg,#05080f 0%,#070d1b 50%,#05080f 100%)}
+.bg-star{position:absolute;width:2px;height:2px;border-radius:50%;
+  background:var(--cyan);animation:twinkle 5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.12;transform:scale(.8)}50%{opacity:.7;transform:scale(1.5)}}
+.bg-glow{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(78,231,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(78,231,255,.025) 1px,transparent 1px);
+  background-size:64px 64px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 15%,transparent 75%);
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 15%,transparent 75%)}
+
+/* ══════════ AUTH SCREEN ══════════ */
+.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;
+  overflow-y:auto}
+.auth-card{width:100%;max-width:440px;padding:34px 30px;
+  background:linear-gradient(145deg,rgba(18,26,44,.88),rgba(12,18,32,.75));
+  border:1px solid var(--border);border-radius:24px;
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  box-shadow:var(--shadow),var(--glow);animation:cardIn .5s ease both;margin:auto}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.brand-lockup{display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.brand-n{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
+  font-size:24px;font-weight:900;color:#05080f;
+  background:linear-gradient(135deg,var(--cyan),var(--gold));
+  box-shadow:0 0 40px rgba(78,231,255,.4)}
+.brand-title{font-size:18px;font-weight:800;letter-spacing:.05em;line-height:1.2}
+.brand-title span{background:linear-gradient(135deg,var(--cyan),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-sub{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.auth-tabs{display:flex;gap:6px;padding:4px;background:rgba(0,0,0,.35);
+  border:1px solid var(--border);border-radius:12px;margin-bottom:22px}
+.auth-tab{flex:1;padding:10px;border-radius:9px;font-size:12.5px;font-weight:700;
+  color:var(--text-3);transition:.25s}
+.auth-tab.active{color:#05080f;background:linear-gradient(135deg,var(--cyan),var(--cyan-2));
+  box-shadow:0 4px 12px -4px rgba(78,231,255,.6)}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11.5px;font-weight:700;color:var(--text-3);
+  margin-bottom:7px;letter-spacing:.03em}
+.field input,.field select,.field textarea{width:100%;padding:12px 14px;border-radius:12px;
+  background:rgba(0,0,0,.32);border:1px solid var(--border);color:var(--text);
+  outline:none;transition:.25s;font-size:13.5px}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--cyan);box-shadow:0 0 0 3px rgba(78,231,255,.1)}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-3)}
+.field textarea{resize:vertical;min-height:90px;line-height:1.8}
+.field select{appearance:none;-webkit-appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,var(--text-3) 50%),
+    linear-gradient(135deg,var(--text-3) 50%,transparent 50%);
+  background-position:calc(0% + 14px) calc(50% - 2px),calc(0% + 19px) calc(50% - 2px);
+  background-size:5px 5px;background-repeat:no-repeat;padding-left:32px}
+.field select option{background:#0a1120;color:var(--text)}
+.field-hint{font-size:11px;color:var(--text-3);margin-top:6px}
+.auth-error{padding:10px 14px;border-radius:10px;background:rgba(255,128,128,.08);
+  border:1px solid rgba(255,128,128,.3);color:#ffb0b0;font-size:12px;
+  line-height:1.7;margin-bottom:14px;animation:cardIn .25s ease both}
+.auth-foot{margin-top:22px;text-align:center;font-size:10.5px;color:var(--text-3);
+  letter-spacing:.15em;text-transform:uppercase}
+
+/* ══════════ BUTTONS ══════════ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:11px 20px;border-radius:12px;font-size:13.5px;font-weight:700;
+  transition:transform .15s,box-shadow .25s,background .25s,border-color .25s,opacity .2s;
+  white-space:nowrap;user-select:none}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--cyan-2));color:#05080f;
+  box-shadow:0 8px 24px -8px rgba(78,231,255,.55)}
+.btn-primary:hover:not(:disabled){box-shadow:0 12px 30px -8px rgba(78,231,255,.75)}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1408;
+  box-shadow:0 8px 24px -8px rgba(232,200,122,.5)}
+.btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border-2);color:var(--text)}
+.btn-ghost:hover:not(:disabled){background:rgba(78,231,255,.08);border-color:var(--cyan)}
+.btn-danger{background:linear-gradient(135deg,#ff7b7b,#ff5566);color:#fff;
+  box-shadow:0 8px 20px -8px rgba(255,80,100,.5)}
+.btn-sm{padding:8px 14px;font-size:12px;border-radius:10px}
+.btn-block{width:100%}
+.btn-icon{padding:8px;width:36px;height:36px;border-radius:10px}
+
+/* ══════════ APP SHELL ══════════ */
+.app-shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.sidebar{background:rgba(8,12,24,.75);border-left:1px solid var(--border);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  padding:20px 14px;display:flex;flex-direction:column;gap:20px;
+  position:sticky;top:0;height:100vh;overflow-y:auto}
+.sidebar-head{display:flex;align-items:center;gap:10px;padding:4px 6px}
+.brand-n.small{width:34px;height:34px;border-radius:10px;font-size:16px;
+  box-shadow:0 0 20px rgba(78,231,255,.3)}
+.brand-title.small{font-size:14px}
+.brand-sub.small{font-size:8px;margin-top:1px}
+.nav{display:flex;flex-direction:column;gap:4px;flex:1}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:11px;
+  color:var(--text-2);font-size:13px;font-weight:600;transition:.25s;text-align:right;
+  position:relative;border:1px solid transparent}
+.nav-item i{font-style:normal;font-size:15px;width:20px;text-align:center;
+  color:var(--text-3);transition:.25s}
+.nav-item:hover{background:rgba(78,231,255,.06);color:var(--text)}
+.nav-item:hover i{color:var(--cyan)}
+.nav-item.active{background:linear-gradient(90deg,rgba(78,231,255,.14),rgba(78,231,255,.04));
+  color:var(--text);border-color:var(--border-2);box-shadow:inset 3px 0 0 var(--cyan)}
+.nav-item.active i{color:var(--cyan);text-shadow:0 0 12px var(--cyan)}
+.nav-item .badge-count{margin-right:auto;background:var(--cyan);color:#05080f;
+  font-size:10px;font-weight:800;padding:1px 7px;border-radius:99px;min-width:18px;text-align:center}
+.sidebar-foot{padding-top:12px;border-top:1px solid var(--border);display:flex;
+  flex-direction:column;gap:10px;position:relative}
+.user-chip{display:flex;align-items:center;gap:10px;padding:8px;border-radius:11px;
+  background:rgba(255,255,255,.03);border:1px solid var(--border)}
+.avatar{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
+  font-size:14px;font-weight:800;color:#05080f;flex-shrink:0;
+  background:linear-gradient(135deg,var(--cyan),var(--gold))}
+.user-meta{flex:1;min-width:0}
+.user-name{font-size:12.5px;font-weight:700;color:var(--text);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.user-tier{font-size:10px;color:var(--text-3);margin-top:1px}
+.logout-link{padding:8px;border-radius:10px;font-size:11.5px;color:var(--text-3);
+  text-align:center;transition:.25s}
+.logout-link:hover{background:rgba(255,128,128,.08);color:var(--err)}
+.version{font-size:9.5px;color:var(--text-3);text-align:center;letter-spacing:.1em;
+  padding:4px;position:relative;user-select:none}
+
+/* Secret dot for admin access */
+.secret-dot{position:absolute;width:5px;height:5px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold),transparent 70%);
+  opacity:.18;left:8px;top:50%;transform:translateY(-50%);
+  cursor:pointer;transition:opacity .3s;z-index:5}
+.secret-dot:hover{opacity:.6}
+
+/* Mobile nav */
+.mobile-top{display:none}
+
+/* Main content */
+.main-content{padding:32px 36px;max-width:1400px;margin:0 auto;width:100%;min-width:0}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:16px;margin-bottom:26px;flex-wrap:wrap}
+.page-title{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.page-sub{font-size:12.5px;color:var(--text-3);margin-top:5px}
+.page-actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ══════════ CARDS ══════════ */
+.card{background:linear-gradient(145deg,rgba(18,26,44,.72),rgba(12,18,32,.55));
+  border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  box-shadow:var(--shadow);margin-bottom:16px;transition:border-color .3s}
+.card:hover{border-color:var(--border-2)}
+.card-head{display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:16px}
+.card-title{font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px;
+  color:var(--text)}
+.card-title svg{width:16px;height:16px;stroke:var(--cyan);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+
+/* KPI grid */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:14px;margin-bottom:22px}
+.kpi{position:relative;padding:18px 18px 16px;border-radius:var(--r-lg);
+  background:linear-gradient(145deg,rgba(18,26,44,.8),rgba(12,18,32,.6));
+  border:1px solid var(--border);overflow:hidden;
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  transition:transform .3s,border-color .3s}
+.kpi::before{content:"";position:absolute;top:-40px;left:-40px;width:120px;height:120px;
+  border-radius:50%;background:radial-gradient(circle,rgba(78,231,255,.15),transparent 70%);
+  opacity:.5;pointer-events:none}
+.kpi:hover{transform:translateY(-3px);border-color:var(--border-2)}
+.kpi-label{font-size:11px;color:var(--text-3);letter-spacing:.04em;
+  margin-bottom:6px;font-weight:600}
+.kpi-value{font-size:22px;font-weight:900;letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi-value.cyan{color:var(--cyan)}
+.kpi-value.gold{color:var(--gold)}
+.kpi-value.ok{color:var(--ok)}
+.kpi-value.err{color:var(--err)}
+.kpi-meta{font-size:11px;color:var(--text-3);margin-top:6px}
+.kpi-icon{position:absolute;top:14px;left:14px;font-size:20px;opacity:.5}
+
+/* Charts */
+.chart-wrap{background:rgba(0,0,0,.2);border-radius:12px;padding:16px;
+  border:1px solid var(--border);margin-top:8px}
+.chart-svg{width:100%;height:auto;display:block;max-height:240px}
+
+/* Bar chart */
+.bars{display:flex;align-items:flex-end;gap:3px;height:120px;
+  padding:0 4px;border-bottom:1px solid var(--border)}
+.bar{flex:1;min-width:4px;border-radius:3px 3px 0 0;transition:opacity .2s;
+  position:relative;cursor:default;min-height:2px}
+.bar-income{background:linear-gradient(180deg,var(--cyan),rgba(78,231,255,.4))}
+.bar-expense{background:linear-gradient(180deg,var(--err),rgba(255,128,128,.3))}
+.bar:hover{opacity:.75}
+.bar-labels{display:flex;justify-content:space-between;margin-top:8px;
+  font-size:9.5px;color:var(--text-3)}
+
+/* ══════════ TABLES ══════════ */
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);
+  background:rgba(0,0,0,.15)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:600px}
+.data-table thead{background:rgba(78,231,255,.06)}
+.data-table th{padding:11px 13px;text-align:right;font-weight:800;
+  font-size:11px;letter-spacing:.04em;color:var(--text-2);
+  border-bottom:1px solid var(--border-2);white-space:nowrap}
+.data-table td{padding:11px 13px;border-bottom:1px solid var(--border);
+  color:var(--text-2);vertical-align:middle}
+.data-table tbody tr:last-child td{border-bottom:0}
+.data-table tbody tr:hover{background:rgba(78,231,255,.03)}
+.data-table .name-cell{color:var(--text);font-weight:700}
+.data-table .actions{display:flex;gap:5px;flex-wrap:wrap}
+.tiny-btn{padding:4px 10px;border-radius:7px;font-size:10.5px;font-weight:700;
+  border:1px solid var(--border-2);background:rgba(255,255,255,.04);
+  color:var(--text-2);transition:.2s;white-space:nowrap}
+.tiny-btn:hover{background:rgba(78,231,255,.1);color:var(--cyan);border-color:var(--cyan)}
+.tiny-btn.danger{border-color:rgba(255,128,128,.3);color:#ffb0b0}
+.tiny-btn.danger:hover{background:rgba(255,128,128,.12);border-color:var(--err);color:var(--err)}
+.tiny-btn.ok{border-color:rgba(93,242,176,.3);color:#b9ecd8}
+.tiny-btn.ok:hover{background:rgba(93,242,176,.12);border-color:var(--ok);color:var(--ok)}
+
+/* Badges */
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;
+  font-size:10.5px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.badge-free{background:rgba(140,170,255,.14);color:#b8c4dc;border:1px solid rgba(140,170,255,.3)}
+.badge-pro{background:rgba(78,231,255,.14);color:var(--cyan);border:1px solid rgba(78,231,255,.4)}
+.badge-enterprise{background:rgba(232,200,122,.14);color:var(--gold);border:1px solid rgba(232,200,122,.4)}
+.badge-pending{background:rgba(255,184,77,.14);color:var(--warn);border:1px solid rgba(255,184,77,.35)}
+.badge-approved{background:rgba(93,242,176,.14);color:var(--ok);border:1px solid rgba(93,242,176,.35)}
+.badge-rejected{background:rgba(255,128,128,.14);color:var(--err);border:1px solid rgba(255,128,128,.35)}
+.badge-blocked{background:rgba(255,128,128,.14);color:#ffb0b0;border:1px solid rgba(255,128,128,.35)}
+
+/* ══════════ CHAT (Accountant) ══════════ */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 180px);
+  min-height:400px;max-height:780px;border-radius:var(--r-lg);
+  overflow:hidden;background:linear-gradient(145deg,rgba(18,26,44,.8),rgba(12,18,32,.6));
+  border:1px solid var(--border);box-shadow:var(--shadow)}
+.chat-head{padding:14px 18px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:10px;background:rgba(78,231,255,.04)}
+.chat-head-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 12px var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.chat-head-title{font-size:13px;font-weight:800}
+.chat-head-sub{font-size:11px;color:var(--text-3)}
+.chat-body{flex:1;overflow-y:auto;padding:18px;display:flex;
+  flex-direction:column;gap:12px;scroll-behavior:smooth}
+.msg{display:flex;gap:9px;max-width:88%;animation:msgIn .3s ease both}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.user{margin-right:auto;flex-direction:row-reverse}
+.msg.bot{margin-left:auto}
+.msg-avatar{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
+  font-size:12px;font-weight:800;flex-shrink:0}
+.msg.bot .msg-avatar{background:linear-gradient(135deg,var(--cyan),var(--gold));color:#05080f}
+.msg.user .msg-avatar{background:rgba(255,255,255,.08);color:var(--text)}
+.msg-bubble{padding:11px 15px;border-radius:14px;font-size:13.5px;line-height:1.9;
+  white-space:pre-wrap;word-break:break-word}
+.msg.bot .msg-bubble{background:rgba(78,231,255,.07);border:1px solid var(--border-2);
+  border-top-right-radius:4px}
+.msg.user .msg-bubble{background:linear-gradient(135deg,rgba(78,231,255,.9),rgba(107,182,255,.9));
+  color:#05080f;font-weight:600;border-top-left-radius:4px}
+.chat-typing{display:inline-flex;gap:4px;padding:14px 16px}
+.chat-typing span{width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--cyan),var(--gold));
+  animation:typingBounce 1.2s infinite}
+.chat-typing span:nth-child(2){animation-delay:.15s}
+.chat-typing span:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.4}
+  30%{transform:translateY(-6px);opacity:1}}
+.chat-input-wrap{padding:12px;border-top:1px solid var(--border);
+  display:flex;gap:8px;background:rgba(0,0,0,.2)}
+.chat-input{flex:1;padding:11px 16px;border-radius:12px;
+  background:rgba(0,0,0,.35);border:1px solid var(--border);color:var(--text);
+  outline:none;resize:none;font-size:13.5px;line-height:1.6;
+  max-height:120px;min-height:44px;transition:.25s;font-family:inherit}
+.chat-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(78,231,255,.08)}
+.chat-send{padding:0 18px;border-radius:12px;
+  background:linear-gradient(135deg,var(--cyan),var(--cyan-2));color:#05080f;
+  font-weight:800;font-size:13px;transition:.2s;white-space:nowrap}
+.chat-send:disabled{opacity:.4;cursor:not-allowed}
+
+/* ══════════ FORECAST ══════════ */
+.forecast-scenarios{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:12px;margin:16px 0}
+.scenario{padding:16px;border-radius:14px;border:1px solid var(--border);
+  background:rgba(0,0,0,.2)}
+.scenario.optimistic{border-color:rgba(93,242,176,.3);
+  background:linear-gradient(145deg,rgba(93,242,176,.06),transparent)}
+.scenario.realistic{border-color:rgba(78,231,255,.3);
+  background:linear-gradient(145deg,rgba(78,231,255,.06),transparent)}
+.scenario.pessimistic{border-color:rgba(255,128,128,.3);
+  background:linear-gradient(145deg,rgba(255,128,128,.06),transparent)}
+.scenario-label{font-size:11px;font-weight:700;color:var(--text-3);
+  margin-bottom:6px;letter-spacing:.03em}
+.scenario-value{font-size:18px;font-weight:900;font-variant-numeric:tabular-nums}
+.scenario-desc{font-size:11px;color:var(--text-3);margin-top:4px;line-height:1.7}
+.confidence-bar{height:6px;background:rgba(255,255,255,.06);
+  border-radius:99px;overflow:hidden;margin:10px 0}
+.confidence-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));
+  border-radius:99px;transition:width .6s ease}
+.reason-list{list-style:none;padding:0;margin:0;display:flex;
+  flex-direction:column;gap:8px}
+.reason-list li{padding:10px 12px;background:rgba(78,231,255,.04);
+  border-radius:10px;border:1px solid var(--border);font-size:12.5px;
+  line-height:1.8;color:var(--text-2)}
+.reason-list li::before{content:"›";color:var(--cyan);margin-left:8px;
+  font-weight:900;font-size:15px}
+
+/* ══════════ SUBSCRIPTION ══════════ */
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:14px;margin:20px 0}
+.tier-card{padding:24px 20px;border-radius:var(--r-lg);
+  background:linear-gradient(145deg,rgba(18,26,44,.75),rgba(12,18,32,.55));
+  border:1px solid var(--border);position:relative;overflow:hidden;
+  transition:transform .3s,border-color .3s}
+.tier-card:hover{transform:translateY(-4px);border-color:var(--border-2)}
+.tier-card.featured{border-color:rgba(232,200,122,.4);
+  box-shadow:0 0 50px -10px rgba(232,200,122,.4)}
+.tier-card.featured::before{content:"محبوب";position:absolute;top:12px;left:12px;
+  font-size:9.5px;padding:3px 10px;border-radius:99px;font-weight:800;
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1408}
+.tier-card.current{border-color:rgba(78,231,255,.5);
+  box-shadow:0 0 40px -12px rgba(78,231,255,.4)}
+.tier-card.current::after{content:"فعلی";position:absolute;top:12px;left:12px;
+  font-size:9.5px;padding:3px 10px;border-radius:99px;font-weight:800;
+  background:rgba(78,231,255,.2);color:var(--cyan);border:1px solid var(--cyan)}
+.tier-name{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-3);font-weight:800;margin-bottom:8px}
+.tier-price{font-size:26px;font-weight:900;line-height:1.2;margin-bottom:4px}
+.tier-price small{font-size:12px;font-weight:500;color:var(--text-3)}
+.tier-desc{font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.85}
+.tier-features{list-style:none;padding:0;margin:0 0 16px;
+  display:flex;flex-direction:column;gap:8px;min-height:100px}
+.tier-features li{font-size:12.5px;color:var(--text-2);padding-right:20px;
+  position:relative;line-height:1.85}
+.tier-features li::before{content:"✓";position:absolute;right:0;
+  color:var(--ok);font-weight:900}
+
+/* Receipt preview */
+.receipt-preview{max-width:100%;max-height:400px;border-radius:10px;
+  border:1px solid var(--border);margin-top:10px;display:block}
+.receipt-thumb{width:60px;height:60px;object-fit:cover;border-radius:8px;
+  border:1px solid var(--border-2);cursor:pointer;transition:.2s}
+.receipt-thumb:hover{border-color:var(--cyan);transform:scale(1.05)}
+
+/* ══════════ ADMIN ══════════ */
+.admin-banner{padding:14px 18px;border-radius:12px;
+  background:linear-gradient(135deg,rgba(232,200,122,.1),rgba(78,231,255,.05));
+  border:1px solid rgba(232,200,122,.3);margin-bottom:20px;
+  font-size:12.5px;color:var(--gold-2);line-height:1.85}
+
+/* ══════════ MODAL ══════════ */
+.modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;
+  justify-content:center;padding:20px;background:rgba(2,4,12,.85);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{width:100%;max-width:420px;padding:24px 22px 20px;border-radius:var(--r-lg);
+  background:linear-gradient(165deg,rgba(20,30,60,.97),rgba(9,15,34,.98));
+  border:1px solid var(--border-2);box-shadow:0 30px 70px -20px #000;
+  animation:modalIn .3s cubic-bezier(.2,.7,.3,1);max-height:90vh;overflow-y:auto}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-card h3{font-size:16px;font-weight:800;margin-bottom:6px}
+.modal-sub{font-size:12px;color:var(--text-3);margin-bottom:18px;line-height:1.8}
+.modal-actions{display:flex;gap:10px;margin-top:16px}
+.modal-actions .btn{flex:1}
+.modal-close{position:absolute;top:12px;left:12px;width:30px;height:30px;
+  border-radius:8px;font-size:18px;color:var(--text-3);
+  display:grid;place-items:center;transition:.2s}
+.modal-close:hover{background:rgba(255,255,255,.06);color:var(--text)}
+.modal-card{position:relative}
+
+/* ══════════ WELCOME ══════════ */
+.welcome-overlay{position:fixed;inset:0;z-index:150;display:grid;place-items:center;
+  padding:20px;background:
+    radial-gradient(circle at 50% 40%,rgba(78,231,255,.15),transparent 55%),
+    radial-gradient(circle at 30% 80%,rgba(232,200,122,.1),transparent 55%),
+    rgba(5,8,15,.98);
+  animation:welcomeIn .6s ease both}
+@keyframes welcomeIn{from{opacity:0}to{opacity:1}}
+.welcome-content{text-align:center;max-width:600px;padding:20px}
+.welcome-mark{width:90px;height:90px;border-radius:24px;margin:0 auto 24px;
+  display:grid;place-items:center;font-size:40px;font-weight:900;color:#05080f;
+  background:linear-gradient(135deg,var(--cyan),var(--gold));
+  box-shadow:0 0 80px rgba(78,231,255,.5);
+  animation:welcomePop .7s .2s cubic-bezier(.2,.7,.3,1) both}
+@keyframes welcomePop{from{transform:scale(.3) rotate(-15deg);opacity:0}
+  to{transform:scale(1) rotate(0);opacity:1}}
+.welcome-hi{font-size:clamp(26px,6vw,42px);font-weight:800;margin-bottom:14px;
+  line-height:1.3;animation:welcomeRise .8s .4s ease both}
+.welcome-hi span{background:linear-gradient(135deg,var(--cyan),var(--gold));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.welcome-sub{font-size:15px;color:var(--text-2);margin-bottom:32px;line-height:2;
+  animation:welcomeRise .8s .6s ease both}
+.welcome-content .btn{padding:14px 40px;font-size:14px;
+  animation:welcomeRise .8s .8s ease both}
+@keyframes welcomeRise{from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}}
+
+/* ══════════ TOAST ══════════ */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+  z-index:300;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:700;
+  background:linear-gradient(135deg,rgba(18,30,62,.98),rgba(10,17,38,.98));
+  border:1px solid rgba(78,231,255,.4);color:#dff2ff;
+  box-shadow:0 20px 50px -16px rgba(0,0,0,.95),0 0 30px rgba(78,231,255,.2);
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;
+  max-width:calc(100vw - 40px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{border-color:rgba(93,242,176,.5);color:#d5fbea}
+.toast.error{border-color:rgba(255,128,128,.5);color:#ffd5cc}
+
+/* Utilities */
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row-between{justify-content:space-between}
+.empty{padding:40px 20px;text-align:center;color:var(--text-3);font-size:13px;
+  line-height:1.9}
+.muted{color:var(--text-3);font-size:12px}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;
+  direction:ltr;text-align:left}
+
+/* Responsive */
+@media(max-width:900px){
+  .app-shell{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .main-content{padding:78px 16px 90px}
+  .mobile-top{display:flex;align-items:center;justify-content:space-between;
+    gap:10px;padding:12px 16px;position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(8,12,24,.9);-webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+  .mobile-nav{display:flex;justify-content:space-around;gap:2px;padding:8px 6px;
+    position:fixed;bottom:0;left:0;right:0;z-index:50;
+    background:rgba(8,12,24,.94);-webkit-backdrop-filter:blur(20px);
+    backdrop-filter:blur(20px);border-top:1px solid var(--border);
+    padding-bottom:calc(8px + env(safe-area-inset-bottom))}
+  .mobile-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;
+    gap:3px;padding:7px 4px;border-radius:10px;font-size:9.5px;font-weight:700;
+    color:var(--text-3);transition:.2s}
+  .mobile-nav-item i{font-style:normal;font-size:17px}
+  .mobile-nav-item.active{color:var(--cyan);background:rgba(78,231,255,.08)}
+  .kpi-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .kpi{padding:14px 14px 12px}
+  .kpi-value{font-size:18px}
+  .page-title{font-size:20px}
+  .chat-wrap{height:calc(100vh - 220px);max-height:none}
+  .tier-grid{grid-template-columns:1fr}
+  .data-table{font-size:11.5px;min-width:500px}
+}
+@media(max-width:480px){
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .kpi-value{font-size:16px}
+  .auth-card{padding:26px 20px}
+  .main-content{padding:72px 12px 88px}
+  .card{padding:16px}
+  .modal-card{padding:20px 18px}
+}
 </style>
 </head>
 <body>
-<header class="topbar">
-  <a href="#" class="brand" id="brandHome" aria-label="NEXORA AI خانه">
-    <svg id="brandMark" viewBox="0 0 48 48" aria-hidden="true"><defs><linearGradient id="logoG" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7ce7ff"/><stop offset=".52" stop-color="#d9b76d"/><stop offset="1" stop-color="#9b7cff"/></linearGradient></defs><path d="M24 3 43 14v20L24 45 5 34V14z" fill="none" stroke="url(#logoG)" stroke-width="2"/><path d="M17 30V18l14 12V18" fill="none" stroke="url(#logoG)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span>NEXORA <b>AI</b></span>
-  </a>
-  <nav class="nav">
-    <button class="active" data-view="home">خانه</button>
-    <button data-view="workspace" id="navWorkspace" hidden>محیط کار</button>
-    <button data-view="profile" id="navProfile" hidden>حساب من</button>
-    <button data-view="inbox" id="navInbox" hidden>پیام‌ها</button>
-    <button id="btnAuth" class="primary">ورود / عضویت</button>
-    <button id="btnLogout" hidden>خروج</button>
-  </nav>
-</header>
-<main>
-<section class="view active" id="view-home">
- <div class="wrap">
-  <div class="hero">
-   <div class="hero-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3 43 14v20L24 45 5 34V14z" fill="none" stroke="url(#logoG)" stroke-width="2"/><path d="M17 30V18l14 12V18" fill="none" stroke="url(#logoG)" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-   <h1>NEXORA <span style="color:var(--ice)">AI</span></h1>
-   <p class="slogan">INTELLIGENCE BEYOND LIMITS</p>
-   <div class="hero-actions"><button class="btn primary-btn" id="heroStart">شروع کار</button><button class="btn ghost-btn" id="heroLogin">ورود</button></div>
+
+<div class="bg-stars" id="bgStars"></div>
+<div class="bg-glow"></div>
+
+<!-- ═══ AUTH SCREEN ═══ -->
+<div id="authScreen" class="auth-screen">
+  <div class="auth-card">
+    <div class="brand-lockup">
+      <div class="brand-n">N</div>
+      <div>
+        <div class="brand-title">NEXORA <span>AI</span></div>
+        <div class="brand-sub">Intelligence Beyond Limits</div>
+      </div>
+    </div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-mode="login" type="button">ورود</button>
+      <button class="auth-tab" data-mode="signup" type="button">ثبت‌نام</button>
+    </div>
+    <form id="authForm" novalidate>
+      <div class="field" id="authNameField" hidden>
+        <label for="authName">نام کامل</label>
+        <input id="authName" name="name" type="text" maxlength="60"
+               placeholder="نام و نام خانوادگی" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="authEmail">ایمیل</label>
+        <input id="authEmail" name="email" type="email" required
+               placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="authPassword">رمز عبور</label>
+        <input id="authPassword" name="password" type="password" required
+               minlength="6" placeholder="حداقل ۶ کاراکتر" autocomplete="current-password">
+      </div>
+      <div class="auth-error" id="authError" hidden></div>
+      <button type="submit" class="btn btn-primary btn-block" id="authSubmit">
+        ورود به حساب
+      </button>
+    </form>
+    <div class="auth-foot">© NEXORA AI · v2.0</div>
   </div>
-  <div class="section-title">ابزارهای کسب‌وکار</div>
-  <div class="grid">
-   <article class="feature"><div class="ico">◈</div><h3>حسابداری ساده</h3><p>ثبت درآمد و هزینه، محاسبه مانده و مشاهده گزارش مالی.</p></article>
-   <article class="feature"><div class="ico">▦</div><h3>مدیریت موجودی</h3><p>ثبت کالا، قیمت، تعداد موجود و هشدار کمبود کالا.</p></article>
-   <article class="feature"><div class="ico">♙</div><h3>مدیریت مشتریان</h3><p>ساخت فهرست مشتریان و نگهداری اطلاعات تماس و یادداشت‌ها.</p></article>
-   <article class="feature"><div class="ico">✧</div><h3>مشاور کسب‌وکار</h3><p>پیشنهادهای محلی بر اساس اعداد و اطلاعات ثبت‌شده کسب‌وکار.</p></article>
-   <article class="feature"><div class="ico">✎</div><h3>محتوای تجاری</h3><p>ایده‌پردازی و آماده‌سازی متن‌های تبلیغاتی و معرفی محصول.</p></article>
-   <article class="feature"><div class="ico">▤</div><h3>سوابق تجاری</h3><p>نگهداری سوابق مالی، کالاها و مشتریان در همین دستگاه.</p></article>
+</div>
+
+<!-- ═══ WELCOME OVERLAY ═══ -->
+<div id="welcomeOverlay" class="welcome-overlay" hidden>
+  <div class="welcome-content">
+    <div class="welcome-mark">N</div>
+    <h1 class="welcome-hi">خوش آمدی، <span id="welcomeName">—</span></h1>
+    <p class="welcome-sub">اینجا جایی است که تصمیم‌های هوشمندانه،<br>آینده کسب‌وکارت را می‌سازند.</p>
+    <button class="btn btn-primary" id="welcomeEnter" type="button">ورود به داشبورد</button>
   </div>
-  <div class="section-title">اشتراک‌ها</div>
-  <div class="grid" id="homePlans"></div>
-  <div class="notice">اطلاعات این نسخه فقط در حافظه مرورگر همین دستگاه ذخیره می‌شود. این نسخه به سرور متصل نیست و داده‌ها بین دستگاه‌های مختلف همگام نمی‌شوند.</div>
-  <div class="footer">NEXORA AI</div>
- </div>
-</section>
+</div>
 
-<section class="view" id="view-workspace"><div class="wrap">
- <div class="header"><div><h2 id="workspaceTitle">محیط کسب‌وکار</h2><p id="workspaceSub">ابزارهای مدیریت و رشد کسب‌وکار</p></div><span class="badge" id="workspaceRole">کاربر</span></div>
- <div class="stats" id="businessStats"></div>
- <div class="tabs" id="workspaceTabs">
-  <button class="active" data-module="accounting">حسابداری</button><button data-module="inventory">موجودی کالا</button><button data-module="customers">مشتریان</button><button data-module="advisor">مشاور کسب‌وکار</button><button data-module="ideas">بازاریابی و ایده</button><button data-module="summary">خلاصه‌ساز</button>
- </div>
- <div class="panel active" id="module-accounting">
-  <div class="card"><h3>ثبت درآمد یا هزینه</h3>
-   <div class="row"><div class="field"><label class="label">نوع تراکنش</label><select id="txType"><option value="income">درآمد</option><option value="expense">هزینه</option></select></div><div class="field"><label class="label">مبلغ (تومان)</label><input class="input" id="txAmount" inputmode="numeric" type="number" min="1" placeholder="مثلاً ۲۵۰۰۰۰"></div></div>
-   <div class="row"><div class="field"><label class="label">دسته‌بندی</label><select id="txCategory"><option>فروش</option><option>خرید کالا</option><option>حقوق</option><option>اجاره</option><option>حمل‌ونقل</option><option>قبوض</option><option>تبلیغات</option><option>سایر</option></select></div><div class="field"><label class="label">تاریخ</label><input class="input" id="txDate" type="date"></div></div>
-   <div class="field"><label class="label">توضیحات</label><input class="input" id="txNote" maxlength="140" placeholder="شرح تراکنش"></div>
-   <button class="btn primary-btn" id="addTransaction">ثبت تراکنش</button>
+<!-- ═══ APP SHELL ═══ -->
+<div id="appShell" class="app-shell" hidden>
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div class="brand-n small">N</div>
+      <div>
+        <div class="brand-title small">NEXORA <span>AI</span></div>
+        <div class="brand-sub small">Intelligence Beyond Limits</div>
+      </div>
+    </div>
+    <nav class="nav" id="sideNav"></nav>
+    <div class="sidebar-foot">
+      <div class="user-chip">
+        <div class="avatar" id="userAvatar">U</div>
+        <div class="user-meta">
+          <div class="user-name" id="userName">—</div>
+          <div class="user-tier" id="userTier">Free</div>
+        </div>
+      </div>
+      <button class="logout-link" id="logoutBtn" type="button">خروج از حساب</button>
+      <div class="version" id="versionTrigger">
+        v2.0.0
+        <span class="secret-dot" id="secretDot" aria-hidden="true"></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content" id="mainContent">
+    <div class="mobile-top">
+      <div class="row">
+        <div class="brand-n small" style="width:28px;height:28px;font-size:13px">N</div>
+        <div class="brand-title small" style="font-size:13px">NEXORA <span>AI</span></div>
+      </div>
+      <button class="btn-icon btn-ghost" id="mobileLogout" type="button"
+              style="width:34px;height:34px" title="خروج">✕</button>
+    </div>
+    <div id="pageContent"></div>
+  </main>
+
+  <nav class="mobile-nav" id="mobileNav"></nav>
+</div>
+
+<!-- ═══ MODALS ═══ -->
+<div id="adminModal" class="modal" hidden>
+  <div class="modal-card">
+    <button class="modal-close" id="adminModalClose" type="button">×</button>
+    <h3>ورود مدیریت</h3>
+    <p class="modal-sub">این بخش مخصوص مدیران سیستم است.</p>
+    <div class="field">
+      <label for="adminPassword">رمز مدیریت</label>
+      <input id="adminPassword" type="password" placeholder="رمز عبور" autocomplete="off">
+    </div>
+    <div class="auth-error" id="adminError" hidden></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="adminCancel" type="button">انصراف</button>
+      <button class="btn btn-gold" id="adminSubmit" type="button">ورود</button>
+    </div>
   </div>
-  <div class="card"><h3>گزارش گردش مالی</h3><div class="stats" id="accountingStats"></div><div class="table-wrap"><table class="table"><thead><tr><th>تاریخ</th><th>نوع</th><th>دسته</th><th>توضیحات</th><th>مبلغ</th><th>عملیات</th></tr></thead><tbody id="transactionsBody"></tbody></table></div></div>
- </div>
- <div class="panel" id="module-inventory">
-  <div class="card"><h3>افزودن یا به‌روزرسانی کالا</h3><div class="row"><div class="field"><label class="label">نام کالا</label><input class="input" id="productName" maxlength="70" placeholder="نام محصول"></div><div class="field"><label class="label">قیمت فروش (تومان)</label><input class="input" id="productPrice" type="number" min="0" placeholder="قیمت"></div><div class="field"><label class="label">موجودی</label><input class="input" id="productStock" type="number" min="0" placeholder="تعداد"></div></div><button class="btn primary-btn" id="addProduct">ذخیره کالا</button></div>
-  <div class="card"><h3>فهرست کالاها</h3><div class="table-wrap"><table class="table"><thead><tr><th>کالا</th><th>قیمت</th><th>موجودی</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="productsBody"></tbody></table></div></div>
- </div>
- <div class="panel" id="module-customers">
-  <div class="card"><h3>ثبت مشتری</h3><div class="row"><div class="field"><label class="label">نام مشتری</label><input class="input" id="customerName" maxlength="70" placeholder="نام و نام خانوادگی"></div><div class="field"><label class="label">شماره تماس</label><input class="input" id="customerPhone" maxlength="25" placeholder="شماره تماس"></div></div><div class="field"><label class="label">یادداشت</label><input class="input" id="customerNote" maxlength="140" placeholder="توضیحات یا سوابق خرید"></div><button class="btn primary-btn" id="addCustomer">ثبت مشتری</button></div>
-  <div class="card"><h3>فهرست مشتریان</h3><div class="table-wrap"><table class="table"><thead><tr><th>نام</th><th>شماره تماس</th><th>یادداشت</th><th>عملیات</th></tr></thead><tbody id="customersBody"></tbody></table></div></div>
- </div>
- <div class="panel" id="module-advisor">
-  <div class="card"><h3>مشاور هوشمند کسب‌وکار</h3><p class="hint">پیشنهادها بر اساس درآمد، هزینه، کالاهای موجود و اطلاعاتی که در همین دستگاه ثبت کرده‌ای ساخته می‌شوند؛ این بخش به مدل هوش مصنوعی آنلاین متصل نیست.</p><div class="field"><label class="label">موضوعی که برایش راهکار می‌خواهی</label><select id="advisorTopic"><option value="general">بررسی کلی کسب‌وکار</option><option value="sales">افزایش فروش</option><option value="cost">کاهش هزینه‌ها</option><option value="stock">مدیریت موجودی</option><option value="marketing">بازاریابی</option></select></div><button class="btn gold-btn" id="runAdvisor">بررسی و ارائه پیشنهاد</button><div class="result" id="advisorResult" hidden></div></div>
- </div>
- <div class="panel" id="module-ideas">
-  <div class="card"><h3>ایده‌پرداز و متن تبلیغاتی</h3><div class="field"><label class="label">نام محصول یا نوع کسب‌وکار</label><input class="input" id="marketTopic" maxlength="100" placeholder="مثلاً فروشگاه لوازم خانگی"></div><div class="field"><label class="label">نوع خروجی</label><select id="marketType"><option value="ideas">ایده‌های افزایش فروش</option><option value="caption">متن تبلیغاتی کوتاه</option><option value="campaign">طرح کمپین فروش</option></select></div><button class="btn primary-btn" id="runMarket">تولید محتوا</button><div class="result" id="marketResult" hidden></div></div>
- </div>
- <div class="panel" id="module-summary">
-  <div class="card"><h3>خلاصه‌ساز متن</h3><div class="field"><label class="label">متن ورودی</label><textarea id="summaryInput" placeholder="متن موردنظر را وارد کن..."></textarea></div><div class="row"><div class="field"><label class="label">میزان خلاصه</label><select id="summaryRatio"><option value="0.25">کوتاه</option><option value="0.4" selected>متوسط</option><option value="0.6">مفصل</option></select></div><button class="btn primary-btn fit" id="runSummary">خلاصه‌سازی</button></div><div class="result" id="summaryResult" hidden></div></div>
- </div>
-</div></section>
+</div>
 
-<section class="view" id="view-profile"><div class="wrap">
- <div class="header"><div><h2>حساب کاربری</h2><p>اطلاعات و وضعیت اشتراک</p></div><span class="badge" id="profileTier">Free</span></div>
- <div class="card"><h3>اطلاعات پروفایل</h3><div class="field"><label class="label">نام</label><input class="input" id="profileName" maxlength="60"></div><div class="field"><label class="label">ایمیل</label><input class="input" id="profileEmail" disabled></div><button class="btn primary-btn" id="saveProfile">ذخیره تغییرات</button></div>
- <div class="card"><h3>درخواست ارتقای اشتراک</h3><div class="field"><label class="label">انتخاب اشتراک</label><select id="requestTier"></select></div><div class="notice" id="paymentDetails">اطلاعات پرداخت توسط مدیر تنظیم می‌شود.</div><div class="field"><label class="label">تصویر رسید پرداخت (اختیاری)</label><input class="input" id="receiptFile" type="file" accept="image/*"></div><button class="btn gold-btn" id="sendSubscriptionRequest">ثبت درخواست</button><p class="hint">ثبت درخواست به معنی پرداخت یا فعال‌شدن خودکار اشتراک نیست. مدیر باید درخواست را بررسی کند.</p></div>
- <div class="card"><h3>درخواست‌های من</h3><div class="list" id="myRequests"></div></div>
-</div></section>
+<div id="genericModal" class="modal" hidden>
+  <div class="modal-card" id="genericModalCard"></div>
+</div>
 
-<section class="view" id="view-inbox"><div class="wrap"><div class="header"><div><h2>پیام‌ها</h2><p>پیام‌های دریافتی</p></div></div><div class="card"><div class="list" id="inboxList"></div></div></div></section>
-
-<section class="view" id="view-employee"><div class="wrap"><div class="header"><div><h2 id="employeeTitle">پنل کارمند</h2><p>دسترسی‌های تعیین‌شده توسط مدیریت</p></div><button class="btn ghost-btn small" id="employeeLogout">خروج کارمند</button></div><div class="stats" id="employeeStats"></div><div class="card"><h3>پیام‌های مدیر</h3><div class="list" id="employeeMessages"></div></div><div class="card"><h3>دسترسی‌های شما</h3><div class="list" id="employeePermissions"></div></div><button class="btn primary-btn" id="employeeOpenWorkspace">ورود به محیط کار</button></div></section>
-
-<section class="view" id="view-admin"><div class="wrap">
- <div class="header"><div><h2>پنل مدیریت</h2><p>کنترل محلی کاربران، کارمندان، قابلیت‌ها و اشتراک‌ها</p></div><button class="btn ghost-btn small" id="adminLogout">خروج مدیریت</button></div>
- <div class="notice">این پنل و تمام داده‌ها فقط در همین مرورگر ذخیره می‌شوند. چون سایت ایستا و عمومی است، این قفل محلی جایگزین احراز هویت امن سروری نیست و کاربران فنی می‌توانند کد یا داده‌های مرورگر را بررسی یا تغییر دهند. از این نسخه برای اطلاعات مالی حساس یا کسب‌وکار واقعی چندکاربره استفاده نکن.</div>
- <div class="stats" id="adminStats"></div>
- <div class="tabs" id="adminTabs"><button class="active" data-admin="users">کاربران</button><button data-admin="employees">کارمندان</button><button data-admin="plans">اشتراک‌ها</button><button data-admin="receipts">رسیدها</button><button data-admin="messages">پیام‌ها</button><button data-admin="features">قابلیت‌ها</button><button data-admin="settings">تنظیمات</button></div>
- <div class="panel active" id="admin-users"><div class="card"><h3>مدیریت کاربران</h3><div class="table-wrap"><table class="table"><thead><tr><th>نام</th><th>ایمیل</th><th>اشتراک</th><th>تاریخ</th><th>عملیات</th></tr></thead><tbody id="adminUsersBody"></tbody></table></div></div></div>
- <div class="panel" id="admin-employees"><div class="card"><h3>افزودن کارمند</h3><div class="row"><div class="field"><label class="label">نام کارمند</label><input class="input" id="employeeName" maxlength="60" placeholder="نام"></div><div class="field"><label class="label">نام کاربری</label><input class="input" id="employeeUsername" maxlength="30" placeholder="مثلاً ali"></div></div><div class="field"><label class="label">رمز ورود کارمند</label><input class="input" id="employeePassword" type="password" minlength="8" placeholder="حداقل ۸ نویسه"></div><div class="hint">سطح دسترسی:</div><div class="row" style="margin:8px 0 12px"><label class="checkline"><input type="checkbox" id="permAccounting" checked> حسابداری</label><label class="checkline"><input type="checkbox" id="permInventory" checked> موجودی</label><label class="checkline"><input type="checkbox" id="permCustomers" checked> مشتریان</label><label class="checkline"><input type="checkbox" id="permAdvisor"> مشاور</label></div><button class="btn primary-btn" id="addEmployee">افزودن کارمند</button></div><div class="card"><h3>فهرست کارمندان</h3><div class="table-wrap"><table class="table"><thead><tr><th>نام</th><th>نام کاربری</th><th>دسترسی‌ها</th><th>عملیات</th></tr></thead><tbody id="adminEmployeesBody"></tbody></table></div></div></div>
- <div class="panel" id="admin-plans"><div class="card"><h3>ویرایش اشتراک‌ها</h3><div id="plansEditor"></div><button class="btn gold-btn" id="savePlans">ذخیره اشتراک‌ها</button></div></div>
- <div class="panel" id="admin-receipts"><div class="card"><h3>بررسی درخواست‌های اشتراک</h3><div class="list" id="receiptList"></div></div></div>
- <div class="panel" id="admin-messages"><div class="card"><h3>ارسال پیام</h3><div class="field"><label class="label">گیرنده</label><select id="messageTarget"><option value="allUsers">همه کاربران</option><option value="allEmployees">همه کارمندان</option><option value="all">همه کاربران و کارمندان</option></select></div><div class="field"><label class="label">عنوان پیام</label><input class="input" id="messageTitle" maxlength="80" placeholder="عنوان"></div><div class="field"><label class="label">متن پیام</label><textarea id="messageText" maxlength="1000" placeholder="متن پیام..."></textarea></div><button class="btn primary-btn" id="sendAdminMessage">ارسال پیام</button></div><div class="card"><h3>پیام‌های ارسال‌شده</h3><div class="list" id="sentMessages"></div></div></div>
- <div class="panel" id="admin-features"><div class="card"><h3>فعال یا غیرفعال‌کردن قابلیت‌ها</h3><div id="featureToggles"></div></div></div>
- <div class="panel" id="admin-settings"><div class="card"><h3>اطلاعات پرداخت</h3><div class="field"><label class="label">شماره کارت</label><input class="input" id="adminCardNumber" maxlength="30" placeholder="شماره کارت جهت نمایش به کاربران"></div><div class="field"><label class="label">نام صاحب کارت / توضیح</label><input class="input" id="adminCardOwner" maxlength="100" placeholder="نام صاحب کارت"></div><button class="btn primary-btn" id="saveAdminSettings">ذخیره تنظیمات</button></div><div class="card"><h3>پشتیبان‌گیری محلی</h3><p class="hint">از داده‌های همین مرورگر یک فایل JSON تهیه کن. فایل پشتیبان حاوی اطلاعات محلی کاربران، تراکنش‌ها و مشتریان است؛ آن را در اختیار دیگران قرار نده.</p><div class="row"><button class="btn ghost-btn" id="adminExport">خروجی پشتیبان</button><button class="btn danger-btn" id="adminReset">حذف همه داده‌های NEXORA</button></div></div></div>
- </div>
-</section>
-</main>
-<div class="footer wrap">NEXORA AI · Business Workspace</div>
-
-<!-- user authentication -->
-<div class="modal-bg" id="authModal" hidden><div class="modal"><button class="close" data-close="authModal">×</button><h3 id="authTitle">ورود به حساب</h3><div class="tabs" id="authTabs"><button class="active" data-auth="login">ورود</button><button data-auth="signup">ثبت‌نام</button><button data-auth="employee">ورود کارمند</button></div><div id="authForm"></div></div></div>
-<!-- manager authentication / first-time setup -->
-<div class="modal-bg" id="managerModal" hidden><div class="modal"><button class="close" data-close="managerModal">×</button><h3 id="managerTitle">ورود مدیریت</h3><p class="hint" id="managerHint"></p><div id="managerForm"></div></div></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div id="toast" class="toast" hidden></div>
 
 <script>
-'use strict';
-const KEY='nexora.business.local.v2';
-const $=id=>document.getElementById(id);
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const money=n=>Number(n||0).toLocaleString('fa-IR');
-const today=()=>new Date().toISOString().slice(0,10);
-const id=()=>Math.random().toString(36).slice(2,9)+Date.now().toString(36);
-const defaults=()=>({version:2,users:[],employees:[],manager:null,transactions:[],products:[],customers:[],requests:[],messages:[],activities:[],features:{accounting:{label:'حسابداری',enabled:true},inventory:{label:'موجودی کالا',enabled:true},customers:{label:'مشتریان',enabled:true},advisor:{label:'مشاور کسب‌وکار',enabled:true},ideas:{label:'بازاریابی و ایده',enabled:true},summary:{label:'خلاصه‌ساز',enabled:true}},tiers:{free:{label:'رایگان',price:0,limit:'امکانات پایه',enabled:true},pro:{label:'حرفه‌ای',price:149000,limit:'امکانات کامل',enabled:true},business:{label:'تجاری',price:399000,limit:'مناسب کسب‌وکار',enabled:true}},settings:{cardNumber:'',cardOwner:''}});
-let db=loadDB(), currentUserId=localStorage.getItem('nexora.business.user')||null, currentEmployeeId=null, managerUnlocked=false, toastTimer=null, selectedReceipt=null;
-function loadDB(){try{const raw=localStorage.getItem(KEY);if(raw){const parsed=JSON.parse(raw);return Object.assign(defaults(),parsed,{features:Object.assign(defaults().features,parsed.features||{}),tiers:Object.assign(defaults().tiers,parsed.tiers||{}),settings:Object.assign(defaults().settings,parsed.settings||{})});}
- const fresh=defaults();
- // Migrate accounts from the previous NEXORA local prototype without discarding them.
- try{const oldUsers=JSON.parse(localStorage.getItem('nexora.users.v1')||'[]');if(Array.isArray(oldUsers)){fresh.users=oldUsers.filter(u=>u&&u.email&&u.passwordHash).map(u=>({id:u.id||id(),workspaceId:'legacy-'+(u.id||id()),name:String(u.name||'کاربر'),email:String(u.email).toLowerCase(),legacyHash:u.passwordHash,tier:u.tier==='enterprise'?'business':(u.tier||'free'),createdAt:u.createdAt||Date.now()}));}}catch(e){}
- try{const oldSession=JSON.parse(localStorage.getItem('nexora.session.v1')||'null');if(oldSession?.userId&&fresh.users.some(u=>u.id===oldSession.userId))localStorage.setItem('nexora.business.user',oldSession.userId);}catch(e){}
- try{const oldActs=JSON.parse(localStorage.getItem('nexora.activities.v1')||'[]');if(Array.isArray(oldActs))fresh.activities=oldActs.slice(-100).map(a=>({id:a.id||id(),text:String(a.detail||'فعالیت قبلی'),at:a.ts||Date.now()}));}catch(e){}
- localStorage.setItem(KEY,JSON.stringify(fresh));return fresh;}catch(e){return defaults();}}
-function saveDB(){try{localStorage.setItem(KEY,JSON.stringify(db));return true;}catch(e){toast('ذخیره‌سازی ناموفق بود؛ احتمالاً حافظه مرورگر پر شده است.','error');return false;}}
-function toast(msg,type=''){const el=$('toast');el.textContent=msg;el.className='toast show '+type;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='toast',2700);}
-function logActivity(text){db.activities.push({id:id(),text,at:Date.now()});db.activities=db.activities.slice(-100);saveDB();}
-function activeUser(){return db.users.find(u=>u.id===currentUserId)||null;}
-function activeEmployee(){return db.employees.find(e=>e.id===currentEmployeeId)||null;}
-function activeRole(){return activeEmployee()?'employee':managerUnlocked?'manager':activeUser()?'user':'guest';}
-function canAccess(module){if(managerUnlocked)return true;const emp=activeEmployee();if(emp)return !!(emp.permissions&&emp.permissions[module]);const u=activeUser();if(!u)return false;return !!db.features[module]?.enabled;}
-function tierOf(u){return db.tiers[u?.tier]||db.tiers.free;}
-function showView(name){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));document.querySelectorAll('.nav [data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name));if(name==='workspace')renderWorkspace();if(name==='profile')renderProfile();if(name==='inbox')renderInbox();if(name==='admin')renderAdmin();if(name==='employee')renderEmployee();window.scrollTo({top:0,behavior:'smooth'});}
-function refreshNav(){const logged=!!activeUser()||!!activeEmployee()||managerUnlocked;$('btnAuth').hidden=logged;$('btnLogout').hidden=!logged;$('navWorkspace').hidden=!(activeUser()||activeEmployee()||managerUnlocked);$('navProfile').hidden=!activeUser();$('navInbox').hidden=!(activeUser()||activeEmployee());}
-function hashHex(buf){return Array.from(new Uint8Array(buf)).map(x=>x.toString(16).padStart(2,'0')).join('');}
-function fromHex(hex){const a=new Uint8Array(hex.length/2);for(let i=0;i<a.length;i++)a[i]=parseInt(hex.slice(i*2,i*2+2),16);return a;}
-async function passwordHash(password,saltHex){if(!crypto?.subtle)throw new Error('مرورگر از رمزنگاری امن پشتیبانی نمی‌کند.');const salt=saltHex?fromHex(saltHex):crypto.getRandomValues(new Uint8Array(16));const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']);const bits=await crypto.subtle.deriveBits({name:'PBKDF2',salt,iterations:150000,hash:'SHA-256'},key,256);return {salt:hashHex(salt),hash:hashHex(bits)};}
-async function verifyPassword(password,record){if(!record?.salt||!record?.hash)return false;const got=await passwordHash(password,record.salt);return got.hash===record.hash;}
-function legacyHashPassword(pw){const salt='nexora::v1::',s=salt+String(pw)+salt;let h1=0x811c9dc5,h2=0x811c9dc5,h3=0;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1^=c;h1=Math.imul(h1,0x01000193);h2=(h2+c*(i+1))|0;h3=((h3^(c<<(i%13)))*31)|0;}return (h1>>>0).toString(16).padStart(8,'0')+(h2>>>0).toString(16).padStart(8,'0')+(h3>>>0).toString(16).padStart(8,'0');}
-function setSession(userId){currentUserId=userId;localStorage.setItem('nexora.business.user',userId);}
-function clearSession(){currentUserId=null;localStorage.removeItem('nexora.business.user');currentEmployeeId=null;managerUnlocked=false;refreshNav();}
-function modal(id,open=true){$(id).hidden=!open;}
-function closeModals(){document.querySelectorAll('.modal-bg').forEach(m=>m.hidden=true);}
-function setAuthTab(tab){document.querySelectorAll('#authTabs button').forEach(b=>b.classList.toggle('active',b.dataset.auth===tab));const form=$('authForm');if(tab==='login'){$('authTitle').textContent='ورود به حساب';form.innerHTML=`<div class="field"><label class="label">ایمیل</label><input class="input" id="loginEmail" type="email" autocomplete="username"></div><div class="field"><label class="label">رمز عبور</label><input class="input" id="loginPassword" type="password" autocomplete="current-password"></div><button class="btn primary-btn" id="loginSubmit">ورود</button>`;$('loginSubmit').onclick=loginUser;}else if(tab==='signup'){$('authTitle').textContent='ساخت حساب کاربری';form.innerHTML=`<div class="field"><label class="label">نام</label><input class="input" id="signupName" maxlength="60"></div><div class="field"><label class="label">ایمیل</label><input class="input" id="signupEmail" type="email" autocomplete="email"></div><div class="field"><label class="label">رمز عبور (حداقل ۸ نویسه)</label><input class="input" id="signupPassword" type="password" autocomplete="new-password"></div><button class="btn primary-btn" id="signupSubmit">ثبت‌نام</button>`;$('signupSubmit').onclick=signupUser;}else{$('authTitle').textContent='ورود کارمند';form.innerHTML=`<div class="field"><label class="label">نام کاربری</label><input class="input" id="empLoginName" autocomplete="username"></div><div class="field"><label class="label">رمز کارمند</label><input class="input" id="empLoginPassword" type="password" autocomplete="current-password"></div><button class="btn primary-btn" id="empLoginSubmit">ورود کارمند</button>`;$('empLoginSubmit').onclick=loginEmployee;}}
-async function signupUser(){const name=$('signupName').value.trim(),email=$('signupEmail').value.trim().toLowerCase(),password=$('signupPassword').value;if(name.length<2||!/^\S+@\S+\.\S+$/.test(email)||password.length<8){toast('نام، ایمیل معتبر و رمز حداقل ۸ نویسه وارد کن.','error');return;}if(db.users.some(u=>u.email===email)){toast('این ایمیل قبلاً ثبت شده است.','error');return;}try{const p=await passwordHash(password);const u={id:id(),workspaceId:id(),name,email,password:p,tier:'free',createdAt:Date.now()};db.users.push(u);saveDB();setSession(u.id);logActivity('ثبت‌نام کاربر '+name);closeModals();refreshNav();toast('حساب ساخته شد.','success');showView('workspace');}catch(e){toast(e.message||'خطا در ساخت حساب.','error');}}
-async function loginUser(){const email=$('loginEmail').value.trim().toLowerCase(),password=$('loginPassword').value;const u=db.users.find(x=>x.email===email);if(!u){toast('ایمیل یا رمز عبور درست نیست.','error');return;}let valid=u.password?await verifyPassword(password,u.password):u.legacyHash===legacyHashPassword(password);if(!valid){toast('ایمیل یا رمز عبور درست نیست.','error');return;}if(!u.password){u.password=await passwordHash(password);delete u.legacyHash;saveDB();}setSession(u.id);logActivity('ورود کاربر '+u.name);closeModals();refreshNav();toast('وارد حساب شدی.','success');showView('workspace');}
-async function loginEmployee(){const username=$('empLoginName').value.trim().toLowerCase(),password=$('empLoginPassword').value;const e=db.employees.find(x=>x.username===username);if(!e||!await verifyPassword(password,e.password)){toast('نام کاربری یا رمز درست نیست.','error');return;}currentEmployeeId=e.id;currentUserId=null;managerUnlocked=false;closeModals();refreshNav();toast('ورود کارمند موفق بود.','success');showView('employee');}
-function openAuth(tab='login'){modal('authModal');setAuthTab(tab);}
-function openManager(){const first=!db.manager;$('managerTitle').textContent=first?'راه‌اندازی مدیریت':'ورود مدیریت';$('managerHint').textContent=first?'برای این مرورگر یک رمز مدیریت تعیین کن. این رمز فقط روی همین دستگاه ذخیره می‌شود.':'رمز مدیریت این مرورگر را وارد کن.';$('managerForm').innerHTML=`${first?'<div class="field"><label class="label">تکرار رمز مدیریت</label><input class="input" id="managerPassword2" type="password" autocomplete="new-password"></div>':''}<div class="field"><label class="label">${first?'رمز جدید مدیریت':'رمز مدیریت'}</label><input class="input" id="managerPassword" type="password" autocomplete="${first?'new-password':'current-password'}"></div><button class="btn gold-btn" id="managerSubmit">${first?'ثبت رمز و ورود':'ورود به مدیریت'}</button>`;$('managerSubmit').onclick=first?setupManager:loginManager;modal('managerModal');}
-async function setupManager(){const pw=$('managerPassword').value,pw2=$('managerPassword2').value;if(pw.length<10||pw!==pw2){toast('رمز باید حداقل ۱۰ نویسه باشد و تکرارش یکسان باشد.','error');return;}try{db.manager=await passwordHash(pw);db.manager.workspaceId=id();saveDB();currentUserId=null;localStorage.removeItem('nexora.business.user');managerUnlocked=true;closeModals();refreshNav();logActivity('راه‌اندازی مدیریت');showView('admin');toast('مدیریت راه‌اندازی شد.','success');}catch(e){toast(e.message||'خطا در راه‌اندازی مدیریت.','error');}}
-async function loginManager(){const pw=$('managerPassword').value;if(await verifyPassword(pw,db.manager)){managerUnlocked=true;currentEmployeeId=null;currentUserId=null;localStorage.removeItem('nexora.business.user');closeModals();refreshNav();showView('admin');toast('ورود مدیریت موفق بود.','success');}else toast('رمز مدیریت اشتباه است.','error');}
-function formatDate(date){try{return new Date(date).toLocaleDateString('fa-IR');}catch(e){return '—';}}
-function workspaceId(){if(managerUnlocked)return db.manager?.workspaceId||'local-main';const emp=activeEmployee();if(emp)return emp.workspaceId||db.manager?.workspaceId||'local-main';const user=activeUser();return user?.workspaceId||'local-main';}
-function workspaceRows(rows){const wid=workspaceId();return rows.filter(x=>(x.workspaceId||'local-main')===wid);}
-function sumTransactions(type){return workspaceRows(db.transactions).filter(t=>!type||t.type===type).reduce((s,t)=>s+Number(t.amount||0),0);}
-function canUseModule(mod){if(managerUnlocked)return true;if(!db.features[mod]?.enabled)return false;const emp=activeEmployee();if(emp)return !!emp.permissions?.[mod];const u=activeUser();if(!u)return false;const f=db.features[mod];if(!f?.enabled)return false;const tier=tierOf(u);if(u.tier!=='free'&&!tier.enabled)return false;if(u.tier==='free'&&['advisor','customers'].includes(mod))return false;return true;}
-function renderWorkspace(){const user=activeUser(),emp=activeEmployee();$('workspaceTitle').textContent=emp?'محیط کارمند':managerUnlocked?'محیط مدیریت':'محیط کسب‌وکار';$('workspaceSub').textContent=emp?'دسترسی‌های فعال برای حساب کارمندی':user?'اشتراک: '+tierOf(user).label:'مدیریت محلی';$('workspaceRole').textContent=emp?'کارمند':managerUnlocked?'مدیر':tierOf(user).label;$('businessStats').innerHTML=`<div class="stat"><strong>${money(sumTransactions('income'))}</strong><span>مجموع درآمد (تومان)</span></div><div class="stat"><strong>${money(sumTransactions('expense'))}</strong><span>مجموع هزینه (تومان)</span></div><div class="stat"><strong>${money(sumTransactions('income')-sumTransactions('expense'))}</strong><span>مانده محاسباتی</span></div><div class="stat"><strong>${money(workspaceRows(db.products).length)}</strong><span>تعداد کالاها</span></div>`;document.querySelectorAll('#workspaceTabs [data-module]').forEach(b=>{const ok=canUseModule(b.dataset.module);b.hidden=!ok;b.classList.toggle('active',b.dataset.module==='accounting'&&ok);});const first=[...document.querySelectorAll('#workspaceTabs [data-module]')].find(b=>!b.hidden);const active=document.querySelector('#workspaceTabs [data-module].active:not([hidden])');const module=active?active.dataset.module:first?.dataset.module;if(module)showModule(module);renderAccounting();renderProducts();renderCustomers();}
-function showModule(mod){document.querySelectorAll('#workspaceTabs [data-module]').forEach(b=>b.classList.toggle('active',b.dataset.module===mod));document.querySelectorAll('#view-workspace .panel').forEach(p=>p.classList.toggle('active',p.id==='module-'+mod));}
-function requireRoleForWrite(){return !!(activeUser()||activeEmployee()||managerUnlocked);}
-function renderAccounting(){const ins=sumTransactions('income'),outs=sumTransactions('expense');$('accountingStats').innerHTML=`<div class="stat"><strong>${money(ins)}</strong><span>درآمد</span></div><div class="stat"><strong>${money(outs)}</strong><span>هزینه</span></div><div class="stat"><strong>${money(ins-outs)}</strong><span>مانده</span></div>`;const rows=workspaceRows(db.transactions);$('transactionsBody').innerHTML=rows.length?rows.slice().sort((a,b)=>b.createdAt-a.createdAt).map(t=>`<tr><td>${esc(formatDate(t.date))}</td><td class="${t.type==='income'?'money-in':'money-out'}">${t.type==='income'?'درآمد':'هزینه'}</td><td>${esc(t.category)}</td><td>${esc(t.note||'—')}</td><td>${money(t.amount)}</td><td><button class="btn danger-btn small" data-del-tx="${t.id}">حذف</button></td></tr>`).join(''):'<tr><td colspan="6" class="empty">هنوز تراکنشی ثبت نشده است.</td></tr>';}
-function renderProducts(){const rows=workspaceRows(db.products);$('productsBody').innerHTML=rows.length?rows.map(p=>`<tr><td>${esc(p.name)}</td><td>${money(p.price)}</td><td>${money(p.stock)}</td><td>${p.stock<=3?'<span class="badge red">موجودی کم</span>':'<span class="badge green">موجود</span>'}</td><td><button class="btn gold-btn small" data-sale-product="${p.id}">فروش ۱ عدد</button> <button class="btn ghost-btn small" data-stock="${p.id}">+۱ موجودی</button> <button class="btn danger-btn small" data-del-product="${p.id}">حذف</button></td></tr>`).join(''):'<tr><td colspan="5" class="empty">کالایی ثبت نشده است.</td></tr>';}
-function renderCustomers(){const rows=workspaceRows(db.customers);$('customersBody').innerHTML=rows.length?rows.map(c=>`<tr><td>${esc(c.name)}</td><td>${esc(c.phone||'—')}</td><td>${esc(c.note||'—')}</td><td><button class="btn danger-btn small" data-del-customer="${c.id}">حذف</button></td></tr>`).join(''):'<tr><td colspan="4" class="empty">مشتری ثبت نشده است.</td></tr>';}
-function advisorText(topic){const income=sumTransactions('income'),expense=sumTransactions('expense'),profit=income-expense,low=workspaceRows(db.products).filter(p=>p.stock<=3);const ratio=income?Math.round(expense/income*100):null;let out='گزارش محلی NEXORA AI\n\n';out+='درآمد ثبت‌شده: '+money(income)+' تومان\nهزینه ثبت‌شده: '+money(expense)+' تومان\nمانده: '+money(profit)+' تومان\n';if(ratio!==null)out+='نسبت هزینه به درآمد: '+money(ratio)+'٪\n';out+='تعداد مشتریان ثبت‌شده: '+workspaceRows(db.customers).length+'\n';if(topic==='general'||topic==='cost'){if(!income&&!expense)out+='• هنوز تراکنشی ثبت نشده؛ ابتدا درآمد و هزینه‌های واقعی را وارد کن تا گزارش معنادار شود.\n';else if(profit<0)out+='• هزینه‌ها از درآمد بیشتر است؛ هزینه‌های ثابت و خریدهای غیرضروری را دسته‌بندی و بررسی کن.\n';else out+='• مانده فعلی مثبت است؛ بخشی از آن را برای هزینه‌های ثابت و سرمایه در گردش کنار بگذار.\n';if(ratio!==null&&ratio>80)out+='• نسبت هزینه به درآمد بالاست؛ ابتدا سه دسته اصلی هزینه را بررسی کن.\n';}if(topic==='sales'||topic==='marketing'||topic==='general'){out+='• مشتریان قبلی را دسته‌بندی کن و برای خرید مجدد پیشنهاد مشخص طراحی کن.\n• پرفروش‌ترین کالاها را شناسایی کن و تبلیغ را روی مزیت واقعی آن‌ها متمرکز کن.\n• نتیجه هر کمپین را با تعداد سفارش و سود خالص بسنج، نه فقط بازدید.\n';}if(topic==='stock'||topic==='general'){if(low.length)out+='• موجودی این کالاها کم است: '+low.map(p=>p.name+' ('+p.stock+')').join('، ')+'. قبل از سفارش مجدد، فروش و زمان تأمین را بررسی کن.\n';else out+='• کالایی با موجودی ۳ یا کمتر ثبت نشده است. نقطه سفارش مناسب هر کالا را جداگانه تعیین کن.\n';}out+='\nاین پیشنهادها راهنمای عمومی بر اساس داده‌های واردشده هستند و جایگزین حسابدار یا مشاور حرفه‌ای نیستند.';return out;}
-function marketContent(topic,type){if(type==='caption')return 'متن پیشنهادی برای '+topic+':\nکیفیت، انتخاب مطمئن و تجربه‌ای بهتر؛ '+topic+' را همین امروز بررسی کنید. برای اطلاع از قیمت و جزئیات با ما تماس بگیرید.\n\nپیش از انتشار، ویژگی‌ها و ادعاها را با محصول واقعی خودت تطبیق بده.';if(type==='campaign')return 'طرح کمپین برای '+topic+':\n۱) پیشنهاد محدود و شفاف با زمان پایان مشخص طراحی کن.\n۲) برای مشتریان قبلی پیام اختصاصی آماده کن.\n۳) سه محتوای کوتاه با معرفی مزیت، کاربرد و پاسخ به پرسش‌های رایج منتشر کن.\n۴) تعداد سفارش، نرخ تبدیل و سود نهایی را ثبت کن.\n۵) پس از پایان کمپین، فقط بخش‌های سودآور را تکرار کن.';return 'ایده‌های افزایش فروش برای '+topic+':\n۱) بسته‌های ترکیبی از کالاهای مکمل بساز.\n۲) برای مشتریان قبلی برنامه خرید مجدد طراحی کن.\n۳) پرسش‌های پرتکرار مشتریان را به محتوای آموزشی تبدیل کن.\n۴) مزیت رقابتی واقعی محصول را در پیام تبلیغاتی برجسته کن.\n۵) برای کالاهای کم‌گردش، علت کاهش تقاضا را بررسی کن.\n۶) نتیجه هر ایده را با سود و تعداد فروش اندازه‌گیری کن.';}
-function summarizeText(text,ratio){const s=String(text).replace(/\s+/g,' ').trim().split(/(?<=[.!?؟؛])\s+/).filter(Boolean);if(s.length<=2)return s.join(' ');const keep=Math.max(1,Math.ceil(s.length*ratio));const chosen=[];for(let i=0;i<keep;i++)chosen.push(s[Math.round(i*(s.length-1)/Math.max(1,keep-1))]);return chosen.join(' ');}
-function renderPlans(){const box=$('homePlans');box.innerHTML=Object.entries(db.tiers).map(([key,t])=>`<article class="plan"><span class="badge ${key==='business'?'gold':''}">${esc(t.label)}</span><h3 style="margin:10px 0 4px;font-size:22px">${t.price===0?'رایگان':money(t.price)+' تومان'}</h3><p class="hint">${esc(t.limit||'اشتراک ماهانه')} · ${t.enabled?'فعال':'فعلاً غیرفعال'}</p><button class="btn ${key==='business'?'gold-btn':'ghost-btn'} small" data-plan-choose="${key}" ${!t.enabled?'disabled':''}>${key==='free'?'شروع رایگان':'درخواست اشتراک'}</button></article>`).join('');}
-function renderProfile(){const u=activeUser();if(!u){showView('home');return;}$('profileName').value=u.name;$('profileEmail').value=u.email;$('profileTier').textContent=tierOf(u).label;$('requestTier').innerHTML=Object.entries(db.tiers).filter(([k,t])=>k!=='free'&&t.enabled).map(([k,t])=>`<option value="${k}">${esc(t.label)} — ${money(t.price)} تومان</option>`).join('')||'<option value="">اشتراکی فعال نیست</option>';$('paymentDetails').textContent=db.settings.cardNumber?'کارت: '+db.settings.cardNumber+(db.settings.cardOwner?' · '+db.settings.cardOwner:''):'اطلاعات پرداخت هنوز توسط مدیر تنظیم نشده است.';const req=db.requests.filter(r=>r.userId===u.id).slice().reverse();$('myRequests').innerHTML=req.length?req.map(r=>`<div class="list-item"><div><b>${esc(db.tiers[r.tier]?.label||r.tier)}</b><span class="sub">${formatDate(r.createdAt)} · ${money(r.amount)} تومان</span></div><span class="badge ${r.status==='approved'?'green':r.status==='rejected'?'red':'gold'}">${r.status==='approved'?'تأییدشده':r.status==='rejected'?'ردشده':'در انتظار'}</span></div>`).join(''):'<div class="empty">درخواستی ثبت نشده است.</div>';}
-function renderInbox(){const u=activeUser(),e=activeEmployee();if(!u&&!e){showView('home');return;}const kind=u?'user':'employee',target=u?u.id:e.id;const msgs=db.messages.filter(m=>m.target==='all'||m.target===kind+'s'||(m.target===kind&&m.targetId===target)).slice().reverse();$('inboxList').innerHTML=msgs.length?msgs.map(m=>`<div class="list-item" style="display:block"><b>${esc(m.title||'پیام مدیر')}</b><span class="sub">${formatDate(m.sentAt)}</span><div style="margin-top:7px;white-space:pre-wrap">${esc(m.text)}</div></div>`).join(''):'<div class="empty">پیامی دریافت نشده است.</div>';}
-function renderEmployee(){const e=activeEmployee();if(!e){showView('home');return;} $('employeeTitle').textContent='سلام '+e.name;$('employeeStats').innerHTML=`<div class="stat"><strong>${money(workspaceRows(db.transactions).length)}</strong><span>تراکنش‌های ثبت‌شده</span></div><div class="stat"><strong>${money(workspaceRows(db.products).length)}</strong><span>کالاها</span></div><div class="stat"><strong>${money(workspaceRows(db.customers).length)}</strong><span>مشتریان</span></div>`;const msgs=db.messages.filter(m=>m.target==='all'||m.target==='employees'||(m.target==='employee'&&m.targetId===e.id)).slice().reverse();$('employeeMessages').innerHTML=msgs.length?msgs.map(m=>`<div class="list-item" style="display:block"><b>${esc(m.title)}</b><span class="sub">${formatDate(m.sentAt)}</span><div>${esc(m.text)}</div></div>`).join(''):'<div class="empty">پیامی از مدیریت ندارید.</div>';const names={accounting:'حسابداری',inventory:'موجودی کالا',customers:'مشتریان',advisor:'مشاور کسب‌وکار'};$('employeePermissions').innerHTML=Object.entries(names).map(([k,v])=>`<div class="list-item">${v}<span class="badge ${e.permissions?.[k]?'green':'red'}">${e.permissions?.[k]?'مجاز':'غیرمجاز'}</span></div>`).join('');}
-function renderAdmin(){if(!managerUnlocked){showView('home');toast('ابتدا وارد مدیریت شو.','error');return;}const total=sumTransactions(),ins=sumTransactions('income'),outs=sumTransactions('expense');$('adminStats').innerHTML=`<div class="stat"><strong>${money(db.users.length)}</strong><span>کاربران</span></div><div class="stat"><strong>${money(db.employees.length)}</strong><span>کارمندان</span></div><div class="stat"><strong>${money(db.requests.filter(r=>r.status==='pending').length)}</strong><span>درخواست در انتظار</span></div><div class="stat"><strong>${money(ins-outs)}</strong><span>مانده ثبت‌شده (تومان)</span></div>`;renderAdminUsers();renderAdminEmployees();renderPlanEditor();renderReceipts();renderAdminMessages();renderFeatureToggles();$('adminCardNumber').value=db.settings.cardNumber||'';$('adminCardOwner').value=db.settings.cardOwner||'';}
-function renderAdminUsers(){$('adminUsersBody').innerHTML=db.users.length?db.users.map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.email)}</td><td><select data-user-tier="${u.id}" class="input" style="min-width:100px;padding:5px">${Object.entries(db.tiers).map(([k,t])=>`<option value="${k}" ${u.tier===k?'selected':''}>${esc(t.label)}</option>`).join('')}</select></td><td>${formatDate(u.createdAt)}</td><td><button class="btn danger-btn small" data-delete-user="${u.id}">حذف</button></td></tr>`).join(''):'<tr><td class="empty" colspan="5">کاربری ثبت نشده است.</td></tr>';}
-function renderAdminEmployees(){$('adminEmployeesBody').innerHTML=db.employees.length?db.employees.map(e=>`<tr><td>${esc(e.name)}</td><td>${esc(e.username)}</td><td>${['accounting','inventory','customers','advisor'].map(k=>`<label class="checkline"><input type="checkbox" data-emp-perm="${e.id}" data-perm="${k}" ${e.permissions?.[k]?'checked':''}>${({accounting:'حسابداری',inventory:'موجودی',customers:'مشتریان',advisor:'مشاور'})[k]}</label>`).join('')}</td><td><button class="btn danger-btn small" data-delete-employee="${e.id}">حذف</button></td></tr>`).join(''):'<tr><td class="empty" colspan="4">کارمندی ثبت نشده است.</td></tr>';}
-function renderPlanEditor(){$('plansEditor').innerHTML=Object.entries(db.tiers).map(([key,t])=>`<div class="card" style="padding:12px;margin:10px 0"><div class="field"><label class="label">نام اشتراک (${key})</label><input class="input" id="plan-label-${key}" value="${esc(t.label)}" maxlength="35"></div><div class="row"><div class="field"><label class="label">قیمت ماهانه (تومان)</label><input class="input" id="plan-price-${key}" type="number" min="0" value="${Number(t.price)||0}"></div><div class="field"><label class="label">توضیح کوتاه</label><input class="input" id="plan-limit-${key}" value="${esc(t.limit||'')}" maxlength="80"></div></div><label class="checkline"><input id="plan-enabled-${key}" type="checkbox" ${t.enabled?'checked':''}> فعال باشد و به کاربران نمایش داده شود</label></div>`).join('');}
-function renderReceipts(){$('receiptList').innerHTML=db.requests.length?db.requests.slice().reverse().map(r=>{const u=db.users.find(x=>x.id===r.userId);return `<div class="list-item" style="display:block"><div class="row"><div><b>${esc(u?.name||'کاربر حذف‌شده')} — ${esc(db.tiers[r.tier]?.label||r.tier)}</b><span class="sub">${esc(u?.email||'')} · ${money(r.amount)} تومان · ${formatDate(r.createdAt)}</span></div><span class="badge ${r.status==='approved'?'green':r.status==='rejected'?'red':'gold'}">${r.status==='approved'?'تأیید':r.status==='rejected'?'رد':'در انتظار'}</span></div>${r.receipt?`<div style="margin:9px 0"><a href="${r.receipt}" target="_blank" rel="noopener"><img src="${r.receipt}" alt="رسید پرداخت" style="max-width:180px;max-height:140px;border-radius:9px;border:1px solid var(--line)"></a></div>`:'<span class="sub">فایلی پیوست نشده است.</span>'}${r.status==='pending'?`<div class="row" style="margin-top:8px"><button class="btn primary-btn small" data-approve-request="${r.id}">تأیید و فعال‌سازی</button><button class="btn danger-btn small" data-reject-request="${r.id}">رد درخواست</button></div>`:''}</div>`;}).join(''):'<div class="empty">درخواستی ثبت نشده است.</div>';}
-function renderAdminMessages(){const select=$('messageTarget');const keep=select.value;select.innerHTML='<option value="allUsers">همه کاربران</option><option value="allEmployees">همه کارمندان</option><option value="all">همه کاربران و کارمندان</option><optgroup label="پیام خصوصی به کاربر">'+db.users.map(u=>`<option value="user:${u.id}">${esc(u.name)} · ${esc(u.email)}</option>`).join('')+'</optgroup><optgroup label="پیام خصوصی به کارمند">'+db.employees.map(e=>`<option value="employee:${e.id}">${esc(e.name)} · ${esc(e.username)}</option>`).join('')+'</optgroup>';if([...select.options].some(o=>o.value===keep))select.value=keep;$('sentMessages').innerHTML=db.messages.length?db.messages.slice().reverse().slice(0,30).map(m=>`<div class="list-item" style="display:block"><b>${esc(m.title)}</b><span class="sub">${formatDate(m.sentAt)} · ${esc(m.targetLabel||m.target)}</span><div>${esc(m.text)}</div></div>`).join(''):'<div class="empty">پیامی ارسال نشده است.</div>';}
-function renderFeatureToggles(){$('featureToggles').innerHTML=Object.entries(db.features).map(([k,f])=>`<label class="list-item"><span>${esc(f.label)}</span><input type="checkbox" data-feature-toggle="${k}" ${f.enabled?'checked':''}></label>`).join('');}
-function exportDatabase(){const blob=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),database:db},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='nexora-local-backup-'+Date.now()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);}
-function bindEvents(){
- $('brandHome').addEventListener('click',e=>{e.preventDefault();showView('home');});let logoTaps=0,logoTimer=null;$('brandMark').addEventListener('click',e=>{e.preventDefault();logoTaps++;clearTimeout(logoTimer);logoTimer=setTimeout(()=>logoTaps=0,2500);if(logoTaps>=7){logoTaps=0;openManager();}});
- document.querySelectorAll('.nav [data-view]').forEach(b=>b.addEventListener('click',()=>{const v=b.dataset.view;if(v==='workspace'&&!activeUser()&&!activeEmployee()&&!managerUnlocked){openAuth();return;}showView(v);}));
- $('btnAuth').onclick=()=>openAuth('login');$('heroStart').onclick=()=>openAuth('signup');$('heroLogin').onclick=()=>openAuth('login');$('btnLogout').onclick=()=>{clearSession();toast('از حساب خارج شدی.');showView('home');};
- $('authTabs').addEventListener('click',e=>{const b=e.target.closest('[data-auth]');if(b)setAuthTab(b.dataset.auth);});document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>modal(b.dataset.close,false));document.querySelectorAll('.modal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)modal(m.id,false);}));
- $('workspaceTabs').addEventListener('click',e=>{const b=e.target.closest('[data-module]');if(!b||b.hidden)return;showModule(b.dataset.module);});
- $('addTransaction').onclick=()=>{if(!requireRoleForWrite()||!canUseModule('accounting'))return toast('دسترسی حسابداری فعال نیست.','error');const amount=Number($('txAmount').value);if(!Number.isFinite(amount)||amount<=0)return toast('مبلغ معتبر وارد کن.','error');db.transactions.push({id:id(),workspaceId:workspaceId(),type:$('txType').value,amount,category:$('txCategory').value,date:$('txDate').value||today(),note:$('txNote').value.trim().slice(0,140),createdAt:Date.now()});saveDB();logActivity('ثبت تراکنش حسابداری');$('txAmount').value='';$('txNote').value='';renderWorkspace();toast('تراکنش ثبت شد.','success');};
- $('transactionsBody').addEventListener('click',e=>{const b=e.target.closest('[data-del-tx]');if(!b)return;if(!managerUnlocked&&!activeUser()&&!activeEmployee())return; if(!confirm('این تراکنش حذف شود؟'))return;db.transactions=db.transactions.filter(t=>!(t.id===b.dataset.delTx&&(t.workspaceId||'local-main')===workspaceId()));saveDB();renderWorkspace();toast('تراکنش حذف شد.');});
- $('addProduct').onclick=()=>{if(!canUseModule('inventory'))return toast('دسترسی موجودی کالا فعال نیست.','error');const name=$('productName').value.trim(),price=Number($('productPrice').value),stock=Number($('productStock').value);if(!name||!Number.isFinite(price)||price<0||!Number.isInteger(stock)||stock<0)return toast('نام، قیمت و موجودی معتبر وارد کن.','error');const old=db.products.find(p=>p.workspaceId===workspaceId()&&p.name.toLowerCase()===name.toLowerCase());if(old){old.price=price;old.stock=stock;}else db.products.push({id:id(),workspaceId:workspaceId(),name,price,stock});saveDB();$('productName').value='';$('productPrice').value='';$('productStock').value='';renderProducts();toast('کالا ذخیره شد.','success');};
- $('productsBody').addEventListener('click',e=>{const add=e.target.closest('[data-stock]'),del=e.target.closest('[data-del-product]'),sale=e.target.closest('[data-sale-product]');if(add){const p=db.products.find(x=>x.id===add.dataset.stock&&(x.workspaceId||'local-main')===workspaceId());if(p)p.stock++;}if(sale){const p=db.products.find(x=>x.id===sale.dataset.saleProduct&&(x.workspaceId||'local-main')===workspaceId());if(!p)return;if(p.stock<1)return toast('موجودی این کالا تمام شده است.','error');p.stock--;db.transactions.push({id:id(),workspaceId:workspaceId(),type:'income',amount:Number(p.price)||0,category:'فروش',date:today(),note:'فروش ۱ عدد '+p.name,createdAt:Date.now()});logActivity('ثبت فروش کالا '+p.name);}if(del){if(!confirm('کالا حذف شود؟'))return;db.products=db.products.filter(x=>!(x.id===del.dataset.delProduct&&(x.workspaceId||'local-main')===workspaceId()));}saveDB();renderProducts();renderAccounting();});
- $('addCustomer').onclick=()=>{if(!canUseModule('customers'))return toast('دسترسی مشتریان فعال نیست.','error');const name=$('customerName').value.trim();if(name.length<2)return toast('نام مشتری را وارد کن.','error');db.customers.push({id:id(),workspaceId:workspaceId(),name,phone:$('customerPhone').value.trim(),note:$('customerNote').value.trim()});saveDB();$('customerName').value='';$('customerPhone').value='';$('customerNote').value='';renderCustomers();toast('مشتری ثبت شد.','success');};
- $('customersBody').addEventListener('click',e=>{const b=e.target.closest('[data-del-customer]');if(!b)return;if(!confirm('مشتری حذف شود؟'))return;db.customers=db.customers.filter(c=>!(c.id===b.dataset.delCustomer&&(c.workspaceId||'local-main')===workspaceId()));saveDB();renderCustomers();});
- $('runAdvisor').onclick=()=>{if(!canUseModule('advisor'))return toast('این ابزار در اشتراک یا دسترسی فعلی فعال نیست.','error');$('advisorResult').textContent=advisorText($('advisorTopic').value);$('advisorResult').hidden=false;};
- $('runMarket').onclick=()=>{if(!canUseModule('ideas'))return toast('ابزار بازاریابی غیرفعال است.','error');const topic=$('marketTopic').value.trim();if(!topic)return toast('موضوع را وارد کن.','error');$('marketResult').textContent=marketContent(topic,$('marketType').value);$('marketResult').hidden=false;};
- $('runSummary').onclick=()=>{if(!canUseModule('summary'))return toast('خلاصه‌ساز غیرفعال است.','error');const input=$('summaryInput').value.trim();if(!input)return toast('متن را وارد کن.','error');$('summaryResult').textContent=summarizeText(input,Number($('summaryRatio').value));$('summaryResult').hidden=false;};
- $('saveProfile').onclick=()=>{const u=activeUser(),name=$('profileName').value.trim();if(!u||name.length<2)return toast('نام معتبر وارد کن.','error');u.name=name;saveDB();toast('پروفایل ذخیره شد.','success');};
- $('sendSubscriptionRequest').onclick=async()=>{const u=activeUser(),tier=$('requestTier').value;if(!u||!tier||!db.tiers[tier])return toast('اشتراک معتبری انتخاب نشده است.','error');let receipt='';const file=$('receiptFile').files[0];if(file){if(!file.type.startsWith('image/'))return toast('فقط فایل تصویری قابل قبول است.','error');if(file.size>600*1024)return toast('حجم تصویر رسید باید کمتر از ۶۰۰ کیلوبایت باشد.','error');receipt=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file);});}db.requests.push({id:id(),userId:u.id,tier,amount:Number(db.tiers[tier].price)||0,receipt,status:'pending',createdAt:Date.now()});saveDB();$('receiptFile').value='';renderProfile();toast('درخواست در همین مرورگر ثبت شد.','success');};
- $('adminTabs').addEventListener('click',e=>{const b=e.target.closest('[data-admin]');if(!b)return;document.querySelectorAll('#adminTabs button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('#view-admin .panel').forEach(p=>p.classList.toggle('active',p.id==='admin-'+b.dataset.admin));});
- $('addEmployee').onclick=async()=>{const name=$('employeeName').value.trim(),username=$('employeeUsername').value.trim().toLowerCase(),password=$('employeePassword').value;if(name.length<2||!/^[a-z0-9_.-]{3,30}$/.test(username)||password.length<8)return toast('نام، نام کاربری انگلیسی (۳ تا ۳۰ نویسه) و رمز حداقل ۸ نویسه لازم است.','error');if(db.employees.some(e=>e.username===username))return toast('این نام کاربری قبلاً استفاده شده است.','error');try{const hashed=await passwordHash(password);db.employees.push({id:id(),workspaceId:db.manager?.workspaceId||'local-main',name,username,password:hashed,permissions:{accounting:$('permAccounting').checked,inventory:$('permInventory').checked,customers:$('permCustomers').checked,advisor:$('permAdvisor').checked},createdAt:Date.now()});saveDB();$('employeeName').value='';$('employeeUsername').value='';$('employeePassword').value='';renderAdminEmployees();renderAdmin();toast('کارمند اضافه شد.','success');}catch(err){toast(err.message||'خطا در ساخت کارمند.','error');}};
- $('adminUsersBody').addEventListener('change',e=>{const s=e.target.closest('[data-user-tier]');if(!s)return;const u=db.users.find(x=>x.id===s.dataset.userTier);if(u){u.tier=s.value;saveDB();toast('اشتراک کاربر تغییر کرد.','success');}});
- $('adminUsersBody').addEventListener('click',e=>{const b=e.target.closest('[data-delete-user]');if(!b)return;if(!confirm('این کاربر حذف شود؟'))return;db.users=db.users.filter(u=>u.id!==b.dataset.deleteUser);db.requests=db.requests.filter(r=>db.users.some(u=>u.id===r.userId));if(currentUserId===b.dataset.deleteUser){clearSession();showView('home');}saveDB();renderAdmin();});
- $('adminEmployeesBody').addEventListener('change',e=>{const c=e.target.closest('[data-emp-perm]');if(!c)return;const emp=db.employees.find(x=>x.id===c.dataset.empPerm);if(emp){emp.permissions[c.dataset.perm]=c.checked;saveDB();toast('دسترسی کارمند به‌روزرسانی شد.','success');}});
- $('adminEmployeesBody').addEventListener('click',e=>{const b=e.target.closest('[data-delete-employee]');if(!b)return;if(!confirm('این کارمند حذف شود؟'))return;db.employees=db.employees.filter(x=>x.id!==b.dataset.deleteEmployee);if(currentEmployeeId===b.dataset.deleteEmployee){currentEmployeeId=null;refreshNav();showView('home');}saveDB();renderAdminEmployees();});
- $('savePlans').onclick=()=>{Object.entries(db.tiers).forEach(([k,t])=>{t.label=$('plan-label-'+k).value.trim()||t.label;t.price=Math.max(0,Number($('plan-price-'+k).value)||0);t.limit=$('plan-limit-'+k).value.trim();t.enabled=$('plan-enabled-'+k).checked;});saveDB();renderPlans();renderProfile();toast('اشتراک‌ها ذخیره شدند.','success');};
- $('receiptList').addEventListener('click',e=>{const a=e.target.closest('[data-approve-request]'),r=e.target.closest('[data-reject-request]');if(!a&&!r)return;const req=db.requests.find(x=>x.id===(a?.dataset.approveRequest||r?.dataset.rejectRequest));if(!req)return;if(a){req.status='approved';const u=db.users.find(x=>x.id===req.userId);if(u)u.tier=req.tier;toast('درخواست تأیید و اشتراک فعال شد.','success');}else{req.status='rejected';toast('درخواست رد شد.');}saveDB();renderReceipts();renderAdminStatsOnly();});
- $('sendAdminMessage').onclick=()=>{const title=$('messageTitle').value.trim(),textValue=$('messageText').value.trim(),sel=$('messageTarget').value;if(!title||!textValue)return toast('عنوان و متن پیام را وارد کن.','error');let target=sel,targetId=null,targetLabel='';if(sel.startsWith('user:')){target='user';targetId=sel.split(':')[1];targetLabel='خصوصی برای کاربر';}else if(sel.startsWith('employee:')){target='employee';targetId=sel.split(':')[1];targetLabel='خصوصی برای کارمند';}else{target=sel==='allUsers'?'users':sel==='allEmployees'?'employees':'all';targetLabel=sel==='allUsers'?'همه کاربران':sel==='allEmployees'?'همه کارمندان':'همه کاربران و کارمندان';}db.messages.push({id:id(),title,text:textValue,target,targetId,targetLabel,sentAt:Date.now()});saveDB();$('messageTitle').value='';$('messageText').value='';renderAdminMessages();toast('پیام در همین مرورگر ثبت شد.','success');};
- $('featureToggles').addEventListener('change',e=>{const c=e.target.closest('[data-feature-toggle]');if(!c)return;db.features[c.dataset.featureToggle].enabled=c.checked;saveDB();toast('وضعیت قابلیت تغییر کرد.');renderWorkspace();});
- $('saveAdminSettings').onclick=()=>{db.settings.cardNumber=$('adminCardNumber').value.trim();db.settings.cardOwner=$('adminCardOwner').value.trim();saveDB();toast('اطلاعات پرداخت ذخیره شد.','success');};$('adminExport').onclick=exportDatabase;$('adminReset').onclick=()=>{if(!confirm('تمام داده‌های محلی NEXORA پاک می‌شوند. ادامه می‌دهی؟'))return;localStorage.removeItem(KEY);localStorage.removeItem('nexora.business.user');location.reload();};
- $('adminLogout').onclick=()=>{managerUnlocked=false;refreshNav();showView('home');toast('از مدیریت خارج شدی.');};$('employeeLogout').onclick=()=>{currentEmployeeId=null;refreshNav();showView('home');toast('از حساب کارمندی خارج شدی.');};$('employeeOpenWorkspace').onclick=()=>showView('workspace');
- $('adminExport').addEventListener('click',()=>{});
- $('homePlans').addEventListener('click',e=>{const b=e.target.closest('[data-plan-choose]');if(!b)return;if(!activeUser()){openAuth('signup');return;}showView('profile');$('requestTier').value=b.dataset.planChoose;});
+"use strict";
+
+/* ═══════════════════════════════════════════
+   NEXORA AI v2 — Single File Application
+   ═══════════════════════════════════════════ */
+
+/* ─────────── 1. STORAGE ─────────── */
+const STORAGE_KEY = "nexora_v2_data";
+const ADMIN_PW = "152831321";
+
+const DB = {
+  data: null,
+  load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        this.data = JSON.parse(raw);
+      }
+    } catch (e) { console.error("Load failed:", e); }
+    if (!this.data || typeof this.data !== "object") {
+      this.data = this.blank();
+    }
+    // Ensure all collections exist
+    ["users","subscriptions","transactions","products","priceHistory",
+     "activities"].forEach(k => {
+      if (!Array.isArray(this.data[k])) this.data[k] = [];
+    });
+    if (!this.data.settings) this.data.settings = this.defaultSettings();
+    if (!this.data.session) this.data.session = null;
+    if (!this.data.adminSession) this.data.adminSession = null;
+    return this.data;
+  },
+  blank() {
+    return {
+      users: [], subscriptions: [], transactions: [], products: [],
+      priceHistory: [], activities: [], settings: this.defaultSettings(),
+      session: null, adminSession: null
+    };
+  },
+  defaultSettings() {
+    return {
+      adminReportSchedule: "weekly",
+      autoReportsEnabled: false,
+      language: "fa",
+      animations: true
+    };
+  },
+  save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
+      return true;
+    } catch (e) {
+      console.error("Save failed:", e);
+      return false;
+    }
+  },
+  reset() {
+    localStorage.removeItem(STORAGE_KEY);
+    this.data = this.blank();
+  }
+};
+
+/* ─────────── 2. CRYPTO ─────────── */
+async function sha256(text) {
+  const buf = new TextEncoder().encode(text);
+  const hash = await crypto.subtle.digest("SHA-256", buf);
+  return Array.from(new Uint8Array(hash))
+    .map(b => b.toString(16).padStart(2, "0")).join("");
 }
-function renderAdminStatsOnly(){const ins=sumTransactions('income'),outs=sumTransactions('expense');$('adminStats').innerHTML=`<div class="stat"><strong>${money(db.users.length)}</strong><span>کاربران</span></div><div class="stat"><strong>${money(db.employees.length)}</strong><span>کارمندان</span></div><div class="stat"><strong>${money(db.requests.filter(r=>r.status==='pending').length)}</strong><span>درخواست در انتظار</span></div><div class="stat"><strong>${money(ins-outs)}</strong><span>مانده ثبت‌شده (تومان)</span></div>`;}
-function init(){if($('txDate'))$('txDate').value=today();bindEvents();renderPlans();refreshNav();if(currentUserId&&!activeUser()){currentUserId=null;localStorage.removeItem('nexora.business.user');}if(activeUser())showView('workspace');else showView('home');}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+function genSalt() {
+  const arr = new Uint8Array(16);
+  crypto.getRandomValues(arr);
+  return Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+async function hashPassword(pw, salt) {
+  return await sha256("nexora::v2::" + salt + "::" + pw);
+}
+let ADMIN_HASH = null;
+async function initAdminHash() {
+  ADMIN_HASH = await sha256("nexora::admin::v2::" + ADMIN_PW);
+}
+
+/* ─────────── 3. UTILITIES ─────────── */
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const uid = (p) => (p || "id") + "_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+
+function esc(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+function fmtNum(n) {
+  if (n == null || isNaN(n)) return "—";
+  try { return Number(n).toLocaleString("fa-IR"); }
+  catch (e) { return String(n); }
+}
+function fmtMoney(n) { return fmtNum(n) + " تومان"; }
+function fmtDate(ts) {
+  if (!ts) return "—";
+  try {
+    return new Date(ts).toLocaleDateString("fa-IR",
+      { year: "numeric", month: "2-digit", day: "2-digit" });
+  } catch (e) { return "—"; }
+}
+function fmtDateTime(ts) {
+  if (!ts) return "—";
+  try {
+    return new Date(ts).toLocaleString("fa-IR",
+      { year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit" });
+  } catch (e) { return "—"; }
+}
+function todayKey() { return new Date().toISOString().slice(0, 10); }
+
+/* ─────────── 4. TOAST ─────────── */
+let _toastTimer = null;
+function toast(msg, type) {
+  const el = $("#toast");
+  if (!el) return;
+  el.textContent = msg;
+  el.className = "toast show" + (type ? " " + type : "");
+  el.hidden = false;
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => {
+    el.classList.remove("show");
+    setTimeout(() => { el.hidden = true; }, 320);
+  }, 2400);
+}
+
+/* ─────────── 5. MODAL HELPERS ─────────── */
+function openModal(id) { const el = $("#" + id); if (el) el.hidden = false; }
+function closeModal(id) { const el = $("#" + id); if (el) el.hidden = true; }
+function openGenericModal(html) {
+  const c = $("#genericModalCard");
+  c.innerHTML = html;
+  openModal("genericModal");
+}
+function closeGenericModal() { closeModal("genericModal"); }
+
+/* ─────────── 6. AUTH ENGINE ─────────── */
+const Auth = {
+  currentUser() {
+    if (!DB.data.session) return null;
+    const u = DB.data.users.find(x => x.id === DB.data.session.userId);
+    if (!u) { DB.data.session = null; DB.save(); return null; }
+    if (u.blocked) return null;
+    return u;
+  },
+  isLoggedIn() { return !!this.currentUser(); },
+  async register(name, email, password) {
+    name = String(name || "").trim();
+    email = String(email || "").trim().toLowerCase();
+    if (name.length < 2) return { ok: false, error: "نام باید حداقل ۲ حرف باشد" };
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return { ok: false, error: "ایمیل معتبر نیست" };
+    if (password.length < 6) return { ok: false, error: "رمز عبور باید حداقل ۶ کاراکتر باشد" };
+    if (DB.data.users.some(u => u.email === email)) return { ok: false, error: "این ایمیل قبلاً ثبت شده است" };
+    const salt = genSalt();
+    const passwordHash = await hashPassword(password, salt);
+    const user = {
+      id: uid("u"), email, name, passwordHash, salt,
+      role: "user", tier: "free", tierExpiresAt: null,
+      blocked: false, createdAt: Date.now(), lastLogin: Date.now()
+    };
+    DB.data.users.push(user);
+    DB.data.session = { userId: user.id, ts: Date.now() };
+    this.logActivity(user.id, "signup", "ثبت‌نام در پلتفرم");
+    DB.save();
+    return { ok: true, user };
+  },
+  async login(email, password) {
+    email = String(email || "").trim().toLowerCase();
+    const user = DB.data.users.find(u => u.email === email);
+    if (!user) return { ok: false, error: "ایمیل یا رمز عبور اشتباه است" };
+    if (user.blocked) return { ok: false, error: "حساب شما مسدود شده است" };
+    const hash = await hashPassword(password, user.salt);
+    if (hash !== user.passwordHash) return { ok: false, error: "ایمیل یا رمز عبور اشتباه است" };
+    user.lastLogin = Date.now();
+    DB.data.session = { userId: user.id, ts: Date.now() };
+    this.logActivity(user.id, "login", "ورود به حساب");
+    DB.save();
+    return { ok: true, user };
+  },
+  logout() {
+    const u = this.currentUser();
+    if (u) this.logActivity(u.id, "logout", "خروج از حساب");
+    DB.data.session = null;
+    DB.save();
+  },
+  async changePassword(currentPw, newPw) {
+    const user = this.currentUser();
+    if (!user) return { ok: false, error: "ابتدا وارد شوید" };
+    const currentHash = await hashPassword(currentPw, user.salt);
+    if (currentHash !== user.passwordHash) return { ok: false, error: "رمز فعلی اشتباه است" };
+    if (newPw.length < 6) return { ok: false, error: "رمز جدید باید حداقل ۶ کاراکتر باشد" };
+    user.salt = genSalt();
+    user.passwordHash = await hashPassword(newPw, user.salt);
+    DB.save();
+    return { ok: true };
+  },
+  logActivity(userId, type, detail) {
+    DB.data.activities.push({
+      id: uid("a"), userId, type, detail, createdAt: Date.now()
+    });
+    if (DB.data.activities.length > 1000) {
+      DB.data.activities = DB.data.activities.slice(-1000);
+    }
+  }
+};
+
+/* ─────────── 7. ADMIN ENGINE ─────────── */
+const Admin = {
+  secretClicks: 0,
+  secretTimer: null,
+  loginAttempts: { count: 0, until: 0 },
+
+  isLoggedIn() {
+    const s = DB.data.adminSession;
+    if (!s) return false;
+    if (Date.now() - s.ts > 12 * 3600000) {
+      DB.data.adminSession = null;
+      DB.save();
+      return false;
+    }
+    return true;
+  },
+  setSession() {
+    DB.data.adminSession = { ts: Date.now() };
+    DB.save();
+  },
+  clearSession() {
+    DB.data.adminSession = null;
+    DB.save();
+  },
+  async verifyPassword(pw) {
+    if (!ADMIN_HASH) await initAdminHash();
+    const hash = await sha256("nexora::admin::v2::" + pw);
+    return hash === ADMIN_HASH;
+  },
+  registerSecretClick(onThreshold) {
+    this.secretClicks++;
+    clearTimeout(this.secretTimer);
+    this.secretTimer = setTimeout(() => { this.secretClicks = 0; }, 5000);
+    if (this.secretClicks >= 40) {
+      this.secretClicks = 0;
+      clearTimeout(this.secretTimer);
+      onThreshold();
+    }
+  },
+  stats() {
+    const now = Date.now();
+    const day7 = now - 7 * 86400000;
+    const users = DB.data.users;
+    const approved = DB.data.subscriptions.filter(s => s.status === "approved");
+    const revenue = approved.reduce((sum, s) => sum + (s.amount || 0), 0);
+    return {
+      totalUsers: users.length,
+      newUsers: users.filter(u => u.createdAt >= day7).length,
+      activeUsers: users.filter(u => u.lastLogin >= day7).length,
+      subscribedUsers: new Set(approved.map(s => s.userId)).size,
+      unsubscribedUsers: users.filter(u => u.tier === "free").length,
+      pendingSubs: DB.data.subscriptions.filter(s => s.status === "pending").length,
+      revenue,
+      totalTx: DB.data.transactions.length
+    };
+  }
+};
+
+/* ─────────── 8. DATA ENGINE ─────────── */
+const Data = {
+  addTransaction(tx) {
+    const u = Auth.currentUser();
+    if (!u) return { ok: false, error: "ابتدا وارد شوید" };
+    if (!["income", "expense"].includes(tx.type)) return { ok: false, error: "نوع نامعتبر" };
+    const amount = parseInt(tx.amount, 10);
+    if (!Number.isFinite(amount) || amount <= 0) return { ok: false, error: "مبلغ باید مثبت باشد" };
+    const t = {
+      id: uid("t"), userId: u.id, type: tx.type, amount,
+      category: (tx.category || "").trim() || null,
+      description: (tx.description || "").trim() || null,
+      createdAt: Date.now()
+    };
+    DB.data.transactions.push(t);
+    Auth.logActivity(u.id, "transaction",
+      (tx.type === "income" ? "درآمد" : "هزینه") + ": " + fmtMoney(amount));
+    DB.save();
+    return { ok: true, transaction: t };
+  },
+  userTransactions(userId, days) {
+    const since = days ? Date.now() - days * 86400000 : 0;
+    return DB.data.transactions
+      .filter(t => t.userId === userId && t.createdAt >= since)
+      .sort((a, b) => b.createdAt - a.createdAt);
+  },
+  deleteTransaction(id) {
+    const u = Auth.currentUser();
+    if (!u) return false;
+    const idx = DB.data.transactions.findIndex(t => t.id === id && t.userId === u.id);
+    if (idx === -1) return false;
+    DB.data.transactions.splice(idx, 1);
+    DB.save();
+    return true;
+  },
+  addProduct(p) {
+    const u = Auth.currentUser();
+    if (!u) return { ok: false, error: "ابتدا وارد شوید" };
+    const name = String(p.name || "").trim();
+    if (name.length < 2) return { ok: false, error: "نام باید حداقل ۲ حرف باشد" };
+    const buyPrice = parseInt(p.buyPrice, 10) || 0;
+    const sellPrice = parseInt(p.sellPrice, 10) || 0;
+    const stock = parseFloat(p.stock) || 0;
+    if (buyPrice < 0 || sellPrice < 0 || stock < 0) return { ok: false, error: "مقادیر منفی مجاز نیست" };
+    const prod = {
+      id: uid("p"), userId: u.id, name, buyPrice, sellPrice, stock,
+      updatedAt: Date.now()
+    };
+    DB.data.products.push(prod);
+    DB.data.priceHistory.push({
+      id: uid("ph"), productId: prod.id, buyPrice, sellPrice,
+      recordedAt: Date.now()
+    });
+    Auth.logActivity(u.id, "product_add", "کالای جدید: " + name);
+    DB.save();
+    return { ok: true, product: prod };
+  },
+  userProducts(userId) {
+    return DB.data.products.filter(p => p.userId === userId);
+  },
+  updateProduct(id, patch) {
+    const u = Auth.currentUser();
+    if (!u) return false;
+    const p = DB.data.products.find(x => x.id === id && x.userId === u.id);
+    if (!p) return false;
+    const oldBuy = p.buyPrice, oldSell = p.sellPrice;
+    if (patch.buyPrice != null) p.buyPrice = parseInt(patch.buyPrice, 10) || 0;
+    if (patch.sellPrice != null) p.sellPrice = parseInt(patch.sellPrice, 10) || 0;
+    if (patch.stock != null) p.stock = parseFloat(patch.stock) || 0;
+    p.updatedAt = Date.now();
+    if (p.buyPrice !== oldBuy || p.sellPrice !== oldSell) {
+      DB.data.priceHistory.push({
+        id: uid("ph"), productId: p.id, buyPrice: p.buyPrice,
+        sellPrice: p.sellPrice, recordedAt: Date.now()
+      });
+    }
+    DB.save();
+    return true;
+  },
+  deleteProduct(id) {
+    const u = Auth.currentUser();
+    if (!u) return false;
+    const idx = DB.data.products.findIndex(p => p.id === id && p.userId === u.id);
+    if (idx === -1) return false;
+    const pid = DB.data.products[idx].id;
+    DB.data.products.splice(idx, 1);
+    DB.data.priceHistory = DB.data.priceHistory.filter(h => h.productId !== pid);
+    DB.save();
+    return true;
+  },
+  requestSubscription(tier, receiptData) {
+    const u = Auth.currentUser();
+    if (!u) return { ok: false, error: "ابتدا وارد شوید" };
+    const TIERS = { pro: { price: 299000 }, enterprise: { price: 999000 } };
+    if (!TIERS[tier]) return { ok: false, error: "سطح نامعتبر" };
+    const pending = DB.data.subscriptions.find(
+      s => s.userId === u.id && s.status === "pending"
+    );
+    if (pending) return { ok: false, error: "شما یک درخواست در انتظار تأیید دارید" };
+    if (!receiptData) return { ok: false, error: "تصویر رسید الزامی است" };
+    const sub = {
+      id: uid("s"), userId: u.id, tier, status: "pending",
+      amount: TIERS[tier].price, receipt: receiptData,
+      requestedAt: Date.now(), reviewedAt: null
+    };
+    DB.data.subscriptions.push(sub);
+    Auth.logActivity(u.id, "sub_request", "درخواست اشتراک " + tier);
+    DB.save();
+    return { ok: true, subscription: sub };
+  },
+  mySubscriptions(userId) {
+    return DB.data.subscriptions
+      .filter(s => s.userId === userId)
+      .sort((a, b) => b.requestedAt - a.requestedAt);
+  },
+  approveSubscription(id) {
+    const sub = DB.data.subscriptions.find(s => s.id === id);
+    if (!sub || sub.status !== "pending") return { ok: false, error: "درخواست معتبر نیست" };
+    sub.status = "approved";
+    sub.reviewedAt = Date.now();
+    const user = DB.data.users.find(u => u.id === sub.userId);
+    if (user) {
+      user.tier = sub.tier;
+      user.tierExpiresAt = Date.now() + 30 * 86400000;
+    }
+    Auth.logActivity(sub.userId, "sub_approved", "اشتراک " + sub.tier + " تأیید شد");
+    DB.save();
+    return { ok: true };
+  },
+  rejectSubscription(id, note) {
+    const sub = DB.data.subscriptions.find(s => s.id === id);
+    if (!sub || sub.status !== "pending") return { ok: false, error: "درخواست معتبر نیست" };
+    sub.status = "rejected";
+    sub.reviewedAt = Date.now();
+    sub.adminNote = note || null;
+    Auth.logActivity(sub.userId, "sub_rejected", "درخواست اشتراک رد شد");
+    DB.save();
+    return { ok: true };
+  },
+  cancelUserSubscription(userId) {
+    const user = DB.data.users.find(u => u.id === userId);
+    if (!user) return false;
+    user.tier = "free";
+    user.tierExpiresAt = null;
+    DB.data.subscriptions.forEach(s => {
+      if (s.userId === userId && s.status === "approved") {
+        s.status = "cancelled";
+        s.reviewedAt = Date.now();
+      }
+    });
+    Auth.logActivity(userId, "sub_cancelled", "لغو اشتراک توسط مدیر");
+    DB.save();
+    return true;
+  },
+  toggleBlock(userId) {
+    const user = DB.data.users.find(u => u.id === userId);
+    if (!user) return false;
+    user.blocked = !user.blocked;
+    DB.save();
+    return true;
+  },
+  changeTier(userId, tier) {
+    const user = DB.data.users.find(u => u.id === userId);
+    if (!user) return false;
+    user.tier = tier;
+    user.tierExpiresAt = tier === "free" ? null : Date.now() + 30 * 86400000;
+    Auth.logActivity(userId, "tier_change", "تغییر سطح به " + tier + " توسط مدیر");
+    DB.save();
+    return true;
+  }
+};
+
+/* ─────────── 9. ACCOUNTANT ENGINE ─────────── */
+const Accountant = {
+  parseAmounts(text) {
+    const map = { "۰":"0","۱":"1","۲":"2","۳":"3","۴":"4","۵":"5",
+      "۶":"6","۷":"7","۸":"8","۹":"9","٠":"0","١":"1","٢":"2","٣":"3",
+      "٤":"4","٥":"5","٦":"6","٧":"7","٨":"8","٩":"9" };
+    let t = String(text || "").replace(/[۰-۹٠-٩]/g, d => map[d]).replace(/,/g, " ");
+    const results = [];
+    const re = /(\d+(?:\.\d+)?)\s*(هزار|میلیون|میلیارد|تومان|ریال)?/gi;
+    let m;
+    while ((m = re.exec(t)) !== null) {
+      let n = parseFloat(m[1]);
+      const u = (m[2] || "").toLowerCase();
+      if (u === "هزار") n *= 1000;
+      else if (u === "میلیون") n *= 1000000;
+      else if (u === "میلیارد") n *= 1000000000;
+      if (n >= 1000) results.push(n);
+    }
+    return results;
+  },
+  getContext(userId, days) {
+    days = days || 30;
+    const txs = Data.userTransactions(userId, days);
+    const prods = Data.userProducts(userId);
+    let income = 0, expense = 0;
+    txs.forEach(t => t.type === "income" ? income += t.amount : expense += t.amount);
+    const profit = income - expense;
+    const margin = income > 0 ? (profit / income) * 100 : 0;
+    return { income, expense, profit, margin, txCount: txs.length, prods };
+  },
+  respond(userId, message) {
+    const text = String(message || "").trim();
+    if (!text) return "پیام خالی است.";
+
+    const amounts = this.parseAmounts(text);
+    const ctx = this.getContext(userId);
+
+    // Two amounts => buy/sell analysis
+    if (amounts.length >= 2) {
+      const buy = amounts[0];
+      const sell = amounts[1];
+      if (buy > 0 && sell > 0) {
+        const profitPerUnit = sell - buy;
+        const margin = (profitPerUnit / sell) * 100;
+        const markup = (profitPerUnit / buy) * 100;
+        let verdict = "";
+        let emoji = "";
+        if (profitPerUnit < 0) { verdict = "شما در این معامله در ضرر هستید. قیمت فروش پایین‌تر از قیمت خرید است."; emoji = "🔴"; }
+        else if (margin < 10) { verdict = "حاشیه سود شما پایین است. با احتساب هزینه‌های جانبی، ممکن است به مرز ضرر نزدیک شوید."; emoji = "🟡"; }
+        else if (margin < 25) { verdict = "حاشیه سود شما قابل قبول است، اما فضای بهبود وجود دارد."; emoji = "🟢"; }
+        else if (margin < 50) { verdict = "حاشیه سود شما خوب است. این معامله را در اولویت قرار دهید."; emoji = "🌟"; }
+        else { verdict = "حاشیه سود شما بسیار بالاست. اگر فروش ادامه دارد، این محصول را تقویت کنید."; emoji = "💎"; }
+
+        let analysis = emoji + " تحلیل معامله:\n\n";
+        analysis += "• قیمت خرید: " + fmtMoney(buy) + "\n";
+        analysis += "• قیمت فروش: " + fmtMoney(sell) + "\n";
+        analysis += "• سود هر واحد: " + fmtMoney(profitPerUnit) + "\n";
+        analysis += "• حاشیه سود: " + margin.toFixed(1) + "٪\n";
+        analysis += "• نرخ افزایش نسبت به خرید: " + markup.toFixed(1) + "٪\n\n";
+        analysis += verdict;
+
+        if (ctx.txCount > 0) {
+          analysis += "\n\n📊 در " + "۳۰ روز گذشته:\n";
+          analysis += "• درآمد: " + fmtMoney(ctx.income) + "\n";
+          analysis += "• هزینه: " + fmtMoney(ctx.expense) + "\n";
+          analysis += "• سود خالص: " + fmtMoney(ctx.profit) + "\n";
+          analysis += "• حاشیه کل: " + ctx.margin.toFixed(1) + "٪";
+        } else {
+          analysis += "\n\nℹ️ برای تحلیل جامع‌تر، تراکنش‌های درآمد و هزینه خود را نیز در بخش «تراکنش‌ها» ثبت کنید.";
+        }
+
+        return analysis;
+      }
+    }
+
+    // Compare products
+    if (/مقایسه|کدام|بهترین|پرسودترین|بیشترین/.test(text) && ctx.prods.length >= 2) {
+      const list = ctx.prods.map(p => ({
+        name: p.name,
+        margin: p.sellPrice > 0 ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100) : 0,
+        profit: p.sellPrice - p.buyPrice
+      })).sort((a, b) => b.margin - a.margin);
+
+      let r = "🔍 مقایسه کالاها بر اساس حاشیه سود:\n\n";
+      list.forEach((p, i) => {
+        r += (i + 1) + ". " + p.name + "\n";
+        r += "   حاشیه: " + p.margin.toFixed(1) + "٪ · سود هر واحد: " + fmtMoney(p.profit) + "\n";
+      });
+      r += "\n💡 توصیه: کالاهای با حاشیه بالاتر را در اولویت فروش قرار دهید، اما توجه کنید که سرعت فروش هم مهم است.";
+      return r;
+    }
+
+    // Inventory
+    if (/موجودی|انبار|انبارداری|کالا|محصول/.test(text)) {
+      if (ctx.prods.length === 0) {
+        return "📦 هنوز هیچ کالایی ثبت نکرده‌اید.\n\nاز بخش «کالاها» می‌توانید نام، قیمت خرید، قیمت فروش و موجودی هر کالا را وارد کنید تا تحلیل دقیق‌تری دریافت کنید.";
+      }
+      let r = "📦 وضعیت موجودی انبار:\n\n";
+      let totalStockValue = 0;
+      let lowStock = [];
+      ctx.prods.forEach(p => {
+        const margin = p.sellPrice > 0 ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100) : 0;
+        totalStockValue += p.buyPrice * p.stock;
+        r += "• " + p.name + ": " + p.stock + " واحد · حاشیه " + margin.toFixed(1) + "٪\n";
+        if (p.stock < 3) lowStock.push(p.name);
+      });
+      r += "\n💰 ارزش موجودی (به قیمت خرید): " + fmtMoney(totalStockValue) + "\n";
+      if (lowStock.length > 0) {
+        r += "\n⚠️ کالاهای با موجودی کم: " + lowStock.join("، ");
+      }
+      return r;
+    }
+
+    // Overall status
+    if (/وضعیت|چطور|چگونه|تحلیل|خلاصه|گزارش|سود|زیان|درآمد|هزینه/.test(text)) {
+      if (ctx.txCount === 0) {
+        return "برای تحلیل وضعیت، ابتدا تراکنش‌های درآمد و هزینه خود را در بخش «تراکنش‌ها» ثبت کنید.\n\nحداقل به ۳ تراکنش نیاز است تا بتوانم تحلیل دقیق‌تری ارائه دهم.";
+      }
+      let health, healthEmoji;
+      if (ctx.profit < 0) { health = "کسب‌وکار شما در حال ضرر است"; healthEmoji = "🔴"; }
+      else if (ctx.margin < 10) { health = "حاشیه سود شما پایین است"; healthEmoji = "🟡"; }
+      else if (ctx.margin < 30) { health = "وضعیت متعادل است"; healthEmoji = "🟢"; }
+      else { health = "حاشیه سود شما بسیار خوب است"; healthEmoji = "🌟"; }
+
+      let r = healthEmoji + " گزارش ۳۰ روز گذشته:\n\n";
+      r += "• تعداد تراکنش: " + fmtNum(ctx.txCount) + "\n";
+      r += "• کل درآمد: " + fmtMoney(ctx.income) + "\n";
+      r += "• کل هزینه: " + fmtMoney(ctx.expense) + "\n";
+      r += "• سود خالص: " + fmtMoney(ctx.profit) + "\n";
+      r += "• حاشیه سود: " + ctx.margin.toFixed(1) + "٪\n\n";
+      r += health;
+
+      if (ctx.expense > 0 && ctx.income > 0) {
+        const ratio = (ctx.expense / ctx.income) * 100;
+        r += "\n\n• نسبت هزینه به درآمد: " + ratio.toFixed(1) + "٪";
+        if (ratio > 80) r += "\n⚠️ نسبت هزینه به درآمد بسیار بالاست.";
+        else if (ratio > 60) r += "\n⚠️ بهتر است هزینه‌های غیرضروری را بازبینی کنید.";
+      }
+      return r;
+    }
+
+    // Advice
+    if (/پیشنهاد|چه کنم|راهنما|راهکار|بهتر|بهبود/.test(text)) {
+      const tips = [];
+      if (ctx.txCount === 0) {
+        tips.push("ابتدا تراکنش‌های مالی خود را ثبت کنید.");
+        tips.push("کالاهای خود را با قیمت خرید و فروش در بخش «کالاها» اضافه کنید.");
+      } else {
+        if (ctx.profit < 0) tips.push("کسب‌وکار در ضرر است. هزینه‌های غیرضروری را کاهش دهید و روی محصولات پرفروش تمرکز کنید.");
+        if (ctx.margin < 20 && ctx.margin >= 0) tips.push("حاشیه سود پایین است. با مذاکره با تأمین‌کننده یا افزایش قیمت تدریجی، حاشیه را بهبود دهید.");
+        if (ctx.expense > 0 && ctx.income > 0 && ctx.expense / ctx.income > 0.7) {
+          tips.push("نسبت هزینه به درآمد بالاست. دسته‌بندی هزینه‌ها را بررسی و موارد غیرضروری را حذف کنید.");
+        }
+        if (ctx.profit > 0) tips.push("وضعیت مثبت است. سود را صرف بازاریابی یا تنوع محصول کنید.");
+      }
+      tips.push("قیمت‌ها را به‌روز نگه دارید تا تحلیل‌ها دقیق‌تر شوند.");
+
+      let r = "💡 پیشنهادهای کاربردی:\n\n";
+      tips.forEach((t, i) => { r += (i + 1) + ". " + t + "\n\n"; });
+      return r.trim();
+    }
+
+    // Default
+    return "سلام! من حسابدار هوشمند شما هستم. می‌توانم در این موارد کمک کنم:\n\n" +
+      "• تحلیل معامله — مثلاً: «خرید ۲۰۰ هزار، فروش ۲۷۰ هزار»\n" +
+      "• گزارش وضعیت — «وضعیت من چطور است؟»\n" +
+      "• بررسی انبار — «موجودی انبار»\n" +
+      "• مقایسه کالاها — «کالاها را مقایسه کن»\n" +
+      "• دریافت پیشنهاد — «چه کنم بهتر شود؟»";
+  }
+};
+
+/* ─────────── 10. FORECAST ENGINE ─────────── */
+const Forecast = {
+  linearRegression(points) {
+    const n = points.length;
+    if (n < 2) return null;
+    let sx = 0, sy = 0, sxy = 0, sxx = 0;
+    points.forEach(p => {
+      sx += p.x; sy += p.y; sxy += p.x * p.y; sxx += p.x * p.x;
+    });
+    const d = n * sxx - sx * sx;
+    if (d === 0) return { slope: 0, intercept: sy / n, r2: 0 };
+    const slope = (n * sxy - sx * sy) / d;
+    const intercept = (sy - slope * sx) / n;
+    const meanY = sy / n;
+    let ssRes = 0, ssTot = 0;
+    points.forEach(p => {
+      const pred = slope * p.x + intercept;
+      ssRes += Math.pow(p.y - pred, 2);
+      ssTot += Math.pow(p.y - meanY, 2);
+    });
+    const r2 = ssTot === 0 ? 0 : Math.max(0, 1 - ssRes / ssTot);
+    return { slope, intercept, r2 };
+  },
+  generate(userId, days) {
+    days = days || 30;
+    const txs = Data.userTransactions(userId, days);
+    if (txs.length < 3) {
+      return {
+        ok: false,
+        message: "برای پیش‌بینی، حداقل ۳ تراکنش در " + fmtNum(days) +
+          " روز گذشته نیاز است. اکنون " + fmtNum(txs.length) + " تراکنش ثبت شده.",
+        dataPoints: txs.length
+      };
+    }
+
+    // Bucket by day
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const buckets = {};
+    for (let i = 0; i < days; i++) {
+      const d = new Date(today.getTime() - (days - 1 - i) * 86400000);
+      buckets[d.toISOString().slice(0, 10)] = { income: 0, expense: 0 };
+    }
+    txs.forEach(t => {
+      const key = new Date(t.createdAt).toISOString().slice(0, 10);
+      if (!buckets[key]) return;
+      if (t.type === "income") buckets[key].income += t.amount;
+      else buckets[key].expense += t.amount;
+    });
+
+    const keys = Object.keys(buckets).sort();
+    const incPts = keys.map((k, i) => ({ x: i, y: buckets[k].income }));
+    const expPts = keys.map((k, i) => ({ x: i, y: buckets[k].expense }));
+    const incR = this.linearRegression(incPts);
+    const expR = this.linearRegression(expPts);
+
+    let projInc = 0, projExp = 0;
+    for (let i = 0; i < 30; i++) {
+      projInc += Math.max(0, incR.slope * (days + i) + incR.intercept);
+      projExp += Math.max(0, expR.slope * (days + i) + expR.intercept);
+    }
+
+    const totalInc = incPts.reduce((a, p) => a + p.y, 0);
+    const totalExp = expPts.reduce((a, p) => a + p.y, 0);
+    const netProfit = totalInc - totalExp;
+
+    const avgR2 = (incR.r2 + expR.r2) / 2;
+    const confidence = Math.min(95, Math.max(25, Math.round(avgR2 * 100)));
+
+    const reasons = [];
+    if (incR.slope > 1000) reasons.push("روند درآمد صعودی است (به‌طور میانگین " + fmtMoney(Math.round(incR.slope)) + " در روز افزایش).");
+    else if (incR.slope < -1000) reasons.push("روند درآمد نزولی است (به‌طور میانگین " + fmtMoney(Math.round(-incR.slope)) + " در روز کاهش).");
+    else reasons.push("روند درآمد تقریباً ثابت است.");
+
+    if (expR.slope > 1000) reasons.push("روند هزینه صعودی است (به‌طور میانگین " + fmtMoney(Math.round(expR.slope)) + " در روز افزایش).");
+    else if (expR.slope < -1000) reasons.push("روند هزینه نزولی است (به‌طور میانگین " + fmtMoney(Math.round(-expR.slope)) + " در روز کاهش).");
+    else reasons.push("روند هزینه تقریباً ثابت است.");
+
+    if (netProfit > 0) reasons.push("در دوره گذشته سود خالص مثبت بوده است.");
+    else if (netProfit < 0) reasons.push("در دوره گذشته ضرر ثبت شده است.");
+
+    const limitations = [];
+    if (txs.length < 10) limitations.push("تعداد تراکنش‌ها کم است (" + fmtNum(txs.length) + " مورد).");
+    if (avgR2 < 0.5) limitations.push("پراکندگی داده‌ها بالاست؛ پیش‌بینی قطعی نیست.");
+    if (totalInc === 0) limitations.push("درآمدی در دوره ثبت نشده.");
+    if (limitations.length === 0) limitations.push("پیش‌بینی بر اساس روند خطی داده‌های گذشته است.");
+
+    return {
+      ok: true,
+      dataPoints: txs.length,
+      period: days,
+      history: {
+        totalIncome: totalInc,
+        totalExpense: totalExp,
+        netProfit,
+        avgDailyIncome: Math.round(totalInc / days),
+        avgDailyExpense: Math.round(totalExp / days)
+      },
+      forecast: {
+        projectedIncome: Math.round(projInc),
+        projectedExpense: Math.round(projExp),
+        projectedProfit: Math.round(projInc - projExp),
+        optimistic: Math.round(projInc * 1.2 - projExp * 0.9),
+        pessimistic: Math.round(projInc * 0.8 - projExp * 1.15),
+        confidence,
+        reasons,
+        limitations
+      }
+    };
+  }
+};
+
+/* ─────────── 11. IMAGE COMPRESSION ─────────── */
+function compressImage(file, maxSize) {
+  maxSize = maxSize || 1000;
+  return new Promise((resolve, reject) => {
+    if (!file.type.startsWith("image/")) {
+      reject(new Error("فقط فایل تصویری مجاز است"));
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        let { width, height } = img;
+        if (width > maxSize || height > maxSize) {
+          const ratio = Math.min(maxSize / width, maxSize / height);
+          width = Math.round(width * ratio);
+          height = Math.round(height * ratio);
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width; canvas.height = height;
+        canvas.getContext("2d").drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL("image/jpeg", 0.72));
+      };
+      img.onerror = () => reject(new Error("فایل تصویری معتبر نیست"));
+      img.src = e.target.result;
+    };
+    reader.onerror = () => reject(new Error("خطا در خواندن فایل"));
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ─────────── 12. ROUTER ─────────── */
+const ROUTES = [
+  { id: "dashboard", icon: "◈", label: "داشبورد" },
+  { id: "accountant", icon: "◉", label: "حسابدار" },
+  { id: "forecast", icon: "◎", label: "پیش‌بین" },
+  { id: "products", icon: "▤", label: "کالاها" },
+  { id: "transactions", icon: "⇄", label: "تراکنش‌ها" },
+  { id: "subscription", icon: "♛", label: "اشتراک" },
+  { id: "settings", icon: "⚙", label: "تنظیمات" }
+];
+const ADMIN_ROUTE = { id: "admin", icon: "✦", label: "مدیریت" };
+const ADMIN_ROUTE2 = { id: "admin-reports", icon: "✎", label: "گزارش‌ها" };
+
+let currentRoute = "dashboard";
+
+function renderNav() {
+  const isAdmin = Admin.isLoggedIn();
+  const routes = isAdmin ? ROUTES.concat([ADMIN_ROUTE, ADMIN_ROUTE2]) : ROUTES;
+
+  const side = $("#sideNav");
+  const mob = $("#mobileNav");
+  const user = Auth.currentUser();
+  const pendingCount = isAdmin
+    ? DB.data.subscriptions.filter(s => s.status === "pending").length
+    : 0;
+
+  side.innerHTML = routes.map(r => {
+    const badge = r.id === "admin" && pendingCount > 0
+      ? '<span class="badge-count">' + pendingCount + '</span>' : "";
+    return '<button class="nav-item ' + (r.id === currentRoute ? "active" : "") +
+      '" data-route="' + r.id + '"><i>' + r.icon + '</i><span>' + r.label + '</span>' + badge + '</button>';
+  }).join("");
+
+  // Mobile: first 5 + settings
+  mob.innerHTML = routes.slice(0, 5).map(r =>
+    '<button class="mobile-nav-item ' + (r.id === currentRoute ? "active" : "") +
+    '" data-route="' + r.id + '"><i>' + r.icon + '</i><span>' + r.label + '</span></button>'
+  ).join("");
+
+  $$("[data-route]").forEach(b => {
+    b.addEventListener("click", () => navigate(b.dataset.route));
+  });
+}
+
+function navigate(route) {
+  if (!Auth.isLoggedIn()) return;
+  const isAdmin = Admin.isLoggedIn();
+  const adminRoutes = ["admin", "admin-reports"];
+  if (adminRoutes.includes(route) && !isAdmin) {
+    toast("دسترسی مدیریتی لازم است", "error");
+    return;
+  }
+  if (!isAdmin && adminRoutes.includes(currentRoute)) currentRoute = "dashboard";
+  currentRoute = route;
+  renderNav();
+  renderPage();
+}
+
+function renderPage() {
+  const user = Auth.currentUser();
+  if (!user) return;
+  const c = $("#pageContent");
+  const renderers = {
+    dashboard: renderDashboard,
+    accountant: renderAccountant,
+    forecast: renderForecast,
+    products: renderProducts,
+    transactions: renderTransactions,
+    subscription: renderSubscription,
+    settings: renderSettings,
+    admin: renderAdmin,
+    "admin-reports": renderAdminReports
+  };
+  const fn = renderers[currentRoute] || renderDashboard;
+  c.innerHTML = "";
+  fn(c, user);
+  updateUserChip(user);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function updateUserChip(user) {
+  $("#userAvatar").textContent = (user.name || "U").charAt(0).toUpperCase();
+  $("#userName").textContent = user.name;
+  const tierLabel = { free: "Free", pro: "Pro", enterprise: "Enterprise" }[user.tier] || "Free";
+  $("#userTier").textContent = tierLabel;
+}
+
+/* ─────────── 13. PAGE: DASHBOARD ─────────── */
+function renderDashboard(container, user) {
+  const ctx = Accountant.getContext(user.id, 30);
+  const subs = Data.mySubscriptions(user.id);
+  const pendingSub = subs.find(s => s.status === "pending");
+  const recentTx = Data.userTransactions(user.id, 30).slice(0, 5);
+
+  const hour = new Date().getHours();
+  const greeting = hour < 12 ? "صبح بخیر" : hour < 18 ? "ظهر بخیر" : "شب بخیر";
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">${greeting}، ${esc(user.name)}</h1>
+        <p class="page-sub">خلاصه وضعیت کسب‌وکار شما در ۳۰ روز گذشته</p>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-ghost btn-sm" data-goto="transactions">+ تراکنش جدید</button>
+        <button class="btn btn-primary btn-sm" data-goto="accountant">گفتگو با حسابدار</button>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-icon">💰</div>
+        <div class="kpi-label">درآمد (۳۰ روز)</div>
+        <div class="kpi-value cyan">${fmtNum(ctx.income)}</div>
+        <div class="kpi-meta">تومان</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">📉</div>
+        <div class="kpi-label">هزینه (۳۰ روز)</div>
+        <div class="kpi-value err">${fmtNum(ctx.expense)}</div>
+        <div class="kpi-meta">تومان</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">📊</div>
+        <div class="kpi-label">سود خالص</div>
+        <div class="kpi-value ${ctx.profit >= 0 ? "ok" : "err"}">${fmtNum(ctx.profit)}</div>
+        <div class="kpi-meta">${ctx.margin.toFixed(1)}٪ حاشیه سود</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">⇄</div>
+        <div class="kpi-label">تعداد تراکنش</div>
+        <div class="kpi-value gold">${fmtNum(ctx.txCount)}</div>
+        <div class="kpi-meta">در ۳۰ روز گذشته</div>
+      </div>
+    </div>
+
+    ${pendingSub ? `
+      <div class="admin-banner">
+        ⏳ یک درخواست اشتراک در انتظار تأیید دارید. نتیجه پس از بررسی مدیر اعمال خواهد شد.
+      </div>
+    ` : ""}
+
+    <div class="card">
+      <div class="card-head">
+        <h3 class="card-title">
+          <svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg>
+          تراکنش‌های اخیر
+        </h3>
+        <button class="btn btn-ghost btn-sm" data-goto="transactions">مشاهده همه</button>
+      </div>
+      ${recentTx.length === 0 ? `
+        <div class="empty">هنوز تراکنشی ثبت نکرده‌اید.<br>
+          از بخش «تراکنش‌ها» درآمد و هزینه‌های خود را اضافه کنید.</div>
+      ` : `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>نوع</th><th>مبلغ</th><th>توضیح</th><th>تاریخ</th></tr></thead>
+            <tbody>
+              ${recentTx.map(t => `
+                <tr>
+                  <td><span class="badge badge-${t.type === "income" ? "approved" : "rejected"}">${t.type === "income" ? "درآمد" : "هزینه"}</span></td>
+                  <td class="name-cell">${fmtNum(t.amount)} تومان</td>
+                  <td>${esc(t.category || t.description || "—")}</td>
+                  <td>${fmtDate(t.createdAt)}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `}
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3 class="card-title">
+          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          وضعیت اشتراک
+        </h3>
+      </div>
+      <div class="row row-between" style="padding:8px 0">
+        <div>
+          <div style="font-size:13px;font-weight:700">سطح فعلی: ${({free:"Free",pro:"Pro",enterprise:"Enterprise"})[user.tier]}</div>
+          <div class="muted">
+            ${user.tier === "free" ? "برای دسترسی به امکانات بیشتر، ارتقا دهید." : 
+              "اعتبار تا " + fmtDate(user.tierExpiresAt)}
+          </div>
+        </div>
+        <button class="btn btn-gold btn-sm" data-goto="subscription">مدیریت اشتراک</button>
+      </div>
+    </div>
+  `;
+
+  $$("[data-goto]", container).forEach(b => {
+    b.addEventListener("click", () => navigate(b.dataset.goto));
+  });
+}
+
+/* ─────────── 14. PAGE: ACCOUNTANT ─────────── */
+function renderAccountant(container, user) {
+  const history = DB.data.activities
+    .filter(a => a.userId === user.id && a.type === "accountant_chat")
+    .slice(-20);
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">حسابدار هوشمند</h1>
+        <p class="page-sub">مشاور مالی شما — بر اساس داده‌های واقعی کسب‌وکارتان پاسخ می‌دهد</p>
+      </div>
+    </div>
+    <div class="chat-wrap">
+      <div class="chat-head">
+        <div class="chat-head-dot"></div>
+        <div>
+          <div class="chat-head-title">NEXORA Accountant</div>
+          <div class="chat-head-sub">آنلاین · آماده پاسخ‌گویی</div>
+        </div>
+      </div>
+      <div class="chat-body" id="chatBody"></div>
+      <div class="chat-input-wrap">
+        <textarea id="chatInput" class="chat-input"
+          placeholder="مثلاً: خرید ۲۰۰ هزار، فروش ۲۷۰ هزار — وضعیت چطوره؟"
+          rows="1"></textarea>
+        <button class="chat-send" id="chatSend" type="button">ارسال</button>
+      </div>
+    </div>
+  `;
+
+  const body = $("#chatBody");
+  if (history.length === 0) {
+    addBotMessage(body,
+      "سلام " + user.name + " 👋\n\n" +
+      "من حسابدار هوشمند شما هستم. می‌توانم در تحلیل معاملات، بررسی موجودی، " +
+      "محاسبه سود و ارائه پیشنهاد کمکتان کنم.\n\n" +
+      "برای شروع، یکی از این‌ها را امتحان کنید:\n" +
+      "• «خرید ۲۰۰ هزار، فروش ۲۷۰ هزار»\n" +
+      "• «وضعیت من چطور است؟»\n" +
+      "• «موجودی انبار»\n" +
+      "• «چه کنم بهتر شود؟»");
+  } else {
+    addBotMessage(body,
+      "سلام دوباره " + user.name + " 👋\n\n" +
+      "چه سؤالی درباره کسب‌وکارتان دارید؟");
+  }
+
+  const input = $("#chatInput");
+  const send = $("#chatSend");
+
+  function submit() {
+    const text = input.value.trim();
+    if (!text) return;
+    addUserMessage(body, text);
+    input.value = "";
+    input.style.height = "auto";
+    send.disabled = true;
+
+    const typing = document.createElement("div");
+    typing.className = "msg bot";
+    typing.innerHTML = '<div class="msg-avatar">N</div>' +
+      '<div class="msg-bubble chat-typing"><span></span><span></span><span></span></div>';
+    body.appendChild(typing);
+    body.scrollTop = body.scrollHeight;
+
+    setTimeout(() => {
+      typing.remove();
+      try {
+        const reply = Accountant.respond(user.id, text);
+        addBotMessage(body, reply);
+        Auth.logActivity(user.id, "accountant_chat", text.slice(0, 100));
+        DB.save();
+      } catch (e) {
+        console.error(e);
+        addBotMessage(body, "متأسفانه خطایی رخ داد. لطفاً دوباره تلاش کنید.");
+      }
+      send.disabled = false;
+    }, 500);
+  }
+
+  send.addEventListener("click", submit);
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      submit();
+    }
+  });
+  input.addEventListener("input", () => {
+    input.style.height = "auto";
+    input.style.height = Math.min(input.scrollHeight, 120) + "px";
+  });
+  setTimeout(() => input.focus(), 100);
+}
+
+function addUserMessage(body, text) {
+  const div = document.createElement("div");
+  div.className = "msg user";
+  div.innerHTML = '<div class="msg-avatar">' + 'ش' + '</div>' +
+    '<div class="msg-bubble">' + esc(text) + '</div>';
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+
+function addBotMessage(body, text) {
+  const div = document.createElement("div");
+  div.className = "msg bot";
+  div.innerHTML = '<div class="msg-avatar">N</div>' +
+    '<div class="msg-bubble">' + esc(text) + '</div>';
+  body.appendChild(div);
+  body.scrollTop = body.scrollHeight;
+}
+
+/* ─────────── 15. PAGE: FORECAST ─────────── */
+function renderForecast(container, user) {
+  const result = Forecast.generate(user.id, 30);
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">پیش‌بین مالی</h1>
+        <p class="page-sub">تحلیل روند و پیش‌بینی بر اساس داده‌های واقعی ۳۰ روز گذشته</p>
+      </div>
+      <div class="page-actions">
+        <button class="btn btn-ghost btn-sm" id="refreshForecast">به‌روزرسانی</button>
+      </div>
+    </div>
+    <div id="forecastContent"></div>
+  `;
+
+  const fc = $("#forecastContent");
+
+  if (!result.ok) {
+    fc.innerHTML = `
+      <div class="card">
+        <div class="empty">
+          ${esc(result.message)}
+          <br><br>
+          <button class="btn btn-primary btn-sm" data-goto="transactions">افزودن تراکنش</button>
+        </div>
+      </div>
+    `;
+    $$("[data-goto]", container).forEach(b => {
+      b.addEventListener("click", () => navigate(b.dataset.goto));
+    });
+    return;
+  }
+
+  const f = result.forecast;
+  const h = result.history;
+
+  fc.innerHTML = `
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-icon">📈</div>
+        <div class="kpi-label">درآمد دوره گذشته</div>
+        <div class="kpi-value cyan">${fmtNum(h.totalIncome)}</div>
+        <div class="kpi-meta">تومان</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">📉</div>
+        <div class="kpi-label">هزینه دوره گذشته</div>
+        <div class="kpi-value err">${fmtNum(h.totalExpense)}</div>
+        <div class="kpi-meta">تومان</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">💎</div>
+        <div class="kpi-label">سود خالص گذشته</div>
+        <div class="kpi-value ${h.netProfit >= 0 ? "ok" : "err"}">${fmtNum(h.netProfit)}</div>
+        <div class="kpi-meta">تومان</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-icon">🎯</div>
+        <div class="kpi-label">اطمینان پیش‌بینی</div>
+        <div class="kpi-value gold">${f.confidence}٪</div>
+        <div class="kpi-meta">${fmtNum(result.dataPoints)} تراکنش</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg>
+        پیش‌بینی ۳۰ روز آینده
+      </h3>
+      <div class="forecast-scenarios">
+        <div class="scenario optimistic">
+          <div class="scenario-label">سناریوی خوش‌بینانه</div>
+          <div class="scenario-value" style="color:var(--ok)">${fmtNum(f.optimistic)}</div>
+          <div class="scenario-desc">اگر درآمد ۲۰٪ بهتر و هزینه ۱۰٪ کمتر شود</div>
+        </div>
+        <div class="scenario realistic">
+          <div class="scenario-label">سناریوی واقع‌بینانه</div>
+          <div class="scenario-value" style="color:var(--cyan)">${fmtNum(f.projectedProfit)}</div>
+          <div class="scenario-desc">ادامه روند فعلی درآمد و هزینه</div>
+        </div>
+        <div class="scenario pessimistic">
+          <div class="scenario-label">سناریوی محتاطانه</div>
+          <div class="scenario-value" style="color:var(--err)">${fmtNum(f.pessimistic)}</div>
+          <div class="scenario-desc">اگر درآمد ۲۰٪ کمتر و هزینه ۱۵٪ بیشتر شود</div>
+        </div>
+      </div>
+      <div class="muted" style="margin-top:12px">مبلغ پیش‌بینی‌شده: سود خالص دوره آینده به تومان</div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>
+        دلایل پیش‌بینی
+      </h3>
+      <ul class="reason-list">
+        ${f.reasons.map(r => '<li>' + esc(r) + '</li>').join("")}
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        میزان اطمینان
+      </h3>
+      <div class="confidence-bar">
+        <div class="confidence-fill" style="width:${f.confidence}%"></div>
+      </div>
+      <div class="row row-between" style="margin-top:8px">
+        <span class="muted">${f.confidence}٪ اطمینان بر اساس داده‌های موجود</span>
+        <span class="badge badge-${f.confidence > 70 ? "approved" : f.confidence > 40 ? "pending" : "rejected"}">
+          ${f.confidence > 70 ? "قابل اعتماد" : f.confidence > 40 ? "متوسط" : "محدود"}
+        </span>
+      </div>
+      <div class="muted" style="margin-top:14px;line-height:1.9">
+        <strong style="color:var(--text-2)">محدودیت‌ها:</strong><br>
+        ${f.limitations.map(l => "• " + esc(l)).join("<br>")}
+      </div>
+    </div>
+  `;
+
+  $("#refreshForecast").addEventListener("click", () => {
+    renderPage();
+    toast("پیش‌بینی به‌روزرسانی شد", "success");
+  });
+}
+
+/* ─────────── 16. PAGE: PRODUCTS ─────────── */
+function renderProducts(container, user) {
+  const products = Data.userProducts(user.id);
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">کالاها و موجودی</h1>
+        <p class="page-sub">مدیریت کالاها، قیمت‌ها و موجودی انبار</p>
+      </div>
+      <button class="btn btn-primary btn-sm" id="addProductBtn">+ کالای جدید</button>
+    </div>
+    <div class="card">
+      ${products.length === 0 ? `
+        <div class="empty">
+          هنوز کالایی ثبت نکرده‌اید.<br>
+          با دکمه «کالای جدید» اولین محصول خود را اضافه کنید.
+        </div>
+      ` : `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>نام</th><th>قیمت خرید</th><th>قیمت فروش</th>
+                <th>حاشیه سود</th><th>موجودی</th><th>عملیات</th></tr>
+            </thead>
+            <tbody>
+              ${products.map(p => {
+                const margin = p.sellPrice > 0
+                  ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100).toFixed(1)
+                  : "0.0";
+                return `
+                  <tr>
+                    <td class="name-cell">${esc(p.name)}</td>
+                    <td>${fmtNum(p.buyPrice)}</td>
+                    <td>${fmtNum(p.sellPrice)}</td>
+                    <td><span class="badge badge-${parseFloat(margin) >= 20 ? "approved" : parseFloat(margin) >= 0 ? "pending" : "rejected"}">${margin}٪</span></td>
+                    <td>${fmtNum(p.stock)}</td>
+                    <td>
+                      <div class="actions">
+                        <button class="tiny-btn" data-edit="${p.id}">ویرایش</button>
+                        <button class="tiny-btn danger" data-del="${p.id}">حذف</button>
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      `}
+    </div>
+  `;
+
+  $("#addProductBtn").addEventListener("click", () => showProductModal());
+  $$("[data-edit]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      const p = products.find(x => x.id === b.dataset.edit);
+      if (p) showProductModal(p);
+    });
+  });
+  $$("[data-del]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      if (!confirm("این کالا حذف شود؟")) return;
+      Data.deleteProduct(b.dataset.del);
+      toast("کالا حذف شد", "success");
+      renderPage();
+    });
+  });
+}
+
+function showProductModal(existing) {
+  const isEdit = !!existing;
+  const p = existing || { name: "", buyPrice: "", sellPrice: "", stock: "" };
+  openGenericModal(`
+    <button class="modal-close" id="modalCloseBtn">×</button>
+    <h3>${isEdit ? "ویرایش کالا" : "کالای جدید"}</h3>
+    <p class="modal-sub">اطلاعات کالا را وارد کنید</p>
+    <form id="productForm">
+      <div class="field">
+        <label>نام کالا</label>
+        <input id="pName" type="text" maxlength="60" value="${esc(p.name)}" required>
+      </div>
+      <div class="field">
+        <label>قیمت خرید (تومان)</label>
+        <input id="pBuy" type="number" min="0" value="${p.buyPrice || ""}" required>
+      </div>
+      <div class="field">
+        <label>قیمت فروش (تومان)</label>
+        <input id="pSell" type="number" min="0" value="${p.sellPrice || ""}" required>
+      </div>
+      <div class="field">
+        <label>موجودی</label>
+        <input id="pStock" type="number" min="0" step="0.01" value="${p.stock || ""}" required>
+      </div>
+      <div class="auth-error" id="pError" hidden></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="pCancel">انصراف</button>
+        <button type="submit" class="btn btn-primary">${isEdit ? "ذخیره" : "افزودن"}</button>
+      </div>
+    </form>
+  `);
+
+  $("#modalCloseBtn").addEventListener("click", closeGenericModal);
+  $("#pCancel").addEventListener("click", closeGenericModal);
+  $("#productForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const data = {
+      name: $("#pName").value,
+      buyPrice: $("#pBuy").value,
+      sellPrice: $("#pSell").value,
+      stock: $("#pStock").value
+    };
+    let result;
+    if (isEdit) {
+      Data.updateProduct(existing.id, data);
+      result = { ok: true };
+    } else {
+      result = Data.addProduct(data);
+    }
+    if (!result.ok) {
+      const err = $("#pError");
+      err.textContent = result.error;
+      err.hidden = false;
+      return;
+    }
+    closeGenericModal();
+    toast(isEdit ? "کالا ویرایش شد" : "کالا اضافه شد", "success");
+    renderPage();
+  });
+}
+
+/* ─────────── 17. PAGE: TRANSACTIONS ─────────── */
+function renderTransactions(container, user) {
+  const txs = Data.userTransactions(user.id, 90);
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">تراکنش‌ها</h1>
+        <p class="page-sub">مدیریت درآمد و هزینه‌های کسب‌وکار</p>
+      </div>
+      <button class="btn btn-primary btn-sm" id="addTxBtn">+ تراکنش جدید</button>
+    </div>
+    <div class="card">
+      ${txs.length === 0 ? `
+        <div class="empty">
+          هنوز تراکنشی ثبت نکرده‌اید.<br>
+          با دکمه «تراکنش جدید» شروع کنید.
+        </div>
+      ` : `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>نوع</th><th>مبلغ</th><th>دسته</th>
+                <th>توضیح</th><th>تاریخ</th><th></th></tr>
+            </thead>
+            <tbody>
+              ${txs.map(t => `
+                <tr>
+                  <td><span class="badge badge-${t.type === "income" ? "approved" : "rejected"}">${t.type === "income" ? "درآمد" : "هزینه"}</span></td>
+                  <td class="name-cell">${fmtNum(t.amount)}</td>
+                  <td>${esc(t.category || "—")}</td>
+                  <td>${esc(t.description || "—")}</td>
+                  <td>${fmtDate(t.createdAt)}</td>
+                  <td><button class="tiny-btn danger" data-del-tx="${t.id}">حذف</button></td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `}
+    </div>
+  `;
+
+  $("#addTxBtn").addEventListener("click", showTransactionModal);
+  $$("[data-del-tx]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      if (!confirm("این تراکنش حذف شود؟")) return;
+      Data.deleteTransaction(b.dataset.delTx);
+      toast("تراکنش حذف شد", "success");
+      renderPage();
+    });
+  });
+}
+
+function showTransactionModal() {
+  openGenericModal(`
+    <button class="modal-close" id="modalCloseBtn">×</button>
+    <h3>تراکنش جدید</h3>
+    <p class="modal-sub">درآمد یا هزینه خود را ثبت کنید</p>
+    <form id="txForm">
+      <div class="field">
+        <label>نوع تراکنش</label>
+        <select id="txType" required>
+          <option value="income">درآمد</option>
+          <option value="expense">هزینه</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>مبلغ (تومان)</label>
+        <input id="txAmount" type="number" min="1" required>
+      </div>
+      <div class="field">
+        <label>دسته (اختیاری)</label>
+        <input id="txCategory" type="text" maxlength="40" placeholder="مثلاً: فروش، اجاره، حقوق">
+      </div>
+      <div class="field">
+        <label>توضیح (اختیاری)</label>
+        <input id="txDesc" type="text" maxlength="100">
+      </div>
+      <div class="auth-error" id="txError" hidden></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="txCancel">انصراف</button>
+        <button type="submit" class="btn btn-primary">ثبت</button>
+      </div>
+    </form>
+  `);
+
+  $("#modalCloseBtn").addEventListener("click", closeGenericModal);
+  $("#txCancel").addEventListener("click", closeGenericModal);
+  $("#txForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const result = Data.addTransaction({
+      type: $("#txType").value,
+      amount: $("#txAmount").value,
+      category: $("#txCategory").value,
+      description: $("#txDesc").value
+    });
+    if (!result.ok) {
+      const err = $("#txError");
+      err.textContent = result.error;
+      err.hidden = false;
+      return;
+    }
+    closeGenericModal();
+    toast("تراکنش ثبت شد", "success");
+    renderPage();
+  });
+}
+
+/* ─────────── 18. PAGE: SUBSCRIPTION ─────────── */
+function renderSubscription(container, user) {
+  const subs = Data.mySubscriptions(user.id);
+  const pending = subs.find(s => s.status === "pending");
+  const TIERS = {
+    free: {
+      label: "Free", price: 0, desc: "برای شروع و آشنایی",
+      features: ["دسترسی به تحلیل متن", "حداکثر ۱۰ عملیات در روز",
+        "پشتیبانی از فارسی", "ذخیره‌سازی محلی"]
+    },
+    pro: {
+      label: "Pro", price: 299000, desc: "برای کسب‌وکارهای در حال رشد", featured: true,
+      features: ["همه امکانات Free", "حسابدار هوشمند نامحدود",
+        "پیش‌بین مالی", "گزارش‌های تحلیلی",
+        "پشتیبانی از ایده‌پرداز"]
+    },
+    enterprise: {
+      label: "Enterprise", price: 999000, desc: "برای سازمان‌ها و تیم‌ها",
+      features: ["همه امکانات Pro", "کاربران نامحدود",
+        "قابلیت‌های اتوماسیون", "گزارش‌های سفارشی",
+        "اولویت پشتیبانی"]
+    }
+  };
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">اشتراک</h1>
+        <p class="page-sub">مدیریت سطح اشتراک و درخواست‌ها</p>
+      </div>
+    </div>
+
+    ${pending ? `
+      <div class="admin-banner">
+        ⏳ درخواست شما برای سطح ${esc(pending.tier)} در تاریخ ${fmtDateTime(pending.requestedAt)} ثبت شده و در انتظار بررسی مدیر است.
+      </div>
+    ` : ""}
+
+    <div class="tier-grid">
+      ${Object.keys(TIERS).map(key => {
+        const t = TIERS[key];
+        const isCurrent = user.tier === key;
+        const cls = "tier-card" + (t.featured ? " featured" : "") + (isCurrent ? " current" : "");
+        return `
+          <div class="${cls}">
+            <div class="tier-name">${t.label}</div>
+            <div class="tier-price">
+              ${t.price === 0 ? "رایگان" : fmtNum(t.price) + ' <small>تومان / ماه</small>'}
+            </div>
+            <div class="tier-desc">${t.desc}</div>
+            <ul class="tier-features">
+              ${t.features.map(f => '<li>' + esc(f) + '</li>').join("")}
+            </ul>
+            ${isCurrent 
+              ? '<button class="btn btn-ghost btn-block" disabled>سطح فعلی شما</button>'
+              : t.price === 0
+                ? '<button class="btn btn-ghost btn-block" disabled>رایگان</button>'
+                : `<button class="btn ${t.featured ? "btn-gold" : "btn-primary"} btn-block" data-request="${key}">
+                    درخواست ${t.label}
+                   </button>`}
+          </div>
+        `;
+      }).join("")}
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        تاریخچه درخواست‌ها
+      </h3>
+      ${subs.length === 0 ? `
+        <div class="empty">هنوز درخواستی ثبت نکرده‌اید.</div>
+      ` : `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>سطح</th><th>مبلغ</th><th>وضعیت</th>
+              <th>تاریخ درخواست</th><th>رسید</th></tr></thead>
+            <tbody>
+              ${subs.map(s => `
+                <tr>
+                  <td><span class="badge badge-${s.tier}">${esc(s.tier)}</span></td>
+                  <td>${fmtNum(s.amount)}</td>
+                  <td><span class="badge badge-${s.status === "approved" ? "approved" : s.status === "pending" ? "pending" : "rejected"}">
+                    ${s.status === "approved" ? "تأیید شده" : s.status === "pending" ? "در انتظار" : s.status === "rejected" ? "رد شده" : "لغو شده"}
+                  </span></td>
+                  <td>${fmtDate(s.requestedAt)}</td>
+                  <td>
+                    <img src="${s.receipt}" class="receipt-thumb" alt="رسید" data-full="${s.id}">
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `}
+    </div>
+  `;
+
+  $$("[data-request]", container).forEach(b => {
+    b.addEventListener("click", () => showSubscriptionRequestModal(b.dataset.request, TIERS[b.dataset.request]));
+  });
+  $$("[data-full]", container).forEach(img => {
+    img.addEventListener("click", () => {
+      const s = subs.find(x => x.id === img.dataset.full);
+      if (s) {
+        openGenericModal(`
+          <button class="modal-close" id="modalCloseBtn">×</button>
+          <h3>رسید ارسالی</h3>
+          <p class="modal-sub">تاریخ: ${fmtDateTime(s.requestedAt)}</p>
+          <img src="${s.receipt}" class="receipt-preview" alt="رسید">
+        `);
+        $("#modalCloseBtn").addEventListener("click", closeGenericModal);
+      }
+    });
+  });
+}
+
+function showSubscriptionRequestModal(tierKey, tierInfo) {
+  openGenericModal(`
+    <button class="modal-close" id="modalCloseBtn">×</button>
+    <h3>درخواست اشتراک ${tierInfo.label}</h3>
+    <p class="modal-sub">مبلغ قابل پرداخت: ${fmtNum(tierInfo.price)} تومان (۳۰ روز)</p>
+    <p style="font-size:12.5px;color:var(--text-2);line-height:1.9;margin-bottom:16px">
+      لطفاً تصویر رسید پرداخت خود را آپلود کنید. پس از بررسی توسط مدیر،
+      اشتراک شما فعال خواهد شد.
+    </p>
+    <div class="field">
+      <label>تصویر رسید</label>
+      <input type="file" id="receiptFile" accept="image/*" required>
+      <div class="field-hint">فرمت مجاز: JPG، PNG، WebP · حداکثر ۵ مگابایت</div>
+    </div>
+    <div id="receiptPreviewWrap" hidden>
+      <img id="receiptPreviewImg" class="receipt-preview" alt="پیش‌نمایش">
+    </div>
+    <div class="auth-error" id="subError" hidden></div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" id="subCancel">انصراف</button>
+      <button type="button" class="btn btn-primary" id="subSubmit">ثبت درخواست</button>
+    </div>
+  `);
+
+  let compressedData = null;
+  $("#modalCloseBtn").addEventListener("click", closeGenericModal);
+  $("#subCancel").addEventListener("click", closeGenericModal);
+
+  $("#receiptFile").addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (!file) { compressedData = null; $("#receiptPreviewWrap").hidden = true; return; }
+    if (file.size > 5 * 1024 * 1024) {
+      const err = $("#subError");
+      err.textContent = "حجم فایل بیشتر از ۵ مگابایت است";
+      err.hidden = false;
+      e.target.value = "";
+      compressedData = null;
+      return;
+    }
+    try {
+      compressedData = await compressImage(file, 1000);
+      $("#receiptPreviewImg").src = compressedData;
+      $("#receiptPreviewWrap").hidden = false;
+      $("#subError").hidden = true;
+    } catch (err) {
+      const er = $("#subError");
+      er.textContent = err.message || "خطا در پردازش تصویر";
+      er.hidden = false;
+    }
+  });
+
+  $("#subSubmit").addEventListener("click", () => {
+    if (!compressedData) {
+      const err = $("#subError");
+      err.textContent = "لطفاً تصویر رسید را آپلود کنید";
+      err.hidden = false;
+      return;
+    }
+    const result = Data.requestSubscription(tierKey, compressedData);
+    if (!result.ok) {
+      const err = $("#subError");
+      err.textContent = result.error;
+      err.hidden = false;
+      return;
+    }
+    closeGenericModal();
+    toast("درخواست شما ثبت شد و در انتظار بررسی است", "success");
+    renderPage();
+  });
+}
+
+/* ─────────── 19. PAGE: SETTINGS ─────────── */
+function renderSettings(container, user) {
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">تنظیمات</h1>
+        <p class="page-sub">مدیریت حساب و داده‌ها</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+        امنیت حساب
+      </h3>
+      <div class="row row-between" style="padding:10px 0">
+        <div>
+          <div style="font-size:13px;font-weight:700">تغییر رمز عبور</div>
+          <div class="muted">رمز عبور خود را به‌روز نگه دارید</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="changePwBtn">تغییر رمز</button>
+      </div>
+      <div class="row row-between" style="padding:10px 0;border-top:1px solid var(--border)">
+        <div>
+          <div style="font-size:13px;font-weight:700">اطلاعات حساب</div>
+          <div class="muted">${esc(user.email)} · عضویت: ${fmtDate(user.createdAt)}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg>
+        داده‌های شما
+      </h3>
+      <div class="row row-between" style="padding:10px 0">
+        <div>
+          <div style="font-size:13px;font-weight:700">خروجی گرفتن</div>
+          <div class="muted">دانلود پشتیبان کامل از داده‌های شما</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="exportBtn">خروجی JSON</button>
+      </div>
+      <div class="row row-between" style="padding:10px 0;border-top:1px solid var(--border)">
+        <div>
+          <div style="font-size:13px;font-weight:700">وارد کردن پشتیبان</div>
+          <div class="muted">بازیابی از فایل خروجی قبلی</div>
+        </div>
+        <label class="btn btn-ghost btn-sm" style="cursor:pointer">
+          انتخاب فایل
+          <input id="importFile" type="file" accept=".json" style="display:none">
+        </label>
+      </div>
+      <div class="row row-between" style="padding:10px 0;border-top:1px solid var(--border)">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--err)">حذف کامل داده‌ها</div>
+          <div class="muted">تمام اطلاعات و حساب شما پاک خواهد شد</div>
+        </div>
+        <button class="btn btn-danger btn-sm" id="wipeBtn">حذف همه</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg>
+        درباره NEXORA AI
+      </h3>
+      <p class="muted" style="line-height:1.95">
+        NEXORA AI — دستیار هوشمند کسب‌وکار.<br>
+        نسخه ۲.۰.۰ · Intelligence Beyond Limits
+      </p>
+    </div>
+  `;
+
+  $("#changePwBtn").addEventListener("click", () => {
+    openGenericModal(`
+      <button class="modal-close" id="modalCloseBtn">×</button>
+      <h3>تغییر رمز عبور</h3>
+      <p class="modal-sub">رمز فعلی و رمز جدید را وارد کنید</p>
+      <form id="pwForm">
+        <div class="field">
+          <label>رمز فعلی</label>
+          <input id="pwCurrent" type="password" required>
+        </div>
+        <div class="field">
+          <label>رمز جدید (حداقل ۶ کاراکتر)</label>
+          <input id="pwNew" type="password" minlength="6" required>
+        </div>
+        <div class="field">
+          <label>تکرار رمز جدید</label>
+          <input id="pwConfirm" type="password" minlength="6" required>
+        </div>
+        <div class="auth-error" id="pwError" hidden></div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="pwCancel">انصراف</button>
+          <button type="submit" class="btn btn-primary">تغییر</button>
+        </div>
+      </form>
+    `);
+    $("#modalCloseBtn").addEventListener("click", closeGenericModal);
+    $("#pwCancel").addEventListener("click", closeGenericModal);
+    $("#pwForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const current = $("#pwCurrent").value;
+      const newPw = $("#pwNew").value;
+      const confirmPw = $("#pwConfirm").value;
+      const err = $("#pwError");
+      if (newPw !== confirmPw) {
+        err.textContent = "رمز جدید و تکرار آن یکسان نیستند";
+        err.hidden = false;
+        return;
+      }
+      const result = await Auth.changePassword(current, newPw);
+      if (!result.ok) {
+        err.textContent = result.error;
+        err.hidden = false;
+        return;
+      }
+      closeGenericModal();
+      toast("رمز عبور تغییر کرد", "success");
+    });
+  });
+
+  $("#exportBtn").addEventListener("click", () => {
+    try {
+      const data = {
+        exportedAt: new Date().toISOString(),
+        version: "2.0.0",
+        data: DB.data
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "nexora-backup-" + Date.now() + ".json";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 2000);
+      toast("فایل خروجی دانلود شد", "success");
+    } catch (e) {
+      toast("خطا در خروجی", "error");
+    }
+  });
+
+  $("#importFile").addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const parsed = JSON.parse(text);
+      if (!parsed.data || !parsed.data.users) {
+        toast("فایل معتبر نیست", "error");
+        return;
+      }
+      if (!confirm("داده‌های فعلی جایگزین خواهند شد. ادامه؟")) return;
+      DB.data = parsed.data;
+      DB.save();
+      toast("داده‌ها بازیابی شدند. لطفاً دوباره وارد شوید.", "success");
+      setTimeout(() => location.reload(), 1500);
+    } catch (err) {
+      toast("خطا در خواندن فایل", "error");
+    }
+  });
+
+  $("#wipeBtn").addEventListener("click", () => {
+    if (!confirm("تمام داده‌ها حذف می‌شوند. ادامه؟")) return;
+    if (!confirm("این عمل قابل بازگشت نیست. مطمئن هستید؟")) return;
+    DB.reset();
+    toast("همه داده‌ها حذف شد");
+    setTimeout(() => location.reload(), 1200);
+  });
+}
+
+/* ─────────── 20. PAGE: ADMIN ─────────── */
+function renderAdmin(container, user) {
+  if (!Admin.isLoggedIn()) { navigate("dashboard"); return; }
+  const stats = Admin.stats();
+  const pendingSubs = DB.data.subscriptions
+    .filter(s => s.status === "pending")
+    .map(s => ({ ...s, user: DB.data.users.find(u => u.id === s.userId) }))
+    .filter(s => s.user);
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">پنل مدیریت</h1>
+        <p class="page-sub">مدیریت کاربران، اشتراک‌ها و آمار سیستم</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="adminLogout">خروج از مدیریت</button>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi"><div class="kpi-label">کل کاربران</div>
+        <div class="kpi-value cyan">${fmtNum(stats.totalUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">کاربران جدید (۷ روز)</div>
+        <div class="kpi-value">${fmtNum(stats.newUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">کاربران فعال (۷ روز)</div>
+        <div class="kpi-value ok">${fmtNum(stats.activeUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">اشتراک فعال</div>
+        <div class="kpi-value gold">${fmtNum(stats.subscribedUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">در انتظار تأیید</div>
+        <div class="kpi-value ${stats.pendingSubs > 0 ? "err" : ""}">${fmtNum(stats.pendingSubs)}</div></div>
+      <div class="kpi"><div class="kpi-label">درآمد اشتراک‌ها</div>
+        <div class="kpi-value ok">${fmtNum(stats.revenue)}</div>
+        <div class="kpi-meta">تومان</div></div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        درخواست‌های اشتراک در انتظار (${pendingSubs.length})
+      </h3>
+      ${pendingSubs.length === 0 ? `
+        <div class="empty">درخواستی در انتظار بررسی نیست.</div>
+      ` : `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>کاربر</th><th>سطح</th><th>مبلغ</th>
+              <th>تاریخ</th><th>رسید</th><th>عملیات</th></tr></thead>
+            <tbody>
+              ${pendingSubs.map(s => `
+                <tr>
+                  <td class="name-cell">${esc(s.user.name)}<br>
+                    <span class="muted">${esc(s.user.email)}</span></td>
+                  <td><span class="badge badge-${s.tier}">${esc(s.tier)}</span></td>
+                  <td>${fmtNum(s.amount)}</td>
+                  <td>${fmtDateTime(s.requestedAt)}</td>
+                  <td><img src="${s.receipt}" class="receipt-thumb" data-view="${s.id}"></td>
+                  <td>
+                    <div class="actions">
+                      <button class="tiny-btn ok" data-approve="${s.id}">تأیید</button>
+                      <button class="tiny-btn danger" data-reject="${s.id}">رد</button>
+                    </div>
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      `}
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        کاربران (${fmtNum(stats.totalUsers)})
+      </h3>
+      ${DB.data.users.length === 0 ? `
+        <div class="empty">کاربری ثبت نشده است.</div>
+      ` : `
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>نام</th><th>ایمیل</th><th>سطح</th>
+              <th>عضویت</th><th>آخرین ورود</th><th>تراکنش</th><th>عملیات</th></tr></thead>
+            <tbody>
+              ${DB.data.users.map(u => {
+                const txCount = DB.data.transactions.filter(t => t.userId === u.id).length;
+                return `
+                  <tr>
+                    <td class="name-cell">${esc(u.name)}${u.blocked ? ' <span class="badge badge-blocked">مسدود</span>' : ""}</td>
+                    <td>${esc(u.email)}</td>
+                    <td><span class="badge badge-${u.tier}">${esc(u.tier)}</span></td>
+                    <td>${fmtDate(u.createdAt)}</td>
+                    <td>${u.lastLogin ? fmtDate(u.lastLogin) : "—"}</td>
+                    <td>${fmtNum(txCount)}</td>
+                    <td>
+                      <div class="actions">
+                        <button class="tiny-btn" data-tier-user="${u.id}">تغییر سطح</button>
+                        ${u.tier !== "free" ? `<button class="tiny-btn danger" data-cancel-sub="${u.id}">لغو اشتراک</button>` : ""}
+                        <button class="tiny-btn ${u.blocked ? "ok" : "danger"}" data-block="${u.id}">
+                          ${u.blocked ? "رفع مسدودی" : "مسدود"}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>
+      `}
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        فعالیت‌های اخیر سیستم
+      </h3>
+      ${DB.data.activities.length === 0 ? `
+        <div class="empty">فعالیتی ثبت نشده است.</div>
+      ` : `
+        <div style="max-height:400px;overflow-y:auto">
+          ${DB.data.activities.slice(-50).reverse().map(a => {
+            const u = DB.data.users.find(x => x.id === a.userId);
+            return `
+              <div style="padding:10px 12px;border-bottom:1px solid var(--border);font-size:12.5px">
+                <span style="color:var(--text-3)">${fmtDateTime(a.createdAt)}</span>
+                · <strong>${esc(u ? u.name : "سیستم")}</strong>
+                — ${esc(a.detail || a.type)}
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `}
+    </div>
+  `;
+
+  $("#adminLogout").addEventListener("click", () => {
+    Admin.clearSession();
+    toast("از پنل مدیریت خارج شدید");
+    navigate("dashboard");
+  });
+
+  $$("[data-approve]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      const r = Data.approveSubscription(b.dataset.approve);
+      if (r.ok) { toast("اشتراک تأیید شد", "success"); renderPage(); }
+      else { toast(r.error, "error"); }
+    });
+  });
+
+  $$("[data-reject]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      if (!confirm("این درخواست رد شود؟")) return;
+      const r = Data.rejectSubscription(b.dataset.reject);
+      if (r.ok) { toast("درخواست رد شد"); renderPage(); }
+      else { toast(r.error, "error"); }
+    });
+  });
+
+  $$("[data-view]", container).forEach(img => {
+    img.addEventListener("click", () => {
+      const s = DB.data.subscriptions.find(x => x.id === img.dataset.view);
+      if (s) {
+        openGenericModal(`
+          <button class="modal-close" id="modalCloseBtn">×</button>
+          <h3>رسید ارسالی</h3>
+          <p class="modal-sub">${fmtDateTime(s.requestedAt)}</p>
+          <img src="${s.receipt}" class="receipt-preview" alt="رسید">
+        `);
+        $("#modalCloseBtn").addEventListener("click", closeGenericModal);
+      }
+    });
+  });
+
+  $$("[data-tier-user]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      const u = DB.data.users.find(x => x.id === b.dataset.tierUser);
+      if (!u) return;
+      const newTier = prompt("سطح جدید را وارد کنید (free / pro / enterprise):", u.tier);
+      if (!newTier || !["free", "pro", "enterprise"].includes(newTier)) return;
+      Data.changeTier(u.id, newTier);
+      toast("سطح کاربر تغییر کرد", "success");
+      renderPage();
+    });
+  });
+
+  $$("[data-cancel-sub]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      if (!confirm("اشتراک این کاربر لغو شود؟")) return;
+      Data.cancelUserSubscription(b.dataset.cancelSub);
+      toast("اشتراک لغو شد", "success");
+      renderPage();
+    });
+  });
+
+  $$("[data-block]", container).forEach(b => {
+    b.addEventListener("click", () => {
+      if (!confirm("وضعیت مسدودی این کاربر تغییر کند؟")) return;
+      Data.toggleBlock(b.dataset.block);
+      toast("وضعیت کاربر تغییر کرد", "success");
+      renderPage();
+    });
+  });
+}
+
+/* ─────────── 21. PAGE: ADMIN REPORTS ─────────── */
+function renderAdminReports(container, user) {
+  if (!Admin.isLoggedIn()) { navigate("dashboard"); return; }
+  const s = DB.data.settings;
+
+  container.innerHTML = `
+    <div class="page-head">
+      <div>
+        <h1 class="page-title">گزارش‌ها و تنظیمات سیستم</h1>
+        <p class="page-sub">پیکربندی گزارش‌های خودکار و مشاهده آمار</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        گزارش‌های خودکار
+      </h3>
+      <div class="row row-between" style="padding:12px 0;border-bottom:1px solid var(--border)">
+        <div>
+          <div style="font-size:13px;font-weight:700">فعال‌سازی گزارش‌های خودکار</div>
+          <div class="muted">نمایش خلاصه مالی به کاربران در فواصل تعیین‌شده</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:46px;height:26px">
+          <input type="checkbox" id="autoReports" ${s.autoReportsEnabled ? "checked" : ""}
+            style="position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;z-index:2">
+          <span id="autoReportsSlider" style="position:absolute;inset:0;border-radius:99px;
+            background:${s.autoReportsEnabled ? "linear-gradient(135deg,var(--cyan),var(--gold))" : "rgba(255,255,255,.1)"};
+            border:1px solid var(--border-2);transition:.3s"></span>
+        </label>
+      </div>
+      <div class="row row-between" style="padding:12px 0">
+        <div>
+          <div style="font-size:13px;font-weight:700">تناوب گزارش</div>
+          <div class="muted">هفتگی یا ماهانه</div>
+        </div>
+        <select id="reportSchedule" style="padding:8px 12px;border-radius:8px;
+          background:rgba(0,0,0,.3);border:1px solid var(--border);color:var(--text);font-size:12.5px">
+          <option value="weekly" ${s.adminReportSchedule === "weekly" ? "selected" : ""}>هفتگی</option>
+          <option value="monthly" ${s.adminReportSchedule === "monthly" ? "selected" : ""}>ماهانه</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg>
+        آمار تفصیلی
+      </h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>شاخص</th><th>مقدار</th></tr></thead>
+          <tbody>
+            <tr><td>کل کاربران</td><td class="name-cell">${fmtNum(DB.data.users.length)}</td></tr>
+            <tr><td>کاربران مسدود</td><td>${fmtNum(DB.data.users.filter(u => u.blocked).length)}</td></tr>
+            <tr><td>کاربران با اشتراک</td><td>${fmtNum(DB.data.users.filter(u => u.tier !== "free").length)}</td></tr>
+            <tr><td>کل تراکنش‌ها</td><td>${fmtNum(DB.data.transactions.length)}</td></tr>
+            <tr><td>کل کالاها</td><td>${fmtNum(DB.data.products.length)}</td></tr>
+            <tr><td>کل اشتراک‌ها</td><td>${fmtNum(DB.data.subscriptions.length)}</td></tr>
+            <tr><td>درخواست‌های در انتظار</td><td>${fmtNum(DB.data.subscriptions.filter(x => x.status === "pending").length)}</td></tr>
+            <tr><td>کل فعالیت‌ها</td><td>${fmtNum(DB.data.activities.length)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>
+        یادآوری
+      </h3>
+      <p class="muted" style="line-height:1.95">
+        گزارش‌های خودکار در حال حاضر به‌صورت زنده در صفحه «پیش‌بین» برای هر کاربر قابل مشاهده است.
+        در نسخه‌های بعدی ارسال ایمیل گزارش‌ها نیز اضافه خواهد شد.
+      </p>
+    </div>
+  `;
+
+  $("#autoReports").addEventListener("change", (e) => {
+    DB.data.settings.autoReportsEnabled = e.target.checked;
+    DB.save();
+    const slider = $("#autoReportsSlider");
+    slider.style.background = e.target.checked
+      ? "linear-gradient(135deg,var(--cyan),var(--gold))"
+      : "rgba(255,255,255,.1)";
+    toast(e.target.checked ? "گزارش‌های خودکار فعال شد" : "گزارش‌های خودکار غیرفعال شد", "success");
+  });
+
+  $("#reportSchedule").addEventListener("change", (e) => {
+    DB.data.settings.adminReportSchedule = e.target.value;
+    DB.save();
+    toast("تناوب گزارش ثبت شد", "success");
+  });
+}
+
+/* ─────────── 22. AUTH UI ─────────── */
+let authMode = "login";
+
+function setAuthMode(mode) {
+  authMode = mode;
+  $$(".auth-tab").forEach(t => {
+    t.classList.toggle("active", t.dataset.mode === mode);
+  });
+  $("#authNameField").hidden = mode !== "signup";
+  $("#authPassword").autocomplete = mode === "signup" ? "new-password" : "current-password";
+  $("#authSubmit").textContent = mode === "signup" ? "ساخت حساب" : "ورود به حساب";
+  $("#authError").hidden = true;
+}
+
+function showAuthError(msg) {
+  const el = $("#authError");
+  el.textContent = msg;
+  el.hidden = false;
+}
+
+async function handleAuthSubmit(e) {
+  e.preventDefault();
+  const email = $("#authEmail").value;
+  const password = $("#authPassword").value;
+  const name = $("#authName").value;
+  const submitBtn = $("#authSubmit");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "در حال پردازش…";
+  try {
+    let result;
+    if (authMode === "signup") {
+      result = await Auth.register(name, email, password);
+    } else {
+      result = await Auth.login(email, password);
+    }
+    if (!result.ok) {
+      showAuthError(result.error);
+      submitBtn.disabled = false;
+      setAuthMode(authMode);
+      return;
+    }
+    // Success
+    const user = result.user;
+    $("#authForm").reset();
+    $("#authScreen").hidden = true;
+    showWelcome(user);
+  } catch (err) {
+    console.error(err);
+    showAuthError("خطای غیرمنتظره. لطفاً دوباره تلاش کنید.");
+    submitBtn.disabled = false;
+    setAuthMode(authMode);
+  }
+}
+
+function showWelcome(user) {
+  $("#welcomeName").textContent = user.name;
+  $("#welcomeOverlay").hidden = false;
+  $("#welcomeEnter").onclick = () => {
+    $("#welcomeOverlay").hidden = true;
+    enterApp(user);
+  };
+}
+
+function enterApp(user) {
+  $("#appShell").hidden = false;
+  currentRoute = "dashboard";
+  renderNav();
+  renderPage();
+}
+
+/* ─────────── 23. ADMIN LOGIN ─────────── */
+function openAdminLogin() {
+  if (Admin.isLoggedIn()) {
+    navigate("admin");
+    return;
+  }
+  $("#adminPassword").value = "";
+  $("#adminError").hidden = true;
+  openModal("adminModal");
+  setTimeout(() => $("#adminPassword").focus(), 150);
+}
+
+async function handleAdminSubmit() {
+  const pw = $("#adminPassword").value;
+  if (!pw) {
+    $("#adminError").textContent = "رمز را وارد کنید";
+    $("#adminError").hidden = false;
+    return;
+  }
+  const submitBtn = $("#adminSubmit");
+  submitBtn.disabled = true;
+  submitBtn.textContent = "بررسی…";
+  try {
+    const ok = await Admin.verifyPassword(pw);
+    if (!ok) {
+      $("#adminError").textContent = "رمز اشتباه است";
+      $("#adminError").hidden = false;
+      $("#adminPassword").value = "";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "ورود";
+      return;
+    }
+    Admin.setSession();
+    closeModal("adminModal");
+    toast("به پنل مدیریت خوش آمدید", "success");
+    navigate("admin");
+  } catch (err) {
+    console.error(err);
+    $("#adminError").textContent = "خطای غیرمنتظره";
+    $("#adminError").hidden = false;
+    submitBtn.disabled = false;
+    submitBtn.textContent = "ورود";
+  }
+}
+
+/* ─────────── 24. BACKGROUND STARS ─────────── */
+function initStars() {
+  const bg = $("#bgStars");
+  const count = Math.min(60, Math.floor(window.innerWidth / 30));
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement("div");
+    s.className = "bg-star";
+    s.style.left = Math.random() * 100 + "%";
+    s.style.top = Math.random() * 100 + "%";
+    s.style.animationDelay = Math.random() * 5 + "s";
+    s.style.animationDuration = 3 + Math.random() * 4 + "s";
+    bg.appendChild(s);
+  }
+}
+
+/* ─────────── 25. BOOTSTRAP ─────────── */
+async function bootstrap() {
+  try {
+    DB.load();
+    await initAdminHash();
+    initStars();
+
+    // Auth tabs
+    $$(".auth-tab").forEach(t => {
+      t.addEventListener("click", () => setAuthMode(t.dataset.mode));
+    });
+    $("#authForm").addEventListener("submit", handleAuthSubmit);
+
+    // Logout
+    $("#logoutBtn").addEventListener("click", () => {
+      if (!confirm("از حساب خارج می‌شوید؟")) return;
+      Auth.logout();
+      $("#appShell").hidden = true;
+      $("#authScreen").hidden = false;
+      setAuthMode("login");
+      toast("از حساب خارج شدید");
+    });
+    $("#mobileLogout").addEventListener("click", () => {
+      if (!confirm("از حساب خارج می‌شوید؟")) return;
+      Auth.logout();
+      $("#appShell").hidden = true;
+      $("#authScreen").hidden = false;
+      setAuthMode("login");
+      toast("از حساب خارج شدید");
+    });
+
+    // Secret dot
+    $("#secretDot").addEventListener("click", (e) => {
+      e.stopPropagation();
+      Admin.registerSecretClick(() => {
+        openAdminLogin();
+      });
+    });
+
+    // Admin modal
+    $("#adminSubmit").addEventListener("click", handleAdminSubmit);
+    $("#adminPassword").addEventListener("keydown", (e) => {
+      if (e.key === "Enter") handleAdminSubmit();
+    });
+    $("#adminCancel").addEventListener("click", () => closeModal("adminModal"));
+    $("#adminModalClose").addEventListener("click", () => closeModal("adminModal"));
+    $("#adminModal").addEventListener("click", (e) => {
+      if (e.target === $("#adminModal")) closeModal("adminModal");
+    });
+
+    // Generic modal
+    $("#genericModal").addEventListener("click", (e) => {
+      if (e.target === $("#genericModal")) closeGenericModal();
+    });
+
+    // Check existing session
+    const user = Auth.currentUser();
+    if (user) {
+      $("#authScreen").hidden = true;
+      enterApp(user);
+    } else {
+      $("#authScreen").hidden = false;
+      setAuthMode("login");
+    }
+  } catch (err) {
+    console.error("Bootstrap error:", err);
+    document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#ff8080;font-family:sans-serif">' +
+      "خطا در راه‌اندازی برنامه. لطفاً صفحه را دوباره بارگذاری کنید.<br>" +
+      "<small>" + (err.message || "") + "</small></div>";
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bootstrap);
+} else {
+  bootstrap();
+}
 </script>
 </body>
-</html>
+  </html>
