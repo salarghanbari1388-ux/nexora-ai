@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#04060f">
+<title>NEXORA AI — Intelligence Beyond Limits</title>
+<style>
+:root{
+  --bg-0:#04060f; --bg-1:#070c1b;
+  --silver-1:#eef3ff; --silver-2:#b8c4dc; --silver-3:#8593af; --silver-4:#5d6b87;
+  --gold-1:#f0d896; --gold-2:#d4af5e; --gold-3:#a8853e;
+  --ice-1:#7ce7ff; --ice-2:#3fb6ff; --violet-1:#a273ff; --violet-2:#7b4bff;
+  --line:rgba(140,170,255,.14); --line-2:rgba(140,170,255,.28);
+  --radius-lg:22px; --radius-md:16px;
+  --shadow:0 24px 60px -24px rgba(0,0,0,.95);
+  --glow-ice:0 0 26px rgba(124,231,255,.32);
+  --font:"Vazirmatn","IRANSansX","IRANSans",system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;min-height:100%}
+body{
+  font-family:var(--font);background:var(--bg-0);color:var(--silver-2);
+  font-size:15px;line-height:1.85;-webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;overflow-x:hidden;
+}
+[hidden]{display:none!important}
+button,input,textarea,select{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+::selection{background:rgba(124,231,255,.28);color:#fff}
+body.no-anim *{animation:none!important;transition:none!important}
+
+/* Background */
+.app-bg{position:fixed;inset:0;z-index:-2;overflow:hidden;
+  background:
+    radial-gradient(1200px 820px at 82% -12%,rgba(96,60,255,.22),transparent 62%),
+    radial-gradient(900px 700px at 8% -4%,rgba(0,178,255,.15),transparent 60%),
+    radial-gradient(1100px 900px at 50% 118%,rgba(212,175,94,.08),transparent 62%),
+    linear-gradient(180deg,#04060f 0%,#060a18 42%,#04060f 100%);}
+.bg-blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.38;will-change:transform}
+.bg-blob-1{width:420px;height:420px;top:-140px;right:-100px;background:radial-gradient(circle,rgba(123,75,255,.85),transparent 68%);animation:drift1 22s ease-in-out infinite alternate}
+.bg-blob-2{width:380px;height:380px;bottom:-160px;left:-120px;background:radial-gradient(circle,rgba(63,182,255,.8),transparent 68%);animation:drift2 26s ease-in-out infinite alternate}
+.bg-blob-3{width:300px;height:300px;top:38%;left:46%;background:radial-gradient(circle,rgba(212,175,94,.5),transparent 70%);animation:drift3 30s ease-in-out infinite alternate}
+@keyframes drift1{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-60px,70px,0) scale(1.14)}}
+@keyframes drift2{0%{transform:translate3d(0,0,0) scale(1.05)}100%{transform:translate3d(70px,-60px,0) scale(.92)}}
+@keyframes drift3{0%{transform:translate3d(0,0,0) scale(.9);opacity:.28}100%{transform:translate3d(-50px,-40px,0) scale(1.18);opacity:.48}}
+.bg-grid{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(130,170,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(130,170,255,.05) 1px,transparent 1px);
+  background-size:58px 58px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 28%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 28%,#000 0%,transparent 78%);}
+
+/* Topbar */
+.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:calc(10px + env(safe-area-inset-top)) 16px 10px;
+  background:linear-gradient(180deg,rgba(5,9,22,.94),rgba(5,9,22,.4));
+  -webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);
+  border-bottom:1px solid var(--line);}
+.topbar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(124,231,255,.5),rgba(212,175,94,.4),transparent);opacity:.65}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;min-width:0;position:relative}
+.brand-mark{width:34px;height:34px;flex-shrink:0;filter:drop-shadow(0 0 10px rgba(124,231,255,.4))}
+.brand-name{font-size:16px;font-weight:800;letter-spacing:.06em;
+  background:linear-gradient(180deg,#fff,#b9c8e4 60%,#8f9fbe);
+  -webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+.brand-ai{background:linear-gradient(135deg,var(--ice-1),var(--gold-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:900}
+.brand-tag{font-size:9px;letter-spacing:.14em;color:var(--silver-4);text-transform:uppercase;white-space:nowrap;display:none}
+@media(min-width:640px){.brand-tag{display:inline}}
+
+/* Secret dot (unobtrusive admin trigger) */
+.secret-dot{position:absolute;width:5px;height:5px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-1),var(--gold-3));
+  opacity:.1;left:2px;top:2px;cursor:default;transition:opacity .4s}
+.secret-dot:hover{opacity:.35}
+
+/* Nav */
+.topnav{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.nav-btn{padding:8px 12px;border-radius:10px;font-size:12.5px;font-weight:700;
+  color:var(--silver-3);transition:.25s;white-space:nowrap}
+.nav-btn:hover{color:var(--silver-1);background:rgba(255,255,255,.05)}
+.nav-btn.is-active{color:var(--silver-1);background:rgba(124,231,255,.1);box-shadow:inset 0 0 0 1px var(--line-2)}
+.nav-btn-primary{background:linear-gradient(135deg,#3fb6ff,#7b4bff);color:#050a17;font-weight:800;
+  box-shadow:0 8px 20px -8px rgba(94,120,255,.85)}
+.nav-btn-primary:hover{color:#050a17;box-shadow:0 10px 26px -8px rgba(94,120,255,1)}
+@media(max-width:640px){
+  .nav-btn{padding:7px 10px;font-size:11.5px}
+  .nav-btn[data-view="home"],.nav-btn[data-view="settings"]{display:none}
+}
+
+/* Views */
+main{min-height:calc(100vh - 60px)}
+.view{display:none;padding:22px 16px 40px;animation:viewIn .4s cubic-bezier(.2,.7,.3,1)}
+.view.is-active{display:block}
+@keyframes viewIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.container{max-width:1080px;margin:0 auto;width:100%}
+
+/* Hero */
+.hero{text-align:center;padding:26px 8px 20px}
+.hero-orb{width:132px;height:132px;margin:0 auto 20px;position:relative;display:grid;place-items:center}
+.hero-orb::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,231,255,.28),rgba(212,175,94,.14) 50%,transparent 70%);
+  filter:blur(6px);animation:orbBreath 6s ease-in-out infinite}
+.hero-orb::after{content:"";position:absolute;inset:6px;border-radius:50%;
+  border:1px solid rgba(124,231,255,.24);border-top-color:rgba(212,175,94,.7);
+  animation:orbSpin 14s linear infinite}
+.hero-orb .hero-logo{width:78px;height:78px;position:relative;z-index:2;
+  filter:drop-shadow(0 0 22px rgba(124,231,255,.5));animation:logoFloat 6.5s ease-in-out infinite}
+@keyframes orbBreath{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.1);opacity:1}}
+@keyframes orbSpin{to{transform:rotate(360deg)}}
+@keyframes logoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.hero-title{font-size:clamp(30px,9vw,46px);font-weight:900;letter-spacing:.02em;margin:0 0 4px;line-height:1.2;
+  background:linear-gradient(180deg,#fff,#c6d4ee 52%,#8b9cbd);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 60px rgba(124,231,255,.16)}
+.hero-title .accent{background:linear-gradient(135deg,var(--ice-1),var(--gold-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-slogan{margin:0 0 14px;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-2);font-weight:600}
+.hero-desc{max-width:560px;margin:0 auto 22px;font-size:14px;line-height:2;color:var(--silver-3)}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 22px;
+  border-radius:14px;font-size:14px;font-weight:700;
+  transition:transform .18s,box-shadow .28s,background .28s,border-color .28s,opacity .2s;
+  border:1px solid transparent;white-space:nowrap}
+.btn:active{transform:scale(.975)}
+.btn:disabled{opacity:.42;cursor:not-allowed}
+.btn-primary{background:linear-gradient(135deg,#3fb6ff,#6c7bff 48%,#a273ff);color:#050a17;font-weight:800;
+  box-shadow:0 10px 30px -10px rgba(94,120,255,.85),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn-primary:hover{box-shadow:0 14px 38px -10px rgba(94,120,255,1),inset 0 1px 0 rgba(255,255,255,.45)}
+.btn-gold{background:linear-gradient(135deg,var(--gold-1),var(--gold-2) 60%,var(--gold-3));color:#1a1408;font-weight:800;
+  box-shadow:0 10px 30px -10px rgba(212,175,94,.85)}
+.btn-ghost{background:rgba(255,255,255,.04);border-color:var(--line-2);color:var(--silver-1)}
+.btn-ghost:hover{border-color:rgba(124,231,255,.55);background:rgba(124,231,255,.08);box-shadow:var(--glow-ice)}
+.btn-danger{background:linear-gradient(135deg,#ff6b6b,#d63c68);color:#fff;box-shadow:0 10px 26px -12px rgba(255,80,110,.9)}
+.btn-sm{padding:8px 14px;font-size:12.5px;border-radius:11px}
+.btn-block{width:100%}
+
+/* Section title */
+.section-title{display:flex;align-items:center;gap:10px;margin:40px 0 18px;
+  font-size:13px;font-weight:800;letter-spacing:.08em;color:var(--silver-3);text-transform:uppercase}
+.section-title::before{content:"";width:3px;height:15px;border-radius:2px;
+  background:linear-gradient(180deg,var(--ice-1),var(--gold-2));box-shadow:0 0 12px rgba(124,231,255,.7)}
+.section-title::after{content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,var(--line-2),transparent)}
+
+/* Features */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.feature-card{padding:20px 18px;border-radius:var(--radius-md);
+  background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.014));
+  border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  transition:transform .3s cubic-bezier(.2,.7,.3,1),border-color .3s,box-shadow .3s;
+  position:relative;overflow:hidden}
+.feature-card:hover{transform:translateY(-4px);border-color:rgba(124,231,255,.35);
+  box-shadow:0 18px 40px -22px rgba(80,120,255,.95)}
+.feature-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;margin-bottom:14px;
+  background:linear-gradient(140deg,rgba(124,231,255,.16),rgba(212,175,94,.14));
+  border:1px solid rgba(124,231,255,.24);color:var(--ice-1)}
+.feature-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.feature-card h3{margin:0 0 6px;font-size:14px;font-weight:800;color:var(--silver-1)}
+.feature-card p{margin:0;font-size:12.5px;line-height:1.9;color:var(--silver-3)}
+
+/* Pricing */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.pricing-card{padding:24px 20px;border-radius:var(--radius-lg);
+  background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.014));
+  border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  position:relative;overflow:hidden}
+.pricing-card.featured{border-color:rgba(212,175,94,.5);
+  box-shadow:0 20px 50px -20px rgba(212,175,94,.5),inset 0 1px 0 rgba(255,255,255,.08)}
+.pricing-card.featured::before{content:"پیشنهاد ویژه";position:absolute;top:14px;left:14px;
+  font-size:10px;padding:3px 10px;border-radius:99px;
+  background:linear-gradient(135deg,var(--gold-1),var(--gold-2));color:#1a1408;font-weight:800}
+.pricing-card:hover{transform:translateY(-4px);border-color:rgba(124,231,255,.4)}
+.pricing-tier{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver-4);
+  margin-bottom:6px;font-weight:700}
+.pricing-price{font-size:28px;font-weight:900;color:var(--silver-1);margin-bottom:4px;line-height:1.2}
+.pricing-price small{font-size:12px;font-weight:500;color:var(--silver-4)}
+.pricing-features{list-style:none;margin:16px 0 18px;padding:0;display:flex;flex-direction:column;gap:8px}
+.pricing-features li{font-size:12.5px;color:var(--silver-2);padding-right:22px;position:relative;line-height:1.8}
+.pricing-features li::before{content:"";position:absolute;right:6px;top:9px;width:6px;height:6px;border-radius:50%;
+  background:linear-gradient(135deg,var(--ice-1),var(--gold-2));box-shadow:0 0 8px rgba(124,231,255,.6)}
+
+/* Cards */
+.card{padding:18px 16px;border-radius:var(--radius-lg);
+  background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.016));
+  border:1px solid var(--line);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{display:flex;align-items:center;gap:8px;margin:0 0 14px;font-size:14px;font-weight:800;color:var(--silver-1)}
+.card h3 svg{width:17px;height:17px;stroke:var(--gold-2);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+
+/* Dashboard header */
+.dash-header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding:18px 18px;border-radius:var(--radius-lg);
+  background:linear-gradient(135deg,rgba(124,231,255,.08),rgba(212,175,94,.06));
+  border:1px solid var(--line-2);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);margin-bottom:16px}
+.dash-header h2{margin:0 0 4px;font-size:20px;font-weight:800;color:var(--silver-1)}
+.dash-header p{margin:0;font-size:12.5px;color:var(--silver-3)}
+
+/* Stat grid */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.stat{padding:14px 12px;border-radius:14px;border:1px solid var(--line);
+  background:linear-gradient(160deg,rgba(124,231,255,.075),rgba(212,175,94,.045));text-align:center}
+.stat-value{display:block;font-size:20px;font-weight:900;color:#eaf2ff;line-height:1.3;
+  font-variant-numeric:tabular-nums;word-break:break-word}
+.stat-label{display:block;font-size:11px;color:var(--silver-4);margin-top:3px}
+
+/* Badges */
+.badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:10.5px;font-weight:800;letter-spacing:.02em}
+.badge-free{background:rgba(140,170,255,.15);color:#b8c4dc;border:1px solid rgba(140,170,255,.3)}
+.badge-pro{background:rgba(124,231,255,.15);color:var(--ice-1);border:1px solid rgba(124,231,255,.4)}
+.badge-enterprise{background:rgba(212,175,94,.15);color:var(--gold-1);border:1px solid rgba(212,175,94,.4)}
+
+/* Tabs */
+.tabs{display:flex;gap:6px;padding:4px;border-radius:14px;border:1px solid var(--line);
+  background:rgba(255,255,255,.03);margin-bottom:14px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:1 1 0;min-width:90px;padding:9px 12px;border-radius:10px;font-size:12.5px;font-weight:700;
+  color:var(--silver-3);transition:.26s;white-space:nowrap}
+.tab:hover{color:var(--silver-1)}
+.tab.is-active{color:#050a17;background:linear-gradient(135deg,var(--ice-2),var(--gold-2));
+  box-shadow:0 8px 20px -10px rgba(94,120,255,.9)}
+.panel{display:none}
+.panel.is-active{display:block;animation:viewIn .35s ease}
+
+/* Forms */
+.field-label{display:block;font-size:11.5px;font-weight:700;color:var(--silver-3);margin-bottom:7px;letter-spacing:.02em}
+.input-line,textarea.input-area,select.input-line{width:100%;border-radius:13px;border:1px solid var(--line-2);
+  background:rgba(255,255,255,.04);color:var(--silver-1);padding:11px 14px;font-size:13.5px;line-height:1.8;
+  outline:none;transition:border-color .25s,box-shadow .25s,background .25s}
+textarea.input-area{resize:vertical;min-height:110px;max-height:300px}
+.input-line::placeholder,textarea.input-area::placeholder{color:var(--silver-4)}
+.input-line:focus,textarea.input-area:focus{border-color:rgba(124,231,255,.55);
+  box-shadow:0 0 0 3px rgba(124,231,255,.1),var(--glow-ice);background:rgba(255,255,255,.06)}
+select.input-line{appearance:none;-webkit-appearance:none;padding-left:34px;
+  background-image:linear-gradient(45deg,transparent 50%,var(--silver-3) 50%),linear-gradient(135deg,var(--silver-3) 50%,transparent 50%);
+  background-position:calc(0% + 16px) calc(50% - 2px),calc(0% + 21px) calc(50% - 2px);
+  background-size:5px 5px;background-repeat:no-repeat}
+select.input-line option{background:#0b1330;color:#dfe6f5}
+.error-text{color:#ff9b8b;font-size:12px;margin-top:8px;padding:8px 12px;border-radius:10px;
+  background:rgba(255,90,90,.08);border:1px solid rgba(255,90,90,.25);line-height:1.8}
+.success-text{color:#b9ecd8;font-size:12px;margin-top:8px;padding:8px 12px;border-radius:10px;
+  background:rgba(93,242,176,.08);border:1px solid rgba(93,242,176,.25);line-height:1.8}
+.form-group{margin-bottom:14px}
+.form-group:last-of-type{margin-bottom:0}
+
+/* Tools */
+.tool-actions{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.tool-output{margin-top:16px;border-radius:14px;border:1px solid var(--line);
+  background:rgba(255,255,255,.028);padding:15px 14px;font-size:13.5px;line-height:2;
+  color:var(--silver-1);word-break:break-word;display:none}
+.tool-output.is-visible{display:block;animation:viewIn .3s ease}
+.output-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;
+  padding-bottom:9px;border-bottom:1px dashed var(--line);font-size:11.5px;color:var(--silver-4);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{padding:5px 11px;border-radius:99px;font-size:11.5px;
+  border:1px solid rgba(124,231,255,.26);background:rgba(124,231,255,.08);color:#bfe9ff}
+.idea-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;counter-reset:idea}
+.idea-list li{counter-increment:idea;position:relative;padding:12px 44px 12px 14px;border-radius:12px;
+  border:1px solid var(--line);
+  background:linear-gradient(150deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  font-size:13px;line-height:1.95;color:var(--silver-1)}
+.idea-list li::before{content:counter(idea);position:absolute;right:12px;top:12px;
+  width:22px;height:22px;border-radius:8px;display:grid;place-items:center;
+  font-size:11px;font-weight:900;color:#050a17;
+  background:linear-gradient(135deg,var(--ice-1),var(--gold-2))}
+
+/* Activity list */
+.activity-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.activity-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;
+  border:1px solid var(--line);background:rgba(255,255,255,.025);font-size:12.5px}
+.activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--ice-1),var(--gold-2));box-shadow:0 0 8px rgba(124,231,255,.55)}
+.activity-text{flex:1 1 auto;color:var(--silver-2);min-width:0;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.activity-time{flex-shrink:0;font-size:10.5px;color:var(--silver-4);font-variant-numeric:tabular-nums}
+.empty-state{text-align:center;padding:26px 16px;color:var(--silver-4);font-size:13px;line-height:1.9;
+  list-style:none}
+
+/* Tables */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.02)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:500px}
+.data-table thead{background:rgba(124,231,255,.06)}
+.data-table th{padding:11px 12px;text-align:right;font-weight:800;color:var(--silver-2);
+  font-size:11.5px;letter-spacing:.03em;border-bottom:1px solid var(--line-2);white-space:nowrap}
+.data-table td{padding:10px 12px;border-bottom:1px solid var(--line);color:var(--silver-3);vertical-align:middle}
+.data-table tr:last-child td{border-bottom:0}
+.data-table tbody tr:hover{background:rgba(124,231,255,.03)}
+.data-table .cell-name{color:var(--silver-1);font-weight:700}
+.data-table .cell-actions{display:flex;gap:6px;flex-wrap:wrap}
+.tiny-btn{padding:4px 10px;border-radius:8px;font-size:11px;font-weight:700;
+  border:1px solid var(--line-2);background:rgba(255,255,255,.04);color:var(--silver-2);transition:.2s}
+.tiny-btn:hover{border-color:rgba(124,231,255,.5);color:var(--ice-1)}
+.tiny-btn.danger{border-color:rgba(255,100,100,.35);color:#ff9b8b}
+.tiny-btn.danger:hover{border-color:rgba(255,100,100,.7);background:rgba(255,100,100,.1)}
+
+/* Toggle rows */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 0;
+  border-bottom:1px dashed rgba(140,170,255,.12)}
+.toggle-row:last-child{border-bottom:0;padding-bottom:0}
+.toggle-info .t-title{display:block;font-size:13px;font-weight:700;color:var(--silver-1);margin-bottom:2px}
+.toggle-info .t-desc{display:block;font-size:11px;color:var(--silver-4);line-height:1.8}
+
+/* Switch */
+.switch{position:relative;display:inline-block;width:46px;height:26px;flex-shrink:0}
+.switch input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:2}
+.switch .slider{position:absolute;inset:0;border-radius:99px;background:rgba(255,255,255,.1);
+  border:1px solid var(--line-2);transition:.3s}
+.switch .slider::before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;
+  top:3px;right:3px;background:linear-gradient(140deg,#dfe8ff,#94a6c6);
+  transition:.3s cubic-bezier(.2,.7,.3,1);box-shadow:0 2px 8px rgba(0,0,0,.5)}
+.switch input:checked + .slider{background:linear-gradient(135deg,rgba(63,182,255,.75),rgba(212,175,94,.7));
+  border-color:rgba(124,231,255,.6);box-shadow:0 0 18px rgba(94,120,255,.5)}
+.switch input:checked + .slider::before{transform:translateX(-20px);
+  background:linear-gradient(140deg,#fff,#cfe0ff)}
+
+/* Modals */
+.modal-overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  padding:20px;background:rgba(2,4,12,.75);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:fadeIn .22s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{width:100%;max-width:400px;padding:24px 22px 20px;border-radius:var(--radius-lg);
+  border:1px solid var(--line-2);
+  background:linear-gradient(165deg,rgba(20,30,60,.97),rgba(9,15,34,.98));
+  box-shadow:0 30px 70px -20px rgba(0,0,0,1),inset 0 1px 0 rgba(255,255,255,.08);
+  animation:modalIn .3s cubic-bezier(.2,.7,.3,1);position:relative}
+@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal h3{margin:0 0 8px;font-size:16px;font-weight:800;color:var(--silver-1)}
+.modal p{margin:0 0 18px;font-size:12.5px;line-height:1.95;color:var(--silver-3)}
+.modal-close{position:absolute;top:12px;left:12px;width:32px;height:32px;border-radius:10px;
+  font-size:20px;color:var(--silver-3);display:grid;place-items:center;transition:.2s}
+.modal-close:hover{background:rgba(255,255,255,.06);color:var(--silver-1)}
+.modal-tabs{display:flex;gap:6px;padding:4px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.03);margin-bottom:18px}
+.modal-tab{flex:1;padding:8px;border-radius:9px;font-size:12.5px;font-weight:700;
+  color:var(--silver-3);transition:.25s}
+.modal-tab.is-active{color:#050a17;background:linear-gradient(135deg,var(--ice-2),var(--gold-2))}
+.modal-actions{display:flex;gap:10px;margin-top:16px}
+.modal-actions .btn{flex:1}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:calc(30px + env(safe-area-inset-bottom));
+  transform:translateX(-50%) translateY(14px);z-index:300;padding:11px 20px;border-radius:999px;
+  border:1px solid rgba(124,231,255,.35);
+  background:linear-gradient(140deg,rgba(18,30,62,.96),rgba(10,17,38,.96));
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  color:#dff2ff;font-size:12.5px;font-weight:700;
+  box-shadow:0 18px 40px -16px rgba(0,0,0,.95),var(--glow-ice);
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:88vw;text-align:center}
+.toast.is-visible{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{border-color:rgba(93,242,176,.5);color:#d5fbea}
+.toast.error{border-color:rgba(255,100,100,.5);color:#ffd5cc}
+
+/* Notice */
+.notice{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:var(--radius-md);
+  border:1px solid rgba(255,170,90,.26);
+  background:linear-gradient(150deg,rgba(255,150,70,.1),rgba(255,90,120,.045));
+  color:#ffd3b4;font-size:12px;line-height:1.9;margin-bottom:14px}
+.notice.gold{border-color:rgba(212,175,94,.35);
+  background:linear-gradient(150deg,rgba(212,175,94,.1),rgba(255,180,80,.04));color:#ffe9b9}
+.notice svg{width:16px;height:16px;flex-shrink:0;margin-top:3px;stroke:currentColor;fill:none;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Utilities */
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.row-between{justify-content:space-between}
+.grow{flex:1 1 auto;min-width:0}
+.muted{color:var(--silver-4);font-size:12px}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;
+  direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-word}
+.text-center{text-align:center}
+
+@media(max-width:640px){
+  .view{padding:18px 12px 30px}
+  .feature-grid{grid-template-columns:1fr 1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .data-table{font-size:11.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="app-bg" aria-hidden="true">
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+  <div class="bg-grid"></div>
+</div>
+
+<header class="topbar">
+  <a href="#" class="brand" id="brandHome">
+    <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+      <defs>
+        <linearGradient id="gMark" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#7ce7ff"/>
+          <stop offset="52%" stop-color="#d4af5e"/>
+          <stop offset="100%" stop-color="#a273ff"/>
+        </linearGradient>
+        <linearGradient id="gMarkSoft" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#7ce7ff" stop-opacity=".35"/>
+          <stop offset="100%" stop-color="#d4af5e" stop-opacity=".35"/>
+        </linearGradient>
+      </defs>
+      <path d="M24 3 43 14v20L24 45 5 34V14z" fill="none" stroke="url(#gMark)" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M24 13.5 33.5 19v11L24 35.5 14.5 30V19z" fill="url(#gMarkSoft)" stroke="url(#gMark)" stroke-width="1"/>
+      <path d="M17.5 30.5V18.5l13 12v-12" fill="none" stroke="url(#gMark)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span class="brand-name">NEXORA<span class="brand-ai"> AI</span></span>
+    <span class="brand-tag">Intelligence Beyond Limits</span>
+    <span id="secretDot" class="secret-dot" aria-hidden="true"></span>
+  </a>
+  <nav class="topnav">
+    <button class="nav-btn is-active" data-view="home" type="button">خانه</button>
+    <button class="nav-btn" data-view="dashboard" type="button">داشبورد</button>
+    <button class="nav-btn" data-view="settings" type="button">تنظیمات</button>
+    <button id="btnAuth" class="nav-btn nav-btn-primary" type="button">ورود / عضویت</button>
+    <button id="btnLogout" class="nav-btn" type="button" hidden>خروج</button>
+  </nav>
+</header>
+
+<main>
+
+<section id="view-home" class="view is-active">
+  <div class="container">
+    <div class="hero">
+      <div class="hero-orb">
+        <svg class="hero-logo" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 3 43 14v20L24 45 5 34V14z" fill="none" stroke="url(#gMark)" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M24 13.5 33.5 19v11L24 35.5 14.5 30V19z" fill="url(#gMarkSoft)"/>
+          <path d="M17.5 30.5V18.5l13 12v-12" fill="none" stroke="url(#gMark)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h1 class="hero-title">NEXORA <span class="accent">AI</span></h1>
+      <p class="hero-slogan">Intelligence Beyond Limits</p>
+      <p class="hero-desc">
+        پلتفرم هوشمند تحلیل، خلاصه‌سازی و ایده‌پردازی متن — با معماری ماژولار، طراحی لوکس و زیرساخت
+        آماده برای توسعه بین‌المللی. تمام الگوریتم‌ها در JavaScript خالص و بدون وابستگی خارجی اجرا می‌شوند.
+      </p>
+      <div class="hero-cta">
+        <button id="heroSignup" class="btn btn-primary" type="button">شروع رایگان</button>
+        <button id="heroLogin" class="btn btn-ghost" type="button">ورود به حساب</button>
+      </div>
+    </div>
+
+    <div class="section-title">قابلیت‌های پلتفرم</div>
+    <div class="feature-grid">
+      <article class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h13"/></svg></div>
+        <h3>خلاصه‌سازی متن</h3>
+        <p>استخراج جمله‌های کلیدی و ساخت خلاصه فشرده از متون طولانی فارسی و انگلیسی.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg></div>
+        <h3>تحلیل متن</h3>
+        <p>شمارش کلمات و جمله‌ها، تشخیص کلیدواژه‌ها، زبان متن و احساس کلی محتوا.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6v.5h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3z"/></svg></div>
+        <h3>ایده‌پرداز</h3>
+        <p>تولید ایده‌های ساختاریافته بر اساس موضوع و حوزه انتخابی شما.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg></div>
+        <h3>حریم خصوصی</h3>
+        <p>تمام داده‌ها فقط در مرورگر شما ذخیره می‌شوند. هیچ کلید API در کد سمت کاربر قرار ندارد.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18z"/></svg></div>
+        <h3>دو زبانه</h3>
+        <p>پشتیبانی کامل از فارسی و انگلیسی با ساختار آماده برای افزودن زبان‌های بیشتر.</p>
+      </article>
+      <article class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5v.2a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg></div>
+        <h3>معماری ماژولار</h3>
+        <p>هر قابلیت مستقل طراحی شده و می‌توان قابلیت‌های جدید را بدون بازنویسی اضافه کرد.</p>
+      </article>
+    </div>
+
+    <div class="section-title">سطح اشتراک</div>
+    <div class="pricing-grid" id="pricingGrid"></div>
+  </div>
+</section>
+
+<!-- ═══ END PART 1 — ادامه در PART 2 (بعد از این خط) ═══ --><!-- ═══ PART 2 — ادامه داخل <main> از انتهای قسمت ۱ ═══ -->
+
+<section id="view-dashboard" class="view">
+  <div class="container">
+    <div class="dash-header">
+      <div>
+        <h2 id="dashGreeting">داشبورد</h2>
+        <p id="dashSubtitle">به NEXORA AI خوش آمدید</p>
+      </div>
+      <span id="dashTierBadge" class="badge badge-free">Free</span>
+    </div>
+
+    <div class="stat-grid" id="dashStats"></div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0 5 5l-9.4 9.4a2.1 2.1 0 0 1-3-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        ابزارهای هوشمند
+      </h3>
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" data-tool="summary" type="button" role="tab" aria-selected="true">خلاصه‌ساز</button>
+        <button class="tab" data-tool="analyze" type="button" role="tab" aria-selected="false">تحلیلگر</button>
+        <button class="tab" data-tool="ideas" type="button" role="tab" aria-selected="false">ایده‌پرداز</button>
+      </div>
+
+      <div class="panel is-active" id="panel-summary">
+        <label class="field-label" for="toolSummaryInput">متن ورودی</label>
+        <textarea id="toolSummaryInput" class="input-area" placeholder="متن خود را وارد کنید..."></textarea>
+        <div class="row" style="margin-top:10px">
+          <label class="field-label" for="toolSummaryRatio" style="margin:0">حجم خلاصه</label>
+          <select id="toolSummaryRatio" class="input-line" style="flex:1;max-width:220px">
+            <option value="0.2">خیلی کوتاه (۲۰٪)</option>
+            <option value="0.3" selected>کوتاه (۳۰٪)</option>
+            <option value="0.5">متوسط (۵۰٪)</option>
+            <option value="0.7">مفصل (۷۰٪)</option>
+          </select>
+        </div>
+        <div class="tool-actions">
+          <button class="btn btn-primary btn-sm" id="btnRunSummary" type="button">ساخت خلاصه</button>
+          <button class="btn btn-ghost btn-sm" id="btnCopySummary" type="button">کپی</button>
+          <button class="btn btn-ghost btn-sm" id="btnClearSummary" type="button">پاک‌کردن</button>
+        </div>
+        <div class="tool-output" id="outputSummary"></div>
+      </div>
+
+      <div class="panel" id="panel-analyze">
+        <label class="field-label" for="toolAnalyzeInput">متن ورودی</label>
+        <textarea id="toolAnalyzeInput" class="input-area" placeholder="متن برای تحلیل..."></textarea>
+        <div class="tool-actions">
+          <button class="btn btn-primary btn-sm" id="btnRunAnalyze" type="button">تحلیل متن</button>
+          <button class="btn btn-ghost btn-sm" id="btnCopyAnalyze" type="button">کپی</button>
+          <button class="btn btn-ghost btn-sm" id="btnClearAnalyze" type="button">پاک‌کردن</button>
+        </div>
+        <div class="tool-output" id="outputAnalyze"></div>
+      </div>
+
+      <div class="panel" id="panel-ideas">
+        <label class="field-label" for="toolIdeasTopic">موضوع</label>
+        <input id="toolIdeasTopic" class="input-line" type="text" maxlength="120" placeholder="مثلاً: فروشگاه آنلاین، آموزش زبان...">
+        <div class="row" style="margin-top:10px">
+          <div class="grow">
+            <label class="field-label" for="toolIdeasDomain">حوزه</label>
+            <select id="toolIdeasDomain" class="input-line">
+              <option value="tech">فناوری</option>
+              <option value="business">کسب‌وکار</option>
+              <option value="content">محتوا</option>
+              <option value="education">آموزش</option>
+              <option value="health">سلامت</option>
+            </select>
+          </div>
+          <div class="grow">
+            <label class="field-label" for="toolIdeasCount">تعداد</label>
+            <select id="toolIdeasCount" class="input-line">
+              <option value="4">۴ ایده</option>
+              <option value="6" selected>۶ ایده</option>
+              <option value="8">۸ ایده</option>
+            </select>
+          </div>
+        </div>
+        <div class="tool-actions">
+          <button class="btn btn-primary btn-sm" id="btnRunIdeas" type="button">تولید ایده</button>
+          <button class="btn btn-ghost btn-sm" id="btnCopyIdeas" type="button">کپی</button>
+          <button class="btn btn-ghost btn-sm" id="btnClearIdeas" type="button">پاک‌کردن</button>
+        </div>
+        <div class="tool-output" id="outputIdeas"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        فعالیت‌های اخیر
+      </h3>
+      <ul class="activity-list" id="dashActivities"></ul>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
+        مدیریت حساب
+      </h3>
+      <div class="row row-between" style="padding:10px 0;border-bottom:1px dashed rgba(140,170,255,.12)">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--silver-1)">سطح اشتراک</div>
+          <div class="muted" id="dashTierDesc">Free — دسترسی محدود</div>
+        </div>
+        <button class="btn btn-gold btn-sm" id="btnUpgrade" type="button">ارتقا</button>
+      </div>
+      <div class="row row-between" style="padding:10px 0">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:var(--silver-1)">خروج از حساب</div>
+          <div class="muted">پایان نشست فعلی</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="btnLogoutDash" type="button">خروج</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="view-settings" class="view">
+  <div class="container">
+    <div class="dash-header">
+      <div><h2>تنظیمات</h2><p>پیکربندی ظاهر و رفتار پلتفرم</p></div>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5v.2a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+        ظاهر و زبان
+      </h3>
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <span class="t-title">زبان رابط کاربری</span>
+          <span class="t-desc">فعلاً فقط فارسی؛ ساختار برای افزودن انگلیسی آماده است</span>
+        </div>
+        <select id="setLanguage" class="input-line" style="width:auto;min-width:130px">
+          <option value="fa">فارسی</option>
+          <option value="en" disabled>English (به‌زودی)</option>
+        </select>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <span class="t-title">انیمیشن رابط کاربری</span>
+          <span class="t-desc">کاهش حرکت برای مصرف کمتر باتری</span>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="setAnimations" checked aria-label="انیمیشن‌ها">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/><path d="M4.5 11.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg>
+        داده‌ها
+      </h3>
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <span class="t-title">خروجی گرفتن از داده‌ها</span>
+          <span class="t-desc" id="storageUsage">در حال محاسبه...</span>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="btnExportData" type="button">خروجی JSON</button>
+      </div>
+      <div class="toggle-row">
+        <div class="toggle-info">
+          <span class="t-title">پاک‌کردن کامل داده‌ها</span>
+          <span class="t-desc">همه حساب‌ها، فعالیت‌ها و تنظیمات حذف می‌شوند</span>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="btnWipeAll" type="button">حذف همه</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg>
+        درباره پروژه
+      </h3>
+      <div class="stat-grid" style="margin-bottom:12px">
+        <div class="stat"><span class="stat-value">NEXORA AI</span><span class="stat-label">نام محصول</span></div>
+        <div class="stat"><span class="stat-value">1.0.0</span><span class="stat-label">نسخه</span></div>
+        <div class="stat"><span class="stat-value">Vanilla JS</span><span class="stat-label">فناوری</span></div>
+      </div>
+      <p class="muted" style="line-height:1.9">
+        تمام داده‌ها به‌صورت محلی در حافظه مرورگر (localStorage) نگهداری می‌شود. هیچ کلید API یا اطلاعات حساسی
+        در کد سمت کاربر قرار ندارد. احراز هویت در نسخه نهایی باید سمت سرور انجام شود.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="view-admin" class="view">
+  <div class="container">
+    <div class="dash-header">
+      <div>
+        <h2>پنل مدیریت</h2>
+        <p>مدیریت کاربران، فعالیت‌ها و تنظیمات سیستم</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" id="btnAdminLogout" type="button">خروج از مدیریت</button>
+    </div>
+
+    <div class="notice gold">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>
+      <span>این پنل نمونه اولیه است. در نسخه نهایی، احراز هویت و مدیریت باید کاملاً سمت سرور انجام شود.</span>
+    </div>
+
+    <div class="stat-grid" id="adminStats"></div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        کاربران
+      </h3>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>نام</th><th>ایمیل</th><th>سطح</th><th>تاریخ عضویت</th><th>عملیات</th></tr></thead>
+          <tbody id="adminUsersBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        فعالیت‌های اخیر سیستم
+      </h3>
+      <ul class="activity-list" id="adminActivities"></ul>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        قابلیت‌های پلتفرم
+      </h3>
+      <div id="adminFeatures"></div>
+    </div>
+
+    <div class="card">
+      <h3>
+        <svg viewBox="0 0 24 24"><path d="M21 4H3a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M1 10h22"/></svg>
+        سطح‌های اشتراک
+      </h3>
+      <div id="adminTiers"></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ AUTH MODAL ═══ -->
+<div class="modal-overlay" id="authModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <button class="modal-close" id="authClose" type="button" aria-label="بستن">×</button>
+    <h3 id="authTitle">ورود به حساب</h3>
+    <div class="modal-tabs">
+      <button class="modal-tab is-active" id="tabLogin" type="button">ورود</button>
+      <button class="modal-tab" id="tabSignup" type="button">ثبت‌نام</button>
+    </div>
+    <div id="authBody"></div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN GATE MODAL ═══ -->
+<div class="modal-overlay" id="adminGateModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="adminGateTitle">
+    <button class="modal-close" id="adminGateClose" type="button" aria-label="بستن">×</button>
+    <h3 id="adminGateTitle">ورود مدیریت</h3>
+    <p>این بخش مخصوص مدیران سیستم است. لطفاً رمز عبور را وارد کنید.</p>
+    <div class="form-group">
+      <label class="field-label" for="adminPasswordInput">رمز عبور مدیریت</label>
+      <input id="adminPasswordInput" type="password" class="input-line" placeholder="رمز عبور را وارد کنید" autocomplete="off">
+      <div id="adminGateError" class="error-text" hidden></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="adminGateCancel" type="button">انصراف</button>
+      <button class="btn btn-gold" id="adminGateSubmit" type="button">ورود</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" hidden role="status" aria-live="polite"></div>
+
+<!-- ═══ END PART 2 — ادامه در PART 3 (بعد از این خط) ═══ --><!-- ═══ PART 3 — JavaScript ═══ -->
+<script>
+"use strict";
+
+/* ═════════════ 3.1 CONFIG ═════════════ */
+const CONFIG = {
+  app: { name:"NEXORA AI", slogan:"Intelligence Beyond Limits", version:"1.0.0" },
+  storage: {
+    users:"nexora.users.v1", session:"nexora.session.v1", activities:"nexora.activities.v1",
+    features:"nexora.features.v1", tiers:"nexora.tiers.v1",
+    adminSession:"nexora.admin.v1", lastReset:"nexora.lastReset.v1",
+    uiLang:"nexora.ui.lang", uiAnim:"nexora.ui.anim"
+  },
+  security: {
+    adminClickThreshold: 40,
+    adminClickResetMs: 8000,
+    minPasswordLength: 6,
+    maxLoginAttempts: 5,
+    lockDurationMs: 60000
+  },
+  adminPassword: "152831321",
+  defaults: {
+    tiers: {
+      free:{ id:"free", label:"Free", price:0, features:["analysis"], dailyLimit:10 },
+      pro:{ id:"pro", label:"Pro", price:99000, features:["analysis","summary","ideas"], dailyLimit:100 },
+      enterprise:{ id:"enterprise", label:"Enterprise", price:499000, features:["analysis","summary","ideas","automation"], dailyLimit:-1 }
+    },
+    features: {
+      analysis:{ label:"تحلیل متن", desc:"شمارش و بررسی ساختار متن", enabled:true },
+      summary:{ label:"خلاصه‌سازی", desc:"تولید خلاصه از متن‌های بلند", enabled:true },
+      ideas:{ label:"ایده‌پرداز", desc:"تولید ایده‌های ساختاریافته", enabled:true },
+      automation:{ label:"اتوماسیون", desc:"اجرای زمان‌بندی‌شده (به‌زودی)", enabled:false }
+    }
+  }
+};
+
+/* ═════════════ 3.2 UTILITIES ═════════════ */
+function uid(prefix){
+  return (prefix||"id")+"_"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+}
+/* PROTOTYPE hash — NOT cryptographically secure; use bcrypt/argon2 on server in production */
+function hashPassword(pw){
+  const salt="nexora::v1::", s=salt+String(pw)+salt;
+  let h1=0x811c9dc5, h2=0x811c9dc5, h3=0;
+  for(let i=0;i<s.length;i++){
+    const c=s.charCodeAt(i);
+    h1^=c; h1=Math.imul(h1,0x01000193);
+    h2=(h2+c*(i+1))|0;
+    h3=((h3^(c<<(i%13)))*31)|0;
+  }
+  return (h1>>>0).toString(16).padStart(8,"0")
+    +(h2>>>0).toString(16).padStart(8,"0")
+    +(h3>>>0).toString(16).padStart(8,"0");
+}
+function sanitize(str){
+  return String(str==null?"":str)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
+function isValidEmail(email){
+  return typeof email==="string" && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.trim());
+}
+function isValidPassword(pw){
+  return typeof pw==="string" && pw.length>=CONFIG.security.minPasswordLength;
+}
+function faNum(n){ try{ return Number(n).toLocaleString("fa-IR"); }catch(e){ return String(n); } }
+function formatDate(ts){
+  try{ return new Date(ts).toLocaleDateString("fa-IR",{year:"numeric",month:"2-digit",day:"2-digit"}); }
+  catch(e){ return "—"; }
+}
+function formatTime(ts){
+  try{ return new Date(ts).toLocaleTimeString("fa-IR",{hour:"2-digit",minute:"2-digit"}); }
+  catch(e){ return "—"; }
+}
+
+/* ═════════════ 3.3 STORAGE ENGINE ═════════════ */
+const StorageEngine = {
+  available:null,
+  check(){
+    if(this.available!==null) return this.available;
+    try{
+      const k="__nexora_test__";
+      localStorage.setItem(k,"1"); localStorage.removeItem(k);
+      this.available=true;
+    }catch(e){ this.available=false; }
+    return this.available;
+  },
+  get(key,fallback){
+    if(!this.check()) return fallback;
+    try{
+      const raw=localStorage.getItem(key);
+      if(raw===null) return fallback;
+      return JSON.parse(raw);
+    }catch(e){ return fallback; }
+  },
+  set(key,value){
+    if(!this.check()) return false;
+    try{ localStorage.setItem(key,JSON.stringify(value)); return true; }
+    catch(e){ return false; }
+  },
+  remove(key){
+    if(!this.check()) return;
+    try{ localStorage.removeItem(key); }catch(e){}
+  },
+  bytesUsed(){
+    if(!this.check()) return 0;
+    let total=0;
+    try{
+      for(let i=0;i<localStorage.length;i++){
+        const k=localStorage.key(i);
+        if(k && k.indexOf("nexora.")===0) total+=(localStorage.getItem(k)||"").length;
+      }
+    }catch(e){}
+    return total;
+  }
+};
+
+/* ═════════════ 3.4 SECURITY ENGINE ═════════════ */
+const SecurityEngine = {
+  adminHash:null,
+  secretClicks:0,
+  secretTimer:null,
+  adminAttempts:{ count:0, until:0 },
+  init(){ this.adminHash = hashPassword(CONFIG.adminPassword); },
+  registerSecretClick(onThreshold){
+    this.secretClicks++;
+    clearTimeout(this.secretTimer);
+    this.secretTimer=setTimeout(()=>{ this.secretClicks=0; }, CONFIG.security.adminClickResetMs);
+    if(this.secretClicks>=CONFIG.security.adminClickThreshold){
+      this.secretClicks=0;
+      clearTimeout(this.secretTimer);
+      onThreshold();
+    }
+  },
+  verifyAdmin(pw){
+    if(!this.adminHash) this.init();
+    if(!pw) return false;
+    const now=Date.now();
+    if(this.adminAttempts.until>now) return false;
+    if(hashPassword(pw)===this.adminHash){
+      this.adminAttempts={count:0,until:0};
+      return true;
+    }
+    this.adminAttempts.count++;
+    if(this.adminAttempts.count>=CONFIG.security.maxLoginAttempts){
+      this.adminAttempts.count=0;
+      this.adminAttempts.until=now+CONFIG.security.lockDurationMs;
+    }
+    return false;
+  },
+  adminLocked(){ return this.adminAttempts.until>Date.now(); },
+  isAdminSession(){ return StorageEngine.get(CONFIG.storage.adminSession,null)!==null; },
+  setAdminSession(){ StorageEngine.set(CONFIG.storage.adminSession,{ts:Date.now()}); },
+  clearAdminSession(){ StorageEngine.remove(CONFIG.storage.adminSession); }
+};
+
+/* ═════════════ 3.5 DATA ENGINE ═════════════ */
+const DataEngine = {
+  users:[], activities:[], features:{}, tiers:{}, session:null,
+  init(){
+    this.users = StorageEngine.get(CONFIG.storage.users,[]);
+    if(!Array.isArray(this.users)) this.users=[];
+    this.activities = StorageEngine.get(CONFIG.storage.activities,[]);
+    if(!Array.isArray(this.activities)) this.activities=[];
+    this.session = StorageEngine.get(CONFIG.storage.session,null);
+    this.features = StorageEngine.get(CONFIG.storage.features,null)
+      || JSON.parse(JSON.stringify(CONFIG.defaults.features));
+    this.tiers = StorageEngine.get(CONFIG.storage.tiers,null)
+      || JSON.parse(JSON.stringify(CONFIG.defaults.tiers));
+  },
+  save(){
+    StorageEngine.set(CONFIG.storage.users,this.users);
+    StorageEngine.set(CONFIG.storage.activities,this.activities);
+    StorageEngine.set(CONFIG.storage.features,this.features);
+    StorageEngine.set(CONFIG.storage.tiers,this.tiers);
+  },
+  saveSession(){
+    if(this.session) StorageEngine.set(CONFIG.storage.session,this.session);
+    else StorageEngine.remove(CONFIG.storage.session);
+  },
+  addUser(data){
+    const name=sanitize(String(data.name||"").trim());
+    const email=String(data.email||"").trim().toLowerCase();
+    const password=String(data.password||"");
+    if(!name || name.length<2) return {ok:false,error:"نام باید حداقل ۲ حرف باشد."};
+    if(!isValidEmail(email)) return {ok:false,error:"ایمیل معتبر نیست."};
+    if(!isValidPassword(password)) return {ok:false,error:"رمز عبور باید حداقل ۶ کاراکتر باشد."};
+    if(this.findUserByEmail(email)) return {ok:false,error:"این ایمیل قبلاً ثبت شده است."};
+    const user={
+      id:uid("u"), name:name, email:email, passwordHash:hashPassword(password),
+      tier:"free", createdAt:Date.now(), lastLogin:null,
+      stats:{ toolUses:0, logins:0, dailyUses:0 }
+    };
+    this.users.push(user);
+    this.save();
+    this.addActivity(user.id,"signup","ثبت‌نام در پلتفرم");
+    return {ok:true,user:user};
+  },
+  findUserByEmail(email){
+    const e=String(email||"").trim().toLowerCase();
+    return this.users.find(u=>u.email===e)||null;
+  },
+  findUserById(id){ return this.users.find(u=>u.id===id)||null; },
+  updateUser(id,patch){
+    const u=this.findUserById(id);
+    if(!u) return false;
+    Object.assign(u,patch); this.save(); return true;
+  },
+  deleteUser(id){
+    const i=this.users.findIndex(u=>u.id===id);
+    if(i===-1) return false;
+    this.users.splice(i,1);
+    this.activities=this.activities.filter(a=>a.userId!==id);
+    if(this.session && this.session.userId===id){ this.session=null; this.saveSession(); }
+    this.save();
+    return true;
+  },
+  addActivity(userId,type,detail){
+    const activity={ id:uid("a"), userId:userId||null, type:type, detail:detail, ts:Date.now() };
+    this.activities.push(activity);
+    if(this.activities.length>500) this.activities=this.activities.slice(-500);
+    this.save();
+    return activity;
+  },
+  getActivitiesForUser(userId,limit){
+    return this.activities.filter(a=>a.userId===userId).slice(-(limit||20)).reverse();
+  },
+  getAllActivities(limit){ return this.activities.slice(-(limit||50)).reverse(); },
+  getStats(){
+    const byTier={free:0,pro:0,enterprise:0};
+    this.users.forEach(u=>{ byTier[u.tier]=(byTier[u.tier]||0)+1; });
+    const activeToday=this.users.filter(u=>u.lastLogin && (Date.now()-u.lastLogin)<86400000).length;
+    return {
+      totalUsers:this.users.length, byTier:byTier,
+      totalActivities:this.activities.length, activeToday:activeToday
+    };
+  },
+  setFeatures(f){ this.features=f; this.save(); },
+  setTiers(t){ this.tiers=t; this.save(); },
+  login(email,password){
+    const user=this.findUserByEmail(email);
+    if(!user) return {ok:false,error:"کاربری با این ایمیل یافت نشد."};
+    if(user.passwordHash!==hashPassword(password)) return {ok:false,error:"رمز عبور اشتباه است."};
+    this.session={ userId:user.id, ts:Date.now() };
+    this.saveSession();
+    user.lastLogin=Date.now();
+    user.stats=user.stats||{};
+    user.stats.logins=(user.stats.logins||0)+1;
+    this.save();
+    this.addActivity(user.id,"login","ورود به حساب");
+    return {ok:true,user:user};
+  },
+  logout(){
+    if(this.session) this.addActivity(this.session.userId,"logout","خروج از حساب");
+    this.session=null;
+    this.saveSession();
+  },
+  currentUser(){
+    if(!this.session || !this.session.userId) return null;
+    return this.findUserById(this.session.userId);
+  }
+};
+
+/* ═════════════ 3.6 ANALYSIS ENGINE ═════════════ */
+const AnalysisEngine = {
+  stopFa:new Set(["و","در","به","از","که","این","را","با","است","برای","آن","یک","خود","تا","هم","بر","اما","یا","شده","شود","کرد","می","های","ها","بود","نه","باید","هر","چه","اگر","بی","دو","من","تو","او","ما","شما","آنها","نیز","پس","چون","زیرا","بین","دیگر","همه","قبل","بعد","روی","شد","کرده","دارد","ندارد","دارند","بوده","باشد","باشند","کردن","داشتن","طور","حال","کند","کنید","کنیم","شدن","شوند","وی","اینکه","چنین","همان","همین","کجا","چگونه","چرا","کدام","بسیار","خیلی","کمی","فقط","درباره","مورد","توسط","طی","ضمن","بدون","نسبت","دیگری","اول","دوم","سوم"]),
+  stopEn:new Set(["the","a","an","and","or","but","if","then","of","to","in","on","for","with","as","is","are","was","were","be","been","being","it","its","this","that","these","those","at","by","from","we","you","they","he","she","i","not","no","yes","can","will","would","should","do","does","did","have","has","had","so","than","too","very","just","about","into","over","after","before","more","most","some","any","all","out","up"]),
+  pos:new Set(["خوب","عالی","بهترین","زیبا","مفید","موفق","شادی","امید","پیشرفت","دوست","مثبت","درخشان","قوی","سالم","آرامش","پیروزی","افتخار","خلاق","هوشمند","سودمند","رضایت","good","great","excellent","best","beautiful","useful","success","happy","hope","positive","strong","healthy","calm","win","proud","creative","smart","benefit"]),
+  neg:new Set(["بد","ضعیف","مشکل","خطا","ناراحت","شکست","ترس","خشم","درد","غم","منفی","خراب","کند","دیر","گران","خطر","بحران","تنش","افت","نقص","بی‌فایده","bad","weak","problem","error","sad","failure","fear","angry","pain","negative","broken","slow","expensive","danger","crisis","tension","decline","flaw","useless"]),
+  normalize(t){ return String(t||"").replace(/\r\n?/g,"\n").replace(/[ \t]+/g," ").trim(); },
+  sentences(t){
+    const src=this.normalize(t), out=[]; let buf="";
+    const terms=".!?؟…؛;";
+    for(let i=0;i<src.length;i++){
+      const ch=src[i];
+      if(ch==="\n"){ const x=buf.trim(); if(x) out.push(x); buf=""; continue; }
+      buf+=ch;
+      if(terms.indexOf(ch)!==-1){
+        const n=src[i+1];
+        if(n===undefined || /\s/.test(n)){ const x=buf.trim(); if(x) out.push(x); buf=""; }
+      }
+    }
+    const tail=buf.trim(); if(tail) out.push(tail);
+    return out;
+  },
+  tokenize(t){
+    return String(t||"").toLowerCase()
+      .replace(/[\u064B-\u065F\u0670]/g,"")
+      .replace(/[.,!?؟…؛:;"'«»()\[\]{}<>\/\\|@#$%^&*_+=~`،ـ]/g," ")
+      .split(/\s+/).filter(Boolean);
+  },
+  isStop(w){ return this.stopFa.has(w)||this.stopEn.has(w)||w.length<2; },
+  freq(t){
+    const words=this.tokenize(t), map=new Map();
+    words.forEach(w=>{ if(this.isStop(w)) return; map.set(w,(map.get(w)||0)+1); });
+    return map;
+  },
+  summarize(text,ratio){
+    const src=this.normalize(text), sents=this.sentences(src);
+    if(sents.length<=2) return sents.join(" ");
+    const f=this.freq(src);
+    const scored=sents.map((s,i)=>{
+      const words=this.tokenize(s).filter(w=>!this.isStop(w));
+      let score=0; words.forEach(w=>{ score+=f.get(w)||0; });
+      return { s:s, i:i, score: score/Math.sqrt(words.length+3) };
+    });
+    const keep=Math.max(1,Math.round(sents.length*(ratio||0.3)));
+    return scored.slice().sort((a,b)=>b.score-a.score).slice(0,keep)
+      .sort((a,b)=>a.i-b.i).map(x=>x.s).join(" ");
+  },
+  detectLang(t){
+    const p=(t.match(/[\u0600-\u06FF]/g)||[]).length;
+    const l=(t.match(/[A-Za-z]/g)||[]).length;
+    if(p===0 && l===0) return "نامشخص";
+    if(p>=l*2) return "فارسی";
+    if(l>=p*2) return "انگلیسی";
+    return "ترکیبی";
+  },
+  sentiment(t){
+    const words=this.tokenize(t);
+    let p=0,n=0;
+    words.forEach(w=>{ if(this.pos.has(w)) p++; if(this.neg.has(w)) n++; });
+    const total=p+n;
+    if(total===0) return { label:"خنثی", posPct:0, negPct:0, score:0 };
+    const posPct=Math.round((p/total)*100);
+    const negPct=100-posPct;
+    const score=Math.round(((p-n)/total)*100);
+    let label="خنثی";
+    if(score>20) label="مثبت";
+    else if(score<-20) label="منفی";
+    else label="به‌نسبت خنثی";
+    return { label:label, posPct:posPct, negPct:negPct, score:score };
+  },
+  analyze(t){
+    const src=this.normalize(t);
+    const words=this.tokenize(src);
+    const sents=this.sentences(src);
+    const paras=src.split(/\n{2,}/).filter(p=>p.trim());
+    const f=this.freq(src);
+    const keywords=Array.from(f.entries()).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    const unique=new Set(words).size;
+    return {
+      characters:src.length,
+      words:words.length, unique:unique,
+      sentences:sents.length,
+      paragraphs:paras.length||(src?1:0),
+      language:this.detectLang(src),
+      keywords:keywords,
+      sentiment:this.sentiment(src),
+      readingMinutes: words.length?Math.max(1,Math.round(words.length/200)):0,
+      avgWordsPerSentence: sents.length?Math.round(words.length/sents.length):0
+    };
+  },
+  ideaTemplates:[
+    t=>"دستیار هوشمندی برای "+t+" که با تحلیل نیاز کاربر، پیشنهادهای گام‌به‌گام ارائه می‌دهد.",
+    t=>"پلتفرمی مبتنی بر تحلیل داده که فرایند "+t+" را خودکار می‌کند و گزارش لحظه‌ای می‌سازد.",
+    t=>"اپلیکیشنی برای "+t+" که با یادگیری از بازخورد کاربران، تجربه را شخصی‌سازی می‌کند.",
+    t=>"سرویسی برای "+t+" که با تحلیل متنی، الگوهای پنهان را کشف و خلاصه می‌کند.",
+    t=>"شبکه همکارانه‌ای برای "+t+" که متخصصان و کاربران را به هم متصل می‌کند.",
+    t=>"ابزاری برای "+t+" که با تولید خودکار ایده و محتوا، زمان تولید را کاهش می‌دهد.",
+    t=>"سیستم پایش هوشمند "+t+" که هشدارهای دقیق و راهکارهای پیشنهادی ارائه می‌دهد.",
+    t=>"پلتفرم آموزشی برای "+t+" که مسیر یادگیری شخصی‌سازی‌شده و بازخورد مستمر می‌سازد.",
+    t=>"مارکت‌پلیسی تخصصی برای "+t+" که با موتور تطبیق هوشمند، بهترین گزینه‌ها را پیشنهاد می‌دهد.",
+    t=>"داشبورد تحلیلی برای "+t+" که شاخص‌های کلیدی را ساده و قابل‌فهم نمایش می‌دهد."
+  ],
+  angles:{
+    tech:["با معماری ماژولار و API باز.","با پردازش محلی داده‌ها برای حفظ حریم خصوصی.","با قابلیت اتصال به سرویس‌های ابری."],
+    business:["با مدل درآمدی اشتراکی.","با تمرکز بر کاهش هزینه و افزایش نگهداشت مشتری.","با داشبورد مدیریتی برای تصمیم داده‌محور."],
+    content:["با تولید پیش‌نویس خودکار.","با تحلیل بازخورد مخاطب.","با تقویم محتوایی هوشمند."],
+    education:["با مسیر یادگیری تطبیقی.","با تمرین تعاملی و بازخورد فوری.","با گزارش پیشرفت شفاف."],
+    health:["با رعایت حریم خصوصی داده‌های سلامت.","با یادآوری هوشمند و پیگیری روند.","با همکاری متخصصان برای اعتبارسنجی."]
+  },
+  rotation:0,
+  generateIdeas(topic,domain,count){
+    const t=String(topic||"").trim();
+    const angles=this.angles[domain]||this.angles.tech;
+    const total=Math.max(1,Math.min(Number(count)||6,this.ideaTemplates.length));
+    const out=[];
+    for(let i=0;i<total;i++){
+      const tpl=this.ideaTemplates[(this.rotation+i)%this.ideaTemplates.length];
+      const angle=angles[i%angles.length];
+      out.push(tpl(t)+" "+angle);
+    }
+    this.rotation=(this.rotation+total)%this.ideaTemplates.length;
+    return out;
+  }
+};
+
+/* ═════════════ 3.7 AUTOMATION ENGINE ═════════════ */
+const AutomationEngine = {
+  lastReset:null,
+  init(){
+    this.lastReset=StorageEngine.get(CONFIG.storage.lastReset,null);
+    this.checkDailyReset();
+  },
+  checkDailyReset(){
+    const today=new Date().toDateString();
+    if(this.lastReset!==today){
+      DataEngine.users.forEach(u=>{ if(u.stats) u.stats.dailyUses=0; });
+      DataEngine.save();
+      this.lastReset=today;
+      StorageEngine.set(CONFIG.storage.lastReset,today);
+    }
+  },
+  trackToolUse(user){
+    if(!user) return;
+    user.stats=user.stats||{};
+    user.stats.toolUses=(user.stats.toolUses||0)+1;
+    user.stats.dailyUses=(user.stats.dailyUses||0)+1;
+    DataEngine.save();
+  },
+  canUseTool(user,toolName){
+    if(!user) return {ok:false,error:"ابتدا وارد شوید."};
+    const tier=DataEngine.tiers[user.tier]||DataEngine.tiers.free;
+    if(!DataEngine.features[toolName] || !DataEngine.features[toolName].enabled){
+      return {ok:false,error:"این قابلیت توسط مدیر غیرفعال شده است."};
+    }
+    if(tier.features.indexOf(toolName)===-1){
+      return {ok:false,error:"این قابلیت در سطح "+tier.label+" در دسترس نیست. لطفاً ارتقا دهید."};
+    }
+    if(tier.dailyLimit>0){
+      const used=(user.stats && user.stats.dailyUses)||0;
+      if(used>=tier.dailyLimit){
+        return {ok:false,error:"سهمیه روزانه شما ("+tier.dailyLimit+") تمام شده است."};
+      }
+    }
+    return {ok:true};
+  }
+};
+
+/* ═════════════ 3.8 UI ENGINE ═════════════ */
+const UIEngine = {
+  els:{}, toastTimer:null, authMode:"login",
+  init(){
+    this.els={
+      secretDot:document.getElementById("secretDot"),
+      authModal:document.getElementById("authModal"),
+      authBody:document.getElementById("authBody"),
+      authTitle:document.getElementById("authTitle"),
+      authClose:document.getElementById("authClose"),
+      tabLogin:document.getElementById("tabLogin"),
+      tabSignup:document.getElementById("tabSignup"),
+      adminGateModal:document.getElementById("adminGateModal"),
+      adminGateError:document.getElementById("adminGateError"),
+      adminPasswordInput:document.getElementById("adminPasswordInput"),
+      adminGateCancel:document.getElementById("adminGateCancel"),
+      adminGateClose:document.getElementById("adminGateClose"),
+      adminGateSubmit:document.getElementById("adminGateSubmit"),
+      toast:document.getElementById("toast"),
+      btnAuth:document.getElementById("btnAuth"),
+      btnLogout:document.getElementById("btnLogout"),
+      brandHome:document.getElementById("brandHome"),
+      heroSignup:document.getElementById("heroSignup"),
+      heroLogin:document.getElementById("heroLogin"),
+      pricingGrid:document.getElementById("pricingGrid")
+    };
+    this.bind();
+    this.renderPricing();
+    this.refreshAuthUI();
+  },
+  bind(){
+    const self=this;
+    document.querySelectorAll("[data-view]").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const v=btn.getAttribute("data-view");
+        if(v==="dashboard" && !DataEngine.currentUser()){ self.openAuth("login"); return; }
+        self.showView(v);
+      });
+    });
+    this.els.brandHome.addEventListener("click",e=>{ e.preventDefault(); self.showView("home"); });
+    this.els.secretDot.addEventListener("click",e=>{
+      e.preventDefault(); e.stopPropagation();
+      SecurityEngine.registerSecretClick(()=>{
+        if(SecurityEngine.isAdminSession()) self.showView("admin");
+        else self.openAdminGate();
+      });
+    });
+    this.els.btnAuth.addEventListener("click",()=>self.openAuth("login"));
+    this.els.btnLogout.addEventListener("click",()=>self.handleLogout());
+    this.els.heroSignup.addEventListener("click",()=>self.openAuth("signup"));
+    this.els.heroLogin.addEventListener("click",()=>self.openAuth("login"));
+    this.els.tabLogin.addEventListener("click",()=>self.setAuthMode("login"));
+    this.els.tabSignup.addEventListener("click",()=>self.setAuthMode("signup"));
+    this.els.authClose.addEventListener("click",()=>self.hideModal("authModal"));
+    this.els.authModal.addEventListener("click",e=>{ if(e.target===self.els.authModal) self.hideModal("authModal"); });
+    this.els.adminGateCancel.addEventListener("click",()=>self.hideModal("adminGateModal"));
+    this.els.adminGateClose.addEventListener("click",()=>self.hideModal("adminGateModal"));
+    this.els.adminGateModal.addEventListener("click",e=>{ if(e.target===self.els.adminGateModal) self.hideModal("adminGateModal"); });
+    this.els.adminGateSubmit.addEventListener("click",()=>self.handleAdminLogin());
+    this.els.adminPasswordInput.addEventListener("keydown",e=>{ if(e.key==="Enter") self.handleAdminLogin(); });
+  },
+  showView(name){
+    document.querySelectorAll(".view").forEach(v=>{
+      v.classList.toggle("is-active",v.id==="view-"+name);
+    });
+    document.querySelectorAll(".nav-btn[data-view]").forEach(b=>{
+      b.classList.toggle("is-active",b.getAttribute("data-view")===name);
+    });
+    if(name==="dashboard") DashboardController.render();
+    if(name==="settings") SettingsController.render();
+    if(name==="admin") AdminController.render();
+    window.scrollTo({top:0,behavior:"smooth"});
+  },
+  showToast(msg,type){
+    const el=this.els.toast;
+    el.textContent=msg;
+    el.className="toast"+(type?" "+type:"");
+    el.hidden=false;
+    void el.offsetWidth;
+    el.classList.add("is-visible");
+    clearTimeout(this.toastTimer);
+    this.toastTimer=setTimeout(()=>{
+      el.classList.remove("is-visible");
+      setTimeout(()=>{ el.hidden=true; },320);
+    },2600);
+  },
+  showModal(id){ const el=document.getElementById(id); if(el) el.hidden=false; },
+  hideModal(id){ const el=document.getElementById(id); if(el) el.hidden=true; },
+  refreshAuthUI(){
+    const u=DataEngine.currentUser();
+    this.els.btnAuth.hidden=!!u;
+    this.els.btnLogout.hidden=!u;
+  },
+  openAuth(mode){
+    this.setAuthMode(mode||"login");
+    this.showModal("authModal");
+    setTimeout(()=>{
+      const inp=this.els.authBody.querySelector("input");
+      if(inp) inp.focus();
+    },100);
+  },
+  setAuthMode(mode){
+    this.authMode=mode;
+    this.els.tabLogin.classList.toggle("is-active",mode==="login");
+    this.els.tabSignup.classList.toggle("is-active",mode==="signup");
+    this.els.authTitle.textContent = mode==="signup"?"ثبت‌نام در NEXORA AI":"ورود به حساب";
+    this.renderAuthBody(mode);
+  },
+  renderAuthBody(mode){
+    const isSignup=mode==="signup";
+    this.els.authBody.innerHTML =
+      '<div id="authError" class="error-text" hidden></div>'+
+      (isSignup?'<div class="form-group"><label class="field-label" for="authName">نام کامل</label><input id="authName" type="text" class="input-line" placeholder="نام و نام خانوادگی" maxlength="60"></div>':'')+
+      '<div class="form-group"><label class="field-label" for="authEmail">ایمیل</label><input id="authEmail" type="email" class="input-line" placeholder="you@example.com" autocomplete="email"></div>'+
+      '<div class="form-group"><label class="field-label" for="authPassword">رمز عبور</label><input id="authPassword" type="password" class="input-line" placeholder="'+(isSignup?"حداقل ۶ کاراکتر":"رمز عبور")+'" autocomplete="'+(isSignup?"new-password":"current-password")+'"></div>'+
+      (isSignup?'<div class="form-group"><label class="field-label" for="authPassword2">تکرار رمز عبور</label><input id="authPassword2" type="password" class="input-line" placeholder="تکرار رمز عبور" autocomplete="new-password"></div>':'')+
+      '<button class="btn btn-primary btn-block" id="authSubmit" type="button" style="margin-top:8px">'+
+      (isSignup?"ثبت‌نام":"ورود")+'</button>';
+    document.getElementById("authSubmit").addEventListener("click",()=>this.handleAuthSubmit());
+    this.els.authBody.querySelectorAll("input").forEach(inp=>{
+      inp.addEventListener("keydown",e=>{ if(e.key==="Enter") this.handleAuthSubmit(); });
+    });
+  },
+  showAuthError(msg){
+    const el=document.getElementById("authError");
+    if(!el) return;
+    el.textContent=msg; el.hidden=false;
+  },
+  handleAuthSubmit(){
+    const mode=this.authMode;
+    const email=document.getElementById("authEmail").value;
+    const password=document.getElementById("authPassword").value;
+    const nameEl=document.getElementById("authName");
+    const name=nameEl?nameEl.value:"";
+    const pass2El=document.getElementById("authPassword2");
+    const pass2=pass2El?pass2El.value:"";
+    if(mode==="signup"){
+      if(password!==pass2){ this.showAuthError("رمز عبور و تکرار آن یکسان نیستند."); return; }
+      const r=DataEngine.addUser({name:name,email:email,password:password});
+      if(!r.ok){ this.showAuthError(r.error); return; }
+      const login=DataEngine.login(email,password);
+      if(!login.ok){ this.showAuthError(login.error); return; }
+      this.hideModal("authModal");
+      this.refreshAuthUI();
+      this.showToast("حساب شما ساخته شد. خوش آمدید!","success");
+      this.showView("dashboard");
+    } else {
+      const r=DataEngine.login(email,password);
+      if(!r.ok){ this.showAuthError(r.error); return; }
+      this.hideModal("authModal");
+      this.refreshAuthUI();
+      this.showToast("خوش آمدید، "+r.user.name+"!","success");
+      this.showView("dashboard");
+    }
+  },
+  handleLogout(){
+    DataEngine.logout();
+    this.refreshAuthUI();
+    this.showToast("از حساب خارج شدید.");
+    this.showView("home");
+  },
+  openAdminGate(){
+    this.els.adminGateError.hidden=true;
+    this.els.adminPasswordInput.value="";
+    this.showModal("adminGateModal");
+    setTimeout(()=>this.els.adminPasswordInput.focus(),100);
+  },
+  handleAdminLogin(){
+    const pw=this.els.adminPasswordInput.value;
+    const err=this.els.adminGateError;
+    if(SecurityEngine.adminLocked()){
+      err.textContent="تلاش‌های ناموفق زیاد بوده است. لطفاً یک دقیقه صبر کنید.";
+      err.hidden=false;
+      return;
+    }
+    if(SecurityEngine.verifyAdmin(pw)){
+      SecurityEngine.setAdminSession();
+      this.hideModal("adminGateModal");
+      this.els.adminPasswordInput.value="";
+      err.hidden=true;
+      this.showToast("به پنل مدیریت خوش آمدید.","success");
+      this.showView("admin");
+    } else {
+      err.textContent="رمز عبور اشتباه است.";
+      err.hidden=false;
+      this.els.adminPasswordInput.value="";
+      this.els.adminPasswordInput.focus();
+    }
+  },
+  renderPricing(){
+    const tiers=DataEngine.tiers;
+    const order=["free","pro","enterprise"];
+    const labels={analysis:"تحلیل متن",summary:"خلاصه‌سازی",ideas:"ایده‌پرداز",automation:"اتوماسیون"};
+    this.els.pricingGrid.innerHTML = order.map(id=>{
+      const t=tiers[id];
+      if(!t) return "";
+      const featured=id==="pro";
+      const items=Object.keys(labels).map(f=>{
+        const has=t.features.indexOf(f)!==-1;
+        return '<li style="'+(has?"":"opacity:.4;text-decoration:line-through")+'">'+labels[f]+(has?"":" (غیرفعال)")+'</li>';
+      }).join("");
+      const limitLabel = t.dailyLimit===-1?"نامحدود":t.dailyLimit+" درخواست در روز";
+      return '<div class="pricing-card '+(featured?"featured":"")+'">'+
+        '<div class="pricing-tier">'+t.label+'</div>'+
+        '<div class="pricing-price">'+(t.price===0?"رایگان":faNum(t.price)+' <small>تومان/ماه</small>')+'</div>'+
+        '<ul class="pricing-features">'+items+'<li>'+limitLabel+'</li></ul>'+
+        '<button class="btn '+(featured?"btn-gold":"btn-ghost")+' btn-block" data-upgrade="'+id+'" type="button">'+
+        (id==="free"?"شروع رایگان":"انتخاب "+t.label)+'</button></div>';
+    }).join("");
+    this.els.pricingGrid.querySelectorAll("[data-upgrade]").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const tierId=btn.getAttribute("data-upgrade");
+        const user=DataEngine.currentUser();
+        if(!user){ this.openAuth("signup"); return; }
+        if(user.tier===tierId){ this.showToast("شما در حال حاضر در این سطح هستید."); return; }
+        DataEngine.updateUser(user.id,{tier:tierId});
+        DataEngine.addActivity(user.id,"tier_change","تغییر سطح به "+DataEngine.tiers[tierId].label);
+        this.showToast("سطح شما به "+DataEngine.tiers[tierId].label+" تغییر یافت (نمونه اولیه).","success");
+        DashboardController.render();
+      });
+    });
+  }
+};
+
+/* ═════════════ 3.9 DASHBOARD CONTROLLER ═════════════ */
+const DashboardController = {
+  els:{}, lastResults:{summary:"",analyze:"",ideas:""},
+  cacheEls(){
+    this.els={
+      greeting:document.getElementById("dashGreeting"),
+      subtitle:document.getElementById("dashSubtitle"),
+      tierBadge:document.getElementById("dashTierBadge"),
+      tierDesc:document.getElementById("dashTierDesc"),
+      stats:document.getElementById("dashStats"),
+      activities:document.getElementById("dashActivities"),
+      btnUpgrade:document.getElementById("btnUpgrade"),
+      btnLogoutDash:document.getElementById("btnLogoutDash"),
+      btnRunSummary:document.getElementById("btnRunSummary"),
+      btnCopySummary:document.getElementById("btnCopySummary"),
+      btnClearSummary:document.getElementById("btnClearSummary"),
+      btnRunAnalyze:document.getElementById("btnRunAnalyze"),
+      btnCopyAnalyze:document.getElementById("btnCopyAnalyze"),
+      btnClearAnalyze:document.getElementById("btnClearAnalyze"),
+      btnRunIdeas:document.getElementById("btnRunIdeas"),
+      btnCopyIdeas:document.getElementById("btnCopyIdeas"),
+      btnClearIdeas:document.getElementById("btnClearIdeas"),
+      outputSummary:document.getElementById("outputSummary"),
+      outputAnalyze:document.getElementById("outputAnalyze"),
+      outputIdeas:document.getElementById("outputIdeas")
+    };
+    this.bind();
+  },
+  bind(){
+    document.querySelectorAll(".tabs .tab[data-tool]").forEach(tab=>{
+      tab.addEventListener("click",()=>{
+        const tool=tab.getAttribute("data-tool");
+        document.querySelectorAll(".tabs .tab[data-tool]").forEach(t=>{
+          t.classList.toggle("is-active",t===tab);
+          t.setAttribute("aria-selected",t===tab?"true":"false");
+        });
+        document.querySelectorAll(".panel").forEach(p=>{
+          p.classList.toggle("is-active",p.id==="panel-"+tool);
+        });
+      });
+    });
+    this.els.btnRunSummary.addEventListener("click",()=>{
+      const user=DataEngine.currentUser();
+      const g=AutomationEngine.canUseTool(user,"summary");
+      if(!g.ok){ UIEngine.showToast(g.error,"error"); return; }
+      const input=document.getElementById("toolSummaryInput").value;
+      if(!input.trim()){ UIEngine.showToast("لطفاً متنی وارد کنید.","error"); return; }
+      const ratio=parseFloat(document.getElementById("toolSummaryRatio").value)||0.3;
+      const summary=AnalysisEngine.summarize(input,ratio);
+      if(!summary){ UIEngine.showToast("متنی برای خلاصه‌سازی پیدا نشد.","error"); return; }
+      this.lastResults.summary="خلاصه:\n"+summary;
+      this.els.outputSummary.innerHTML='<div class="output-head"><span>خلاصه تولیدشده</span></div><p style="white-space:pre-wrap;margin:0">'+sanitize(summary)+'</p>';
+      this.els.outputSummary.classList.add("is-visible");
+      AutomationEngine.trackToolUse(user);
+      DataEngine.addActivity(user.id,"tool_summary","استفاده از خلاصه‌ساز");
+    });
+    this.els.btnCopySummary.addEventListener("click",()=>this.copyResult("summary"));
+    this.els.btnClearSummary.addEventListener("click",()=>{
+      document.getElementById("toolSummaryInput").value="";
+      this.els.outputSummary.innerHTML="";
+      this.els.outputSummary.classList.remove("is-visible");
+      this.lastResults.summary="";
+    });
+    this.els.btnRunAnalyze.addEventListener("click",()=>{
+      const user=DataEngine.currentUser();
+      const g=AutomationEngine.canUseTool(user,"analysis");
+      if(!g.ok){ UIEngine.showToast(g.error,"error"); return; }
+      const input=document.getElementById("toolAnalyzeInput").value;
+      if(!input.trim()){ UIEngine.showToast("لطفاً متنی وارد کنید.","error"); return; }
+      const a=AnalysisEngine.analyze(input);
+      this.lastResults.analyze=
+        "نویسه: "+a.characters+"\nکلمه: "+a.words+"\nیکتا: "+a.unique+
+        "\nجمله: "+a.sentences+"\nپاراگراف: "+a.paragraphs+
+        "\nزبان: "+a.language+"\nمیانگین کلمه/جمله: "+a.avgWordsPerSentence+
+        "\nزمان مطالعه: "+a.readingMinutes+" دقیقه"+
+        "\nکلیدواژه‌ها: "+(a.keywords.map(k=>k[0]).join("، ")||"—")+
+        "\nاحساس: "+a.sentiment.label+" (امتیاز "+a.sentiment.score+")";
+      const kw=a.keywords.length
+        ? a.keywords.map(k=>'<span class="chip">'+sanitize(k[0])+" · "+faNum(k[1])+"</span>").join("")
+        : '<span class="chip">بدون کلیدواژه</span>';
+      this.els.outputAnalyze.innerHTML=
+        '<div class="output-head"><span>گزارش تحلیل</span><span>'+sanitize(a.language)+'</span></div>'+
+        '<div class="stat-grid">'+
+        '<div class="stat"><span class="stat-value">'+faNum(a.words)+'</span><span class="stat-label">کلمه</span></div>'+
+        '<div class="stat"><span class="stat-value">'+faNum(a.unique)+'</span><span class="stat-label">یکتا</span></div>'+
+        '<div class="stat"><span class="stat-value">'+faNum(a.sentences)+'</span><span class="stat-label">جمله</span></div>'+
+        '<div class="stat"><span class="stat-value">'+faNum(a.paragraphs)+'</span><span class="stat-label">پاراگراف</span></div>'+
+        '<div class="stat"><span class="stat-value">'+faNum(a.readingMinutes)+'</span><span class="stat-label">دقیقه مطالعه</span></div>'+
+        '</div>'+
+        '<div style="margin-top:12px"><strong style="font-size:12px;color:var(--silver-3)">کلیدواژه‌ها:</strong><div class="chips" style="margin-top:6px">'+kw+'</div></div>'+
+        '<div style="margin-top:12px;font-size:12.5px;color:var(--silver-3)">احساس: '+sanitize(a.sentiment.label)+' (امتیاز '+a.sentiment.score+')</div>';
+      this.els.outputAnalyze.classList.add("is-visible");
+      AutomationEngine.trackToolUse(user);
+      DataEngine.addActivity(user.id,"tool_analysis","استفاده از تحلیلگر متن");
+    });
+    this.els.btnCopyAnalyze.addEventListener("click",()=>this.copyResult("analyze"));
+    this.els.btnClearAnalyze.addEventListener("click",()=>{
+      document.getElementById("toolAnalyzeInput").value="";
+      this.els.outputAnalyze.innerHTML="";
+      this.els.outputAnalyze.classList.remove("is-visible");
+      this.lastResults.analyze="";
+    });
+    this.els.btnRunIdeas.addEventListener("click",()=>{
+      const user=DataEngine.currentUser();
+      const g=AutomationEngine.canUseTool(user,"ideas");
+      if(!g.ok){ UIEngine.showToast(g.error,"error"); return; }
+      const topic=document.getElementById("toolIdeasTopic").value.trim();
+      if(!topic){ UIEngine.showToast("لطفاً موضوع را وارد کنید.","error"); return; }
+      const domain=document.getElementById("toolIdeasDomain").value;
+      const count=document.getElementById("toolIdeasCount").value;
+      const ideas=AnalysisEngine.generateIdeas(topic,domain,count);
+      this.lastResults.ideas="ایده‌ها درباره «"+topic+"»:\n"+ideas.map((x,i)=>(i+1)+". "+x).join("\n");
+      this.els.outputIdeas.innerHTML=
+        '<div class="output-head"><span>ایده‌های پیشنهادی</span><span>'+faNum(ideas.length)+' ایده</span></div>'+
+        '<ul class="idea-list">'+ideas.map(x=>'<li>'+sanitize(x)+'</li>').join("")+'</ul>';
+      this.els.outputIdeas.classList.add("is-visible");
+      AutomationEngine.trackToolUse(user);
+      DataEngine.addActivity(user.id,"tool_ideas","استفاده از ایده‌پرداز");
+    });
+    this.els.btnCopyIdeas.addEventListener("click",()=>this.copyResult("ideas"));
+    this.els.btnClearIdeas.addEventListener("click",()=>{
+      document.getElementById("toolIdeasTopic").value="";
+      this.els.outputIdeas.innerHTML="";
+      this.els.outputIdeas.classList.remove("is-visible");
+      this.lastResults.ideas="";
+    });
+    this.els.btnUpgrade.addEventListener("click",()=>{
+      UIEngine.showView("home");
+      setTimeout(()=>{
+        const el=document.getElementById("pricingGrid");
+        if(el) el.scrollIntoView({behavior:"smooth",block:"center"});
+      },300);
+    });
+    this.els.btnLogoutDash.addEventListener("click",()=>UIEngine.handleLogout());
+  },
+  render(){
+    const user=DataEngine.currentUser();
+    if(!user){ UIEngine.showView("home"); return; }
+    if(!this.els.greeting) this.cacheEls();
+    const hour=new Date().getHours();
+    let greet = hour<12?"صبح بخیر":(hour<18?"ظهر بخیر":"شب بخیر");
+    this.els.greeting.textContent=greet+"، "+user.name;
+    const tier=DataEngine.tiers[user.tier]||DataEngine.tiers.free;
+    this.els.subtitle.textContent="خوش آمدید به NEXORA AI — سطح "+tier.label;
+    this.els.tierBadge.textContent=tier.label;
+    this.els.tierBadge.className="badge badge-"+user.tier;
+    this.els.tierDesc.textContent=tier.label+(tier.price===0?" — دسترسی محدود":" — "+faNum(tier.price)+" تومان در ماه");
+    const used=(user.stats && user.stats.dailyUses)||0;
+    const limit=tier.dailyLimit===-1?"∞":faNum(tier.dailyLimit);
+    const totalUses=(user.stats && user.stats.toolUses)||0;
+    const logins=(user.stats && user.stats.logins)||0;
+    this.els.stats.innerHTML=
+      '<div class="stat"><span class="stat-value">'+faNum(used)+' / '+limit+'</span><span class="stat-label">سهمیه امروز</span></div>'+
+      '<div class="stat"><span class="stat-value">'+faNum(totalUses)+'</span><span class="stat-label">کل استفاده</span></div>'+
+      '<div class="stat"><span class="stat-value">'+faNum(logins)+'</span><span class="stat-label">ورودها</span></div>'+
+      '<div class="stat"><span class="stat-value">'+formatDate(user.createdAt)+'</span><span class="stat-label">عضویت</span></div>';
+    const activities=DataEngine.getActivitiesForUser(user.id,10);
+    this.els.activities.innerHTML = !activities.length
+      ? '<li class="empty-state">هنوز فعالیتی ثبت نشده است.</li>'
+      : activities.map(a=>'<li class="activity-item"><span class="activity-dot"></span>'+
+          '<span class="activity-text">'+sanitize(a.detail)+'</span>'+
+          '<span class="activity-time">'+formatTime(a.ts)+'</span></li>').join("");
+  },
+  async copyResult(key){
+    const text=this.lastResults[key];
+    if(!text){ UIEngine.showToast("ابتدا نتیجه را تولید کنید.","error"); return; }
+    const ok=await this.clipboard(text);
+    UIEngine.showToast(ok?"نتیجه کپی شد.":"کپی ناموفق بود.",ok?"success":"error");
+  },
+  async clipboard(text){
+    try{
+      if(navigator.clipboard && window.isSecureContext){
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+    }catch(e){}
+    try{
+      const ta=document.createElement("textarea");
+      ta.value=text; ta.style.position="fixed"; ta.style.top="-2000px";
+      document.body.appendChild(ta); ta.select();
+      const ok=document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e){ return false; }
+  }
+};
+
+/* ═════════════ 3.10 SETTINGS CONTROLLER ═════════════ */
+const SettingsController = {
+  _bound:false,
+  bind(){
+    if(this._bound) return; this._bound=true;
+    document.getElementById("setLanguage").addEventListener("change",e=>{
+      StorageEngine.set(CONFIG.storage.uiLang,e.target.value);
+      UIEngine.showToast("زبان رابط کاربری ثبت شد.","success");
+    });
+    document.getElementById("setAnimations").addEventListener("change",e=>{
+      document.body.classList.toggle("no-anim",!e.target.checked);
+      StorageEngine.set(CONFIG.storage.uiAnim,e.target.checked);
+      UIEngine.showToast(e.target.checked?"انیمیشن‌ها فعال شد.":"انیمیشن‌ها غیرفعال شد.","success");
+    });
+    document.getElementById("btnExportData").addEventListener("click",()=>this.exportData());
+    document.getElementById("btnWipeAll").addEventListener("click",()=>this.confirmWipe());
+  },
+  render(){
+    this.bind();
+    const bytes=StorageEngine.bytesUsed();
+    const usageEl=document.getElementById("storageUsage");
+    if(usageEl) usageEl.textContent="حدود "+(bytes/1024).toFixed(1)+" کیلوبایت داده ذخیره شده";
+    const lang=StorageEngine.get(CONFIG.storage.uiLang,"fa");
+    const ls=document.getElementById("setLanguage"); if(ls) ls.value=lang;
+    const anim=StorageEngine.get(CONFIG.storage.uiAnim,true);
+    const at=document.getElementById("setAnimations"); if(at) at.checked=anim;
+  },
+  exportData(){
+    try{
+      const data={
+        exportedAt:new Date().toISOString(),
+        appVersion:CONFIG.app.version,
+        users:DataEngine.users, activities:DataEngine.activities,
+        features:DataEngine.features, tiers:DataEngine.tiers
+      };
+      const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url; a.download="nexora-export-"+Date.now()+".json";
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(()=>URL.revokeObjectURL(url),2000);
+      UIEngine.showToast("فایل خروجی دانلود شد.","success");
+    }catch(e){ UIEngine.showToast("خروجی ناموفق بود.","error"); }
+  },
+  confirmWipe(){
+    if(!confirm("تمام کاربران، فعالیت‌ها و تنظیمات حذف خواهند شد. مطمئن هستید؟")) return;
+    Object.values(CONFIG.storage).forEach(k=>StorageEngine.remove(k));
+    UIEngine.showToast("همه داده‌ها حذف شد. صفحه بارگذاری مجدد...");
+    setTimeout(()=>location.reload(),1200);
+  }
+};
+
+/* ═════════════ 3.11 ADMIN CONTROLLER ═════════════ */
+const AdminController = {
+  _bound:false,
+  bind(){
+    if(this._bound) return; this._bound=true;
+    document.getElementById("btnAdminLogout").addEventListener("click",()=>{
+      SecurityEngine.clearAdminSession();
+      UIEngine.showToast("از پنل مدیریت خارج شدید.");
+      UIEngine.showView("home");
+    });
+  },
+  render(){
+    this.bind();
+    if(!SecurityEngine.isAdminSession()){
+      UIEngine.showToast("دسترسی مدیریتی معتبر نیست.","error");
+      UIEngine.showView("home");
+      return;
+    }
+    const s=DataEngine.getStats();
+    document.getElementById("adminStats").innerHTML=
+      '<div class="stat"><span class="stat-value">'+faNum(s.totalUsers)+'</span><span class="stat-label">کل کاربران</span></div>'+
+      '<div class="stat"><span class="stat-value">'+faNum(s.byTier.free||0)+'</span><span class="stat-label">Free</span></div>'+
+      '<div class="stat"><span class="stat-value">'+faNum(s.byTier.pro||0)+'</span><span class="stat-label">Pro</span></div>'+
+      '<div class="stat"><span class="stat-value">'+faNum(s.byTier.enterprise||0)+'</span><span class="stat-label">Enterprise</span></div>'+
+      '<div class="stat"><span class="stat-value">'+faNum(s.totalActivities)+'</span><span class="stat-label">فعالیت‌ها</span></div>'+
+      '<div class="stat"><span class="stat-value">'+faNum(s.activeToday)+'</span><span class="stat-label">فعال امروز</span></div>';
+    this.renderUsers();
+    this.renderActivities();
+    this.renderFeatures();
+    this.renderTiers();
+  },
+  renderUsers(){
+    const tbody=document.getElementById("adminUsersBody");
+    if(!DataEngine.users.length){
+      tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:20px;color:var(--silver-4)">کاربری ثبت نشده است.</td></tr>';
+      return;
+    }
+    tbody.innerHTML=DataEngine.users.map(u=>{
+      const tier=DataEngine.tiers[u.tier]||DataEngine.tiers.free;
+      return '<tr><td class="cell-name">'+sanitize(u.name)+'</td>'+
+        '<td style="direction:ltr;text-align:right">'+sanitize(u.email)+'</td>'+
+        '<td><span class="badge badge-'+u.tier+'">'+tier.label+'</span></td>'+
+        '<td>'+formatDate(u.createdAt)+'</td>'+
+        '<td><div class="cell-actions">'+
+        '<button class="tiny-btn" data-action="cycle-tier" data-id="'+u.id+'">تغییر سطح</button>'+
+        '<button class="tiny-btn danger" data-action="delete-user" data-id="'+u.id+'">حذف</button>'+
+        '</div></td></tr>';
+    }).join("");
+    tbody.querySelectorAll("[data-action]").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const action=btn.getAttribute("data-action");
+        const id=btn.getAttribute("data-id");
+        const user=DataEngine.findUserById(id);
+        if(!user) return;
+        if(action==="cycle-tier"){
+          const order=["free","pro","enterprise"];
+          const next=order[(order.indexOf(user.tier)+1)%order.length];
+          DataEngine.updateUser(id,{tier:next});
+          DataEngine.addActivity(id,"tier_change","تغییر سطح توسط مدیر به "+DataEngine.tiers[next].label);
+          UIEngine.showToast("سطح کاربر به "+DataEngine.tiers[next].label+" تغییر یافت.","success");
+          this.render();
+        } else if(action==="delete-user"){
+          if(!confirm("کاربر «"+user.name+"» حذف شود؟")) return;
+          DataEngine.deleteUser(id);
+          UIEngine.showToast("کاربر حذف شد.","success");
+          this.render();
+        }
+      });
+    });
+  },
+  renderActivities(){
+    const el=document.getElementById("adminActivities");
+    const list=DataEngine.getAllActivities(20);
+    el.innerHTML = !list.length
+      ? '<li class="empty-state">فعالیتی ثبت نشده است.</li>'
+      : list.map(a=>{
+          const u=a.userId?DataEngine.findUserById(a.userId):null;
+          const who=u?u.name:"سیستم";
+          return '<li class="activity-item"><span class="activity-dot"></span>'+
+            '<span class="activity-text">'+sanitize(who)+' — '+sanitize(a.detail)+'</span>'+
+            '<span class="activity-time">'+formatTime(a.ts)+'</span></li>';
+        }).join("");
+  },
+  renderFeatures(){
+    const el=document.getElementById("adminFeatures");
+    el.innerHTML=Object.keys(DataEngine.features).map(key=>{
+      const f=DataEngine.features[key];
+      return '<div class="toggle-row"><div class="toggle-info">'+
+        '<span class="t-title">'+sanitize(f.label)+'</span>'+
+        '<span class="t-desc">'+sanitize(f.desc||"")+'</span></div>'+
+        '<label class="switch"><input type="checkbox" data-feature="'+key+'" '+(f.enabled?"checked":"")+'>'+
+        '<span class="slider"></span></label></div>';
+    }).join("");
+    el.querySelectorAll("[data-feature]").forEach(inp=>{
+      inp.addEventListener("change",()=>{
+        const key=inp.getAttribute("data-feature");
+        DataEngine.features[key].enabled=inp.checked;
+        DataEngine.setFeatures(DataEngine.features);
+        UIEngine.showToast(DataEngine.features[key].label+(inp.checked?" فعال شد.":" غیرفعال شد."),"success");
+      });
+    });
+  },
+  renderTiers(){
+    const el=document.getElementById("adminTiers");
+    el.innerHTML=Object.keys(DataEngine.tiers).map(id=>{
+      const t=DataEngine.tiers[id];
+      return '<div class="toggle-row"><div class="toggle-info">'+
+        '<span class="t-title"><span class="badge badge-'+id+'">'+t.label+'</span></span>'+
+        '<span class="t-desc">قیمت: '+(t.price===0?"رایگان":faNum(t.price)+" تومان/ماه")+
+        ' — سهمیه: '+(t.dailyLimit===-1?"نامحدود":t.dailyLimit+" در روز")+'</span></div>'+
+        '<div style="font-size:11.5px;color:var(--silver-4);max-width:200px;text-align:left;direction:ltr">'+
+        t.features.join(", ")+'</div></div>';
+    }).join("");
+  }
+};
+
+/* ═════════════ 3.12 BOOTSTRAP ═════════════ */
+function bootstrap(){
+  try{
+    if(!StorageEngine.check()){
+      alert("حافظه مرورگر در دسترس نیست. برخی قابلیت‌ها ممکن است کار نکنند.");
+    }
+    SecurityEngine.init();
+    DataEngine.init();
+    AutomationEngine.init();
+    UIEngine.init();
+    // Validate admin session freshness (24h)
+    if(SecurityEngine.isAdminSession()){
+      const sess=StorageEngine.get(CONFIG.storage.adminSession,null);
+      if(!sess || (Date.now()-sess.ts)>86400000) SecurityEngine.clearAdminSession();
+    }
+    // Restore animation preference
+    const anim=StorageEngine.get(CONFIG.storage.uiAnim,true);
+    document.body.classList.toggle("no-anim",!anim);
+    // Restore user session
+    if(DataEngine.currentUser()) UIEngine.showView("dashboard");
+    else UIEngine.showView("home");
+  }catch(err){
+    console.error("Bootstrap error:",err);
+    const el=document.createElement("div");
+    el.style.cssText="position:fixed;top:20px;left:20px;right:20px;padding:16px;background:#3a0a0a;color:#fff;border-radius:12px;z-index:9999;font-family:sans-serif;direction:rtl";
+    el.textContent="خطا در راه‌اندازی: "+(err&&err.message?err.message:"خطای ناشناخته");
+    document.body.appendChild(el);
+  }
+}
+
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",bootstrap);
+else bootstrap();
+</script>
+</body>
+</html>
