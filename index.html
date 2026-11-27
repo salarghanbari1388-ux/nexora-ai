@@ -7,15 +7,15 @@
 <title>NEXORA AI — Intelligence Beyond Limits</title>
 <style>
 :root{
-  --bg-0:#05080f; --bg-1:#0a1120; --bg-2:#0d1730;
-  --surface:rgba(18,26,44,.72); --surface-2:rgba(12,18,32,.6);
-  --border:rgba(78,231,255,.10); --border-2:rgba(78,231,255,.24);
+  --bg-0:#04070d; --bg-1:#080e1a; --bg-2:#0c1526;
+  --surface:rgba(16,24,42,.7); --surface-2:rgba(10,16,30,.6);
+  --border:rgba(78,231,255,.12); --border-2:rgba(78,231,255,.3);
   --cyan:#4ee7ff; --cyan-2:#6bb6ff; --gold:#e8c87a; --gold-2:#f5dc9c;
   --text:#eaf2ff; --text-2:#b0bfd8; --text-3:#6b7a94;
   --ok:#5df2b0; --warn:#ffb84d; --err:#ff8080;
-  --r:14px; --r-lg:20px;
-  --shadow:0 20px 40px -20px rgba(0,0,0,.9);
-  --glow:0 0 30px rgba(78,231,255,.18);
+  --r:14px; --r-lg:22px;
+  --shadow:0 24px 50px -20px rgba(0,0,0,.95);
+  --glow:0 0 40px rgba(78,231,255,.15);
   --font:"Vazirmatn","IRANSansX",system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -27,59 +27,71 @@ button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit
 input,textarea,select{font-family:inherit;font-size:inherit;color:inherit}
 ::selection{background:rgba(78,231,255,.3);color:#fff}
 h1,h2,h3,h4,p{margin:0}
-::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:rgba(78,231,255,.16);border-radius:8px}
+::-webkit-scrollbar-thumb{background:rgba(78,231,255,.2);border-radius:6px}
 
-/* Background */
-.bg-stars{position:fixed;inset:0;z-index:-2;overflow:hidden;
+/* ════ CORE BACKGROUND ════ */
+.bg-layer{position:fixed;inset:0;z-index:-3;overflow:hidden;
   background:
-    radial-gradient(1200px 800px at 80% -10%,rgba(78,231,255,.10),transparent 60%),
-    radial-gradient(900px 700px at 10% 110%,rgba(232,200,122,.07),transparent 60%),
-    linear-gradient(180deg,#05080f 0%,#070d1b 50%,#05080f 100%)}
-.bg-star{position:absolute;width:2px;height:2px;border-radius:50%;
-  background:var(--cyan);animation:twinkle 5s ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:.12;transform:scale(.8)}50%{opacity:.7;transform:scale(1.5)}}
-.bg-glow{position:fixed;inset:0;z-index:-1;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(78,231,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(78,231,255,.025) 1px,transparent 1px);
-  background-size:64px 64px;
+    radial-gradient(1200px 800px at 80% -10%,rgba(78,231,255,.1),transparent 60%),
+    radial-gradient(900px 700px at 10% 110%,rgba(232,200,122,.08),transparent 60%),
+    linear-gradient(180deg,#04070d 0%,#080e1a 50%,#04070d 100%)}
+.bg-star{position:absolute;border-radius:50%;background:var(--cyan);
+  animation:twinkle 4s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.1;transform:scale(.8)}50%{opacity:.8;transform:scale(1.6)}}
+.bg-grid{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:linear-gradient(rgba(78,231,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(78,231,255,.03) 1px,transparent 1px);
+  background-size:70px 70px;
   -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 15%,transparent 75%);
   mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 15%,transparent 75%)}
+.bg-orb{position:fixed;border-radius:50%;filter:blur(80px);z-index:-1;pointer-events:none}
+.orb-1{width:400px;height:400px;top:-100px;right:-100px;background:rgba(78,231,255,.15);animation:float1 20s ease-in-out infinite alternate}
+.orb-2{width:350px;height:350px;bottom:-150px;left:-100px;background:rgba(232,200,122,.1);animation:float2 25s ease-in-out infinite alternate}
+@keyframes float1{to{transform:translate(-60px,60px)}}
+@keyframes float2{to{transform:translate(60px,-60px)}}
 
-/* ══════════ AUTH SCREEN ══════════ */
-.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;
-  overflow-y:auto}
-.auth-card{width:100%;max-width:440px;padding:34px 30px;
-  background:linear-gradient(145deg,rgba(18,26,44,.88),rgba(12,18,32,.75));
-  border:1px solid var(--border);border-radius:24px;
-  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
-  box-shadow:var(--shadow),var(--glow);animation:cardIn .5s ease both;margin:auto}
-@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+/* ════ GLASS CARD WITH GLOW ════ */
+.glass{position:relative;background:linear-gradient(145deg,rgba(16,24,42,.85),rgba(10,16,30,.65));
+  border:1px solid var(--border);border-radius:var(--r-lg);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  box-shadow:var(--shadow);transition:border-color .4s, box-shadow .4s;overflow:hidden}
+.glass::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg,transparent 0deg,transparent 340deg,rgba(78,231,255,.4) 360deg);
+  animation:rotateGlow 8s linear infinite;opacity:0;transition:opacity .4s;z-index:0}
+.glass:hover::before{opacity:1}
+.glass::after{content:"";position:absolute;inset:1px;background:inherit;border-radius:calc(var(--r-lg) - 1px);z-index:1}
+.glass>*{position:relative;z-index:2}
+@keyframes rotateGlow{to{transform:rotate(360deg)}}
+
+/* ════ AUTH SCREEN ════ */
+.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;overflow-y:auto}
+.auth-card{width:100%;max-width:440px;padding:36px 30px;margin:auto;animation:cardIn .6s cubic-bezier(.2,.7,.3,1) both}
+@keyframes cardIn{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
 .brand-lockup{display:flex;align-items:center;gap:14px;margin-bottom:28px}
-.brand-n{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
-  font-size:24px;font-weight:900;color:#05080f;
+.brand-n{width:50px;height:50px;border-radius:15px;display:grid;place-items:center;
+  font-size:26px;font-weight:900;color:#04070d;
   background:linear-gradient(135deg,var(--cyan),var(--gold));
-  box-shadow:0 0 40px rgba(78,231,255,.4)}
-.brand-title{font-size:18px;font-weight:800;letter-spacing:.05em;line-height:1.2}
+  box-shadow:0 0 40px rgba(78,231,255,.5)}
+.brand-title{font-size:19px;font-weight:800;letter-spacing:.05em;line-height:1.2}
 .brand-title span{background:linear-gradient(135deg,var(--cyan),var(--gold));
   -webkit-background-clip:text;background-clip:text;color:transparent}
-.brand-sub{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
-.auth-tabs{display:flex;gap:6px;padding:4px;background:rgba(0,0,0,.35);
-  border:1px solid var(--border);border-radius:12px;margin-bottom:22px}
-.auth-tab{flex:1;padding:10px;border-radius:9px;font-size:12.5px;font-weight:700;
+.brand-sub{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-3);margin-top:3px}
+.auth-tabs{display:flex;gap:6px;padding:4px;background:rgba(0,0,0,.4);
+  border:1px solid var(--border);border-radius:14px;margin-bottom:22px}
+.auth-tab{flex:1;padding:10px;border-radius:10px;font-size:12.5px;font-weight:700;
   color:var(--text-3);transition:.25s}
-.auth-tab.active{color:#05080f;background:linear-gradient(135deg,var(--cyan),var(--cyan-2));
-  box-shadow:0 4px 12px -4px rgba(78,231,255,.6)}
-.field{margin-bottom:14px}
+.auth-tab.active{color:#04070d;background:linear-gradient(135deg,var(--cyan),var(--cyan-2));
+  box-shadow:0 4px 15px -4px rgba(78,231,255,.7)}
+.field{margin-bottom:16px}
 .field label{display:block;font-size:11.5px;font-weight:700;color:var(--text-3);
   margin-bottom:7px;letter-spacing:.03em}
-.field input,.field select,.field textarea{width:100%;padding:12px 14px;border-radius:12px;
-  background:rgba(0,0,0,.32);border:1px solid var(--border);color:var(--text);
+.field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:12px;
+  background:rgba(0,0,0,.35);border:1px solid var(--border);color:var(--text);
   outline:none;transition:.25s;font-size:13.5px}
 .field input:focus,.field select:focus,.field textarea:focus{
-  border-color:var(--cyan);box-shadow:0 0 0 3px rgba(78,231,255,.1)}
+  border-color:var(--cyan);box-shadow:0 0 0 3px rgba(78,231,255,.15),inset 0 0 20px rgba(78,231,255,.05)}
 .field input::placeholder,.field textarea::placeholder{color:var(--text-3)}
 .field textarea{resize:vertical;min-height:90px;line-height:1.8}
 .field select{appearance:none;-webkit-appearance:none;
@@ -87,412 +99,334 @@ h1,h2,h3,h4,p{margin:0}
     linear-gradient(135deg,var(--text-3) 50%,transparent 50%);
   background-position:calc(0% + 14px) calc(50% - 2px),calc(0% + 19px) calc(50% - 2px);
   background-size:5px 5px;background-repeat:no-repeat;padding-left:32px}
-.field select option{background:#0a1120;color:var(--text)}
+.field select option{background:#0c1526;color:var(--text)}
 .field-hint{font-size:11px;color:var(--text-3);margin-top:6px}
 .auth-error{padding:10px 14px;border-radius:10px;background:rgba(255,128,128,.08);
   border:1px solid rgba(255,128,128,.3);color:#ffb0b0;font-size:12px;
   line-height:1.7;margin-bottom:14px;animation:cardIn .25s ease both}
-.auth-foot{margin-top:22px;text-align:center;font-size:10.5px;color:var(--text-3);
-  letter-spacing:.15em;text-transform:uppercase}
+.auth-foot{margin-top:24px;text-align:center;font-size:11px;color:var(--text-3);
+  letter-spacing:.15em;position:relative;padding:10px 0}
+/* Secret dot on login screen */
+.auth-secret-trigger{position:absolute;width:100%;height:100%;top:0;left:0;cursor:pointer;z-index:10}
+.auth-secret-dot{position:absolute;bottom:6px;right:calc(50% + 30px);width:5px;height:5px;
+  border-radius:50%;background:radial-gradient(circle,var(--gold),transparent 70%);
+  opacity:.3;transition:opacity .3s;pointer-events:none}
+.auth-secret-trigger:hover~.auth-secret-dot{opacity:.8}
 
-/* ══════════ BUTTONS ══════════ */
+/* ════ BUTTONS ════ */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:11px 20px;border-radius:12px;font-size:13.5px;font-weight:700;
+  padding:12px 22px;border-radius:12px;font-size:13.5px;font-weight:700;
   transition:transform .15s,box-shadow .25s,background .25s,border-color .25s,opacity .2s;
-  white-space:nowrap;user-select:none}
-.btn:active{transform:scale(.97)}
+  white-space:nowrap;user-select:none;position:relative;overflow:hidden}
+.btn:active{transform:scale(.96)}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--cyan-2));color:#05080f;
-  box-shadow:0 8px 24px -8px rgba(78,231,255,.55)}
-.btn-primary:hover:not(:disabled){box-shadow:0 12px 30px -8px rgba(78,231,255,.75)}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),var(--cyan-2));color:#04070d;
+  box-shadow:0 8px 24px -8px rgba(78,231,255,.6)}
+.btn-primary::after{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
+  transition:left .5s}
+.btn-primary:hover::after{left:100%}
+.btn-primary:hover:not(:disabled){box-shadow:0 12px 30px -8px rgba(78,231,255,.8)}
 .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1408;
-  box-shadow:0 8px 24px -8px rgba(232,200,122,.5)}
+  box-shadow:0 8px 24px -8px rgba(232,200,122,.6)}
 .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--border-2);color:var(--text)}
-.btn-ghost:hover:not(:disabled){background:rgba(78,231,255,.08);border-color:var(--cyan)}
-.btn-danger{background:linear-gradient(135deg,#ff7b7b,#ff5566);color:#fff;
-  box-shadow:0 8px 20px -8px rgba(255,80,100,.5)}
+.btn-ghost:hover:not(:disabled){background:rgba(78,231,255,.1);border-color:var(--cyan);box-shadow:var(--glow)}
+.btn-danger{background:linear-gradient(135deg,#ff7b7b,#ff5566);color:#fff;box-shadow:0 8px 20px -8px rgba(255,80,100,.5)}
 .btn-sm{padding:8px 14px;font-size:12px;border-radius:10px}
 .btn-block{width:100%}
-.btn-icon{padding:8px;width:36px;height:36px;border-radius:10px}
 
-/* ══════════ APP SHELL ══════════ */
-.app-shell{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
-.sidebar{background:rgba(8,12,24,.75);border-left:1px solid var(--border);
-  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
-  padding:20px 14px;display:flex;flex-direction:column;gap:20px;
+/* ════ APP SHELL ════ */
+.app-shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.sidebar{background:rgba(8,12,24,.8);border-left:1px solid var(--border);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  padding:22px 16px;display:flex;flex-direction:column;gap:24px;
   position:sticky;top:0;height:100vh;overflow-y:auto}
 .sidebar-head{display:flex;align-items:center;gap:10px;padding:4px 6px}
-.brand-n.small{width:34px;height:34px;border-radius:10px;font-size:16px;
-  box-shadow:0 0 20px rgba(78,231,255,.3)}
-.brand-title.small{font-size:14px}
-.brand-sub.small{font-size:8px;margin-top:1px}
+.brand-n.small{width:36px;height:36px;border-radius:11px;font-size:17px;box-shadow:0 0 25px rgba(78,231,255,.4)}
+.brand-title.small{font-size:15px}
+.brand-sub.small{font-size:8.5px;margin-top:1px}
 .nav{display:flex;flex-direction:column;gap:4px;flex:1}
-.nav-item{display:flex;align-items:center;gap:11px;padding:11px 13px;border-radius:11px;
+.nav-item{display:flex;align-items:center;gap:11px;padding:12px 14px;border-radius:12px;
   color:var(--text-2);font-size:13px;font-weight:600;transition:.25s;text-align:right;
   position:relative;border:1px solid transparent}
-.nav-item i{font-style:normal;font-size:15px;width:20px;text-align:center;
+.nav-item i{font-style:normal;font-size:16px;width:22px;text-align:center;
   color:var(--text-3);transition:.25s}
 .nav-item:hover{background:rgba(78,231,255,.06);color:var(--text)}
-.nav-item:hover i{color:var(--cyan)}
-.nav-item.active{background:linear-gradient(90deg,rgba(78,231,255,.14),rgba(78,231,255,.04));
-  color:var(--text);border-color:var(--border-2);box-shadow:inset 3px 0 0 var(--cyan)}
-.nav-item.active i{color:var(--cyan);text-shadow:0 0 12px var(--cyan)}
-.nav-item .badge-count{margin-right:auto;background:var(--cyan);color:#05080f;
-  font-size:10px;font-weight:800;padding:1px 7px;border-radius:99px;min-width:18px;text-align:center}
-.sidebar-foot{padding-top:12px;border-top:1px solid var(--border);display:flex;
+.nav-item:hover i{color:var(--cyan);text-shadow:0 0 10px rgba(78,231,255,.5)}
+.nav-item.active{background:linear-gradient(90deg,rgba(78,231,255,.16),rgba(78,231,255,.04));
+  color:var(--text);border-color:var(--border-2);box-shadow:inset 3px 0 0 var(--cyan),0 0 20px -8px rgba(78,231,255,.4)}
+.nav-item.active i{color:var(--cyan);text-shadow:0 0 15px var(--cyan)}
+.nav-item .badge-count{margin-right:auto;background:var(--cyan);color:#04070d;
+  font-size:10px;font-weight:800;padding:2px 8px;border-radius:99px;min-width:20px;text-align:center}
+.sidebar-foot{padding-top:14px;border-top:1px solid var(--border);display:flex;
   flex-direction:column;gap:10px;position:relative}
-.user-chip{display:flex;align-items:center;gap:10px;padding:8px;border-radius:11px;
-  background:rgba(255,255,255,.03);border:1px solid var(--border)}
-.avatar{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;
-  font-size:14px;font-weight:800;color:#05080f;flex-shrink:0;
+.user-chip{display:flex;align-items:center;gap:10px;padding:9px;border-radius:12px;
+  background:rgba(255,255,255,.03);border:1px solid var(--border);transition:.25s}
+.user-chip:hover{border-color:var(--border-2);background:rgba(255,255,255,.05)}
+.avatar{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;
+  font-size:15px;font-weight:800;color:#04070d;flex-shrink:0;
   background:linear-gradient(135deg,var(--cyan),var(--gold))}
 .user-meta{flex:1;min-width:0}
 .user-name{font-size:12.5px;font-weight:700;color:var(--text);white-space:nowrap;
   overflow:hidden;text-overflow:ellipsis}
-.user-tier{font-size:10px;color:var(--text-3);margin-top:1px}
-.logout-link{padding:8px;border-radius:10px;font-size:11.5px;color:var(--text-3);
-  text-align:center;transition:.25s}
-.logout-link:hover{background:rgba(255,128,128,.08);color:var(--err)}
-.version{font-size:9.5px;color:var(--text-3);text-align:center;letter-spacing:.1em;
-  padding:4px;position:relative;user-select:none}
+.user-tier{font-size:10px;color:var(--text-3);margin-top:2px}
+.logout-link{padding:9px;border-radius:10px;font-size:11.5px;color:var(--text-3);
+  text-align:center;transition:.25s;cursor:pointer}
+.logout-link:hover{background:rgba(255,128,128,.1);color:var(--err)}
+.version{font-size:10px;color:var(--text-3);text-align:center;letter-spacing:.1em;
+  padding:5px;position:relative;user-select:none}
 
-/* Secret dot for admin access */
-.secret-dot{position:absolute;width:5px;height:5px;border-radius:50%;
+/* Admin dot in sidebar */
+.secret-dot{position:absolute;width:6px;height:6px;border-radius:50%;
   background:radial-gradient(circle,var(--gold),transparent 70%);
-  opacity:.18;left:8px;top:50%;transform:translateY(-50%);
+  opacity:.25;left:8px;top:50%;transform:translateY(-50%);
   cursor:pointer;transition:opacity .3s;z-index:5}
-.secret-dot:hover{opacity:.6}
+.secret-dot:hover{opacity:.9}
 
-/* Mobile nav */
+/* Mobile */
 .mobile-top{display:none}
-
-/* Main content */
-.main-content{padding:32px 36px;max-width:1400px;margin:0 auto;width:100%;min-width:0}
-.page-head{display:flex;align-items:flex-start;justify-content:space-between;
-  gap:16px;margin-bottom:26px;flex-wrap:wrap}
-.page-title{font-size:24px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
-.page-sub{font-size:12.5px;color:var(--text-3);margin-top:5px}
-.page-actions{display:flex;gap:8px;flex-wrap:wrap}
-
-/* ══════════ CARDS ══════════ */
-.card{background:linear-gradient(145deg,rgba(18,26,44,.72),rgba(12,18,32,.55));
-  border:1px solid var(--border);border-radius:var(--r-lg);padding:20px;
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-  box-shadow:var(--shadow);margin-bottom:16px;transition:border-color .3s}
-.card:hover{border-color:var(--border-2)}
-.card-head{display:flex;align-items:center;justify-content:space-between;
-  gap:12px;margin-bottom:16px}
-.card-title{font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px;
-  color:var(--text)}
-.card-title svg{width:16px;height:16px;stroke:var(--cyan);fill:none;stroke-width:1.8;
-  stroke-linecap:round;stroke-linejoin:round}
-
-/* KPI grid */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:14px;margin-bottom:22px}
-.kpi{position:relative;padding:18px 18px 16px;border-radius:var(--r-lg);
-  background:linear-gradient(145deg,rgba(18,26,44,.8),rgba(12,18,32,.6));
-  border:1px solid var(--border);overflow:hidden;
-  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-  transition:transform .3s,border-color .3s}
-.kpi::before{content:"";position:absolute;top:-40px;left:-40px;width:120px;height:120px;
-  border-radius:50%;background:radial-gradient(circle,rgba(78,231,255,.15),transparent 70%);
-  opacity:.5;pointer-events:none}
-.kpi:hover{transform:translateY(-3px);border-color:var(--border-2)}
-.kpi-label{font-size:11px;color:var(--text-3);letter-spacing:.04em;
-  margin-bottom:6px;font-weight:600}
-.kpi-value{font-size:22px;font-weight:900;letter-spacing:-.02em;
-  font-variant-numeric:tabular-nums;line-height:1.2}
-.kpi-value.cyan{color:var(--cyan)}
-.kpi-value.gold{color:var(--gold)}
-.kpi-value.ok{color:var(--ok)}
-.kpi-value.err{color:var(--err)}
-.kpi-meta{font-size:11px;color:var(--text-3);margin-top:6px}
-.kpi-icon{position:absolute;top:14px;left:14px;font-size:20px;opacity:.5}
-
-/* Charts */
-.chart-wrap{background:rgba(0,0,0,.2);border-radius:12px;padding:16px;
-  border:1px solid var(--border);margin-top:8px}
-.chart-svg{width:100%;height:auto;display:block;max-height:240px}
-
-/* Bar chart */
-.bars{display:flex;align-items:flex-end;gap:3px;height:120px;
-  padding:0 4px;border-bottom:1px solid var(--border)}
-.bar{flex:1;min-width:4px;border-radius:3px 3px 0 0;transition:opacity .2s;
-  position:relative;cursor:default;min-height:2px}
-.bar-income{background:linear-gradient(180deg,var(--cyan),rgba(78,231,255,.4))}
-.bar-expense{background:linear-gradient(180deg,var(--err),rgba(255,128,128,.3))}
-.bar:hover{opacity:.75}
-.bar-labels{display:flex;justify-content:space-between;margin-top:8px;
-  font-size:9.5px;color:var(--text-3)}
-
-/* ══════════ TABLES ══════════ */
-.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);
-  background:rgba(0,0,0,.15)}
-.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:600px}
-.data-table thead{background:rgba(78,231,255,.06)}
-.data-table th{padding:11px 13px;text-align:right;font-weight:800;
-  font-size:11px;letter-spacing:.04em;color:var(--text-2);
-  border-bottom:1px solid var(--border-2);white-space:nowrap}
-.data-table td{padding:11px 13px;border-bottom:1px solid var(--border);
-  color:var(--text-2);vertical-align:middle}
-.data-table tbody tr:last-child td{border-bottom:0}
-.data-table tbody tr:hover{background:rgba(78,231,255,.03)}
-.data-table .name-cell{color:var(--text);font-weight:700}
-.data-table .actions{display:flex;gap:5px;flex-wrap:wrap}
-.tiny-btn{padding:4px 10px;border-radius:7px;font-size:10.5px;font-weight:700;
-  border:1px solid var(--border-2);background:rgba(255,255,255,.04);
-  color:var(--text-2);transition:.2s;white-space:nowrap}
-.tiny-btn:hover{background:rgba(78,231,255,.1);color:var(--cyan);border-color:var(--cyan)}
-.tiny-btn.danger{border-color:rgba(255,128,128,.3);color:#ffb0b0}
-.tiny-btn.danger:hover{background:rgba(255,128,128,.12);border-color:var(--err);color:var(--err)}
-.tiny-btn.ok{border-color:rgba(93,242,176,.3);color:#b9ecd8}
-.tiny-btn.ok:hover{background:rgba(93,242,176,.12);border-color:var(--ok);color:var(--ok)}
-
-/* Badges */
-.badge{display:inline-block;padding:3px 10px;border-radius:99px;
-  font-size:10.5px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
-.badge-free{background:rgba(140,170,255,.14);color:#b8c4dc;border:1px solid rgba(140,170,255,.3)}
-.badge-pro{background:rgba(78,231,255,.14);color:var(--cyan);border:1px solid rgba(78,231,255,.4)}
-.badge-enterprise{background:rgba(232,200,122,.14);color:var(--gold);border:1px solid rgba(232,200,122,.4)}
-.badge-pending{background:rgba(255,184,77,.14);color:var(--warn);border:1px solid rgba(255,184,77,.35)}
-.badge-approved{background:rgba(93,242,176,.14);color:var(--ok);border:1px solid rgba(93,242,176,.35)}
-.badge-rejected{background:rgba(255,128,128,.14);color:var(--err);border:1px solid rgba(255,128,128,.35)}
-.badge-blocked{background:rgba(255,128,128,.14);color:#ffb0b0;border:1px solid rgba(255,128,128,.35)}
-
-/* ══════════ CHAT (Accountant) ══════════ */
-.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 180px);
-  min-height:400px;max-height:780px;border-radius:var(--r-lg);
-  overflow:hidden;background:linear-gradient(145deg,rgba(18,26,44,.8),rgba(12,18,32,.6));
-  border:1px solid var(--border);box-shadow:var(--shadow)}
-.chat-head{padding:14px 18px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:10px;background:rgba(78,231,255,.04)}
-.chat-head-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);
-  box-shadow:0 0 12px var(--ok);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
-.chat-head-title{font-size:13px;font-weight:800}
-.chat-head-sub{font-size:11px;color:var(--text-3)}
-.chat-body{flex:1;overflow-y:auto;padding:18px;display:flex;
-  flex-direction:column;gap:12px;scroll-behavior:smooth}
-.msg{display:flex;gap:9px;max-width:88%;animation:msgIn .3s ease both}
-@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.msg.user{margin-right:auto;flex-direction:row-reverse}
-.msg.bot{margin-left:auto}
-.msg-avatar{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;
-  font-size:12px;font-weight:800;flex-shrink:0}
-.msg.bot .msg-avatar{background:linear-gradient(135deg,var(--cyan),var(--gold));color:#05080f}
-.msg.user .msg-avatar{background:rgba(255,255,255,.08);color:var(--text)}
-.msg-bubble{padding:11px 15px;border-radius:14px;font-size:13.5px;line-height:1.9;
-  white-space:pre-wrap;word-break:break-word}
-.msg.bot .msg-bubble{background:rgba(78,231,255,.07);border:1px solid var(--border-2);
-  border-top-right-radius:4px}
-.msg.user .msg-bubble{background:linear-gradient(135deg,rgba(78,231,255,.9),rgba(107,182,255,.9));
-  color:#05080f;font-weight:600;border-top-left-radius:4px}
-.chat-typing{display:inline-flex;gap:4px;padding:14px 16px}
-.chat-typing span{width:7px;height:7px;border-radius:50%;
-  background:linear-gradient(135deg,var(--cyan),var(--gold));
-  animation:typingBounce 1.2s infinite}
-.chat-typing span:nth-child(2){animation-delay:.15s}
-.chat-typing span:nth-child(3){animation-delay:.3s}
-@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.4}
-  30%{transform:translateY(-6px);opacity:1}}
-.chat-input-wrap{padding:12px;border-top:1px solid var(--border);
-  display:flex;gap:8px;background:rgba(0,0,0,.2)}
-.chat-input{flex:1;padding:11px 16px;border-radius:12px;
-  background:rgba(0,0,0,.35);border:1px solid var(--border);color:var(--text);
-  outline:none;resize:none;font-size:13.5px;line-height:1.6;
-  max-height:120px;min-height:44px;transition:.25s;font-family:inherit}
-.chat-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(78,231,255,.08)}
-.chat-send{padding:0 18px;border-radius:12px;
-  background:linear-gradient(135deg,var(--cyan),var(--cyan-2));color:#05080f;
-  font-weight:800;font-size:13px;transition:.2s;white-space:nowrap}
-.chat-send:disabled{opacity:.4;cursor:not-allowed}
-
-/* ══════════ FORECAST ══════════ */
-.forecast-scenarios{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:12px;margin:16px 0}
-.scenario{padding:16px;border-radius:14px;border:1px solid var(--border);
-  background:rgba(0,0,0,.2)}
-.scenario.optimistic{border-color:rgba(93,242,176,.3);
-  background:linear-gradient(145deg,rgba(93,242,176,.06),transparent)}
-.scenario.realistic{border-color:rgba(78,231,255,.3);
-  background:linear-gradient(145deg,rgba(78,231,255,.06),transparent)}
-.scenario.pessimistic{border-color:rgba(255,128,128,.3);
-  background:linear-gradient(145deg,rgba(255,128,128,.06),transparent)}
-.scenario-label{font-size:11px;font-weight:700;color:var(--text-3);
-  margin-bottom:6px;letter-spacing:.03em}
-.scenario-value{font-size:18px;font-weight:900;font-variant-numeric:tabular-nums}
-.scenario-desc{font-size:11px;color:var(--text-3);margin-top:4px;line-height:1.7}
-.confidence-bar{height:6px;background:rgba(255,255,255,.06);
-  border-radius:99px;overflow:hidden;margin:10px 0}
-.confidence-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));
-  border-radius:99px;transition:width .6s ease}
-.reason-list{list-style:none;padding:0;margin:0;display:flex;
-  flex-direction:column;gap:8px}
-.reason-list li{padding:10px 12px;background:rgba(78,231,255,.04);
-  border-radius:10px;border:1px solid var(--border);font-size:12.5px;
-  line-height:1.8;color:var(--text-2)}
-.reason-list li::before{content:"›";color:var(--cyan);margin-left:8px;
-  font-weight:900;font-size:15px}
-
-/* ══════════ SUBSCRIPTION ══════════ */
-.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:14px;margin:20px 0}
-.tier-card{padding:24px 20px;border-radius:var(--r-lg);
-  background:linear-gradient(145deg,rgba(18,26,44,.75),rgba(12,18,32,.55));
-  border:1px solid var(--border);position:relative;overflow:hidden;
-  transition:transform .3s,border-color .3s}
-.tier-card:hover{transform:translateY(-4px);border-color:var(--border-2)}
-.tier-card.featured{border-color:rgba(232,200,122,.4);
-  box-shadow:0 0 50px -10px rgba(232,200,122,.4)}
-.tier-card.featured::before{content:"محبوب";position:absolute;top:12px;left:12px;
-  font-size:9.5px;padding:3px 10px;border-radius:99px;font-weight:800;
-  background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1408}
-.tier-card.current{border-color:rgba(78,231,255,.5);
-  box-shadow:0 0 40px -12px rgba(78,231,255,.4)}
-.tier-card.current::after{content:"فعلی";position:absolute;top:12px;left:12px;
-  font-size:9.5px;padding:3px 10px;border-radius:99px;font-weight:800;
-  background:rgba(78,231,255,.2);color:var(--cyan);border:1px solid var(--cyan)}
-.tier-name{font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--text-3);font-weight:800;margin-bottom:8px}
-.tier-price{font-size:26px;font-weight:900;line-height:1.2;margin-bottom:4px}
-.tier-price small{font-size:12px;font-weight:500;color:var(--text-3)}
-.tier-desc{font-size:12px;color:var(--text-3);margin-bottom:16px;line-height:1.85}
-.tier-features{list-style:none;padding:0;margin:0 0 16px;
-  display:flex;flex-direction:column;gap:8px;min-height:100px}
-.tier-features li{font-size:12.5px;color:var(--text-2);padding-right:20px;
-  position:relative;line-height:1.85}
-.tier-features li::before{content:"✓";position:absolute;right:0;
-  color:var(--ok);font-weight:900}
-
-/* Receipt preview */
-.receipt-preview{max-width:100%;max-height:400px;border-radius:10px;
-  border:1px solid var(--border);margin-top:10px;display:block}
-.receipt-thumb{width:60px;height:60px;object-fit:cover;border-radius:8px;
-  border:1px solid var(--border-2);cursor:pointer;transition:.2s}
-.receipt-thumb:hover{border-color:var(--cyan);transform:scale(1.05)}
-
-/* ══════════ ADMIN ══════════ */
-.admin-banner{padding:14px 18px;border-radius:12px;
-  background:linear-gradient(135deg,rgba(232,200,122,.1),rgba(78,231,255,.05));
-  border:1px solid rgba(232,200,122,.3);margin-bottom:20px;
-  font-size:12.5px;color:var(--gold-2);line-height:1.85}
-
-/* ══════════ MODAL ══════════ */
-.modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;
-  justify-content:center;padding:20px;background:rgba(2,4,12,.85);
-  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
-  animation:fadeIn .2s ease}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.modal-card{width:100%;max-width:420px;padding:24px 22px 20px;border-radius:var(--r-lg);
-  background:linear-gradient(165deg,rgba(20,30,60,.97),rgba(9,15,34,.98));
-  border:1px solid var(--border-2);box-shadow:0 30px 70px -20px #000;
-  animation:modalIn .3s cubic-bezier(.2,.7,.3,1);max-height:90vh;overflow-y:auto}
-@keyframes modalIn{from{opacity:0;transform:translateY(16px) scale(.96)}
-  to{opacity:1;transform:translateY(0) scale(1)}}
-.modal-card h3{font-size:16px;font-weight:800;margin-bottom:6px}
-.modal-sub{font-size:12px;color:var(--text-3);margin-bottom:18px;line-height:1.8}
-.modal-actions{display:flex;gap:10px;margin-top:16px}
-.modal-actions .btn{flex:1}
-.modal-close{position:absolute;top:12px;left:12px;width:30px;height:30px;
-  border-radius:8px;font-size:18px;color:var(--text-3);
-  display:grid;place-items:center;transition:.2s}
-.modal-close:hover{background:rgba(255,255,255,.06);color:var(--text)}
-.modal-card{position:relative}
-
-/* ══════════ WELCOME ══════════ */
-.welcome-overlay{position:fixed;inset:0;z-index:150;display:grid;place-items:center;
-  padding:20px;background:
-    radial-gradient(circle at 50% 40%,rgba(78,231,255,.15),transparent 55%),
-    radial-gradient(circle at 30% 80%,rgba(232,200,122,.1),transparent 55%),
-    rgba(5,8,15,.98);
-  animation:welcomeIn .6s ease both}
-@keyframes welcomeIn{from{opacity:0}to{opacity:1}}
-.welcome-content{text-align:center;max-width:600px;padding:20px}
-.welcome-mark{width:90px;height:90px;border-radius:24px;margin:0 auto 24px;
-  display:grid;place-items:center;font-size:40px;font-weight:900;color:#05080f;
-  background:linear-gradient(135deg,var(--cyan),var(--gold));
-  box-shadow:0 0 80px rgba(78,231,255,.5);
-  animation:welcomePop .7s .2s cubic-bezier(.2,.7,.3,1) both}
-@keyframes welcomePop{from{transform:scale(.3) rotate(-15deg);opacity:0}
-  to{transform:scale(1) rotate(0);opacity:1}}
-.welcome-hi{font-size:clamp(26px,6vw,42px);font-weight:800;margin-bottom:14px;
-  line-height:1.3;animation:welcomeRise .8s .4s ease both}
-.welcome-hi span{background:linear-gradient(135deg,var(--cyan),var(--gold));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.welcome-sub{font-size:15px;color:var(--text-2);margin-bottom:32px;line-height:2;
-  animation:welcomeRise .8s .6s ease both}
-.welcome-content .btn{padding:14px 40px;font-size:14px;
-  animation:welcomeRise .8s .8s ease both}
-@keyframes welcomeRise{from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}}
-
-/* ══════════ TOAST ══════════ */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
-  z-index:300;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:700;
-  background:linear-gradient(135deg,rgba(18,30,62,.98),rgba(10,17,38,.98));
-  border:1px solid rgba(78,231,255,.4);color:#dff2ff;
-  box-shadow:0 20px 50px -16px rgba(0,0,0,.95),0 0 30px rgba(78,231,255,.2);
-  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;
-  max-width:calc(100vw - 40px);text-align:center}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.success{border-color:rgba(93,242,176,.5);color:#d5fbea}
-.toast.error{border-color:rgba(255,128,128,.5);color:#ffd5cc}
-
-/* Utilities */
-.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.row-between{justify-content:space-between}
-.empty{padding:40px 20px;text-align:center;color:var(--text-3);font-size:13px;
-  line-height:1.9}
-.muted{color:var(--text-3);font-size:12px}
-.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;
-  direction:ltr;text-align:left}
-
-/* Responsive */
 @media(max-width:900px){
   .app-shell{grid-template-columns:1fr}
   .sidebar{display:none}
   .main-content{padding:78px 16px 90px}
   .mobile-top{display:flex;align-items:center;justify-content:space-between;
     gap:10px;padding:12px 16px;position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(8,12,24,.9);-webkit-backdrop-filter:blur(20px);
-    backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-  .mobile-nav{display:flex;justify-content:space-around;gap:2px;padding:8px 6px;
+    background:rgba(8,12,24,.94);-webkit-backdrop-filter:blur(24px);
+    backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+  .mobile-nav{display:flex;justify-content:space-around;gap:2px;padding:10px 6px;
     position:fixed;bottom:0;left:0;right:0;z-index:50;
-    background:rgba(8,12,24,.94);-webkit-backdrop-filter:blur(20px);
-    backdrop-filter:blur(20px);border-top:1px solid var(--border);
-    padding-bottom:calc(8px + env(safe-area-inset-bottom))}
+    background:rgba(8,12,24,.96);-webkit-backdrop-filter:blur(24px);
+    backdrop-filter:blur(24px);border-top:1px solid var(--border);
+    padding-bottom:calc(10px + env(safe-area-inset-bottom))}
   .mobile-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;
-    gap:3px;padding:7px 4px;border-radius:10px;font-size:9.5px;font-weight:700;
+    gap:3px;padding:8px 4px;border-radius:10px;font-size:9.5px;font-weight:700;
     color:var(--text-3);transition:.2s}
-  .mobile-nav-item i{font-style:normal;font-size:17px}
-  .mobile-nav-item.active{color:var(--cyan);background:rgba(78,231,255,.08)}
+  .mobile-nav-item i{font-style:normal;font-size:18px}
+  .mobile-nav-item.active{color:var(--cyan);background:rgba(78,231,255,.1)}
+  .mobile-nav-item.active i{text-shadow:0 0 10px var(--cyan)}
   .kpi-grid{grid-template-columns:1fr 1fr;gap:10px}
-  .kpi{padding:14px 14px 12px}
+  .kpi{padding:14px}
   .kpi-value{font-size:18px}
   .page-title{font-size:20px}
-  .chat-wrap{height:calc(100vh - 220px);max-height:none}
+  .chat-wrap{height:calc(100vh - 200px)}
   .tier-grid{grid-template-columns:1fr}
-  .data-table{font-size:11.5px;min-width:500px}
 }
-@media(max-width:480px){
-  .kpi-grid{grid-template-columns:1fr 1fr}
-  .kpi-value{font-size:16px}
-  .auth-card{padding:26px 20px}
-  .main-content{padding:72px 12px 88px}
-  .card{padding:16px}
-  .modal-card{padding:20px 18px}
-}
+.main-content{padding:34px 40px;max-width:1400px;margin:0 auto;width:100%;min-width:0}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.page-title{font-size:26px;font-weight:800;letter-spacing:-.01em;line-height:1.2}
+.page-sub{font-size:13px;color:var(--text-3);margin-top:6px}
+.page-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ════ CARDS & KPIs ════ */
+.card{padding:22px;margin-bottom:18px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.card-title{font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px;color:var(--text)}
+.card-title svg{width:17px;height:17px;stroke:var(--cyan);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px}
+.kpi{position:relative;padding:20px;border-radius:var(--r-lg);
+  background:linear-gradient(145deg,rgba(16,24,42,.8),rgba(10,16,30,.6));
+  border:1px solid var(--border);overflow:hidden;
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  transition:transform .3s,border-color .3s,box-shadow .3s}
+.kpi::before{content:"";position:absolute;top:-40px;left:-40px;width:120px;height:120px;
+  border-radius:50%;background:radial-gradient(circle,rgba(78,231,255,.2),transparent 70%);
+  opacity:.6;pointer-events:none;transition:opacity .3s}
+.kpi:hover{transform:translateY(-4px);border-color:var(--border-2);box-shadow:0 15px 30px -15px rgba(78,231,255,.3)}
+.kpi:hover::before{opacity:1}
+.kpi-label{font-size:11.5px;color:var(--text-3);letter-spacing:.04em;margin-bottom:8px;font-weight:600}
+.kpi-value{font-size:24px;font-weight:900;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1.2}
+.kpi-value.cyan{color:var(--cyan);text-shadow:0 0 20px rgba(78,231,255,.3)}
+.kpi-value.gold{color:var(--gold);text-shadow:0 0 20px rgba(232,200,122,.3)}
+.kpi-value.ok{color:var(--ok);text-shadow:0 0 20px rgba(93,242,176,.3)}
+.kpi-value.err{color:var(--err);text-shadow:0 0 20px rgba(255,128,128,.3)}
+.kpi-meta{font-size:11.5px;color:var(--text-3);margin-top:8px}
+.kpi-icon{position:absolute;top:16px;left:16px;font-size:22px;opacity:.6}
+
+/* ════ TABLES ════ */
+.table-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--border);background:rgba(0,0,0,.2)}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:600px}
+.data-table thead{background:rgba(78,231,255,.08)}
+.data-table th{padding:12px 14px;text-align:right;font-weight:800;font-size:11.5px;
+  letter-spacing:.04em;color:var(--text-2);border-bottom:1px solid var(--border-2);white-space:nowrap}
+.data-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:middle}
+.data-table tbody tr:last-child td{border-bottom:0}
+.data-table tbody tr:hover{background:rgba(78,231,255,.04)}
+.data-table .name-cell{color:var(--text);font-weight:700}
+.data-table .actions{display:flex;gap:6px;flex-wrap:wrap}
+.tiny-btn{padding:5px 11px;border-radius:8px;font-size:11px;font-weight:700;
+  border:1px solid var(--border-2);background:rgba(255,255,255,.04);
+  color:var(--text-2);transition:.2s;white-space:nowrap}
+.tiny-btn:hover{background:rgba(78,231,255,.12);color:var(--cyan);border-color:var(--cyan)}
+.tiny-btn.danger{border-color:rgba(255,128,128,.3);color:#ffb0b0}
+.tiny-btn.danger:hover{background:rgba(255,128,128,.15);border-color:var(--err);color:var(--err)}
+.tiny-btn.ok{border-color:rgba(93,242,176,.3);color:#b9ecd8}
+.tiny-btn.ok:hover{background:rgba(93,242,176,.15);border-color:var(--ok);color:var(--ok)}
+
+/* Badges */
+.badge{display:inline-block;padding:4px 11px;border-radius:99px;
+  font-size:11px;font-weight:800;letter-spacing:.02em;white-space:nowrap}
+.badge-free{background:rgba(140,170,255,.15);color:#b8c4dc;border:1px solid rgba(140,170,255,.35)}
+.badge-pro{background:rgba(78,231,255,.15);color:var(--cyan);border:1px solid rgba(78,231,255,.45)}
+.badge-enterprise{background:rgba(232,200,122,.15);color:var(--gold);border:1px solid rgba(232,200,122,.45)}
+.badge-pending{background:rgba(255,184,77,.15);color:var(--warn);border:1px solid rgba(255,184,77,.4)}
+.badge-approved{background:rgba(93,242,176,.15);color:var(--ok);border:1px solid rgba(93,242,176,.4)}
+.badge-rejected{background:rgba(255,128,128,.15);color:var(--err);border:1px solid rgba(255,128,128,.4)}
+.badge-blocked{background:rgba(255,128,128,.15);color:#ffb0b0;border:1px solid rgba(255,128,128,.4)}
+
+/* ════ CHAT (Consultant) ════ */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 200px);
+  min-height:450px;max-height:800px;border-radius:var(--r-lg);overflow:hidden;
+  background:linear-gradient(145deg,rgba(16,24,42,.85),rgba(10,16,30,.7));
+  border:1px solid var(--border);box-shadow:var(--shadow)}
+.chat-head{padding:16px 20px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;background:rgba(78,231,255,.05)}
+.chat-head-dot{width:10px;height:10px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 15px var(--ok);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.chat-head-title{font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px}
+.chat-head-title span{font-size:10px;background:rgba(78,231,255,.2);color:var(--cyan);
+  padding:2px 8px;border-radius:99px;border:1px solid rgba(78,231,255,.4)}
+.chat-head-sub{font-size:11.5px;color:var(--text-3);margin-top:2px}
+.chat-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+.msg{display:flex;gap:10px;max-width:85%;animation:msgIn .3s cubic-bezier(.2,.7,.3,1) both}
+@keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.msg.user{margin-right:auto;flex-direction:row-reverse}
+.msg.bot{margin-left:auto}
+.msg-avatar{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;
+  font-size:14px;font-weight:800;flex-shrink:0}
+.msg.bot .msg-avatar{background:linear-gradient(135deg,var(--cyan),var(--gold));color:#04070d;box-shadow:0 0 15px rgba(78,231,255,.3)}
+.msg.user .msg-avatar{background:rgba(255,255,255,.1);color:var(--text);border:1px solid var(--border-2)}
+.msg-bubble{padding:12px 16px;border-radius:16px;font-size:13.5px;line-height:1.95;
+  white-space:pre-wrap;word-break:break-word}
+.msg.bot .msg-bubble{background:rgba(78,231,255,.08);border:1px solid var(--border-2);border-top-right-radius:4px;color:var(--text)}
+.msg.user .msg-bubble{background:linear-gradient(135deg,rgba(78,231,255,.95),rgba(107,182,255,.95));
+  color:#04070d;font-weight:600;border-top-left-radius:4px;box-shadow:0 4px 15px -4px rgba(78,231,255,.5)}
+.chat-typing{display:inline-flex;gap:5px;padding:16px 18px}
+.chat-typing span{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--gold));animation:typingBounce 1.2s infinite}
+.chat-typing span:nth-child(2){animation-delay:.15s}
+.chat-typing span:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-7px);opacity:1}}
+.chat-input-wrap{padding:14px;border-top:1px solid var(--border);display:flex;gap:10px;background:rgba(0,0,0,.25)}
+.chat-input{flex:1;padding:12px 18px;border-radius:14px;background:rgba(0,0,0,.4);
+  border:1px solid var(--border);color:var(--text);outline:none;resize:none;font-size:13.5px;
+  line-height:1.6;max-height:120px;min-height:48px;transition:.25s;font-family:inherit}
+.chat-input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(78,231,255,.1),inset 0 0 20px rgba(78,231,255,.05)}
+.chat-send{padding:0 22px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--cyan-2));
+  color:#04070d;font-weight:800;font-size:13.5px;transition:.2s;white-space:nowrap}
+.chat-send:disabled{opacity:.4;cursor:not-allowed}
+
+/* ════ FORECAST ════ */
+.forecast-scenarios{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:18px 0}
+.scenario{padding:18px;border-radius:16px;border:1px solid var(--border);background:rgba(0,0,0,.25)}
+.scenario.optimistic{border-color:rgba(93,242,176,.35);background:linear-gradient(145deg,rgba(93,242,176,.08),transparent)}
+.scenario.realistic{border-color:rgba(78,231,255,.35);background:linear-gradient(145deg,rgba(78,231,255,.08),transparent)}
+.scenario.pessimistic{border-color:rgba(255,128,128,.35);background:linear-gradient(145deg,rgba(255,128,128,.08),transparent)}
+.scenario-label{font-size:11.5px;font-weight:700;color:var(--text-3);margin-bottom:8px;letter-spacing:.03em}
+.scenario-value{font-size:20px;font-weight:900;font-variant-numeric:tabular-nums}
+.scenario-desc{font-size:11.5px;color:var(--text-3);margin-top:6px;line-height:1.7}
+.confidence-bar{height:8px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:12px 0}
+.confidence-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--gold));border-radius:99px;transition:width .8s cubic-bezier(.2,.7,.3,1);box-shadow:0 0 15px rgba(78,231,255,.4)}
+.reason-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.reason-list li{padding:12px 14px;background:rgba(78,231,255,.05);border-radius:11px;
+  border:1px solid var(--border);font-size:13px;line-height:1.85;color:var(--text-2)}
+.reason-list li::before{content:"›";color:var(--cyan);margin-left:10px;font-weight:900;font-size:16px}
+
+/* ════ SUBSCRIPTION ════ */
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:22px 0}
+.tier-card{padding:26px 22px;border-radius:var(--r-lg);
+  background:linear-gradient(145deg,rgba(16,24,42,.8),rgba(10,16,30,.6));
+  border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
+.tier-card:hover{transform:translateY(-5px);border-color:var(--border-2);box-shadow:0 20px 40px -20px rgba(78,231,255,.3)}
+.tier-card.featured{border-color:rgba(232,200,122,.5);box-shadow:0 0 60px -15px rgba(232,200,122,.4)}
+.tier-card.featured::before{content:"محبوب";position:absolute;top:14px;left:14px;
+  font-size:10px;padding:4px 12px;border-radius:99px;font-weight:800;
+  background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#1a1408;box-shadow:0 0 15px rgba(232,200,122,.5)}
+.tier-card.current{border-color:rgba(78,231,255,.6);box-shadow:0 0 50px -10px rgba(78,231,255,.4)}
+.tier-card.current::after{content:"سطح فعلی شما";position:absolute;top:14px;left:14px;
+  font-size:10px;padding:4px 12px;border-radius:99px;font-weight:800;
+  background:rgba(78,231,255,.2);color:var(--cyan);border:1px solid var(--cyan)}
+.tier-name{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-3);font-weight:800;margin-bottom:10px}
+.tier-price{font-size:28px;font-weight:900;line-height:1.2;margin-bottom:6px}
+.tier-price small{font-size:12.5px;font-weight:500;color:var(--text-3)}
+.tier-desc{font-size:12.5px;color:var(--text-3);margin-bottom:18px;line-height:1.85}
+.tier-features{list-style:none;padding:0;margin:0 0 20px;display:flex;flex-direction:column;gap:10px;min-height:110px}
+.tier-features li{font-size:13px;color:var(--text-2);padding-right:24px;position:relative;line-height:1.85}
+.tier-features li::before{content:"✓";position:absolute;right:0;color:var(--ok);font-weight:900;font-size:14px;text-shadow:0 0 10px rgba(93,242,176,.4)}
+
+/* Receipt */
+.receipt-preview{max-width:100%;max-height:400px;border-radius:12px;border:1px solid var(--border);margin-top:12px;display:block;box-shadow:0 10px 30px -10px rgba(0,0,0,.8)}
+.receipt-thumb{width:64px;height:64px;object-fit:cover;border-radius:10px;border:1px solid var(--border-2);cursor:pointer;transition:.25s}
+.receipt-thumb:hover{border-color:var(--cyan);transform:scale(1.08);box-shadow:0 0 20px rgba(78,231,255,.3)}
+
+/* ════ ADMIN BANNER ════ */
+.admin-banner{padding:16px 20px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(232,200,122,.12),rgba(78,231,255,.06));
+  border:1px solid rgba(232,200,122,.35);margin-bottom:22px;font-size:13px;color:var(--gold-2);line-height:1.9}
+
+/* ════ MODAL ════ */
+.modal{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;
+  background:rgba(2,4,12,.85);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-card{width:100%;max-width:440px;padding:26px 24px 22px;border-radius:var(--r-lg);position:relative;
+  background:linear-gradient(165deg,rgba(20,30,60,.98),rgba(9,15,34,.99));
+  border:1px solid var(--border-2);box-shadow:0 40px 80px -20px #000;
+  animation:modalIn .3s cubic-bezier(.2,.7,.3,1);max-height:90vh;overflow-y:auto}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-card h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.modal-sub{font-size:12.5px;color:var(--text-3);margin-bottom:20px;line-height:1.85}
+.modal-actions{display:flex;gap:10px;margin-top:18px}
+.modal-actions .btn{flex:1}
+.modal-close{position:absolute;top:14px;left:14px;width:32px;height:32px;border-radius:9px;font-size:20px;
+  color:var(--text-3);display:grid;place-items:center;transition:.2s}
+.modal-close:hover{background:rgba(255,255,255,.08);color:var(--text)}
+
+/* ════ WELCOME ════ */
+.welcome-overlay{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:20px;
+  background:radial-gradient(circle at 50% 40%,rgba(78,231,255,.15),transparent 60%),
+    radial-gradient(circle at 30% 80%,rgba(232,200,122,.1),transparent 55%),rgba(4,7,13,.99);
+  animation:welcomeIn .6s ease both}
+@keyframes welcomeIn{from{opacity:0}to{opacity:1}}
+.welcome-content{text-align:center;max-width:600px;padding:20px}
+.welcome-mark{width:100px;height:100px;border-radius:28px;margin:0 auto 28px;
+  display:grid;place-items:center;font-size:44px;font-weight:900;color:#04070d;
+  background:linear-gradient(135deg,var(--cyan),var(--gold));
+  box-shadow:0 0 100px rgba(78,231,255,.5);animation:welcomePop .8s .2s cubic-bezier(.2,.7,.3,1) both}
+@keyframes welcomePop{from{transform:scale(.3) rotate(-15deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.welcome-hi{font-size:clamp(28px,6vw,44px);font-weight:800;margin-bottom:16px;line-height:1.3;animation:welcomeRise .8s .4s ease both}
+.welcome-hi span{background:linear-gradient(135deg,var(--cyan),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.welcome-sub{font-size:15.5px;color:var(--text-2);margin-bottom:36px;line-height:2;animation:welcomeRise .8s .6s ease both}
+.welcome-content .btn{padding:15px 44px;font-size:14.5px;animation:welcomeRise .8s .8s ease both}
+@keyframes welcomeRise{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+
+/* ════ TOAST ════ */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);z-index:300;
+  padding:14px 26px;border-radius:14px;font-size:13.5px;font-weight:700;
+  background:linear-gradient(135deg,rgba(18,30,62,.98),rgba(10,17,38,.98));
+  border:1px solid rgba(78,231,255,.5);color:#dff2ff;
+  box-shadow:0 20px 50px -16px rgba(0,0,0,.95),0 0 30px rgba(78,231,255,.2);
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;max-width:calc(100vw - 40px);text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{border-color:rgba(93,242,176,.6);color:#d5fbea;box-shadow:0 20px 50px -16px rgba(0,0,0,.95),0 0 30px rgba(93,242,176,.25)}
+.toast.error{border-color:rgba(255,128,128,.6);color:#ffd5cc;box-shadow:0 20px 50px -16px rgba(0,0,0,.95),0 0 30px rgba(255,128,128,.25)}
+
+/* Utilities */
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.row-between{justify-content:space-between}
+.empty{padding:44px 20px;text-align:center;color:var(--text-3);font-size:13.5px;line-height:1.9}
+.muted{color:var(--text-3);font-size:12px}
 </style>
 </head>
 <body>
 
-<div class="bg-stars" id="bgStars"></div>
-<div class="bg-glow"></div>
+<div class="bg-layer" id="bgLayer"></div>
+<div class="bg-grid"></div>
+<div class="orb-1 bg-orb"></div>
+<div class="orb-2 bg-orb"></div>
 
 <!-- ═══ AUTH SCREEN ═══ -->
 <div id="authScreen" class="auth-screen">
-  <div class="auth-card">
+  <div class="auth-card glass">
     <div class="brand-lockup">
       <div class="brand-n">N</div>
       <div>
@@ -507,29 +441,28 @@ h1,h2,h3,h4,p{margin:0}
     <form id="authForm" novalidate>
       <div class="field" id="authNameField" hidden>
         <label for="authName">نام کامل</label>
-        <input id="authName" name="name" type="text" maxlength="60"
-               placeholder="نام و نام خانوادگی" autocomplete="name">
+        <input id="authName" name="name" type="text" maxlength="60" placeholder="نام و نام خانوادگی" autocomplete="name">
       </div>
       <div class="field">
         <label for="authEmail">ایمیل</label>
-        <input id="authEmail" name="email" type="email" required
-               placeholder="you@example.com" autocomplete="email">
+        <input id="authEmail" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
       </div>
       <div class="field">
         <label for="authPassword">رمز عبور</label>
-        <input id="authPassword" name="password" type="password" required
-               minlength="6" placeholder="حداقل ۶ کاراکتر" autocomplete="current-password">
+        <input id="authPassword" name="password" type="password" required minlength="6" placeholder="حداقل ۶ کاراکتر" autocomplete="current-password">
       </div>
       <div class="auth-error" id="authError" hidden></div>
-      <button type="submit" class="btn btn-primary btn-block" id="authSubmit">
-        ورود به حساب
-      </button>
+      <button type="submit" class="btn btn-primary btn-block" id="authSubmit">ورود به حساب</button>
     </form>
-    <div class="auth-foot">© NEXORA AI · v2.0</div>
+    <div class="auth-foot" id="authFoot">
+      © NEXORA AI · v2.0
+      <div class="auth-secret-trigger" id="loginSecretTrigger" title=""></div>
+      <div class="auth-secret-dot"></div>
+    </div>
   </div>
 </div>
 
-<!-- ═══ WELCOME OVERLAY ═══ -->
+<!-- ═══ WELCOME ═══ -->
 <div id="welcomeOverlay" class="welcome-overlay" hidden>
   <div class="welcome-content">
     <div class="welcome-mark">N</div>
@@ -569,11 +502,10 @@ h1,h2,h3,h4,p{margin:0}
   <main class="main-content" id="mainContent">
     <div class="mobile-top">
       <div class="row">
-        <div class="brand-n small" style="width:28px;height:28px;font-size:13px">N</div>
-        <div class="brand-title small" style="font-size:13px">NEXORA <span>AI</span></div>
+        <div class="brand-n small" style="width:30px;height:30px;font-size:14px">N</div>
+        <div class="brand-title small" style="font-size:14px">NEXORA <span>AI</span></div>
       </div>
-      <button class="btn-icon btn-ghost" id="mobileLogout" type="button"
-              style="width:34px;height:34px" title="خروج">✕</button>
+      <button class="btn btn-ghost btn-sm" id="mobileLogout" type="button" style="padding:6px 12px;font-size:11px">خروج</button>
     </div>
     <div id="pageContent"></div>
   </main>
@@ -612,7 +544,6 @@ h1,h2,h3,h4,p{margin:0}
    NEXORA AI v2 — Single File Application
    ═══════════════════════════════════════════ */
 
-/* ─────────── 1. STORAGE ─────────── */
 const STORAGE_KEY = "nexora_v2_data";
 const ADMIN_PW = "152831321";
 
@@ -621,16 +552,10 @@ const DB = {
   load() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        this.data = JSON.parse(raw);
-      }
+      if (raw) this.data = JSON.parse(raw);
     } catch (e) { console.error("Load failed:", e); }
-    if (!this.data || typeof this.data !== "object") {
-      this.data = this.blank();
-    }
-    // Ensure all collections exist
-    ["users","subscriptions","transactions","products","priceHistory",
-     "activities"].forEach(k => {
+    if (!this.data || typeof this.data !== "object") this.data = this.blank();
+    ["users","subscriptions","transactions","products","priceHistory","activities"].forEach(k => {
       if (!Array.isArray(this.data[k])) this.data[k] = [];
     });
     if (!this.data.settings) this.data.settings = this.defaultSettings();
@@ -639,89 +564,58 @@ const DB = {
     return this.data;
   },
   blank() {
-    return {
-      users: [], subscriptions: [], transactions: [], products: [],
+    return { users: [], subscriptions: [], transactions: [], products: [],
       priceHistory: [], activities: [], settings: this.defaultSettings(),
-      session: null, adminSession: null
-    };
+      session: null, adminSession: null };
   },
   defaultSettings() {
-    return {
-      adminReportSchedule: "weekly",
-      autoReportsEnabled: false,
-      language: "fa",
-      animations: true
-    };
+    return { adminReportSchedule: "weekly", autoReportsEnabled: false, language: "fa", animations: true };
   },
   save() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
-      return true;
-    } catch (e) {
-      console.error("Save failed:", e);
-      return false;
-    }
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data)); return true; }
+    catch (e) { console.error("Save failed:", e); return false; }
   },
-  reset() {
-    localStorage.removeItem(STORAGE_KEY);
-    this.data = this.blank();
-  }
+  reset() { localStorage.removeItem(STORAGE_KEY); this.data = this.blank(); }
 };
 
-/* ─────────── 2. CRYPTO ─────────── */
 async function sha256(text) {
   const buf = new TextEncoder().encode(text);
   const hash = await crypto.subtle.digest("SHA-256", buf);
-  return Array.from(new Uint8Array(hash))
-    .map(b => b.toString(16).padStart(2, "0")).join("");
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 function genSalt() {
   const arr = new Uint8Array(16);
   crypto.getRandomValues(arr);
   return Array.from(arr).map(b => b.toString(16).padStart(2, "0")).join("");
 }
-async function hashPassword(pw, salt) {
-  return await sha256("nexora::v2::" + salt + "::" + pw);
-}
+async function hashPassword(pw, salt) { return await sha256("nexora::v2::" + salt + "::" + pw); }
 let ADMIN_HASH = null;
-async function initAdminHash() {
-  ADMIN_HASH = await sha256("nexora::admin::v2::" + ADMIN_PW);
-}
+async function initAdminHash() { ADMIN_HASH = await sha256("nexora::admin::v2::" + ADMIN_PW); }
 
-/* ─────────── 3. UTILITIES ─────────── */
 const $ = (s, r) => (r || document).querySelector(s);
 const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 const uid = (p) => (p || "id") + "_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
 
 function esc(s) {
-  return String(s == null ? "" : s)
-    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 function fmtNum(n) {
   if (n == null || isNaN(n)) return "—";
-  try { return Number(n).toLocaleString("fa-IR"); }
-  catch (e) { return String(n); }
+  try { return Number(n).toLocaleString("fa-IR"); } catch (e) { return String(n); }
 }
 function fmtMoney(n) { return fmtNum(n) + " تومان"; }
 function fmtDate(ts) {
   if (!ts) return "—";
-  try {
-    return new Date(ts).toLocaleDateString("fa-IR",
-      { year: "numeric", month: "2-digit", day: "2-digit" });
-  } catch (e) { return "—"; }
+  try { return new Date(ts).toLocaleDateString("fa-IR", { year: "numeric", month: "2-digit", day: "2-digit" }); }
+  catch (e) { return "—"; }
 }
 function fmtDateTime(ts) {
   if (!ts) return "—";
-  try {
-    return new Date(ts).toLocaleString("fa-IR",
-      { year: "numeric", month: "2-digit", day: "2-digit",
-        hour: "2-digit", minute: "2-digit" });
-  } catch (e) { return "—"; }
+  try { return new Date(ts).toLocaleString("fa-IR", { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit" }); }
+  catch (e) { return "—"; }
 }
-function todayKey() { return new Date().toISOString().slice(0, 10); }
 
-/* ─────────── 4. TOAST ─────────── */
 let _toastTimer = null;
 function toast(msg, type) {
   const el = $("#toast");
@@ -733,10 +627,9 @@ function toast(msg, type) {
   _toastTimer = setTimeout(() => {
     el.classList.remove("show");
     setTimeout(() => { el.hidden = true; }, 320);
-  }, 2400);
+  }, 2600);
 }
 
-/* ─────────── 5. MODAL HELPERS ─────────── */
 function openModal(id) { const el = $("#" + id); if (el) el.hidden = false; }
 function closeModal(id) { const el = $("#" + id); if (el) el.hidden = true; }
 function openGenericModal(html) {
@@ -746,7 +639,7 @@ function openGenericModal(html) {
 }
 function closeGenericModal() { closeModal("genericModal"); }
 
-/* ─────────── 6. AUTH ENGINE ─────────── */
+/* ─────────── AUTH ENGINE ─────────── */
 const Auth = {
   currentUser() {
     if (!DB.data.session) return null;
@@ -765,11 +658,8 @@ const Auth = {
     if (DB.data.users.some(u => u.email === email)) return { ok: false, error: "این ایمیل قبلاً ثبت شده است" };
     const salt = genSalt();
     const passwordHash = await hashPassword(password, salt);
-    const user = {
-      id: uid("u"), email, name, passwordHash, salt,
-      role: "user", tier: "free", tierExpiresAt: null,
-      blocked: false, createdAt: Date.now(), lastLogin: Date.now()
-    };
+    const user = { id: uid("u"), email, name, passwordHash, salt, role: "user", tier: "free",
+      tierExpiresAt: null, blocked: false, createdAt: Date.now(), lastLogin: Date.now() };
     DB.data.users.push(user);
     DB.data.session = { userId: user.id, ts: Date.now() };
     this.logActivity(user.id, "signup", "ثبت‌نام در پلتفرم");
@@ -807,39 +697,25 @@ const Auth = {
     return { ok: true };
   },
   logActivity(userId, type, detail) {
-    DB.data.activities.push({
-      id: uid("a"), userId, type, detail, createdAt: Date.now()
-    });
-    if (DB.data.activities.length > 1000) {
-      DB.data.activities = DB.data.activities.slice(-1000);
-    }
+    DB.data.activities.push({ id: uid("a"), userId, type, detail, createdAt: Date.now() });
+    if (DB.data.activities.length > 1000) DB.data.activities = DB.data.activities.slice(-1000);
   }
 };
 
-/* ─────────── 7. ADMIN ENGINE ─────────── */
+/* ─────────── ADMIN ENGINE ─────────── */
 const Admin = {
   secretClicks: 0,
   secretTimer: null,
-  loginAttempts: { count: 0, until: 0 },
-
   isLoggedIn() {
     const s = DB.data.adminSession;
     if (!s) return false;
     if (Date.now() - s.ts > 12 * 3600000) {
-      DB.data.adminSession = null;
-      DB.save();
-      return false;
+      DB.data.adminSession = null; DB.save(); return false;
     }
     return true;
   },
-  setSession() {
-    DB.data.adminSession = { ts: Date.now() };
-    DB.save();
-  },
-  clearSession() {
-    DB.data.adminSession = null;
-    DB.save();
-  },
+  setSession() { DB.data.adminSession = { ts: Date.now() }; DB.save(); },
+  clearSession() { DB.data.adminSession = null; DB.save(); },
   async verifyPassword(pw) {
     if (!ADMIN_HASH) await initAdminHash();
     const hash = await sha256("nexora::admin::v2::" + pw);
@@ -861,20 +737,16 @@ const Admin = {
     const users = DB.data.users;
     const approved = DB.data.subscriptions.filter(s => s.status === "approved");
     const revenue = approved.reduce((sum, s) => sum + (s.amount || 0), 0);
-    return {
-      totalUsers: users.length,
-      newUsers: users.filter(u => u.createdAt >= day7).length,
+    return { totalUsers: users.length, newUsers: users.filter(u => u.createdAt >= day7).length,
       activeUsers: users.filter(u => u.lastLogin >= day7).length,
       subscribedUsers: new Set(approved.map(s => s.userId)).size,
       unsubscribedUsers: users.filter(u => u.tier === "free").length,
       pendingSubs: DB.data.subscriptions.filter(s => s.status === "pending").length,
-      revenue,
-      totalTx: DB.data.transactions.length
-    };
+      revenue, totalTx: DB.data.transactions.length };
   }
 };
 
-/* ─────────── 8. DATA ENGINE ─────────── */
+/* ─────────── DATA ENGINE ─────────── */
 const Data = {
   addTransaction(tx) {
     const u = Auth.currentUser();
@@ -882,23 +754,16 @@ const Data = {
     if (!["income", "expense"].includes(tx.type)) return { ok: false, error: "نوع نامعتبر" };
     const amount = parseInt(tx.amount, 10);
     if (!Number.isFinite(amount) || amount <= 0) return { ok: false, error: "مبلغ باید مثبت باشد" };
-    const t = {
-      id: uid("t"), userId: u.id, type: tx.type, amount,
-      category: (tx.category || "").trim() || null,
-      description: (tx.description || "").trim() || null,
-      createdAt: Date.now()
-    };
+    const t = { id: uid("t"), userId: u.id, type: tx.type, amount,
+      category: (tx.category || "").trim() || null, description: (tx.description || "").trim() || null, createdAt: Date.now() };
     DB.data.transactions.push(t);
-    Auth.logActivity(u.id, "transaction",
-      (tx.type === "income" ? "درآمد" : "هزینه") + ": " + fmtMoney(amount));
+    Auth.logActivity(u.id, "transaction", (tx.type === "income" ? "درآمد" : "هزینه") + ": " + fmtMoney(amount));
     DB.save();
     return { ok: true, transaction: t };
   },
   userTransactions(userId, days) {
     const since = days ? Date.now() - days * 86400000 : 0;
-    return DB.data.transactions
-      .filter(t => t.userId === userId && t.createdAt >= since)
-      .sort((a, b) => b.createdAt - a.createdAt);
+    return DB.data.transactions.filter(t => t.userId === userId && t.createdAt >= since).sort((a, b) => b.createdAt - a.createdAt);
   },
   deleteTransaction(id) {
     const u = Auth.currentUser();
@@ -918,22 +783,14 @@ const Data = {
     const sellPrice = parseInt(p.sellPrice, 10) || 0;
     const stock = parseFloat(p.stock) || 0;
     if (buyPrice < 0 || sellPrice < 0 || stock < 0) return { ok: false, error: "مقادیر منفی مجاز نیست" };
-    const prod = {
-      id: uid("p"), userId: u.id, name, buyPrice, sellPrice, stock,
-      updatedAt: Date.now()
-    };
+    const prod = { id: uid("p"), userId: u.id, name, buyPrice, sellPrice, stock, updatedAt: Date.now() };
     DB.data.products.push(prod);
-    DB.data.priceHistory.push({
-      id: uid("ph"), productId: prod.id, buyPrice, sellPrice,
-      recordedAt: Date.now()
-    });
+    DB.data.priceHistory.push({ id: uid("ph"), productId: prod.id, buyPrice, sellPrice, recordedAt: Date.now() });
     Auth.logActivity(u.id, "product_add", "کالای جدید: " + name);
     DB.save();
     return { ok: true, product: prod };
   },
-  userProducts(userId) {
-    return DB.data.products.filter(p => p.userId === userId);
-  },
+  userProducts(userId) { return DB.data.products.filter(p => p.userId === userId); },
   updateProduct(id, patch) {
     const u = Auth.currentUser();
     if (!u) return false;
@@ -945,10 +802,7 @@ const Data = {
     if (patch.stock != null) p.stock = parseFloat(patch.stock) || 0;
     p.updatedAt = Date.now();
     if (p.buyPrice !== oldBuy || p.sellPrice !== oldSell) {
-      DB.data.priceHistory.push({
-        id: uid("ph"), productId: p.id, buyPrice: p.buyPrice,
-        sellPrice: p.sellPrice, recordedAt: Date.now()
-      });
+      DB.data.priceHistory.push({ id: uid("ph"), productId: p.id, buyPrice: p.buyPrice, sellPrice: p.sellPrice, recordedAt: Date.now() });
     }
     DB.save();
     return true;
@@ -969,36 +823,25 @@ const Data = {
     if (!u) return { ok: false, error: "ابتدا وارد شوید" };
     const TIERS = { pro: { price: 299000 }, enterprise: { price: 999000 } };
     if (!TIERS[tier]) return { ok: false, error: "سطح نامعتبر" };
-    const pending = DB.data.subscriptions.find(
-      s => s.userId === u.id && s.status === "pending"
-    );
+    const pending = DB.data.subscriptions.find(s => s.userId === u.id && s.status === "pending");
     if (pending) return { ok: false, error: "شما یک درخواست در انتظار تأیید دارید" };
     if (!receiptData) return { ok: false, error: "تصویر رسید الزامی است" };
-    const sub = {
-      id: uid("s"), userId: u.id, tier, status: "pending",
-      amount: TIERS[tier].price, receipt: receiptData,
-      requestedAt: Date.now(), reviewedAt: null
-    };
+    const sub = { id: uid("s"), userId: u.id, tier, status: "pending", amount: TIERS[tier].price,
+      receipt: receiptData, requestedAt: Date.now(), reviewedAt: null };
     DB.data.subscriptions.push(sub);
     Auth.logActivity(u.id, "sub_request", "درخواست اشتراک " + tier);
     DB.save();
     return { ok: true, subscription: sub };
   },
   mySubscriptions(userId) {
-    return DB.data.subscriptions
-      .filter(s => s.userId === userId)
-      .sort((a, b) => b.requestedAt - a.requestedAt);
+    return DB.data.subscriptions.filter(s => s.userId === userId).sort((a, b) => b.requestedAt - a.requestedAt);
   },
   approveSubscription(id) {
     const sub = DB.data.subscriptions.find(s => s.id === id);
     if (!sub || sub.status !== "pending") return { ok: false, error: "درخواست معتبر نیست" };
-    sub.status = "approved";
-    sub.reviewedAt = Date.now();
+    sub.status = "approved"; sub.reviewedAt = Date.now();
     const user = DB.data.users.find(u => u.id === sub.userId);
-    if (user) {
-      user.tier = sub.tier;
-      user.tierExpiresAt = Date.now() + 30 * 86400000;
-    }
+    if (user) { user.tier = sub.tier; user.tierExpiresAt = Date.now() + 30 * 86400000; }
     Auth.logActivity(sub.userId, "sub_approved", "اشتراک " + sub.tier + " تأیید شد");
     DB.save();
     return { ok: true };
@@ -1006,9 +849,7 @@ const Data = {
   rejectSubscription(id, note) {
     const sub = DB.data.subscriptions.find(s => s.id === id);
     if (!sub || sub.status !== "pending") return { ok: false, error: "درخواست معتبر نیست" };
-    sub.status = "rejected";
-    sub.reviewedAt = Date.now();
-    sub.adminNote = note || null;
+    sub.status = "rejected"; sub.reviewedAt = Date.now(); sub.adminNote = note || null;
     Auth.logActivity(sub.userId, "sub_rejected", "درخواست اشتراک رد شد");
     DB.save();
     return { ok: true };
@@ -1016,13 +857,9 @@ const Data = {
   cancelUserSubscription(userId) {
     const user = DB.data.users.find(u => u.id === userId);
     if (!user) return false;
-    user.tier = "free";
-    user.tierExpiresAt = null;
+    user.tier = "free"; user.tierExpiresAt = null;
     DB.data.subscriptions.forEach(s => {
-      if (s.userId === userId && s.status === "approved") {
-        s.status = "cancelled";
-        s.reviewedAt = Date.now();
-      }
+      if (s.userId === userId && s.status === "approved") { s.status = "cancelled"; s.reviewedAt = Date.now(); }
     });
     Auth.logActivity(userId, "sub_cancelled", "لغو اشتراک توسط مدیر");
     DB.save();
@@ -1046,12 +883,10 @@ const Data = {
   }
 };
 
-/* ─────────── 9. ACCOUNTANT ENGINE ─────────── */
-const Accountant = {
+/* ─────────── CONSULTANT ENGINE (قدرتمندتر) ─────────── */
+const Consultant = {
   parseAmounts(text) {
-    const map = { "۰":"0","۱":"1","۲":"2","۳":"3","۴":"4","۵":"5",
-      "۶":"6","۷":"7","۸":"8","۹":"9","٠":"0","١":"1","٢":"2","٣":"3",
-      "٤":"4","٥":"5","٦":"6","٧":"7","٨":"8","٩":"9" };
+    const map = { "۰":"0","۱":"1","۲":"2","۳":"3","۴":"4","۵":"5","۶":"6","۷":"7","۸":"8","۹":"9","٠":"0","١":"1","٢":"2","٣":"3","٤":"4","٥":"5","٦":"6","٧":"7","٨":"8","٩":"9" };
     let t = String(text || "").replace(/[۰-۹٠-٩]/g, d => map[d]).replace(/,/g, " ");
     const results = [];
     const re = /(\d+(?:\.\d+)?)\s*(هزار|میلیون|میلیارد|تومان|ریال)?/gi;
@@ -1062,7 +897,7 @@ const Accountant = {
       if (u === "هزار") n *= 1000;
       else if (u === "میلیون") n *= 1000000;
       else if (u === "میلیارد") n *= 1000000000;
-      if (n >= 1000) results.push(n);
+      if (n >= 100) results.push(n); // فقط اعداد بزرگتر از ۱۰۰
     }
     return results;
   },
@@ -1074,159 +909,146 @@ const Accountant = {
     txs.forEach(t => t.type === "income" ? income += t.amount : expense += t.amount);
     const profit = income - expense;
     const margin = income > 0 ? (profit / income) * 100 : 0;
-    return { income, expense, profit, margin, txCount: txs.length, prods };
+    
+    // پیدا کردن بیشترین و کمترین
+    let maxExpense = 0, maxIncome = 0;
+    let maxExpenseTx = null, maxIncomeTx = null;
+    txs.forEach(t => {
+      if (t.type === "expense" && t.amount > maxExpense) { maxExpense = t.amount; maxExpenseTx = t; }
+      if (t.type === "income" && t.amount > maxIncome) { maxIncome = t.amount; maxIncomeTx = t; }
+    });
+
+    return { income, expense, profit, margin, txCount: txs.length, prods, txs, maxExpense, maxExpenseTx, maxIncome, maxIncomeTx };
   },
   respond(userId, message) {
-    const text = String(message || "").trim();
+    const text = String(message || "").trim().toLowerCase();
     if (!text) return "پیام خالی است.";
 
     const amounts = this.parseAmounts(text);
     const ctx = this.getContext(userId);
 
-    // Two amounts => buy/sell analysis
-    if (amounts.length >= 2) {
+    // 1. تحلیل دو عدد (خرید و فروش)
+    if (amounts.length >= 2 && (text.includes("خرید") || text.includes("فروش") || text.includes("قیمت") || text.includes("سود"))) {
       const buy = amounts[0];
       const sell = amounts[1];
       if (buy > 0 && sell > 0) {
         const profitPerUnit = sell - buy;
         const margin = (profitPerUnit / sell) * 100;
         const markup = (profitPerUnit / buy) * 100;
-        let verdict = "";
-        let emoji = "";
+        let verdict = "", emoji = "";
         if (profitPerUnit < 0) { verdict = "شما در این معامله در ضرر هستید. قیمت فروش پایین‌تر از قیمت خرید است."; emoji = "🔴"; }
         else if (margin < 10) { verdict = "حاشیه سود شما پایین است. با احتساب هزینه‌های جانبی، ممکن است به مرز ضرر نزدیک شوید."; emoji = "🟡"; }
         else if (margin < 25) { verdict = "حاشیه سود شما قابل قبول است، اما فضای بهبود وجود دارد."; emoji = "🟢"; }
         else if (margin < 50) { verdict = "حاشیه سود شما خوب است. این معامله را در اولویت قرار دهید."; emoji = "🌟"; }
         else { verdict = "حاشیه سود شما بسیار بالاست. اگر فروش ادامه دارد، این محصول را تقویت کنید."; emoji = "💎"; }
 
-        let analysis = emoji + " تحلیل معامله:\n\n";
-        analysis += "• قیمت خرید: " + fmtMoney(buy) + "\n";
-        analysis += "• قیمت فروش: " + fmtMoney(sell) + "\n";
-        analysis += "• سود هر واحد: " + fmtMoney(profitPerUnit) + "\n";
-        analysis += "• حاشیه سود: " + margin.toFixed(1) + "٪\n";
-        analysis += "• نرخ افزایش نسبت به خرید: " + markup.toFixed(1) + "٪\n\n";
-        analysis += verdict;
+        let r = emoji + " تحلیل معامله:\n\n";
+        r += "• قیمت خرید: " + fmtMoney(buy) + "\n";
+        r += "• قیمت فروش: " + fmtMoney(sell) + "\n";
+        r += "• سود هر واحد: " + fmtMoney(profitPerUnit) + "\n";
+        r += "• حاشیه سود: " + margin.toFixed(1) + "٪\n";
+        r += "• نرخ افزایش: " + markup.toFixed(1) + "٪\n\n";
+        r += verdict;
 
         if (ctx.txCount > 0) {
-          analysis += "\n\n📊 در " + "۳۰ روز گذشته:\n";
-          analysis += "• درآمد: " + fmtMoney(ctx.income) + "\n";
-          analysis += "• هزینه: " + fmtMoney(ctx.expense) + "\n";
-          analysis += "• سود خالص: " + fmtMoney(ctx.profit) + "\n";
-          analysis += "• حاشیه کل: " + ctx.margin.toFixed(1) + "٪";
+          r += "\n\n📊 در ۳۰ روز گذشته:\n• درآمد: " + fmtMoney(ctx.income) + "\n• هزینه: " + fmtMoney(ctx.expense) + "\n• سود خالص: " + fmtMoney(ctx.profit);
         } else {
-          analysis += "\n\nℹ️ برای تحلیل جامع‌تر، تراکنش‌های درآمد و هزینه خود را نیز در بخش «تراکنش‌ها» ثبت کنید.";
+          r += "\n\nℹ️ برای تحلیل جامع‌تر، تراکنش‌های خود را در بخش «تراکنش‌ها» ثبت کنید.";
         }
-
-        return analysis;
+        return r;
       }
     }
 
-    // Compare products
-    if (/مقایسه|کدام|بهترین|پرسودترین|بیشترین/.test(text) && ctx.prods.length >= 2) {
-      const list = ctx.prods.map(p => ({
-        name: p.name,
-        margin: p.sellPrice > 0 ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100) : 0,
-        profit: p.sellPrice - p.buyPrice
-      })).sort((a, b) => b.margin - a.margin);
+    // 2. بیشترین هزینه
+    if (text.includes("بیشترین هزینه") || text.includes("گرانترین") || text.includes("بزرگترین هزینه")) {
+      if (!ctx.maxExpenseTx) return "📉 هیچ هزینه‌ای در ۳۰ روز گذشته ثبت نکرده‌اید.";
+      return "🔍 بزرگترین هزینه شما:\n\n• مبلغ: " + fmtMoney(ctx.maxExpense) + "\n• بابت: " + esc(ctx.maxExpenseTx.category || ctx.maxExpenseTx.description || "نامشخص") + "\n• تاریخ: " + fmtDate(ctx.maxExpenseTx.createdAt) + "\n\n💡 پیشنهاد: اگر این هزینه تکراری است، به‌دنبال راهی برای کاهش آن باشید.";
+    }
 
+    // 3. بیشترین درآمد
+    if (text.includes("بیشترین درآمد") || text.includes("بزرگترین فروش") || text.includes("بهترین فروش")) {
+      if (!ctx.maxIncomeTx) return "📈 هیچ درآمدی در ۳۰ روز گذشته ثبت نکرده‌اید.";
+      return "🔍 بزرگترین درآمد شما:\n\n• مبلغ: " + fmtMoney(ctx.maxIncome) + "\n• بابت: " + esc(ctx.maxIncomeTx.category || ctx.maxIncomeTx.description || "نامشخص") + "\n• تاریخ: " + fmtDate(ctx.maxIncomeTx.createdAt) + "\n\n💡 پیشنهاد: این نوع فروش را تقویت کنید.";
+    }
+
+    // 4. میانگین فروش
+    if (text.includes("میانگین") && (text.includes("فروش") || text.includes("درآمد"))) {
+      if (!ctx.income) return "📊 هنوز درآمدی ثبت نکرده‌اید.";
+      const avg = ctx.income / 30;
+      return "📈 میانگین درآمد روزانه شما:\n\n• " + fmtMoney(Math.round(avg)) + " در روز\n• " + fmtMoney(Math.round(avg * 7)) + " در هفته\n\n💡 این یعنی اگر روند فعلی ادامه یابد، در ماه آینده حدود " + fmtMoney(Math.round(avg * 30)) + " درآمد خواهید داشت.";
+    }
+
+    // 5. مقایسه کالاها
+    if ((text.includes("مقایسه") || text.includes("کدام") || text.includes("بهترین")) && ctx.prods.length >= 2) {
+      const list = ctx.prods.map(p => ({ name: p.name, margin: p.sellPrice > 0 ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100) : 0, profit: p.sellPrice - p.buyPrice })).sort((a, b) => b.margin - a.margin);
       let r = "🔍 مقایسه کالاها بر اساس حاشیه سود:\n\n";
-      list.forEach((p, i) => {
-        r += (i + 1) + ". " + p.name + "\n";
-        r += "   حاشیه: " + p.margin.toFixed(1) + "٪ · سود هر واحد: " + fmtMoney(p.profit) + "\n";
-      });
-      r += "\n💡 توصیه: کالاهای با حاشیه بالاتر را در اولویت فروش قرار دهید، اما توجه کنید که سرعت فروش هم مهم است.";
+      list.forEach((p, i) => { r += (i + 1) + ". " + esc(p.name) + "\n   حاشیه: " + p.margin.toFixed(1) + "٪ · سود: " + fmtMoney(p.profit) + "\n"; });
+      r += "\n💡 کالاهای با حاشیه بالاتر را در اولویت بفروشید.";
       return r;
     }
 
-    // Inventory
-    if (/موجودی|انبار|انبارداری|کالا|محصول/.test(text)) {
-      if (ctx.prods.length === 0) {
-        return "📦 هنوز هیچ کالایی ثبت نکرده‌اید.\n\nاز بخش «کالاها» می‌توانید نام، قیمت خرید، قیمت فروش و موجودی هر کالا را وارد کنید تا تحلیل دقیق‌تری دریافت کنید.";
+    // 6. جستجوی کالای خاص
+    if (text.includes("قیمت") && text.includes("کالا") || ctx.prods.some(p => text.includes(p.name.toLowerCase()))) {
+      let found = ctx.prods.find(p => text.includes(p.name.toLowerCase()));
+      if (found) {
+        const margin = found.sellPrice > 0 ? ((found.sellPrice - found.buyPrice) / found.sellPrice * 100) : 0;
+        return "📦 مشخصات کالای «" + esc(found.name) + "»:\n\n• قیمت خرید: " + fmtMoney(found.buyPrice) + "\n• قیمت فروش: " + fmtMoney(found.sellPrice) + "\n• حاشیه سود: " + margin.toFixed(1) + "٪\n• موجودی: " + fmtNum(found.stock) + " واحد\n\n💡 " + (margin < 15 ? "حاشیه سود پایین است، قیمت را بازبینی کنید." : "حاشیه سود مناسب است.");
       }
-      let r = "📦 وضعیت موجودی انبار:\n\n";
-      let totalStockValue = 0;
-      let lowStock = [];
+    }
+
+    // 7. موجودی
+    if (text.includes("موجودی") || text.includes("انبار")) {
+      if (ctx.prods.length === 0) return "📦 هنوز کالایی ثبت نکرده‌اید. از بخش «کالاها» اضافه کنید.";
+      let total = 0; let low = [];
+      let r = "📦 وضعیت انبار:\n\n";
       ctx.prods.forEach(p => {
-        const margin = p.sellPrice > 0 ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100) : 0;
-        totalStockValue += p.buyPrice * p.stock;
-        r += "• " + p.name + ": " + p.stock + " واحد · حاشیه " + margin.toFixed(1) + "٪\n";
-        if (p.stock < 3) lowStock.push(p.name);
+        total += p.buyPrice * p.stock;
+        if (p.stock < 3) low.push(p.name);
+        r += "• " + esc(p.name) + ": " + fmtNum(p.stock) + " عدد\n";
       });
-      r += "\n💰 ارزش موجودی (به قیمت خرید): " + fmtMoney(totalStockValue) + "\n";
-      if (lowStock.length > 0) {
-        r += "\n⚠️ کالاهای با موجودی کم: " + lowStock.join("، ");
-      }
+      r += "\n💰 ارزش کل (به قیمت خرید): " + fmtMoney(total);
+      if (low.length) r += "\n⚠️ نیاز به شارژ: " + low.join("، ");
       return r;
     }
 
-    // Overall status
-    if (/وضعیت|چطور|چگونه|تحلیل|خلاصه|گزارش|سود|زیان|درآمد|هزینه/.test(text)) {
-      if (ctx.txCount === 0) {
-        return "برای تحلیل وضعیت، ابتدا تراکنش‌های درآمد و هزینه خود را در بخش «تراکنش‌ها» ثبت کنید.\n\nحداقل به ۳ تراکنش نیاز است تا بتوانم تحلیل دقیق‌تری ارائه دهم.";
-      }
-      let health, healthEmoji;
-      if (ctx.profit < 0) { health = "کسب‌وکار شما در حال ضرر است"; healthEmoji = "🔴"; }
-      else if (ctx.margin < 10) { health = "حاشیه سود شما پایین است"; healthEmoji = "🟡"; }
-      else if (ctx.margin < 30) { health = "وضعیت متعادل است"; healthEmoji = "🟢"; }
-      else { health = "حاشیه سود شما بسیار خوب است"; healthEmoji = "🌟"; }
+    // 8. وضعیت کلی
+    if (text.includes("وضعیت") || text.includes("چطور") || text.includes("گزارش") || text.includes("سود") || text.includes("زیان")) {
+      if (ctx.txCount === 0) return "برای تحلیل، ابتدا تراکنش‌های خود را در بخش «تراکنش‌ها» ثبت کنید (حداقل ۳ مورد).";
+      let health, emoji;
+      if (ctx.profit < 0) { health = "شما در حال ضرر هستید. باید هزینه‌ها را کاهش دهید."; emoji = "🔴"; }
+      else if (ctx.margin < 10) { health = "حاشیه سود شما پایین است."; emoji = "🟡"; }
+      else if (ctx.margin < 30) { health = "وضعیت شما متعادل است."; emoji = "🟢"; }
+      else { health = "حاشیه سود شما بسیار خوب است!"; emoji = "🌟"; }
 
-      let r = healthEmoji + " گزارش ۳۰ روز گذشته:\n\n";
-      r += "• تعداد تراکنش: " + fmtNum(ctx.txCount) + "\n";
-      r += "• کل درآمد: " + fmtMoney(ctx.income) + "\n";
-      r += "• کل هزینه: " + fmtMoney(ctx.expense) + "\n";
-      r += "• سود خالص: " + fmtMoney(ctx.profit) + "\n";
-      r += "• حاشیه سود: " + ctx.margin.toFixed(1) + "٪\n\n";
-      r += health;
-
-      if (ctx.expense > 0 && ctx.income > 0) {
-        const ratio = (ctx.expense / ctx.income) * 100;
-        r += "\n\n• نسبت هزینه به درآمد: " + ratio.toFixed(1) + "٪";
-        if (ratio > 80) r += "\n⚠️ نسبت هزینه به درآمد بسیار بالاست.";
-        else if (ratio > 60) r += "\n⚠️ بهتر است هزینه‌های غیرضروری را بازبینی کنید.";
-      }
-      return r;
+      return emoji + " گزارش ۳۰ روز گذشته:\n\n• تراکنش‌ها: " + fmtNum(ctx.txCount) + "\n• درآمد: " + fmtMoney(ctx.income) + "\n• هزینه: " + fmtMoney(ctx.expense) + "\n• سود خالص: " + fmtMoney(ctx.profit) + "\n• حاشیه سود: " + ctx.margin.toFixed(1) + "٪\n\n" + health;
     }
 
-    // Advice
-    if (/پیشنهاد|چه کنم|راهنما|راهکار|بهتر|بهبود/.test(text)) {
+    // 9. پیشنهاد
+    if (text.includes("پیشنهاد") || text.includes("چه کنم") || text.includes("راهکار") || text.includes("بهبود")) {
       const tips = [];
-      if (ctx.txCount === 0) {
-        tips.push("ابتدا تراکنش‌های مالی خود را ثبت کنید.");
-        tips.push("کالاهای خود را با قیمت خرید و فروش در بخش «کالاها» اضافه کنید.");
-      } else {
-        if (ctx.profit < 0) tips.push("کسب‌وکار در ضرر است. هزینه‌های غیرضروری را کاهش دهید و روی محصولات پرفروش تمرکز کنید.");
-        if (ctx.margin < 20 && ctx.margin >= 0) tips.push("حاشیه سود پایین است. با مذاکره با تأمین‌کننده یا افزایش قیمت تدریجی، حاشیه را بهبود دهید.");
-        if (ctx.expense > 0 && ctx.income > 0 && ctx.expense / ctx.income > 0.7) {
-          tips.push("نسبت هزینه به درآمد بالاست. دسته‌بندی هزینه‌ها را بررسی و موارد غیرضروری را حذف کنید.");
-        }
-        if (ctx.profit > 0) tips.push("وضعیت مثبت است. سود را صرف بازاریابی یا تنوع محصول کنید.");
+      if (ctx.txCount === 0) tips.push("ابتدا تراکنش‌های مالی خود را ثبت کنید.");
+      else {
+        if (ctx.profit < 0) tips.push("کسب‌وکار در ضرر است. هزینه‌های غیرضروری را حذف کنید.");
+        if (ctx.margin < 20 && ctx.margin >= 0) tips.push("حاشیه سود پایین است. با تأمین‌کننده مذاکره کنید.");
+        if (ctx.expense > 0 && ctx.income > 0 && ctx.expense / ctx.income > 0.7) tips.push("نسبت هزینه به درآمد بالاست.");
+        if (ctx.profit > 0) tips.push("سود را در بازاریابی یا تنوع محصول سرمایه‌گذاری کنید.");
       }
-      tips.push("قیمت‌ها را به‌روز نگه دارید تا تحلیل‌ها دقیق‌تر شوند.");
-
-      let r = "💡 پیشنهادهای کاربردی:\n\n";
-      tips.forEach((t, i) => { r += (i + 1) + ". " + t + "\n\n"; });
-      return r.trim();
+      tips.push("قیمت کالاها را به‌روز نگه دارید تا تحلیل‌ها دقیق‌تر شود.");
+      return "💡 پیشنهادهای مشاور:\n\n" + tips.map((t, i) => (i + 1) + ". " + t).join("\n\n");
     }
 
-    // Default
-    return "سلام! من حسابدار هوشمند شما هستم. می‌توانم در این موارد کمک کنم:\n\n" +
-      "• تحلیل معامله — مثلاً: «خرید ۲۰۰ هزار، فروش ۲۷۰ هزار»\n" +
-      "• گزارش وضعیت — «وضعیت من چطور است؟»\n" +
-      "• بررسی انبار — «موجودی انبار»\n" +
-      "• مقایسه کالاها — «کالاها را مقایسه کن»\n" +
-      "• دریافت پیشنهاد — «چه کنم بهتر شود؟»";
+    // پیش‌فرض
+    return "سلام! من مشاور هوشمند شما هستم. می‌توانم در این موارد کمک کنم:\n\n• تحلیل معامله — «خرید ۲۰۰ هزار، فروش ۲۷۰ هزار»\n• گزارش وضعیت — «وضعیت من چطور است؟»\n• بیشترین هزینه — «بیشترین هزینه من چیه؟»\n• میانگین فروش — «میانگین فروش من چقدره؟»\n• بررسی انبار — «موجودی انبار»\n• مقایسه کالاها — «کالاها را مقایسه کن»\n• پیشنهاد — «چه کنم بهتر شود؟»";
   }
 };
 
-/* ─────────── 10. FORECAST ENGINE ─────────── */
+/* ─────────── FORECAST ENGINE ─────────── */
 const Forecast = {
   linearRegression(points) {
     const n = points.length;
     if (n < 2) return null;
     let sx = 0, sy = 0, sxy = 0, sxx = 0;
-    points.forEach(p => {
-      sx += p.x; sy += p.y; sxy += p.x * p.y; sxx += p.x * p.x;
-    });
+    points.forEach(p => { sx += p.x; sy += p.y; sxy += p.x * p.y; sxx += p.x * p.x; });
     const d = n * sxx - sx * sx;
     if (d === 0) return { slope: 0, intercept: sy / n, r2: 0 };
     const slope = (n * sxy - sx * sy) / d;
@@ -1245,17 +1067,9 @@ const Forecast = {
     days = days || 30;
     const txs = Data.userTransactions(userId, days);
     if (txs.length < 3) {
-      return {
-        ok: false,
-        message: "برای پیش‌بینی، حداقل ۳ تراکنش در " + fmtNum(days) +
-          " روز گذشته نیاز است. اکنون " + fmtNum(txs.length) + " تراکنش ثبت شده.",
-        dataPoints: txs.length
-      };
+      return { ok: false, message: "برای پیش‌بینی، حداقل ۳ تراکنش در ۳۰ روز گذشته نیاز است. اکنون " + fmtNum(txs.length) + " تراکنش ثبت شده.", dataPoints: txs.length };
     }
-
-    // Bucket by day
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
     const buckets = {};
     for (let i = 0; i < days; i++) {
       const d = new Date(today.getTime() - (days - 1 - i) * 86400000);
@@ -1267,77 +1081,48 @@ const Forecast = {
       if (t.type === "income") buckets[key].income += t.amount;
       else buckets[key].expense += t.amount;
     });
-
     const keys = Object.keys(buckets).sort();
     const incPts = keys.map((k, i) => ({ x: i, y: buckets[k].income }));
     const expPts = keys.map((k, i) => ({ x: i, y: buckets[k].expense }));
     const incR = this.linearRegression(incPts);
     const expR = this.linearRegression(expPts);
-
     let projInc = 0, projExp = 0;
     for (let i = 0; i < 30; i++) {
       projInc += Math.max(0, incR.slope * (days + i) + incR.intercept);
       projExp += Math.max(0, expR.slope * (days + i) + expR.intercept);
     }
-
     const totalInc = incPts.reduce((a, p) => a + p.y, 0);
     const totalExp = expPts.reduce((a, p) => a + p.y, 0);
     const netProfit = totalInc - totalExp;
-
     const avgR2 = (incR.r2 + expR.r2) / 2;
     const confidence = Math.min(95, Math.max(25, Math.round(avgR2 * 100)));
-
     const reasons = [];
-    if (incR.slope > 1000) reasons.push("روند درآمد صعودی است (به‌طور میانگین " + fmtMoney(Math.round(incR.slope)) + " در روز افزایش).");
-    else if (incR.slope < -1000) reasons.push("روند درآمد نزولی است (به‌طور میانگین " + fmtMoney(Math.round(-incR.slope)) + " در روز کاهش).");
+    if (incR.slope > 1000) reasons.push("روند درآمد صعودی است (+" + fmtMoney(Math.round(incR.slope)) + " در روز).");
+    else if (incR.slope < -1000) reasons.push("روند درآمد نزولی است (-" + fmtMoney(Math.round(-incR.slope)) + " در روز).");
     else reasons.push("روند درآمد تقریباً ثابت است.");
-
-    if (expR.slope > 1000) reasons.push("روند هزینه صعودی است (به‌طور میانگین " + fmtMoney(Math.round(expR.slope)) + " در روز افزایش).");
-    else if (expR.slope < -1000) reasons.push("روند هزینه نزولی است (به‌طور میانگین " + fmtMoney(Math.round(-expR.slope)) + " در روز کاهش).");
+    if (expR.slope > 1000) reasons.push("روند هزینه صعودی است (+" + fmtMoney(Math.round(expR.slope)) + " در روز).");
+    else if (expR.slope < -1000) reasons.push("روند هزینه نزولی است (-" + fmtMoney(Math.round(-expR.slope)) + " در روز).");
     else reasons.push("روند هزینه تقریباً ثابت است.");
-
     if (netProfit > 0) reasons.push("در دوره گذشته سود خالص مثبت بوده است.");
     else if (netProfit < 0) reasons.push("در دوره گذشته ضرر ثبت شده است.");
-
     const limitations = [];
     if (txs.length < 10) limitations.push("تعداد تراکنش‌ها کم است (" + fmtNum(txs.length) + " مورد).");
     if (avgR2 < 0.5) limitations.push("پراکندگی داده‌ها بالاست؛ پیش‌بینی قطعی نیست.");
     if (totalInc === 0) limitations.push("درآمدی در دوره ثبت نشده.");
     if (limitations.length === 0) limitations.push("پیش‌بینی بر اساس روند خطی داده‌های گذشته است.");
-
-    return {
-      ok: true,
-      dataPoints: txs.length,
-      period: days,
-      history: {
-        totalIncome: totalInc,
-        totalExpense: totalExp,
-        netProfit,
-        avgDailyIncome: Math.round(totalInc / days),
-        avgDailyExpense: Math.round(totalExp / days)
-      },
-      forecast: {
-        projectedIncome: Math.round(projInc),
-        projectedExpense: Math.round(projExp),
-        projectedProfit: Math.round(projInc - projExp),
-        optimistic: Math.round(projInc * 1.2 - projExp * 0.9),
-        pessimistic: Math.round(projInc * 0.8 - projExp * 1.15),
-        confidence,
-        reasons,
-        limitations
-      }
-    };
+    return { ok: true, dataPoints: txs.length, period: days,
+      history: { totalIncome: totalInc, totalExpense: totalExp, netProfit, avgDailyIncome: Math.round(totalInc / days), avgDailyExpense: Math.round(totalExp / days) },
+      forecast: { projectedIncome: Math.round(projInc), projectedExpense: Math.round(projExp), projectedProfit: Math.round(projInc - projExp),
+        optimistic: Math.round(projInc * 1.2 - projExp * 0.9), pessimistic: Math.round(projInc * 0.8 - projExp * 1.15),
+        confidence, reasons, limitations } };
   }
 };
 
-/* ─────────── 11. IMAGE COMPRESSION ─────────── */
+/* ─────────── IMAGE COMPRESSION ─────────── */
 function compressImage(file, maxSize) {
   maxSize = maxSize || 1000;
   return new Promise((resolve, reject) => {
-    if (!file.type.startsWith("image/")) {
-      reject(new Error("فقط فایل تصویری مجاز است"));
-      return;
-    }
+    if (!file.type.startsWith("image/")) { reject(new Error("فقط فایل تصویری مجاز است")); return; }
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
@@ -1345,8 +1130,7 @@ function compressImage(file, maxSize) {
         let { width, height } = img;
         if (width > maxSize || height > maxSize) {
           const ratio = Math.min(maxSize / width, maxSize / height);
-          width = Math.round(width * ratio);
-          height = Math.round(height * ratio);
+          width = Math.round(width * ratio); height = Math.round(height * ratio);
         }
         const canvas = document.createElement("canvas");
         canvas.width = width; canvas.height = height;
@@ -1361,10 +1145,10 @@ function compressImage(file, maxSize) {
   });
 }
 
-/* ─────────── 12. ROUTER ─────────── */
+/* ─────────── ROUTER ─────────── */
 const ROUTES = [
   { id: "dashboard", icon: "◈", label: "داشبورد" },
-  { id: "accountant", icon: "◉", label: "حسابدار" },
+  { id: "consultant", icon: "◉", label: "مشاور هوشمند" },
   { id: "forecast", icon: "◎", label: "پیش‌بین" },
   { id: "products", icon: "▤", label: "کالاها" },
   { id: "transactions", icon: "⇄", label: "تراکنش‌ها" },
@@ -1379,40 +1163,26 @@ let currentRoute = "dashboard";
 function renderNav() {
   const isAdmin = Admin.isLoggedIn();
   const routes = isAdmin ? ROUTES.concat([ADMIN_ROUTE, ADMIN_ROUTE2]) : ROUTES;
-
-  const side = $("#sideNav");
-  const mob = $("#mobileNav");
-  const user = Auth.currentUser();
-  const pendingCount = isAdmin
-    ? DB.data.subscriptions.filter(s => s.status === "pending").length
-    : 0;
+  const side = $("#sideNav"), mob = $("#mobileNav");
+  const pendingCount = isAdmin ? DB.data.subscriptions.filter(s => s.status === "pending").length : 0;
 
   side.innerHTML = routes.map(r => {
-    const badge = r.id === "admin" && pendingCount > 0
-      ? '<span class="badge-count">' + pendingCount + '</span>' : "";
-    return '<button class="nav-item ' + (r.id === currentRoute ? "active" : "") +
-      '" data-route="' + r.id + '"><i>' + r.icon + '</i><span>' + r.label + '</span>' + badge + '</button>';
+    const badge = r.id === "admin" && pendingCount > 0 ? '<span class="badge-count">' + pendingCount + '</span>' : "";
+    return '<button class="nav-item ' + (r.id === currentRoute ? "active" : "") + '" data-route="' + r.id + '"><i>' + r.icon + '</i><span>' + r.label + '</span>' + badge + '</button>';
   }).join("");
 
-  // Mobile: first 5 + settings
   mob.innerHTML = routes.slice(0, 5).map(r =>
-    '<button class="mobile-nav-item ' + (r.id === currentRoute ? "active" : "") +
-    '" data-route="' + r.id + '"><i>' + r.icon + '</i><span>' + r.label + '</span></button>'
+    '<button class="mobile-nav-item ' + (r.id === currentRoute ? "active" : "") + '" data-route="' + r.id + '"><i>' + r.icon + '</i><span>' + r.label + '</span></button>'
   ).join("");
 
-  $$("[data-route]").forEach(b => {
-    b.addEventListener("click", () => navigate(b.dataset.route));
-  });
+  $$("[data-route]").forEach(b => b.addEventListener("click", () => navigate(b.dataset.route)));
 }
 
 function navigate(route) {
   if (!Auth.isLoggedIn()) return;
   const isAdmin = Admin.isLoggedIn();
   const adminRoutes = ["admin", "admin-reports"];
-  if (adminRoutes.includes(route) && !isAdmin) {
-    toast("دسترسی مدیریتی لازم است", "error");
-    return;
-  }
+  if (adminRoutes.includes(route) && !isAdmin) { toast("دسترسی مدیریتی لازم است", "error"); return; }
   if (!isAdmin && adminRoutes.includes(currentRoute)) currentRoute = "dashboard";
   currentRoute = route;
   renderNav();
@@ -1423,17 +1193,9 @@ function renderPage() {
   const user = Auth.currentUser();
   if (!user) return;
   const c = $("#pageContent");
-  const renderers = {
-    dashboard: renderDashboard,
-    accountant: renderAccountant,
-    forecast: renderForecast,
-    products: renderProducts,
-    transactions: renderTransactions,
-    subscription: renderSubscription,
-    settings: renderSettings,
-    admin: renderAdmin,
-    "admin-reports": renderAdminReports
-  };
+  const renderers = { dashboard: renderDashboard, consultant: renderConsultant,
+    forecast: renderForecast, products: renderProducts, transactions: renderTransactions,
+    subscription: renderSubscription, settings: renderSettings, admin: renderAdmin, "admin-reports": renderAdminReports };
   const fn = renderers[currentRoute] || renderDashboard;
   c.innerHTML = "";
   fn(c, user);
@@ -1448,13 +1210,12 @@ function updateUserChip(user) {
   $("#userTier").textContent = tierLabel;
 }
 
-/* ─────────── 13. PAGE: DASHBOARD ─────────── */
+/* ─────────── PAGE: DASHBOARD ─────────── */
 function renderDashboard(container, user) {
-  const ctx = Accountant.getContext(user.id, 30);
+  const ctx = Consultant.getContext(user.id, 30);
   const subs = Data.mySubscriptions(user.id);
   const pendingSub = subs.find(s => s.status === "pending");
   const recentTx = Data.userTransactions(user.id, 30).slice(0, 5);
-
   const hour = new Date().getHours();
   const greeting = hour < 12 ? "صبح بخیر" : hour < 18 ? "ظهر بخیر" : "شب بخیر";
 
@@ -1466,7 +1227,7 @@ function renderDashboard(container, user) {
       </div>
       <div class="page-actions">
         <button class="btn btn-ghost btn-sm" data-goto="transactions">+ تراکنش جدید</button>
-        <button class="btn btn-primary btn-sm" data-goto="accountant">گفتگو با حسابدار</button>
+        <button class="btn btn-primary btn-sm" data-goto="consultant">گفتگو با مشاور</button>
       </div>
     </div>
 
@@ -1497,24 +1258,14 @@ function renderDashboard(container, user) {
       </div>
     </div>
 
-    ${pendingSub ? `
-      <div class="admin-banner">
-        ⏳ یک درخواست اشتراک در انتظار تأیید دارید. نتیجه پس از بررسی مدیر اعمال خواهد شد.
-      </div>
-    ` : ""}
+    ${pendingSub ? `<div class="admin-banner">⏳ یک درخواست اشتراک در انتظار تأیید دارید.</div>` : ""}
 
-    <div class="card">
+    <div class="card glass">
       <div class="card-head">
-        <h3 class="card-title">
-          <svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg>
-          تراکنش‌های اخیر
-        </h3>
+        <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg> تراکنش‌های اخیر</h3>
         <button class="btn btn-ghost btn-sm" data-goto="transactions">مشاهده همه</button>
       </div>
-      ${recentTx.length === 0 ? `
-        <div class="empty">هنوز تراکنشی ثبت نکرده‌اید.<br>
-          از بخش «تراکنش‌ها» درآمد و هزینه‌های خود را اضافه کنید.</div>
-      ` : `
+      ${recentTx.length === 0 ? `<div class="empty">هنوز تراکنشی ثبت نکرده‌اید.</div>` : `
         <div class="table-wrap">
           <table class="data-table">
             <thead><tr><th>نوع</th><th>مبلغ</th><th>توضیح</th><th>تاریخ</th></tr></thead>
@@ -1533,78 +1284,50 @@ function renderDashboard(container, user) {
       `}
     </div>
 
-    <div class="card">
+    <div class="card glass">
       <div class="card-head">
-        <h3 class="card-title">
-          <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          وضعیت اشتراک
-        </h3>
+        <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> وضعیت اشتراک</h3>
       </div>
       <div class="row row-between" style="padding:8px 0">
         <div>
           <div style="font-size:13px;font-weight:700">سطح فعلی: ${({free:"Free",pro:"Pro",enterprise:"Enterprise"})[user.tier]}</div>
-          <div class="muted">
-            ${user.tier === "free" ? "برای دسترسی به امکانات بیشتر، ارتقا دهید." : 
-              "اعتبار تا " + fmtDate(user.tierExpiresAt)}
-          </div>
+          <div class="muted">${user.tier === "free" ? "برای دسترسی به امکانات بیشتر، ارتقا دهید." : "اعتبار تا " + fmtDate(user.tierExpiresAt)}</div>
         </div>
         <button class="btn btn-gold btn-sm" data-goto="subscription">مدیریت اشتراک</button>
       </div>
     </div>
   `;
 
-  $$("[data-goto]", container).forEach(b => {
-    b.addEventListener("click", () => navigate(b.dataset.goto));
-  });
+  $$("[data-goto]", container).forEach(b => b.addEventListener("click", () => navigate(b.dataset.goto)));
 }
 
-/* ─────────── 14. PAGE: ACCOUNTANT ─────────── */
-function renderAccountant(container, user) {
-  const history = DB.data.activities
-    .filter(a => a.userId === user.id && a.type === "accountant_chat")
-    .slice(-20);
-
+/* ─────────── PAGE: CONSULTANT ─────────── */
+function renderConsultant(container, user) {
   container.innerHTML = `
     <div class="page-head">
       <div>
-        <h1 class="page-title">حسابدار هوشمند</h1>
-        <p class="page-sub">مشاور مالی شما — بر اساس داده‌های واقعی کسب‌وکارتان پاسخ می‌دهد</p>
+        <h1 class="page-title">مشاور هوشمند</h1>
+        <p class="page-sub">دستیار مالی شما — بر اساس داده‌های واقعی کسب‌وکارتان پاسخ می‌دهد</p>
       </div>
     </div>
-    <div class="chat-wrap">
+    <div class="chat-wrap glass">
       <div class="chat-head">
         <div class="chat-head-dot"></div>
         <div>
-          <div class="chat-head-title">NEXORA Accountant</div>
+          <div class="chat-head-title">NEXORA Consultant <span>AI</span></div>
           <div class="chat-head-sub">آنلاین · آماده پاسخ‌گویی</div>
         </div>
       </div>
       <div class="chat-body" id="chatBody"></div>
       <div class="chat-input-wrap">
-        <textarea id="chatInput" class="chat-input"
-          placeholder="مثلاً: خرید ۲۰۰ هزار، فروش ۲۷۰ هزار — وضعیت چطوره؟"
-          rows="1"></textarea>
+        <textarea id="chatInput" class="chat-input" placeholder="مثلاً: خرید ۲۰۰ هزار، فروش ۲۷۰ هزار — وضعیت چطوره؟" rows="1"></textarea>
         <button class="chat-send" id="chatSend" type="button">ارسال</button>
       </div>
     </div>
   `;
 
   const body = $("#chatBody");
-  if (history.length === 0) {
-    addBotMessage(body,
-      "سلام " + user.name + " 👋\n\n" +
-      "من حسابدار هوشمند شما هستم. می‌توانم در تحلیل معاملات، بررسی موجودی، " +
-      "محاسبه سود و ارائه پیشنهاد کمکتان کنم.\n\n" +
-      "برای شروع، یکی از این‌ها را امتحان کنید:\n" +
-      "• «خرید ۲۰۰ هزار، فروش ۲۷۰ هزار»\n" +
-      "• «وضعیت من چطور است؟»\n" +
-      "• «موجودی انبار»\n" +
-      "• «چه کنم بهتر شود؟»");
-  } else {
-    addBotMessage(body,
-      "سلام دوباره " + user.name + " 👋\n\n" +
-      "چه سؤالی درباره کسب‌وکارتان دارید؟");
-  }
+  addBotMessage(body, "سلام " + user.name + " 👋\n\nمن مشاور هوشمند شما هستم. می‌توانم در تحلیل معاملات، بررسی موجودی، محاسبه سود و ارائه پیشنهاد کمکتان کنم.\n\nبرای شروع، یکی از این‌ها را امتحان کنید:\n• «خرید ۲۰۰ هزار، فروش ۲۷۰ هزار»\n• «وضعیت من چطور است؟»\n• «بیشترین هزینه من چیه؟»\n• «موجودی انبار»\n• «چه کنم بهتر شود؟»");
 
   const input = $("#chatInput");
   const send = $("#chatSend");
@@ -1619,32 +1342,29 @@ function renderAccountant(container, user) {
 
     const typing = document.createElement("div");
     typing.className = "msg bot";
-    typing.innerHTML = '<div class="msg-avatar">N</div>' +
-      '<div class="msg-bubble chat-typing"><span></span><span></span><span></span></div>';
+    typing.innerHTML = '<div class="msg-avatar">N</div><div class="msg-bubble chat-typing"><span></span><span></span><span></span></div>';
     body.appendChild(typing);
     body.scrollTop = body.scrollHeight;
 
     setTimeout(() => {
       typing.remove();
       try {
-        const reply = Accountant.respond(user.id, text);
+        const reply = Consultant.respond(user.id, text);
         addBotMessage(body, reply);
-        Auth.logActivity(user.id, "accountant_chat", text.slice(0, 100));
+        Auth.logActivity(user.id, "consultant_chat", text.slice(0, 100));
         DB.save();
       } catch (e) {
         console.error(e);
         addBotMessage(body, "متأسفانه خطایی رخ داد. لطفاً دوباره تلاش کنید.");
       }
       send.disabled = false;
-    }, 500);
+      input.focus();
+    }, 600);
   }
 
   send.addEventListener("click", submit);
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      submit();
-    }
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); submit(); }
   });
   input.addEventListener("input", () => {
     input.style.height = "auto";
@@ -1656,8 +1376,7 @@ function renderAccountant(container, user) {
 function addUserMessage(body, text) {
   const div = document.createElement("div");
   div.className = "msg user";
-  div.innerHTML = '<div class="msg-avatar">' + 'ش' + '</div>' +
-    '<div class="msg-bubble">' + esc(text) + '</div>';
+  div.innerHTML = '<div class="msg-avatar">' + 'ش' + '</div><div class="msg-bubble">' + esc(text) + '</div>';
   body.appendChild(div);
   body.scrollTop = body.scrollHeight;
 }
@@ -1665,185 +1384,86 @@ function addUserMessage(body, text) {
 function addBotMessage(body, text) {
   const div = document.createElement("div");
   div.className = "msg bot";
-  div.innerHTML = '<div class="msg-avatar">N</div>' +
-    '<div class="msg-bubble">' + esc(text) + '</div>';
+  div.innerHTML = '<div class="msg-avatar">N</div><div class="msg-bubble">' + esc(text) + '</div>';
   body.appendChild(div);
   body.scrollTop = body.scrollHeight;
 }
 
-/* ─────────── 15. PAGE: FORECAST ─────────── */
+/* ─────────── PAGE: FORECAST ─────────── */
 function renderForecast(container, user) {
   const result = Forecast.generate(user.id, 30);
-
   container.innerHTML = `
     <div class="page-head">
-      <div>
-        <h1 class="page-title">پیش‌بین مالی</h1>
-        <p class="page-sub">تحلیل روند و پیش‌بینی بر اساس داده‌های واقعی ۳۰ روز گذشته</p>
-      </div>
-      <div class="page-actions">
-        <button class="btn btn-ghost btn-sm" id="refreshForecast">به‌روزرسانی</button>
-      </div>
+      <div><h1 class="page-title">پیش‌بین مالی</h1><p class="page-sub">تحلیل روند و پیش‌بینی بر اساس داده‌های واقعی ۳۰ روز گذشته</p></div>
+      <div class="page-actions"><button class="btn btn-ghost btn-sm" id="refreshForecast">به‌روزرسانی</button></div>
     </div>
     <div id="forecastContent"></div>
   `;
 
   const fc = $("#forecastContent");
-
   if (!result.ok) {
-    fc.innerHTML = `
-      <div class="card">
-        <div class="empty">
-          ${esc(result.message)}
-          <br><br>
-          <button class="btn btn-primary btn-sm" data-goto="transactions">افزودن تراکنش</button>
-        </div>
-      </div>
-    `;
-    $$("[data-goto]", container).forEach(b => {
-      b.addEventListener("click", () => navigate(b.dataset.goto));
-    });
+    fc.innerHTML = `<div class="card glass"><div class="empty">${esc(result.message)}<br><br><button class="btn btn-primary btn-sm" data-goto="transactions">افزودن تراکنش</button></div></div>`;
+    $$("[data-goto]", container).forEach(b => b.addEventListener("click", () => navigate(b.dataset.goto)));
     return;
   }
 
-  const f = result.forecast;
-  const h = result.history;
-
+  const f = result.forecast, h = result.history;
   fc.innerHTML = `
     <div class="kpi-grid">
-      <div class="kpi">
-        <div class="kpi-icon">📈</div>
-        <div class="kpi-label">درآمد دوره گذشته</div>
-        <div class="kpi-value cyan">${fmtNum(h.totalIncome)}</div>
-        <div class="kpi-meta">تومان</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-icon">📉</div>
-        <div class="kpi-label">هزینه دوره گذشته</div>
-        <div class="kpi-value err">${fmtNum(h.totalExpense)}</div>
-        <div class="kpi-meta">تومان</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-icon">💎</div>
-        <div class="kpi-label">سود خالص گذشته</div>
-        <div class="kpi-value ${h.netProfit >= 0 ? "ok" : "err"}">${fmtNum(h.netProfit)}</div>
-        <div class="kpi-meta">تومان</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-icon">🎯</div>
-        <div class="kpi-label">اطمینان پیش‌بینی</div>
-        <div class="kpi-value gold">${f.confidence}٪</div>
-        <div class="kpi-meta">${fmtNum(result.dataPoints)} تراکنش</div>
-      </div>
+      <div class="kpi"><div class="kpi-icon">📈</div><div class="kpi-label">درآمد دوره گذشته</div><div class="kpi-value cyan">${fmtNum(h.totalIncome)}</div><div class="kpi-meta">تومان</div></div>
+      <div class="kpi"><div class="kpi-icon">📉</div><div class="kpi-label">هزینه دوره گذشته</div><div class="kpi-value err">${fmtNum(h.totalExpense)}</div><div class="kpi-meta">تومان</div></div>
+      <div class="kpi"><div class="kpi-icon">💎</div><div class="kpi-label">سود خالص گذشته</div><div class="kpi-value ${h.netProfit >= 0 ? "ok" : "err"}">${fmtNum(h.netProfit)}</div><div class="kpi-meta">تومان</div></div>
+      <div class="kpi"><div class="kpi-icon">🎯</div><div class="kpi-label">اطمینان پیش‌بینی</div><div class="kpi-value gold">${f.confidence}٪</div><div class="kpi-meta">${fmtNum(result.dataPoints)} تراکنش</div></div>
     </div>
 
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg>
-        پیش‌بینی ۳۰ روز آینده
-      </h3>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg> پیش‌بینی ۳۰ روز آینده</h3>
       <div class="forecast-scenarios">
-        <div class="scenario optimistic">
-          <div class="scenario-label">سناریوی خوش‌بینانه</div>
-          <div class="scenario-value" style="color:var(--ok)">${fmtNum(f.optimistic)}</div>
-          <div class="scenario-desc">اگر درآمد ۲۰٪ بهتر و هزینه ۱۰٪ کمتر شود</div>
-        </div>
-        <div class="scenario realistic">
-          <div class="scenario-label">سناریوی واقع‌بینانه</div>
-          <div class="scenario-value" style="color:var(--cyan)">${fmtNum(f.projectedProfit)}</div>
-          <div class="scenario-desc">ادامه روند فعلی درآمد و هزینه</div>
-        </div>
-        <div class="scenario pessimistic">
-          <div class="scenario-label">سناریوی محتاطانه</div>
-          <div class="scenario-value" style="color:var(--err)">${fmtNum(f.pessimistic)}</div>
-          <div class="scenario-desc">اگر درآمد ۲۰٪ کمتر و هزینه ۱۵٪ بیشتر شود</div>
-        </div>
+        <div class="scenario optimistic"><div class="scenario-label">سناریوی خوش‌بینانه</div><div class="scenario-value" style="color:var(--ok)">${fmtNum(f.optimistic)}</div><div class="scenario-desc">درآمد ۲۰٪ بهتر، هزینه ۱۰٪ کمتر</div></div>
+        <div class="scenario realistic"><div class="scenario-label">سناریوی واقع‌بینانه</div><div class="scenario-value" style="color:var(--cyan)">${fmtNum(f.projectedProfit)}</div><div class="scenario-desc">ادامه روند فعلی</div></div>
+        <div class="scenario pessimistic"><div class="scenario-label">سناریوی محتاطانه</div><div class="scenario-value" style="color:var(--err)">${fmtNum(f.pessimistic)}</div><div class="scenario-desc">درآمد ۲۰٪ کمتر، هزینه ۱۵٪ بیشتر</div></div>
       </div>
       <div class="muted" style="margin-top:12px">مبلغ پیش‌بینی‌شده: سود خالص دوره آینده به تومان</div>
     </div>
 
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>
-        دلایل پیش‌بینی
-      </h3>
-      <ul class="reason-list">
-        ${f.reasons.map(r => '<li>' + esc(r) + '</li>').join("")}
-      </ul>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg> دلایل پیش‌بینی</h3>
+      <ul class="reason-list">${f.reasons.map(r => '<li>' + esc(r) + '</li>').join("")}</ul>
     </div>
 
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        میزان اطمینان
-      </h3>
-      <div class="confidence-bar">
-        <div class="confidence-fill" style="width:${f.confidence}%"></div>
-      </div>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> میزان اطمینان</h3>
+      <div class="confidence-bar"><div class="confidence-fill" style="width:${f.confidence}%"></div></div>
       <div class="row row-between" style="margin-top:8px">
         <span class="muted">${f.confidence}٪ اطمینان بر اساس داده‌های موجود</span>
-        <span class="badge badge-${f.confidence > 70 ? "approved" : f.confidence > 40 ? "pending" : "rejected"}">
-          ${f.confidence > 70 ? "قابل اعتماد" : f.confidence > 40 ? "متوسط" : "محدود"}
-        </span>
+        <span class="badge badge-${f.confidence > 70 ? "approved" : f.confidence > 40 ? "pending" : "rejected"}">${f.confidence > 70 ? "قابل اعتماد" : f.confidence > 40 ? "متوسط" : "محدود"}</span>
       </div>
-      <div class="muted" style="margin-top:14px;line-height:1.9">
-        <strong style="color:var(--text-2)">محدودیت‌ها:</strong><br>
-        ${f.limitations.map(l => "• " + esc(l)).join("<br>")}
-      </div>
+      <div class="muted" style="margin-top:14px;line-height:1.9"><strong style="color:var(--text-2)">محدودیت‌ها:</strong><br>${f.limitations.map(l => "• " + esc(l)).join("<br>")}</div>
     </div>
   `;
-
-  $("#refreshForecast").addEventListener("click", () => {
-    renderPage();
-    toast("پیش‌بینی به‌روزرسانی شد", "success");
-  });
+  $("#refreshForecast").addEventListener("click", () => { renderPage(); toast("پیش‌بینی به‌روزرسانی شد", "success"); });
 }
 
-/* ─────────── 16. PAGE: PRODUCTS ─────────── */
+/* ─────────── PAGE: PRODUCTS ─────────── */
 function renderProducts(container, user) {
   const products = Data.userProducts(user.id);
-
   container.innerHTML = `
     <div class="page-head">
-      <div>
-        <h1 class="page-title">کالاها و موجودی</h1>
-        <p class="page-sub">مدیریت کالاها، قیمت‌ها و موجودی انبار</p>
-      </div>
+      <div><h1 class="page-title">کالاها و موجودی</h1><p class="page-sub">مدیریت کالاها، قیمت‌ها و موجودی انبار</p></div>
       <button class="btn btn-primary btn-sm" id="addProductBtn">+ کالای جدید</button>
     </div>
-    <div class="card">
-      ${products.length === 0 ? `
-        <div class="empty">
-          هنوز کالایی ثبت نکرده‌اید.<br>
-          با دکمه «کالای جدید» اولین محصول خود را اضافه کنید.
-        </div>
-      ` : `
+    <div class="card glass">
+      ${products.length === 0 ? `<div class="empty">هنوز کالایی ثبت نکرده‌اید.</div>` : `
         <div class="table-wrap">
           <table class="data-table">
-            <thead>
-              <tr><th>نام</th><th>قیمت خرید</th><th>قیمت فروش</th>
-                <th>حاشیه سود</th><th>موجودی</th><th>عملیات</th></tr>
-            </thead>
+            <thead><tr><th>نام</th><th>قیمت خرید</th><th>قیمت فروش</th><th>حاشیه سود</th><th>موجودی</th><th>عملیات</th></tr></thead>
             <tbody>
               ${products.map(p => {
-                const margin = p.sellPrice > 0
-                  ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100).toFixed(1)
-                  : "0.0";
-                return `
-                  <tr>
-                    <td class="name-cell">${esc(p.name)}</td>
-                    <td>${fmtNum(p.buyPrice)}</td>
-                    <td>${fmtNum(p.sellPrice)}</td>
-                    <td><span class="badge badge-${parseFloat(margin) >= 20 ? "approved" : parseFloat(margin) >= 0 ? "pending" : "rejected"}">${margin}٪</span></td>
-                    <td>${fmtNum(p.stock)}</td>
-                    <td>
-                      <div class="actions">
-                        <button class="tiny-btn" data-edit="${p.id}">ویرایش</button>
-                        <button class="tiny-btn danger" data-del="${p.id}">حذف</button>
-                      </div>
-                    </td>
-                  </tr>
-                `;
+                const margin = p.sellPrice > 0 ? ((p.sellPrice - p.buyPrice) / p.sellPrice * 100).toFixed(1) : "0.0";
+                return `<tr><td class="name-cell">${esc(p.name)}</td><td>${fmtNum(p.buyPrice)}</td><td>${fmtNum(p.sellPrice)}</td>
+                  <td><span class="badge badge-${parseFloat(margin) >= 20 ? "approved" : parseFloat(margin) >= 0 ? "pending" : "rejected"}">${margin}٪</span></td>
+                  <td>${fmtNum(p.stock)}</td>
+                  <td><div class="actions"><button class="tiny-btn" data-edit="${p.id}">ویرایش</button><button class="tiny-btn danger" data-del="${p.id}">حذف</button></div></td></tr>`;
               }).join("")}
             </tbody>
           </table>
@@ -1851,22 +1471,9 @@ function renderProducts(container, user) {
       `}
     </div>
   `;
-
   $("#addProductBtn").addEventListener("click", () => showProductModal());
-  $$("[data-edit]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      const p = products.find(x => x.id === b.dataset.edit);
-      if (p) showProductModal(p);
-    });
-  });
-  $$("[data-del]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      if (!confirm("این کالا حذف شود؟")) return;
-      Data.deleteProduct(b.dataset.del);
-      toast("کالا حذف شد", "success");
-      renderPage();
-    });
-  });
+  $$("[data-edit]", container).forEach(b => { b.addEventListener("click", () => { const p = products.find(x => x.id === b.dataset.edit); if (p) showProductModal(p); }); });
+  $$("[data-del]", container).forEach(b => { b.addEventListener("click", () => { if (!confirm("این کالا حذف شود؟")) return; Data.deleteProduct(b.dataset.del); toast("کالا حذف شد", "success"); renderPage(); }); });
 }
 
 function showProductModal(existing) {
@@ -1877,111 +1484,52 @@ function showProductModal(existing) {
     <h3>${isEdit ? "ویرایش کالا" : "کالای جدید"}</h3>
     <p class="modal-sub">اطلاعات کالا را وارد کنید</p>
     <form id="productForm">
-      <div class="field">
-        <label>نام کالا</label>
-        <input id="pName" type="text" maxlength="60" value="${esc(p.name)}" required>
-      </div>
-      <div class="field">
-        <label>قیمت خرید (تومان)</label>
-        <input id="pBuy" type="number" min="0" value="${p.buyPrice || ""}" required>
-      </div>
-      <div class="field">
-        <label>قیمت فروش (تومان)</label>
-        <input id="pSell" type="number" min="0" value="${p.sellPrice || ""}" required>
-      </div>
-      <div class="field">
-        <label>موجودی</label>
-        <input id="pStock" type="number" min="0" step="0.01" value="${p.stock || ""}" required>
-      </div>
+      <div class="field"><label>نام کالا</label><input id="pName" type="text" maxlength="60" value="${esc(p.name)}" required></div>
+      <div class="field"><label>قیمت خرید (تومان)</label><input id="pBuy" type="number" min="0" value="${p.buyPrice || ""}" required></div>
+      <div class="field"><label>قیمت فروش (تومان)</label><input id="pSell" type="number" min="0" value="${p.sellPrice || ""}" required></div>
+      <div class="field"><label>موجودی</label><input id="pStock" type="number" min="0" step="0.01" value="${p.stock || ""}" required></div>
       <div class="auth-error" id="pError" hidden></div>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-ghost" id="pCancel">انصراف</button>
-        <button type="submit" class="btn btn-primary">${isEdit ? "ذخیره" : "افزودن"}</button>
-      </div>
+      <div class="modal-actions"><button type="button" class="btn btn-ghost" id="pCancel">انصراف</button><button type="submit" class="btn btn-primary">${isEdit ? "ذخیره" : "افزودن"}</button></div>
     </form>
   `);
-
   $("#modalCloseBtn").addEventListener("click", closeGenericModal);
   $("#pCancel").addEventListener("click", closeGenericModal);
   $("#productForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    const data = {
-      name: $("#pName").value,
-      buyPrice: $("#pBuy").value,
-      sellPrice: $("#pSell").value,
-      stock: $("#pStock").value
-    };
+    const data = { name: $("#pName").value, buyPrice: $("#pBuy").value, sellPrice: $("#pSell").value, stock: $("#pStock").value };
     let result;
-    if (isEdit) {
-      Data.updateProduct(existing.id, data);
-      result = { ok: true };
-    } else {
-      result = Data.addProduct(data);
-    }
-    if (!result.ok) {
-      const err = $("#pError");
-      err.textContent = result.error;
-      err.hidden = false;
-      return;
-    }
-    closeGenericModal();
-    toast(isEdit ? "کالا ویرایش شد" : "کالا اضافه شد", "success");
-    renderPage();
+    if (isEdit) { Data.updateProduct(existing.id, data); result = { ok: true }; }
+    else { result = Data.addProduct(data); }
+    if (!result.ok) { const err = $("#pError"); err.textContent = result.error; err.hidden = false; return; }
+    closeGenericModal(); toast(isEdit ? "کالا ویرایش شد" : "کالا اضافه شد", "success"); renderPage();
   });
 }
 
-/* ─────────── 17. PAGE: TRANSACTIONS ─────────── */
+/* ─────────── PAGE: TRANSACTIONS ─────────── */
 function renderTransactions(container, user) {
   const txs = Data.userTransactions(user.id, 90);
-
   container.innerHTML = `
     <div class="page-head">
-      <div>
-        <h1 class="page-title">تراکنش‌ها</h1>
-        <p class="page-sub">مدیریت درآمد و هزینه‌های کسب‌وکار</p>
-      </div>
+      <div><h1 class="page-title">تراکنش‌ها</h1><p class="page-sub">مدیریت درآمد و هزینه‌های کسب‌وکار</p></div>
       <button class="btn btn-primary btn-sm" id="addTxBtn">+ تراکنش جدید</button>
     </div>
-    <div class="card">
-      ${txs.length === 0 ? `
-        <div class="empty">
-          هنوز تراکنشی ثبت نکرده‌اید.<br>
-          با دکمه «تراکنش جدید» شروع کنید.
-        </div>
-      ` : `
+    <div class="card glass">
+      ${txs.length === 0 ? `<div class="empty">هنوز تراکنشی ثبت نکرده‌اید.</div>` : `
         <div class="table-wrap">
           <table class="data-table">
-            <thead>
-              <tr><th>نوع</th><th>مبلغ</th><th>دسته</th>
-                <th>توضیح</th><th>تاریخ</th><th></th></tr>
-            </thead>
+            <thead><tr><th>نوع</th><th>مبلغ</th><th>دسته</th><th>توضیح</th><th>تاریخ</th><th></th></tr></thead>
             <tbody>
-              ${txs.map(t => `
-                <tr>
-                  <td><span class="badge badge-${t.type === "income" ? "approved" : "rejected"}">${t.type === "income" ? "درآمد" : "هزینه"}</span></td>
-                  <td class="name-cell">${fmtNum(t.amount)}</td>
-                  <td>${esc(t.category || "—")}</td>
-                  <td>${esc(t.description || "—")}</td>
-                  <td>${fmtDate(t.createdAt)}</td>
-                  <td><button class="tiny-btn danger" data-del-tx="${t.id}">حذف</button></td>
-                </tr>
-              `).join("")}
+              ${txs.map(t => `<tr><td><span class="badge badge-${t.type === "income" ? "approved" : "rejected"}">${t.type === "income" ? "درآمد" : "هزینه"}</span></td>
+                <td class="name-cell">${fmtNum(t.amount)}</td><td>${esc(t.category || "—")}</td><td>${esc(t.description || "—")}</td>
+                <td>${fmtDate(t.createdAt)}</td><td><button class="tiny-btn danger" data-del-tx="${t.id}">حذف</button></td></tr>`).join("")}
             </tbody>
           </table>
         </div>
       `}
     </div>
   `;
-
   $("#addTxBtn").addEventListener("click", showTransactionModal);
-  $$("[data-del-tx]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      if (!confirm("این تراکنش حذف شود؟")) return;
-      Data.deleteTransaction(b.dataset.delTx);
-      toast("تراکنش حذف شد", "success");
-      renderPage();
-    });
-  });
+  $$("[data-del-tx]", container).forEach(b => { b.addEventListener("click", () => { if (!confirm("این تراکنش حذف شود؟")) return; Data.deleteTransaction(b.dataset.delTx); toast("تراکنش حذف شد", "success"); renderPage(); }); });
 }
 
 function showTransactionModal() {
@@ -1990,146 +1538,60 @@ function showTransactionModal() {
     <h3>تراکنش جدید</h3>
     <p class="modal-sub">درآمد یا هزینه خود را ثبت کنید</p>
     <form id="txForm">
-      <div class="field">
-        <label>نوع تراکنش</label>
-        <select id="txType" required>
-          <option value="income">درآمد</option>
-          <option value="expense">هزینه</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>مبلغ (تومان)</label>
-        <input id="txAmount" type="number" min="1" required>
-      </div>
-      <div class="field">
-        <label>دسته (اختیاری)</label>
-        <input id="txCategory" type="text" maxlength="40" placeholder="مثلاً: فروش، اجاره، حقوق">
-      </div>
-      <div class="field">
-        <label>توضیح (اختیاری)</label>
-        <input id="txDesc" type="text" maxlength="100">
-      </div>
+      <div class="field"><label>نوع تراکنش</label><select id="txType" required><option value="income">درآمد</option><option value="expense">هزینه</option></select></div>
+      <div class="field"><label>مبلغ (تومان)</label><input id="txAmount" type="number" min="1" required></div>
+      <div class="field"><label>دسته (اختیاری)</label><input id="txCategory" type="text" maxlength="40" placeholder="مثلاً: فروش، اجاره، حقوق"></div>
+      <div class="field"><label>توضیح (اختیاری)</label><input id="txDesc" type="text" maxlength="100"></div>
       <div class="auth-error" id="txError" hidden></div>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-ghost" id="txCancel">انصراف</button>
-        <button type="submit" class="btn btn-primary">ثبت</button>
-      </div>
+      <div class="modal-actions"><button type="button" class="btn btn-ghost" id="txCancel">انصراف</button><button type="submit" class="btn btn-primary">ثبت</button></div>
     </form>
   `);
-
   $("#modalCloseBtn").addEventListener("click", closeGenericModal);
   $("#txCancel").addEventListener("click", closeGenericModal);
   $("#txForm").addEventListener("submit", (e) => {
     e.preventDefault();
-    const result = Data.addTransaction({
-      type: $("#txType").value,
-      amount: $("#txAmount").value,
-      category: $("#txCategory").value,
-      description: $("#txDesc").value
-    });
-    if (!result.ok) {
-      const err = $("#txError");
-      err.textContent = result.error;
-      err.hidden = false;
-      return;
-    }
-    closeGenericModal();
-    toast("تراکنش ثبت شد", "success");
-    renderPage();
+    const result = Data.addTransaction({ type: $("#txType").value, amount: $("#txAmount").value, category: $("#txCategory").value, description: $("#txDesc").value });
+    if (!result.ok) { const err = $("#txError"); err.textContent = result.error; err.hidden = false; return; }
+    closeGenericModal(); toast("تراکنش ثبت شد", "success"); renderPage();
   });
 }
 
-/* ─────────── 18. PAGE: SUBSCRIPTION ─────────── */
+/* ─────────── PAGE: SUBSCRIPTION ─────────── */
 function renderSubscription(container, user) {
   const subs = Data.mySubscriptions(user.id);
   const pending = subs.find(s => s.status === "pending");
   const TIERS = {
-    free: {
-      label: "Free", price: 0, desc: "برای شروع و آشنایی",
-      features: ["دسترسی به تحلیل متن", "حداکثر ۱۰ عملیات در روز",
-        "پشتیبانی از فارسی", "ذخیره‌سازی محلی"]
-    },
-    pro: {
-      label: "Pro", price: 299000, desc: "برای کسب‌وکارهای در حال رشد", featured: true,
-      features: ["همه امکانات Free", "حسابدار هوشمند نامحدود",
-        "پیش‌بین مالی", "گزارش‌های تحلیلی",
-        "پشتیبانی از ایده‌پرداز"]
-    },
-    enterprise: {
-      label: "Enterprise", price: 999000, desc: "برای سازمان‌ها و تیم‌ها",
-      features: ["همه امکانات Pro", "کاربران نامحدود",
-        "قابلیت‌های اتوماسیون", "گزارش‌های سفارشی",
-        "اولویت پشتیبانی"]
-    }
+    free: { label: "Free", price: 0, desc: "برای شروع و آشنایی", features: ["دسترسی به تحلیل متن", "حداکثر ۱۰ عملیات در روز", "پشتیبانی از فارسی", "ذخیره‌سازی محلی"] },
+    pro: { label: "Pro", price: 299000, desc: "برای کسب‌وکارهای در حال رشد", featured: true, features: ["همه امکانات Free", "مشاور هوشمند نامحدود", "پیش‌بین مالی", "گزارش‌های تحلیلی", "پشتیبانی از ایده‌پرداز"] },
+    enterprise: { label: "Enterprise", price: 999000, desc: "برای سازمان‌ها و تیم‌ها", features: ["همه امکانات Pro", "کاربران نامحدود", "قابلیت‌های اتوماسیون", "گزارش‌های سفارشی", "اولویت پشتیبانی"] }
   };
 
   container.innerHTML = `
-    <div class="page-head">
-      <div>
-        <h1 class="page-title">اشتراک</h1>
-        <p class="page-sub">مدیریت سطح اشتراک و درخواست‌ها</p>
-      </div>
-    </div>
-
-    ${pending ? `
-      <div class="admin-banner">
-        ⏳ درخواست شما برای سطح ${esc(pending.tier)} در تاریخ ${fmtDateTime(pending.requestedAt)} ثبت شده و در انتظار بررسی مدیر است.
-      </div>
-    ` : ""}
-
+    <div class="page-head"><div><h1 class="page-title">اشتراک</h1><p class="page-sub">مدیریت سطح اشتراک و درخواست‌ها</p></div></div>
+    ${pending ? `<div class="admin-banner">⏳ درخواست شما برای سطح ${esc(pending.tier)} در تاریخ ${fmtDateTime(pending.requestedAt)} ثبت شده و در انتظار بررسی مدیر است.</div>` : ""}
     <div class="tier-grid">
       ${Object.keys(TIERS).map(key => {
-        const t = TIERS[key];
-        const isCurrent = user.tier === key;
+        const t = TIERS[key], isCurrent = user.tier === key;
         const cls = "tier-card" + (t.featured ? " featured" : "") + (isCurrent ? " current" : "");
-        return `
-          <div class="${cls}">
-            <div class="tier-name">${t.label}</div>
-            <div class="tier-price">
-              ${t.price === 0 ? "رایگان" : fmtNum(t.price) + ' <small>تومان / ماه</small>'}
-            </div>
-            <div class="tier-desc">${t.desc}</div>
-            <ul class="tier-features">
-              ${t.features.map(f => '<li>' + esc(f) + '</li>').join("")}
-            </ul>
-            ${isCurrent 
-              ? '<button class="btn btn-ghost btn-block" disabled>سطح فعلی شما</button>'
-              : t.price === 0
-                ? '<button class="btn btn-ghost btn-block" disabled>رایگان</button>'
-                : `<button class="btn ${t.featured ? "btn-gold" : "btn-primary"} btn-block" data-request="${key}">
-                    درخواست ${t.label}
-                   </button>`}
-          </div>
-        `;
+        return `<div class="${cls}">
+          <div class="tier-name">${t.label}</div>
+          <div class="tier-price">${t.price === 0 ? "رایگان" : fmtNum(t.price) + ' <small>تومان / ماه</small>'}</div>
+          <div class="tier-desc">${t.desc}</div>
+          <ul class="tier-features">${t.features.map(f => '<li>' + esc(f) + '</li>').join("")}</ul>
+          ${isCurrent ? '<button class="btn btn-ghost btn-block" disabled>سطح فعلی شما</button>' : t.price === 0 ? '<button class="btn btn-ghost btn-block" disabled>رایگان</button>' : `<button class="btn ${t.featured ? "btn-gold" : "btn-primary"} btn-block" data-request="${key}">درخواست ${t.label}</button>`}
+        </div>`;
       }).join("")}
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        تاریخچه درخواست‌ها
-      </h3>
-      ${subs.length === 0 ? `
-        <div class="empty">هنوز درخواستی ثبت نکرده‌اید.</div>
-      ` : `
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> تاریخچه درخواست‌ها</h3>
+      ${subs.length === 0 ? `<div class="empty">هنوز درخواستی ثبت نکرده‌اید.</div>` : `
         <div class="table-wrap">
           <table class="data-table">
-            <thead><tr><th>سطح</th><th>مبلغ</th><th>وضعیت</th>
-              <th>تاریخ درخواست</th><th>رسید</th></tr></thead>
+            <thead><tr><th>سطح</th><th>مبلغ</th><th>وضعیت</th><th>تاریخ درخواست</th><th>رسید</th></tr></thead>
             <tbody>
-              ${subs.map(s => `
-                <tr>
-                  <td><span class="badge badge-${s.tier}">${esc(s.tier)}</span></td>
-                  <td>${fmtNum(s.amount)}</td>
-                  <td><span class="badge badge-${s.status === "approved" ? "approved" : s.status === "pending" ? "pending" : "rejected"}">
-                    ${s.status === "approved" ? "تأیید شده" : s.status === "pending" ? "در انتظار" : s.status === "rejected" ? "رد شده" : "لغو شده"}
-                  </span></td>
-                  <td>${fmtDate(s.requestedAt)}</td>
-                  <td>
-                    <img src="${s.receipt}" class="receipt-thumb" alt="رسید" data-full="${s.id}">
-                  </td>
-                </tr>
-              `).join("")}
+              ${subs.map(s => `<tr><td><span class="badge badge-${s.tier}">${esc(s.tier)}</span></td><td>${fmtNum(s.amount)}</td>
+                <td><span class="badge badge-${s.status === "approved" ? "approved" : s.status === "pending" ? "pending" : "rejected"}">${s.status === "approved" ? "تأیید شده" : s.status === "pending" ? "در انتظار" : s.status === "rejected" ? "رد شده" : "لغو شده"}</span></td>
+                <td>${fmtDate(s.requestedAt)}</td><td><img src="${s.receipt}" class="receipt-thumb" alt="رسید" data-full="${s.id}"></td></tr>`).join("")}
             </tbody>
           </table>
         </div>
@@ -2137,23 +1599,11 @@ function renderSubscription(container, user) {
     </div>
   `;
 
-  $$("[data-request]", container).forEach(b => {
-    b.addEventListener("click", () => showSubscriptionRequestModal(b.dataset.request, TIERS[b.dataset.request]));
-  });
-  $$("[data-full]", container).forEach(img => {
-    img.addEventListener("click", () => {
-      const s = subs.find(x => x.id === img.dataset.full);
-      if (s) {
-        openGenericModal(`
-          <button class="modal-close" id="modalCloseBtn">×</button>
-          <h3>رسید ارسالی</h3>
-          <p class="modal-sub">تاریخ: ${fmtDateTime(s.requestedAt)}</p>
-          <img src="${s.receipt}" class="receipt-preview" alt="رسید">
-        `);
-        $("#modalCloseBtn").addEventListener("click", closeGenericModal);
-      }
-    });
-  });
+  $$("[data-request]", container).forEach(b => b.addEventListener("click", () => showSubscriptionRequestModal(b.dataset.request, TIERS[b.dataset.request])));
+  $$("[data-full]", container).forEach(img => img.addEventListener("click", () => {
+    const s = subs.find(x => x.id === img.dataset.full);
+    if (s) { openGenericModal(`<button class="modal-close" id="modalCloseBtn">×</button><h3>رسید ارسالی</h3><p class="modal-sub">تاریخ: ${fmtDateTime(s.requestedAt)}</p><img src="${s.receipt}" class="receipt-preview" alt="رسید">`); $("#modalCloseBtn").addEventListener("click", closeGenericModal); }
+  }));
 }
 
 function showSubscriptionRequestModal(tierKey, tierInfo) {
@@ -2161,495 +1611,213 @@ function showSubscriptionRequestModal(tierKey, tierInfo) {
     <button class="modal-close" id="modalCloseBtn">×</button>
     <h3>درخواست اشتراک ${tierInfo.label}</h3>
     <p class="modal-sub">مبلغ قابل پرداخت: ${fmtNum(tierInfo.price)} تومان (۳۰ روز)</p>
-    <p style="font-size:12.5px;color:var(--text-2);line-height:1.9;margin-bottom:16px">
-      لطفاً تصویر رسید پرداخت خود را آپلود کنید. پس از بررسی توسط مدیر،
-      اشتراک شما فعال خواهد شد.
-    </p>
-    <div class="field">
-      <label>تصویر رسید</label>
-      <input type="file" id="receiptFile" accept="image/*" required>
-      <div class="field-hint">فرمت مجاز: JPG، PNG، WebP · حداکثر ۵ مگابایت</div>
-    </div>
-    <div id="receiptPreviewWrap" hidden>
-      <img id="receiptPreviewImg" class="receipt-preview" alt="پیش‌نمایش">
-    </div>
+    <p style="font-size:12.5px;color:var(--text-2);line-height:1.9;margin-bottom:16px">لطفاً تصویر رسید پرداخت خود را آپلود کنید. پس از بررسی توسط مدیر، اشتراک شما فعال خواهد شد.</p>
+    <div class="field"><label>تصویر رسید</label><input type="file" id="receiptFile" accept="image/*" required><div class="field-hint">فرمت مجاز: JPG، PNG، WebP · حداکثر ۵ مگابایت</div></div>
+    <div id="receiptPreviewWrap" hidden><img id="receiptPreviewImg" class="receipt-preview" alt="پیش‌نمایش"></div>
     <div class="auth-error" id="subError" hidden></div>
-    <div class="modal-actions">
-      <button type="button" class="btn btn-ghost" id="subCancel">انصراف</button>
-      <button type="button" class="btn btn-primary" id="subSubmit">ثبت درخواست</button>
-    </div>
+    <div class="modal-actions"><button type="button" class="btn btn-ghost" id="subCancel">انصراف</button><button type="button" class="btn btn-primary" id="subSubmit">ثبت درخواست</button></div>
   `);
-
   let compressedData = null;
   $("#modalCloseBtn").addEventListener("click", closeGenericModal);
   $("#subCancel").addEventListener("click", closeGenericModal);
-
   $("#receiptFile").addEventListener("change", async (e) => {
     const file = e.target.files[0];
     if (!file) { compressedData = null; $("#receiptPreviewWrap").hidden = true; return; }
-    if (file.size > 5 * 1024 * 1024) {
-      const err = $("#subError");
-      err.textContent = "حجم فایل بیشتر از ۵ مگابایت است";
-      err.hidden = false;
-      e.target.value = "";
-      compressedData = null;
-      return;
-    }
+    if (file.size > 5 * 1024 * 1024) { const err = $("#subError"); err.textContent = "حجم فایل بیشتر از ۵ مگابایت است"; err.hidden = false; e.target.value = ""; compressedData = null; return; }
     try {
       compressedData = await compressImage(file, 1000);
-      $("#receiptPreviewImg").src = compressedData;
-      $("#receiptPreviewWrap").hidden = false;
-      $("#subError").hidden = true;
-    } catch (err) {
-      const er = $("#subError");
-      er.textContent = err.message || "خطا در پردازش تصویر";
-      er.hidden = false;
-    }
+      $("#receiptPreviewImg").src = compressedData; $("#receiptPreviewWrap").hidden = false; $("#subError").hidden = true;
+    } catch (err) { const er = $("#subError"); er.textContent = err.message || "خطا در پردازش تصویر"; er.hidden = false; }
   });
-
   $("#subSubmit").addEventListener("click", () => {
-    if (!compressedData) {
-      const err = $("#subError");
-      err.textContent = "لطفاً تصویر رسید را آپلود کنید";
-      err.hidden = false;
-      return;
-    }
+    if (!compressedData) { const err = $("#subError"); err.textContent = "لطفاً تصویر رسید را آپلود کنید"; err.hidden = false; return; }
     const result = Data.requestSubscription(tierKey, compressedData);
-    if (!result.ok) {
-      const err = $("#subError");
-      err.textContent = result.error;
-      err.hidden = false;
-      return;
-    }
-    closeGenericModal();
-    toast("درخواست شما ثبت شد و در انتظار بررسی است", "success");
-    renderPage();
+    if (!result.ok) { const err = $("#subError"); err.textContent = result.error; err.hidden = false; return; }
+    closeGenericModal(); toast("درخواست شما ثبت شد و در انتظار بررسی است", "success"); renderPage();
   });
 }
 
-/* ─────────── 19. PAGE: SETTINGS ─────────── */
+/* ─────────── PAGE: SETTINGS ─────────── */
 function renderSettings(container, user) {
   container.innerHTML = `
-    <div class="page-head">
-      <div>
-        <h1 class="page-title">تنظیمات</h1>
-        <p class="page-sub">مدیریت حساب و داده‌ها</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg>
-        امنیت حساب
-      </h3>
-      <div class="row row-between" style="padding:10px 0">
-        <div>
-          <div style="font-size:13px;font-weight:700">تغییر رمز عبور</div>
-          <div class="muted">رمز عبور خود را به‌روز نگه دارید</div>
-        </div>
+    <div class="page-head"><div><h1 class="page-title">تنظیمات</h1><p class="page-sub">مدیریت حساب و داده‌ها</p></div></div>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg> امنیت حساب</h3>
+      <div class="row row-between" style="padding:10px 0;border-bottom:1px solid var(--border)">
+        <div><div style="font-size:13px;font-weight:700">تغییر رمز عبور</div><div class="muted">رمز عبور خود را به‌روز نگه دارید</div></div>
         <button class="btn btn-ghost btn-sm" id="changePwBtn">تغییر رمز</button>
       </div>
-      <div class="row row-between" style="padding:10px 0;border-top:1px solid var(--border)">
-        <div>
-          <div style="font-size:13px;font-weight:700">اطلاعات حساب</div>
-          <div class="muted">${esc(user.email)} · عضویت: ${fmtDate(user.createdAt)}</div>
-        </div>
+      <div class="row row-between" style="padding:10px 0">
+        <div><div style="font-size:13px;font-weight:700">اطلاعات حساب</div><div class="muted">${esc(user.email)} · عضویت: ${fmtDate(user.createdAt)}</div></div>
       </div>
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg>
-        داده‌های شما
-      </h3>
-      <div class="row row-between" style="padding:10px 0">
-        <div>
-          <div style="font-size:13px;font-weight:700">خروجی گرفتن</div>
-          <div class="muted">دانلود پشتیبان کامل از داده‌های شما</div>
-        </div>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"/></svg> داده‌های شما</h3>
+      <div class="row row-between" style="padding:10px 0;border-bottom:1px solid var(--border)">
+        <div><div style="font-size:13px;font-weight:700">خروجی گرفتن</div><div class="muted">دانلود پشتیبان کامل از داده‌های شما</div></div>
         <button class="btn btn-ghost btn-sm" id="exportBtn">خروجی JSON</button>
       </div>
-      <div class="row row-between" style="padding:10px 0;border-top:1px solid var(--border)">
-        <div>
-          <div style="font-size:13px;font-weight:700">وارد کردن پشتیبان</div>
-          <div class="muted">بازیابی از فایل خروجی قبلی</div>
-        </div>
-        <label class="btn btn-ghost btn-sm" style="cursor:pointer">
-          انتخاب فایل
-          <input id="importFile" type="file" accept=".json" style="display:none">
-        </label>
-      </div>
-      <div class="row row-between" style="padding:10px 0;border-top:1px solid var(--border)">
-        <div>
-          <div style="font-size:13px;font-weight:700;color:var(--err)">حذف کامل داده‌ها</div>
-          <div class="muted">تمام اطلاعات و حساب شما پاک خواهد شد</div>
-        </div>
+      <div class="row row-between" style="padding:10px 0">
+        <div><div style="font-size:13px;font-weight:700;color:var(--err)">حذف کامل داده‌ها</div><div class="muted">تمام اطلاعات و حساب شما پاک خواهد شد</div></div>
         <button class="btn btn-danger btn-sm" id="wipeBtn">حذف همه</button>
       </div>
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg>
-        درباره NEXORA AI
-      </h3>
-      <p class="muted" style="line-height:1.95">
-        NEXORA AI — دستیار هوشمند کسب‌وکار.<br>
-        نسخه ۲.۰.۰ · Intelligence Beyond Limits
-      </p>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5M12 7.6v.1"/></svg> درباره NEXORA AI</h3>
+      <p class="muted" style="line-height:1.95">NEXORA AI — دستیار هوشمند کسب‌وکار.<br>نسخه ۲.۰.۰ · Intelligence Beyond Limits</p>
     </div>
   `;
-
   $("#changePwBtn").addEventListener("click", () => {
     openGenericModal(`
-      <button class="modal-close" id="modalCloseBtn">×</button>
-      <h3>تغییر رمز عبور</h3>
-      <p class="modal-sub">رمز فعلی و رمز جدید را وارد کنید</p>
+      <button class="modal-close" id="modalCloseBtn">×</button><h3>تغییر رمز عبور</h3><p class="modal-sub">رمز فعلی و رمز جدید را وارد کنید</p>
       <form id="pwForm">
-        <div class="field">
-          <label>رمز فعلی</label>
-          <input id="pwCurrent" type="password" required>
-        </div>
-        <div class="field">
-          <label>رمز جدید (حداقل ۶ کاراکتر)</label>
-          <input id="pwNew" type="password" minlength="6" required>
-        </div>
-        <div class="field">
-          <label>تکرار رمز جدید</label>
-          <input id="pwConfirm" type="password" minlength="6" required>
-        </div>
+        <div class="field"><label>رمز فعلی</label><input id="pwCurrent" type="password" required></div>
+        <div class="field"><label>رمز جدید (حداقل ۶ کاراکتر)</label><input id="pwNew" type="password" minlength="6" required></div>
+        <div class="field"><label>تکرار رمز جدید</label><input id="pwConfirm" type="password" minlength="6" required></div>
         <div class="auth-error" id="pwError" hidden></div>
-        <div class="modal-actions">
-          <button type="button" class="btn btn-ghost" id="pwCancel">انصراف</button>
-          <button type="submit" class="btn btn-primary">تغییر</button>
-        </div>
+        <div class="modal-actions"><button type="button" class="btn btn-ghost" id="pwCancel">انصراف</button><button type="submit" class="btn btn-primary">تغییر</button></div>
       </form>
     `);
     $("#modalCloseBtn").addEventListener("click", closeGenericModal);
     $("#pwCancel").addEventListener("click", closeGenericModal);
     $("#pwForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const current = $("#pwCurrent").value;
-      const newPw = $("#pwNew").value;
-      const confirmPw = $("#pwConfirm").value;
-      const err = $("#pwError");
-      if (newPw !== confirmPw) {
-        err.textContent = "رمز جدید و تکرار آن یکسان نیستند";
-        err.hidden = false;
-        return;
-      }
+      const current = $("#pwCurrent").value, newPw = $("#pwNew").value, confirmPw = $("#pwConfirm").value, err = $("#pwError");
+      if (newPw !== confirmPw) { err.textContent = "رمز جدید و تکرار آن یکسان نیستند"; err.hidden = false; return; }
       const result = await Auth.changePassword(current, newPw);
-      if (!result.ok) {
-        err.textContent = result.error;
-        err.hidden = false;
-        return;
-      }
-      closeGenericModal();
-      toast("رمز عبور تغییر کرد", "success");
+      if (!result.ok) { err.textContent = result.error; err.hidden = false; return; }
+      closeGenericModal(); toast("رمز عبور تغییر کرد", "success");
     });
   });
-
   $("#exportBtn").addEventListener("click", () => {
     try {
-      const data = {
-        exportedAt: new Date().toISOString(),
-        version: "2.0.0",
-        data: DB.data
-      };
+      const data = { exportedAt: new Date().toISOString(), version: "2.0.0", data: DB.data };
       const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "nexora-backup-" + Date.now() + ".json";
-      a.click();
-      setTimeout(() => URL.revokeObjectURL(url), 2000);
-      toast("فایل خروجی دانلود شد", "success");
-    } catch (e) {
-      toast("خطا در خروجی", "error");
-    }
+      const a = document.createElement("a"); a.href = url; a.download = "nexora-backup-" + Date.now() + ".json"; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 2000); toast("فایل خروجی دانلود شد", "success");
+    } catch (e) { toast("خطا در خروجی", "error"); }
   });
-
-  $("#importFile").addEventListener("change", async (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-    try {
-      const text = await file.text();
-      const parsed = JSON.parse(text);
-      if (!parsed.data || !parsed.data.users) {
-        toast("فایل معتبر نیست", "error");
-        return;
-      }
-      if (!confirm("داده‌های فعلی جایگزین خواهند شد. ادامه؟")) return;
-      DB.data = parsed.data;
-      DB.save();
-      toast("داده‌ها بازیابی شدند. لطفاً دوباره وارد شوید.", "success");
-      setTimeout(() => location.reload(), 1500);
-    } catch (err) {
-      toast("خطا در خواندن فایل", "error");
-    }
-  });
-
   $("#wipeBtn").addEventListener("click", () => {
     if (!confirm("تمام داده‌ها حذف می‌شوند. ادامه؟")) return;
     if (!confirm("این عمل قابل بازگشت نیست. مطمئن هستید؟")) return;
-    DB.reset();
-    toast("همه داده‌ها حذف شد");
-    setTimeout(() => location.reload(), 1200);
+    DB.reset(); toast("همه داده‌ها حذف شد"); setTimeout(() => location.reload(), 1200);
   });
 }
 
-/* ─────────── 20. PAGE: ADMIN ─────────── */
+/* ─────────── PAGE: ADMIN ─────────── */
 function renderAdmin(container, user) {
   if (!Admin.isLoggedIn()) { navigate("dashboard"); return; }
   const stats = Admin.stats();
-  const pendingSubs = DB.data.subscriptions
-    .filter(s => s.status === "pending")
-    .map(s => ({ ...s, user: DB.data.users.find(u => u.id === s.userId) }))
-    .filter(s => s.user);
+  const pendingSubs = DB.data.subscriptions.filter(s => s.status === "pending").map(s => ({ ...s, user: DB.data.users.find(u => u.id === s.userId) })).filter(s => s.user);
 
   container.innerHTML = `
-    <div class="page-head">
-      <div>
-        <h1 class="page-title">پنل مدیریت</h1>
-        <p class="page-sub">مدیریت کاربران، اشتراک‌ها و آمار سیستم</p>
-      </div>
-      <button class="btn btn-ghost btn-sm" id="adminLogout">خروج از مدیریت</button>
-    </div>
-
+    <div class="page-head"><div><h1 class="page-title">پنل مدیریت</h1><p class="page-sub">مدیریت کاربران، اشتراک‌ها و آمار سیستم</p></div><button class="btn btn-ghost btn-sm" id="adminLogout">خروج از مدیریت</button></div>
     <div class="kpi-grid">
-      <div class="kpi"><div class="kpi-label">کل کاربران</div>
-        <div class="kpi-value cyan">${fmtNum(stats.totalUsers)}</div></div>
-      <div class="kpi"><div class="kpi-label">کاربران جدید (۷ روز)</div>
-        <div class="kpi-value">${fmtNum(stats.newUsers)}</div></div>
-      <div class="kpi"><div class="kpi-label">کاربران فعال (۷ روز)</div>
-        <div class="kpi-value ok">${fmtNum(stats.activeUsers)}</div></div>
-      <div class="kpi"><div class="kpi-label">اشتراک فعال</div>
-        <div class="kpi-value gold">${fmtNum(stats.subscribedUsers)}</div></div>
-      <div class="kpi"><div class="kpi-label">در انتظار تأیید</div>
-        <div class="kpi-value ${stats.pendingSubs > 0 ? "err" : ""}">${fmtNum(stats.pendingSubs)}</div></div>
-      <div class="kpi"><div class="kpi-label">درآمد اشتراک‌ها</div>
-        <div class="kpi-value ok">${fmtNum(stats.revenue)}</div>
-        <div class="kpi-meta">تومان</div></div>
+      <div class="kpi"><div class="kpi-label">کل کاربران</div><div class="kpi-value cyan">${fmtNum(stats.totalUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">کاربران جدید (۷ روز)</div><div class="kpi-value">${fmtNum(stats.newUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">کاربران فعال (۷ روز)</div><div class="kpi-value ok">${fmtNum(stats.activeUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">اشتراک فعال</div><div class="kpi-value gold">${fmtNum(stats.subscribedUsers)}</div></div>
+      <div class="kpi"><div class="kpi-label">در انتظار تأیید</div><div class="kpi-value ${stats.pendingSubs > 0 ? "err" : ""}">${fmtNum(stats.pendingSubs)}</div></div>
+      <div class="kpi"><div class="kpi-label">درآمد اشتراک‌ها</div><div class="kpi-value ok">${fmtNum(stats.revenue)}</div><div class="kpi-meta">تومان</div></div>
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        درخواست‌های اشتراک در انتظار (${pendingSubs.length})
-      </h3>
-      ${pendingSubs.length === 0 ? `
-        <div class="empty">درخواستی در انتظار بررسی نیست.</div>
-      ` : `
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> درخواست‌های اشتراک در انتظار (${pendingSubs.length})</h3>
+      ${pendingSubs.length === 0 ? `<div class="empty">درخواستی در انتظار بررسی نیست.</div>` : `
         <div class="table-wrap">
           <table class="data-table">
-            <thead><tr><th>کاربر</th><th>سطح</th><th>مبلغ</th>
-              <th>تاریخ</th><th>رسید</th><th>عملیات</th></tr></thead>
+            <thead><tr><th>کاربر</th><th>سطح</th><th>مبلغ</th><th>تاریخ</th><th>رسید</th><th>عملیات</th></tr></thead>
             <tbody>
-              ${pendingSubs.map(s => `
-                <tr>
-                  <td class="name-cell">${esc(s.user.name)}<br>
-                    <span class="muted">${esc(s.user.email)}</span></td>
-                  <td><span class="badge badge-${s.tier}">${esc(s.tier)}</span></td>
-                  <td>${fmtNum(s.amount)}</td>
-                  <td>${fmtDateTime(s.requestedAt)}</td>
-                  <td><img src="${s.receipt}" class="receipt-thumb" data-view="${s.id}"></td>
-                  <td>
-                    <div class="actions">
-                      <button class="tiny-btn ok" data-approve="${s.id}">تأیید</button>
-                      <button class="tiny-btn danger" data-reject="${s.id}">رد</button>
-                    </div>
-                  </td>
-                </tr>
-              `).join("")}
+              ${pendingSubs.map(s => `<tr><td class="name-cell">${esc(s.user.name)}<br><span class="muted">${esc(s.user.email)}</span></td>
+                <td><span class="badge badge-${s.tier}">${esc(s.tier)}</span></td><td>${fmtNum(s.amount)}</td><td>${fmtDateTime(s.requestedAt)}</td>
+                <td><img src="${s.receipt}" class="receipt-thumb" data-view="${s.id}"></td>
+                <td><div class="actions"><button class="tiny-btn ok" data-approve="${s.id}">تأیید</button><button class="tiny-btn danger" data-reject="${s.id}">رد</button></div></td></tr>`).join("")}
             </tbody>
           </table>
         </div>
       `}
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-        کاربران (${fmtNum(stats.totalUsers)})
-      </h3>
-      ${DB.data.users.length === 0 ? `
-        <div class="empty">کاربری ثبت نشده است.</div>
-      ` : `
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> کاربران (${fmtNum(stats.totalUsers)})</h3>
+      ${DB.data.users.length === 0 ? `<div class="empty">کاربری ثبت نشده است.</div>` : `
         <div class="table-wrap">
           <table class="data-table">
-            <thead><tr><th>نام</th><th>ایمیل</th><th>سطح</th>
-              <th>عضویت</th><th>آخرین ورود</th><th>تراکنش</th><th>عملیات</th></tr></thead>
+            <thead><tr><th>نام</th><th>ایمیل</th><th>سطح</th><th>عضویت</th><th>آخرین ورود</th><th>تراکنش</th><th>عملیات</th></tr></thead>
             <tbody>
               ${DB.data.users.map(u => {
                 const txCount = DB.data.transactions.filter(t => t.userId === u.id).length;
-                return `
-                  <tr>
-                    <td class="name-cell">${esc(u.name)}${u.blocked ? ' <span class="badge badge-blocked">مسدود</span>' : ""}</td>
-                    <td>${esc(u.email)}</td>
-                    <td><span class="badge badge-${u.tier}">${esc(u.tier)}</span></td>
-                    <td>${fmtDate(u.createdAt)}</td>
-                    <td>${u.lastLogin ? fmtDate(u.lastLogin) : "—"}</td>
-                    <td>${fmtNum(txCount)}</td>
-                    <td>
-                      <div class="actions">
-                        <button class="tiny-btn" data-tier-user="${u.id}">تغییر سطح</button>
-                        ${u.tier !== "free" ? `<button class="tiny-btn danger" data-cancel-sub="${u.id}">لغو اشتراک</button>` : ""}
-                        <button class="tiny-btn ${u.blocked ? "ok" : "danger"}" data-block="${u.id}">
-                          ${u.blocked ? "رفع مسدودی" : "مسدود"}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                `;
+                return `<tr><td class="name-cell">${esc(u.name)}${u.blocked ? ' <span class="badge badge-blocked">مسدود</span>' : ""}</td>
+                  <td>${esc(u.email)}</td><td><span class="badge badge-${u.tier}">${esc(u.tier)}</span></td>
+                  <td>${fmtDate(u.createdAt)}</td><td>${u.lastLogin ? fmtDate(u.lastLogin) : "—"}</td><td>${fmtNum(txCount)}</td>
+                  <td><div class="actions"><button class="tiny-btn" data-tier-user="${u.id}">تغییر سطح</button>${u.tier !== "free" ? `<button class="tiny-btn danger" data-cancel-sub="${u.id}">لغو اشتراک</button>` : ""}<button class="tiny-btn ${u.blocked ? "ok" : "danger"}" data-block="${u.id}">${u.blocked ? "رفع مسدودی" : "مسدود"}</button></div></td></tr>`;
               }).join("")}
             </tbody>
           </table>
         </div>
       `}
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        فعالیت‌های اخیر سیستم
-      </h3>
-      ${DB.data.activities.length === 0 ? `
-        <div class="empty">فعالیتی ثبت نشده است.</div>
-      ` : `
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> فعالیت‌های اخیر سیستم</h3>
+      ${DB.data.activities.length === 0 ? `<div class="empty">فعالیتی ثبت نشده است.</div>` : `
         <div style="max-height:400px;overflow-y:auto">
           ${DB.data.activities.slice(-50).reverse().map(a => {
             const u = DB.data.users.find(x => x.id === a.userId);
-            return `
-              <div style="padding:10px 12px;border-bottom:1px solid var(--border);font-size:12.5px">
-                <span style="color:var(--text-3)">${fmtDateTime(a.createdAt)}</span>
-                · <strong>${esc(u ? u.name : "سیستم")}</strong>
-                — ${esc(a.detail || a.type)}
-              </div>
-            `;
+            return `<div style="padding:10px 12px;border-bottom:1px solid var(--border);font-size:12.5px"><span style="color:var(--text-3)">${fmtDateTime(a.createdAt)}</span> · <strong>${esc(u ? u.name : "سیستم")}</strong> — ${esc(a.detail || a.type)}</div>`;
           }).join("")}
         </div>
       `}
     </div>
   `;
 
-  $("#adminLogout").addEventListener("click", () => {
-    Admin.clearSession();
-    toast("از پنل مدیریت خارج شدید");
-    navigate("dashboard");
-  });
-
-  $$("[data-approve]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      const r = Data.approveSubscription(b.dataset.approve);
-      if (r.ok) { toast("اشتراک تأیید شد", "success"); renderPage(); }
-      else { toast(r.error, "error"); }
-    });
-  });
-
-  $$("[data-reject]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      if (!confirm("این درخواست رد شود؟")) return;
-      const r = Data.rejectSubscription(b.dataset.reject);
-      if (r.ok) { toast("درخواست رد شد"); renderPage(); }
-      else { toast(r.error, "error"); }
-    });
-  });
-
-  $$("[data-view]", container).forEach(img => {
-    img.addEventListener("click", () => {
-      const s = DB.data.subscriptions.find(x => x.id === img.dataset.view);
-      if (s) {
-        openGenericModal(`
-          <button class="modal-close" id="modalCloseBtn">×</button>
-          <h3>رسید ارسالی</h3>
-          <p class="modal-sub">${fmtDateTime(s.requestedAt)}</p>
-          <img src="${s.receipt}" class="receipt-preview" alt="رسید">
-        `);
-        $("#modalCloseBtn").addEventListener("click", closeGenericModal);
-      }
-    });
-  });
-
-  $$("[data-tier-user]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      const u = DB.data.users.find(x => x.id === b.dataset.tierUser);
-      if (!u) return;
-      const newTier = prompt("سطح جدید را وارد کنید (free / pro / enterprise):", u.tier);
-      if (!newTier || !["free", "pro", "enterprise"].includes(newTier)) return;
-      Data.changeTier(u.id, newTier);
-      toast("سطح کاربر تغییر کرد", "success");
-      renderPage();
-    });
-  });
-
-  $$("[data-cancel-sub]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      if (!confirm("اشتراک این کاربر لغو شود؟")) return;
-      Data.cancelUserSubscription(b.dataset.cancelSub);
-      toast("اشتراک لغو شد", "success");
-      renderPage();
-    });
-  });
-
-  $$("[data-block]", container).forEach(b => {
-    b.addEventListener("click", () => {
-      if (!confirm("وضعیت مسدودی این کاربر تغییر کند؟")) return;
-      Data.toggleBlock(b.dataset.block);
-      toast("وضعیت کاربر تغییر کرد", "success");
-      renderPage();
-    });
-  });
+  $("#adminLogout").addEventListener("click", () => { Admin.clearSession(); toast("از پنل مدیریت خارج شدید"); navigate("dashboard"); });
+  $$("[data-approve]", container).forEach(b => b.addEventListener("click", () => { const r = Data.approveSubscription(b.dataset.approve); if (r.ok) { toast("اشتراک تأیید شد", "success"); renderPage(); } else { toast(r.error, "error"); } }));
+  $$("[data-reject]", container).forEach(b => b.addEventListener("click", () => { if (!confirm("این درخواست رد شود؟")) return; const r = Data.rejectSubscription(b.dataset.reject); if (r.ok) { toast("درخواست رد شد"); renderPage(); } else { toast(r.error, "error"); } }));
+  $$("[data-view]", container).forEach(img => img.addEventListener("click", () => {
+    const s = DB.data.subscriptions.find(x => x.id === img.dataset.view);
+    if (s) { openGenericModal(`<button class="modal-close" id="modalCloseBtn">×</button><h3>رسید ارسالی</h3><p class="modal-sub">${fmtDateTime(s.requestedAt)}</p><img src="${s.receipt}" class="receipt-preview" alt="رسید">`); $("#modalCloseBtn").addEventListener("click", closeGenericModal); }
+  }));
+  $$("[data-tier-user]", container).forEach(b => b.addEventListener("click", () => {
+    const u = DB.data.users.find(x => x.id === b.dataset.tierUser);
+    if (!u) return;
+    const newTier = prompt("سطح جدید را وارد کنید (free / pro / enterprise):", u.tier);
+    if (!newTier || !["free", "pro", "enterprise"].includes(newTier)) return;
+    Data.changeTier(u.id, newTier); toast("سطح کاربر تغییر کرد", "success"); renderPage();
+  }));
+  $$("[data-cancel-sub]", container).forEach(b => b.addEventListener("click", () => {
+    if (!confirm("اشتراک این کاربر لغو شود؟")) return;
+    Data.cancelUserSubscription(b.dataset.cancelSub); toast("اشتراک لغو شد", "success"); renderPage();
+  }));
+  $$("[data-block]", container).forEach(b => b.addEventListener("click", () => {
+    if (!confirm("وضعیت مسدودی این کاربر تغییر کند؟")) return;
+    Data.toggleBlock(b.dataset.block); toast("وضعیت کاربر تغییر کرد", "success"); renderPage();
+  }));
 }
 
-/* ─────────── 21. PAGE: ADMIN REPORTS ─────────── */
+/* ─────────── PAGE: ADMIN REPORTS ─────────── */
 function renderAdminReports(container, user) {
   if (!Admin.isLoggedIn()) { navigate("dashboard"); return; }
   const s = DB.data.settings;
-
   container.innerHTML = `
-    <div class="page-head">
-      <div>
-        <h1 class="page-title">گزارش‌ها و تنظیمات سیستم</h1>
-        <p class="page-sub">پیکربندی گزارش‌های خودکار و مشاهده آمار</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        گزارش‌های خودکار
-      </h3>
+    <div class="page-head"><div><h1 class="page-title">گزارش‌ها و تنظیمات سیستم</h1><p class="page-sub">پیکربندی گزارش‌های خودکار و مشاهده آمار</p></div></div>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> گزارش‌های خودکار</h3>
       <div class="row row-between" style="padding:12px 0;border-bottom:1px solid var(--border)">
-        <div>
-          <div style="font-size:13px;font-weight:700">فعال‌سازی گزارش‌های خودکار</div>
-          <div class="muted">نمایش خلاصه مالی به کاربران در فواصل تعیین‌شده</div>
-        </div>
+        <div><div style="font-size:13px;font-weight:700">فعال‌سازی گزارش‌های خودکار</div><div class="muted">نمایش خلاصه مالی به کاربران در فواصل تعیین‌شده</div></div>
         <label style="position:relative;display:inline-block;width:46px;height:26px">
-          <input type="checkbox" id="autoReports" ${s.autoReportsEnabled ? "checked" : ""}
-            style="position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;z-index:2">
-          <span id="autoReportsSlider" style="position:absolute;inset:0;border-radius:99px;
-            background:${s.autoReportsEnabled ? "linear-gradient(135deg,var(--cyan),var(--gold))" : "rgba(255,255,255,.1)"};
-            border:1px solid var(--border-2);transition:.3s"></span>
+          <input type="checkbox" id="autoReports" ${s.autoReportsEnabled ? "checked" : ""} style="position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;z-index:2">
+          <span id="autoReportsSlider" style="position:absolute;inset:0;border-radius:99px;background:${s.autoReportsEnabled ? "linear-gradient(135deg,var(--cyan),var(--gold))" : "rgba(255,255,255,.1)"};border:1px solid var(--border-2);transition:.3s"></span>
         </label>
       </div>
       <div class="row row-between" style="padding:12px 0">
-        <div>
-          <div style="font-size:13px;font-weight:700">تناوب گزارش</div>
-          <div class="muted">هفتگی یا ماهانه</div>
-        </div>
-        <select id="reportSchedule" style="padding:8px 12px;border-radius:8px;
-          background:rgba(0,0,0,.3);border:1px solid var(--border);color:var(--text);font-size:12.5px">
+        <div><div style="font-size:13px;font-weight:700">تناوب گزارش</div><div class="muted">هفتگی یا ماهانه</div></div>
+        <select id="reportSchedule" style="padding:8px 12px;border-radius:8px;background:rgba(0,0,0,.3);border:1px solid var(--border);color:var(--text);font-size:12.5px">
           <option value="weekly" ${s.adminReportSchedule === "weekly" ? "selected" : ""}>هفتگی</option>
           <option value="monthly" ${s.adminReportSchedule === "monthly" ? "selected" : ""}>ماهانه</option>
         </select>
       </div>
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg>
-        آمار تفصیلی
-      </h3>
+    <div class="card glass">
+      <h3 class="card-title"><svg viewBox="0 0 24 24"><path d="M3 20V10M9 20V4M15 20v-7M21 20v-11"/></svg> آمار تفصیلی</h3>
       <div class="table-wrap">
         <table class="data-table">
           <thead><tr><th>شاخص</th><th>مقدار</th></tr></thead>
@@ -2666,243 +1834,139 @@ function renderAdminReports(container, user) {
         </table>
       </div>
     </div>
-
-    <div class="card">
-      <h3 class="card-title">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.1"/></svg>
-        یادآوری
-      </h3>
-      <p class="muted" style="line-height:1.95">
-        گزارش‌های خودکار در حال حاضر به‌صورت زنده در صفحه «پیش‌بین» برای هر کاربر قابل مشاهده است.
-        در نسخه‌های بعدی ارسال ایمیل گزارش‌ها نیز اضافه خواهد شد.
-      </p>
-    </div>
   `;
-
   $("#autoReports").addEventListener("change", (e) => {
-    DB.data.settings.autoReportsEnabled = e.target.checked;
-    DB.save();
-    const slider = $("#autoReportsSlider");
-    slider.style.background = e.target.checked
-      ? "linear-gradient(135deg,var(--cyan),var(--gold))"
-      : "rgba(255,255,255,.1)";
+    DB.data.settings.autoReportsEnabled = e.target.checked; DB.save();
+    $("#autoReportsSlider").style.background = e.target.checked ? "linear-gradient(135deg,var(--cyan),var(--gold))" : "rgba(255,255,255,.1)";
     toast(e.target.checked ? "گزارش‌های خودکار فعال شد" : "گزارش‌های خودکار غیرفعال شد", "success");
   });
-
-  $("#reportSchedule").addEventListener("change", (e) => {
-    DB.data.settings.adminReportSchedule = e.target.value;
-    DB.save();
-    toast("تناوب گزارش ثبت شد", "success");
-  });
+  $("#reportSchedule").addEventListener("change", (e) => { DB.data.settings.adminReportSchedule = e.target.value; DB.save(); toast("تناوب گزارش ثبت شد", "success"); });
 }
 
-/* ─────────── 22. AUTH UI ─────────── */
+/* ─────────── AUTH UI ─────────── */
 let authMode = "login";
-
 function setAuthMode(mode) {
   authMode = mode;
-  $$(".auth-tab").forEach(t => {
-    t.classList.toggle("active", t.dataset.mode === mode);
-  });
+  $$(".auth-tab").forEach(t => t.classList.toggle("active", t.dataset.mode === mode));
   $("#authNameField").hidden = mode !== "signup";
   $("#authPassword").autocomplete = mode === "signup" ? "new-password" : "current-password";
   $("#authSubmit").textContent = mode === "signup" ? "ساخت حساب" : "ورود به حساب";
   $("#authError").hidden = true;
 }
-
-function showAuthError(msg) {
-  const el = $("#authError");
-  el.textContent = msg;
-  el.hidden = false;
-}
+function showAuthError(msg) { const el = $("#authError"); el.textContent = msg; el.hidden = false; }
 
 async function handleAuthSubmit(e) {
   e.preventDefault();
-  const email = $("#authEmail").value;
-  const password = $("#authPassword").value;
-  const name = $("#authName").value;
+  const email = $("#authEmail").value, password = $("#authPassword").value, name = $("#authName").value;
   const submitBtn = $("#authSubmit");
-  submitBtn.disabled = true;
-  submitBtn.textContent = "در حال پردازش…";
+  submitBtn.disabled = true; submitBtn.textContent = "در حال پردازش…";
   try {
     let result;
-    if (authMode === "signup") {
-      result = await Auth.register(name, email, password);
-    } else {
-      result = await Auth.login(email, password);
-    }
-    if (!result.ok) {
-      showAuthError(result.error);
-      submitBtn.disabled = false;
-      setAuthMode(authMode);
-      return;
-    }
-    // Success
-    const user = result.user;
-    $("#authForm").reset();
-    $("#authScreen").hidden = true;
-    showWelcome(user);
+    if (authMode === "signup") result = await Auth.register(name, email, password);
+    else result = await Auth.login(email, password);
+    if (!result.ok) { showAuthError(result.error); submitBtn.disabled = false; setAuthMode(authMode); return; }
+    $("#authForm").reset(); $("#authScreen").hidden = true; showWelcome(result.user);
   } catch (err) {
-    console.error(err);
-    showAuthError("خطای غیرمنتظره. لطفاً دوباره تلاش کنید.");
-    submitBtn.disabled = false;
-    setAuthMode(authMode);
+    console.error(err); showAuthError("خطای غیرمنتظره. لطفاً دوباره تلاش کنید.");
+    submitBtn.disabled = false; setAuthMode(authMode);
   }
 }
 
 function showWelcome(user) {
   $("#welcomeName").textContent = user.name;
   $("#welcomeOverlay").hidden = false;
-  $("#welcomeEnter").onclick = () => {
-    $("#welcomeOverlay").hidden = true;
-    enterApp(user);
-  };
+  $("#welcomeEnter").onclick = () => { $("#welcomeOverlay").hidden = true; enterApp(user); };
 }
 
 function enterApp(user) {
   $("#appShell").hidden = false;
   currentRoute = "dashboard";
-  renderNav();
-  renderPage();
+  renderNav(); renderPage();
 }
 
-/* ─────────── 23. ADMIN LOGIN ─────────── */
+/* ─────────── ADMIN LOGIN ─────────── */
 function openAdminLogin() {
-  if (Admin.isLoggedIn()) {
-    navigate("admin");
-    return;
-  }
-  $("#adminPassword").value = "";
-  $("#adminError").hidden = true;
+  if (Admin.isLoggedIn()) { navigate("admin"); return; }
+  $("#adminPassword").value = ""; $("#adminError").hidden = true;
   openModal("adminModal");
   setTimeout(() => $("#adminPassword").focus(), 150);
 }
 
 async function handleAdminSubmit() {
   const pw = $("#adminPassword").value;
-  if (!pw) {
-    $("#adminError").textContent = "رمز را وارد کنید";
-    $("#adminError").hidden = false;
-    return;
-  }
+  if (!pw) { $("#adminError").textContent = "رمز را وارد کنید"; $("#adminError").hidden = false; return; }
   const submitBtn = $("#adminSubmit");
-  submitBtn.disabled = true;
-  submitBtn.textContent = "بررسی…";
+  submitBtn.disabled = true; submitBtn.textContent = "بررسی…";
   try {
     const ok = await Admin.verifyPassword(pw);
-    if (!ok) {
-      $("#adminError").textContent = "رمز اشتباه است";
-      $("#adminError").hidden = false;
-      $("#adminPassword").value = "";
-      submitBtn.disabled = false;
-      submitBtn.textContent = "ورود";
-      return;
-    }
-    Admin.setSession();
-    closeModal("adminModal");
-    toast("به پنل مدیریت خوش آمدید", "success");
-    navigate("admin");
+    if (!ok) { $("#adminError").textContent = "رمز اشتباه است"; $("#adminError").hidden = false; $("#adminPassword").value = ""; submitBtn.disabled = false; submitBtn.textContent = "ورود"; return; }
+    Admin.setSession(); closeModal("adminModal"); toast("به پنل مدیریت خوش آمدید", "success"); navigate("admin");
   } catch (err) {
-    console.error(err);
-    $("#adminError").textContent = "خطای غیرمنتظره";
-    $("#adminError").hidden = false;
-    submitBtn.disabled = false;
-    submitBtn.textContent = "ورود";
+    console.error(err); $("#adminError").textContent = "خطای غیرمنتظره"; $("#adminError").hidden = false; submitBtn.disabled = false; submitBtn.textContent = "ورود";
   }
 }
 
-/* ─────────── 24. BACKGROUND STARS ─────────── */
+/* ─────────── BACKGROUND STARS ─────────── */
 function initStars() {
-  const bg = $("#bgStars");
-  const count = Math.min(60, Math.floor(window.innerWidth / 30));
+  const bg = $("#bgLayer");
+  const count = Math.min(80, Math.floor(window.innerWidth / 20));
   for (let i = 0; i < count; i++) {
     const s = document.createElement("div");
     s.className = "bg-star";
-    s.style.left = Math.random() * 100 + "%";
-    s.style.top = Math.random() * 100 + "%";
+    const size = Math.random() * 3 + 1;
+    s.style.width = size + "px"; s.style.height = size + "px";
+    s.style.left = Math.random() * 100 + "%"; s.style.top = Math.random() * 100 + "%";
     s.style.animationDelay = Math.random() * 5 + "s";
-    s.style.animationDuration = 3 + Math.random() * 4 + "s";
+    s.style.animationDuration = 3 + Math.random() * 5 + "s";
+    if (Math.random() > 0.7) s.style.background = "var(--gold)";
     bg.appendChild(s);
   }
 }
 
-/* ─────────── 25. BOOTSTRAP ─────────── */
+/* ─────────── BOOTSTRAP ─────────── */
 async function bootstrap() {
   try {
-    DB.load();
-    await initAdminHash();
-    initStars();
-
-    // Auth tabs
-    $$(".auth-tab").forEach(t => {
-      t.addEventListener("click", () => setAuthMode(t.dataset.mode));
-    });
+    DB.load(); await initAdminHash(); initStars();
+    $$(".auth-tab").forEach(t => t.addEventListener("click", () => setAuthMode(t.dataset.mode)));
     $("#authForm").addEventListener("submit", handleAuthSubmit);
-
+    
     // Logout
     $("#logoutBtn").addEventListener("click", () => {
       if (!confirm("از حساب خارج می‌شوید؟")) return;
-      Auth.logout();
-      $("#appShell").hidden = true;
-      $("#authScreen").hidden = false;
-      setAuthMode("login");
-      toast("از حساب خارج شدید");
+      Auth.logout(); $("#appShell").hidden = true; $("#authScreen").hidden = false;
+      setAuthMode("login"); toast("از حساب خارج شدید");
     });
     $("#mobileLogout").addEventListener("click", () => {
       if (!confirm("از حساب خارج می‌شوید؟")) return;
-      Auth.logout();
-      $("#appShell").hidden = true;
-      $("#authScreen").hidden = false;
-      setAuthMode("login");
-      toast("از حساب خارج شدید");
+      Auth.logout(); $("#appShell").hidden = true; $("#authScreen").hidden = false;
+      setAuthMode("login"); toast("از حساب خارج شدید");
     });
 
-    // Secret dot
-    $("#secretDot").addEventListener("click", (e) => {
-      e.stopPropagation();
-      Admin.registerSecretClick(() => {
-        openAdminLogin();
-      });
-    });
+    // Secret dots (Login Screen & Sidebar)
+    const triggerSecret = () => Admin.registerSecretClick(() => openAdminLogin());
+    $("#loginSecretTrigger").addEventListener("click", triggerSecret);
+    $("#secretDot").addEventListener("click", (e) => { e.stopPropagation(); triggerSecret(); });
 
     // Admin modal
     $("#adminSubmit").addEventListener("click", handleAdminSubmit);
-    $("#adminPassword").addEventListener("keydown", (e) => {
-      if (e.key === "Enter") handleAdminSubmit();
-    });
+    $("#adminPassword").addEventListener("keydown", (e) => { if (e.key === "Enter") handleAdminSubmit(); });
     $("#adminCancel").addEventListener("click", () => closeModal("adminModal"));
     $("#adminModalClose").addEventListener("click", () => closeModal("adminModal"));
-    $("#adminModal").addEventListener("click", (e) => {
-      if (e.target === $("#adminModal")) closeModal("adminModal");
-    });
+    $("#adminModal").addEventListener("click", (e) => { if (e.target === $("#adminModal")) closeModal("adminModal"); });
+    $("#genericModal").addEventListener("click", (e) => { if (e.target === $("#genericModal")) closeGenericModal(); });
 
-    // Generic modal
-    $("#genericModal").addEventListener("click", (e) => {
-      if (e.target === $("#genericModal")) closeGenericModal();
-    });
-
-    // Check existing session
+    // Check session
     const user = Auth.currentUser();
-    if (user) {
-      $("#authScreen").hidden = true;
-      enterApp(user);
-    } else {
-      $("#authScreen").hidden = false;
-      setAuthMode("login");
-    }
+    if (user) { $("#authScreen").hidden = true; enterApp(user); }
+    else { $("#authScreen").hidden = false; setAuthMode("login"); }
   } catch (err) {
     console.error("Bootstrap error:", err);
-    document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#ff8080;font-family:sans-serif">' +
-      "خطا در راه‌اندازی برنامه. لطفاً صفحه را دوباره بارگذاری کنید.<br>" +
-      "<small>" + (err.message || "") + "</small></div>";
+    document.body.innerHTML = '<div style="padding:40px;text-align:center;color:#ff8080;font-family:sans-serif">خطا در راه‌اندازی برنامه. لطفاً صفحه را دوباره بارگذاری کنید.<br><small>' + (err.message || "") + '</small></div>';
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", bootstrap);
-} else {
-  bootstrap();
-}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bootstrap);
+else bootstrap();
 </script>
 </body>
   </html>
